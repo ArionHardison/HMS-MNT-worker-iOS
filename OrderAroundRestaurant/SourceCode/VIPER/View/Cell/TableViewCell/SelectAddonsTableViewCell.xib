@@ -38,7 +38,7 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radio-button-2" translatesAutoresizingMaskIntoConstraints="NO" id="iH8-y6-de5">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="radiooff" translatesAutoresizingMaskIntoConstraints="NO" id="iH8-y6-de5">
                         <rect key="frame" x="277.5" y="22.5" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="0iF-HZ-y3g"/>
@@ -82,6 +82,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="radio-button-2" width="30" height="30"/>
+        <image name="radiooff" width="128" height="128"/>
     </resources>
 </document>

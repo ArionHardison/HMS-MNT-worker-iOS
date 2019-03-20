@@ -18,12 +18,18 @@ class SelectAddonsTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        setImageTintColor()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    private func setImageTintColor(){
+        let image = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
+        radioImageView.image = image
+        radioImageView.tintColor = UIColor.primary
     }
     
 }
