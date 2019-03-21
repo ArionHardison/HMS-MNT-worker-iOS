@@ -66,11 +66,22 @@ extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
         cell.userNameLabel.text = dict.user?.name
         cell.orderTimeLabel.text = "Order Time"
         cell.userImageView.sd_setImage(with: URL(string: dict.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+        if (dict.status == "ORDERED") {
+            
+            
+            if (dict.dispute == "CREATED") {
+                
+                cell.statusLabel.text = "Dispute Created"
+                cell.statusLabel.textColor = UIColor.red
+            } else {
+                cell.statusLabel.text = "Incoming"
+                cell.statusLabel.textColor = UIColor.green
+                
+            }
+        }
         return cell
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 108
-    }
+   
 }
 /******************************************************************/
 //MARK: VIPER Extension:

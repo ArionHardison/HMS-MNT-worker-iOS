@@ -69,9 +69,9 @@ extension CancelOrderViewController: UITableViewDelegate,UITableViewDataSource{
         
         return cell
     }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 108
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 108
+//    }
 }
 /******************************************************************/
 //MARK: VIPER Extension:
