@@ -1,0 +1,175 @@
+//
+//  HomeViewController.swift
+//  OrderAroundRestaurant
+//
+//  Created by CSS on 27/02/19.
+//  Copyright © 2019 CSS. All rights reserved.
+//
+
+import UIKit
+import ObjectMapper
+
+class HomeViewController: BaseViewController {
+
+    @IBOutlet weak var bannerImageView: UIImageView!
+    @IBOutlet weak var restaurantNameLabel: UILabel!
+    @IBOutlet weak var restaurantLocation: UILabel!
+    @IBOutlet weak var upcomingRequestTableView: UITableView!
+    
+    private var profileDataResponse: ProfileModel?
+    var upcomingRequestArr = [Orders]()
+    var timerGetRequest: Timer?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+        setInitialLoad()
+    }
+    //MARK:- viewWillAppear
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.navigationController?.isNavigationBarHidden = true
+        getProfile()
+        timerGetRequest = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.getProfile), userInfo: nil, repeats: true)
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+        timerGetRequest?.invalidate()
+        timerGetRequest = nil
+    }
+   
+
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+
+}
+extension HomeViewController{
+    private func setInitialLoad(){
+        showActivityIndicator()
+        setRegister()
+        setFont()
+        NotificationCenter.default.addObserver(self, selector: #selector(self.inValidateTimer(_:)), name: NSNotification.Name(rawValue: "InValidateTimer"), object: nil)
+
+    }
+    
+    @objc func inValidateTimer(_ notification: NSNotification) {
+        timerGetRequest?.invalidate()
+        timerGetRequest = nil
+    }
+    
+    @objc private func setOrderHistoryApi(){
+        let urlStr = "\(Base.getOrder.rawValue)?t=ordered"
+        self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
+    }
+    
+    
+    @objc private func getProfile(){
+        self.presenter?.GETPOST(api: Base.getprofile.rawValue, params:[:], methodType: HttpType.GET, modelClass: ProfileModel.self, token: true)
+    }
+    private func setFont(){
+        restaurantNameLabel.font = UIFont.bold(size: 20)
+        restaurantLocation.font = UIFont.bold(size: 18)
+    }
+    private func setValues(profile: ProfileModel){
+        restaurantNameLabel.text = profile.name
+        restaurantLocation.text = profile.address
+        bannerImageView.sd_setImage(with: URL(string: profile.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+
+    }
+    private func setRegister(){
+        let upcomingRequestViewnib = UINib(nibName: XIB.Names.UpcomingRequestTableViewCell, bundle: nil)
+        upcomingRequestTableView.register(upcomingRequestViewnib, forCellReuseIdentifier: XIB.Names.UpcomingRequestTableViewCell)
+        upcomingRequestTableView.delegate = self
+        upcomingRequestTableView.dataSource = self
+        upcomingRequestTableView.reloadData()
+    }
+    
+}
+extension HomeViewController: UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.upcomingRequestArr.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
+        
+        let dict = self.upcomingRequestArr[indexPath.row]
+        cell.paymentLabel.text = dict.invoice?.payment_mode
+        cell.orderTimeValueLabel.text = dict.delivery_date
+        cell.locationLabel.text = dict.address?.city
+        cell.userNameLabel.text = dict.user?.name
+        cell.orderTimeLabel.text = "Order Time"
+        cell.userImageView.sd_setImage(with: URL(string: dict.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+
+        cell.statusLabel.text = dict.status
+        
+        if (dict.status == "ORDERED") {
+            
+            
+            if (dict.dispute == "CREATED") {
+              
+                cell.statusLabel.text = "Dispute Created"
+                cell.statusLabel.textColor = UIColor.red
+            } else {
+                cell.statusLabel.text = "Incoming"
+                cell.statusLabel.textColor = UIColor.green
+
+            }
+        }
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dict = self.upcomingRequestArr[indexPath.row]
+
+        let upcomingDetailController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.UpcomingDetailViewController) as! UpcomingDetailViewController
+        upcomingDetailController.OrderId = dict.id ?? 0
+        self.navigationController?.pushViewController(upcomingDetailController, animated: true)
+    }
+}
+extension HomeViewController: PresenterOutputProtocol {
+    func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        self.HideActivityIndicator()
+        if String(describing: modelClass) == model.type.ProfileModel {
+            self.profileDataResponse = dataDict  as? ProfileModel
+            UserDefaults.standard.set(self.profileDataResponse?.id, forKey: Keys.list.shopId)
+            UserDefaults.standard.set(self.profileDataResponse?.currency, forKey: Keys.list.currency)
+            
+            profiledata = self.profileDataResponse
+            
+            setValues(profile: self.profileDataResponse!)
+            setOrderHistoryApi()
+            
+            
+        }else if String(describing: modelClass) == model.type.OrderModel {
+            HideActivityIndicator()
+            let data = dataDict as! OrderModel
+            self.upcomingRequestArr = data.orders ?? []
+            upcomingRequestTableView.reloadData()
+        }
+        
+    }
+    
+    func showError(error: CustomError) {
+        print(error)
+        let alert = showAlert(message: error.localizedDescription)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: {
+                self.HideActivityIndicator()
+            })
+        }
+        
+    }
+}
+

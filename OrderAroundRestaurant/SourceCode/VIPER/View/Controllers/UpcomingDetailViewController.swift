@@ -11,6 +11,16 @@ import ObjectMapper
 
 class UpcomingDetailViewController: BaseViewController {
 
+    @IBOutlet weak var orderHeight: NSLayoutConstraint!
+    @IBOutlet weak var orderTimeTextField: UITextField!
+    @IBOutlet weak var enterOrderPreparationTime: UILabel!
+    @IBOutlet weak var orderDeliveryTimeLabel: UILabel!
+    @IBOutlet weak var subView: UIView!
+    @IBOutlet weak var acceptOverView: UIView!
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var disputeButton: UIButton!
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var totalValueLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var deliveryChargeValueLabel: UILabel!
@@ -27,7 +37,6 @@ class UpcomingDetailViewController: BaseViewController {
     @IBOutlet weak var emptyLabel: UILabel!
     @IBOutlet weak var noteLabel: UILabel!
     @IBOutlet weak var OrderListLabel: UILabel!
-    @IBOutlet weak var locationButton: UIButton!
     @IBOutlet weak var paymentModeLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var shopImageView: UIImageView!
@@ -36,6 +45,7 @@ class UpcomingDetailViewController: BaseViewController {
     
     var OrderId = 0
     var CartOrderArr:[Cart] = []
+    var OrderModel: Order?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +64,54 @@ class UpcomingDetailViewController: BaseViewController {
         self.navigationController?.isNavigationBarHidden = true
 
     }
+    
+    //  update TableView Height
+    private func updateOrderItemTableHeight(){
+        var counts: [String: Int] = [:]
+        var itemsArr = [String]()
+        for var i in 0..<(CartOrderArr.count)
+        {
+            let Result = CartOrderArr[i]
+            
+            let cartaddons = Result.cart_addons?.count
+            if cartaddons! > 0 {
+                itemsArr.append("withaddonsItems")
+            }else{
+                itemsArr.append("withoutaddonsItems")
+                
+            }
+        }
+        for item in itemsArr {
+            counts[item] = (counts[item] ?? 0) + 1
+        }
+        var cartaddonCount = 0
+        var itemCount = 0
+        for (key, value) in counts {
+            print("\(key) occurs \(value) time(s)")
+            if key == "withoutaddonsItems"{
+                itemCount = value
+            }else{
+                cartaddonCount = value
+            }
+        }
+        
+        let itemCountHeight = CGFloat(itemCount * 40)
+        let cartaddOns = CGFloat(cartaddonCount * 80)
+        self.orderHeight.constant = itemCountHeight + cartaddOns
+        scrollView.contentSize = CGSize(width: self.overView.frame.size.width, height:  overView        .frame.size.height)
+        
+    }
+    
+    @IBAction func onAcceptAction(_ sender: Any) {
+        
+        self.acceptOrderApi(statusStr: "RECEIVED")
+
+    }
+    
+    @IBAction func onCancelAction(_ sender: Any) {
+        acceptOverView.isHidden = true
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -63,7 +121,60 @@ class UpcomingDetailViewController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    @IBAction func onCancelButtonAction(_ sender: Any) {
+        var alertController = UIAlertController(title: "", message: "Are you sure want to cancel your order", preferredStyle: .alert)
+        
+        var no = UIAlertAction(title: "NO", style: .default, handler: nil)
+        
+        var ok = UIAlertAction(title: "YES", style: .default, handler: { action in
+            
+//            self.acceptCancelOrderMethod("CANCELLED")
+            self.acceptOrderApi(statusStr: "CANCELLED")
+            
+        })
+        alertController.addAction(ok)
+        alertController.addAction(no)
+        present(alertController, animated: true)
+    }
+    
+    @IBAction func onacceptButtonAction(_ sender: Any) {
+    }
+    
+    private func acceptOrderApi(statusStr: String){
+        showActivityIndicator()
+        let urlStr = "\(Base.getOrder.rawValue)/" + String(OrderId)
+        let parameters:[String:Any] = ["status": statusStr,
+                                       "order_ready_time":orderTimeTextField.text!,
+                                       "_method":""]
+        self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
+    }
+    
+    @IBAction func onCallAction(_ sender: Any) {
+        if (OrderModel?.user?.phone == "") {
+            let alertController = UIAlertController(title: "Alert", message: "User was not provided the number to make a call.", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alertController.addAction(ok)
+            present(alertController, animated: true)
+        } else {
+            let phoneUrl = URL(string: "telprompt://" + (OrderModel?.user?.phone ?? ""))
+            let phoneFallbackUrl = URL(string: "tel://" + (OrderModel?.user?.phone ?? ""))
+            
+            if let phoneUrl = phoneUrl {
+                if UIApplication.shared.canOpenURL(phoneUrl) {
+                    UIApplication.shared.open(phoneUrl, options: [:], completionHandler: nil)
+                } else if let phoneFallbackUrl = phoneFallbackUrl {
+                    if UIApplication.shared.canOpenURL(phoneFallbackUrl) {
+                        UIApplication.shared.open(phoneFallbackUrl, options: [:], completionHandler: nil)
+                    } else {
+                        let alertController = UIAlertController(title: "Alert", message: "Your device does not support calling", preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+                        alertController.addAction(ok)
+                        present(alertController, animated: true)
+                    }
+                }
+            }
+        }
+    }
 }
 extension UpcomingDetailViewController{
     private func setInitialLoad(){
@@ -71,6 +182,7 @@ extension UpcomingDetailViewController{
         setRegister()
         setNavigationController()
         setOrderHistoryApi()
+        acceptOverView.isHidden = true
     }
     
     private func setOrderHistoryApi(){
@@ -86,7 +198,7 @@ extension UpcomingDetailViewController{
         self.navigationController?.navigationBar.barTintColor = UIColor.primary
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
-        self.title = "Edit Timing"
+        self.title = "#" + String(OrderId)
         let btnBack = UIButton(type: .custom)
         btnBack.setImage(UIImage(named: "back-white"), for: .normal)
         btnBack.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
@@ -106,6 +218,7 @@ extension UpcomingDetailViewController{
         orderTableView.dataSource = self
     }
     private func setFont(){
+        shopImageView.setRounded()
         totalValueLabel.font = UIFont.regular(size: 14)
         totalLabel.font = UIFont.bold(size: 15)
         deliveryChargeValueLabel.font = UIFont.regular(size: 14)
@@ -121,20 +234,58 @@ extension UpcomingDetailViewController{
        emptyLabel.font = UIFont.regular(size: 14)
         noteLabel.font = UIFont.regular(size: 14)
         OrderListLabel.font = UIFont.regular(size: 14)
-        locationButton.titleLabel?.font = UIFont.regular(size: 14)
         paymentModeLabel.font = UIFont.regular(size: 14)
         userNameLabel.font = UIFont.regular(size: 14)
+        locationLabel.font = UIFont.regular(size: 14)
     }
     
     private func fetchOrderDetails(data: Order) {
         
        shopImageView.sd_setImage(with: URL(string: data.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
         userNameLabel.text = data.user?.name
-        locationButton.setTitle(data.address?.map_address, for: .normal)
+        locationLabel.text = data.address?.map_address
         paymentModeLabel.text = data.invoice?.payment_mode
-        noteLabel.text = data.note ?? ""
+        emptyLabel.text = data.note ?? ""
         
-        //deliveryChargeValueLabel.text = data.invoice?.delivery_charge
+        let currency = UserDefaults.standard.value(forKey: Keys.list.currency) as! String
+
+        let deliveryChargeStr: String! = String(describing: data.invoice?.delivery_charge ?? 0)
+        deliveryChargeValueLabel.text = currency + String(format: " $%.02f", Double(deliveryChargeStr) ?? 0.0)
+        
+        let subTotalStr: String! = String(describing: data.invoice?.gross ?? 0)
+        subTotalValueLabel.text = currency + String(format: " $%.02f", Double(subTotalStr) ?? 0.0)
+        let TotalStr: String! = String(describing: data.invoice?.net ?? 0)
+
+        totalValueLabel.text = currency + String(format: " $%.02f", Double(TotalStr) ?? 0.0)
+        
+        let discountStr: String! = String(describing: data.invoice?.discount ?? 0)
+        discountValueLabel.text = currency + String(format: " $%.02f", Double(discountStr) ?? 0.0)
+        
+        let sgstStr: String! = String(describing: data.invoice?.payable ?? 0)
+        sgstValueLabel.text = currency + String(format: " $%.02f", Double(sgstStr) ?? 0.0)
+        
+        let cgstStr: String! = String(describing: data.invoice?.tax ?? 0)
+        cgstValueLabel.text = currency + String(format: " $%.02f", Double(cgstStr) ?? 0.0)
+        
+        
+        if (data.status == "ORDERED") {
+            acceptButton.isHidden = false
+            cancelButton.isHidden = false
+            disputeButton.isHidden = true
+            if (data.dispute == "CREATED") {
+                acceptButton.isHidden = true
+                cancelButton.isHidden = true
+                disputeButton.isHidden = false
+                disputeButton.titleLabel?.text = "DISPUTE CREATED"
+                disputeButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+            }
+        } else {
+            acceptButton.isHidden = true
+            cancelButton.isHidden = true
+        }
+        
+        
+        
     }
 }
 extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSource{
@@ -144,10 +295,36 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.ItemListTableViewCell, for: indexPath) as! ItemListTableViewCell
-        // let dict = timeArr[indexPath.row]
+       
+        let Data = self.CartOrderArr[indexPath.row]
+        let productName = Data.product?.name
+        let quantityStr = "\(Data.quantity ?? 0)"
+        cell.titleLabel.text = productName! + " x " + quantityStr
+        let currency = Data.product?.prices?.currency
+        let priceStr: String! = String(describing: Data.product?.prices?.price ?? 0)
+
+        cell.descriptionLabel.text = currency ?? "" + String(format: " $%.02f", Double(priceStr) ?? 0.0)
         
-        //  cell.openTimeValueLabel.text = dict.start_time
-        //   cell.closeTimeValueLabel.text = dict.end_time
+        
+        var addonsNameArr = [String]()
+        addonsNameArr.removeAll()
+        for var i in 0..<(Data.cart_addons!.count)
+        {
+            let Result = Data.cart_addons![i]
+            
+            
+          //  let str = "\(Result.addon_product?.addon?.name! ?? "")"
+          //  addonsNameArr.append(str)
+            
+        }
+        
+        if Data.cart_addons!.count == 0 {
+            cell.subTitleLabel.isHidden = true
+        }else{
+            cell.subTitleLabel.isHidden = false
+            let addonsstr = addonsNameArr.joined(separator: ", ")
+            cell.subTitleLabel.text = addonsstr
+        }
         
         return cell
     }
@@ -164,8 +341,11 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
             let data = dataDict as? OrderDetailModel
             fetchOrderDetails(data: (data?.order)!)
             self.CartOrderArr = data?.cart ?? []
-            
-            
+            OrderModel = data?.order
+            orderTableView.reloadData()
+            updateOrderItemTableHeight()
+        }else if String(describing: modelClass) == model.type.AcceptModel {
+            self.navigationController?.popViewController(animated: true)
         }
     }
     
