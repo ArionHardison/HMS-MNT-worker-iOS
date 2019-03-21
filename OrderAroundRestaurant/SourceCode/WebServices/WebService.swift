@@ -121,7 +121,34 @@ extension Webservice : WebServiceProtocol {
                         }
                     }
                 }
+            } else  if httpMethod == .patch {
+                request(url, method: .patch, parameters: params,encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                    switch response.result {
+                    case .failure:
+                        print("ERROR---\(response.error?.localizedDescription ?? "API ERROR")")
+                        self.handleError(responseError: response, modelClass: modelClass)  //Handling Error Cases:
+                    case .success:
+                        print("RESPONSE---\(response.result)")
+                        
+                        if response.response?.statusCode == StatusCode.success.rawValue {
+                            if(response.result.value as AnyObject).isKind(of: NSDictionary.self){ //Dictionary:
+                                guard let responseJSON = response.result.value as? [String: AnyObject] else {
+                                    print("Error reading response")
+                                    return
+                                }
+                                self.interactor?.responseSuccess(className: modelClass, responseDict: responseJSON, responseArray: [])
+                            }else{ //Array:
+                                if let json = response.result.value as? [[String:Any]] {
+                                    self.interactor?.responseSuccess(className: modelClass, responseDict: [:], responseArray: json)
+                                }
+                            }
+                        }else{
+                            self.handleError(responseError: response, modelClass: modelClass)
+                        }
+                    }
+                }
             }
+
             
             break
         default: //Image Post:
