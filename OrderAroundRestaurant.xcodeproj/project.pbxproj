@@ -28,10 +28,12 @@
 		087D0C302224336000E58BDE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D0C2F2224336000E58BDE /* Colors.swift */; };
 		087D0C322224344D00E58BDE /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D0C312224344D00E58BDE /* Font.swift */; };
 		087D0C342224346000E58BDE /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087D0C332224346000E58BDE /* Image.swift */; };
+		087F52EA224649050090369C /* EditRegisterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087F52E9224649050090369C /* EditRegisterEntity.swift */; };
 		08801EB02238186F0086AB70 /* LogoutEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08801EAF2238186F0086AB70 /* LogoutEntity.swift */; };
 		0880805422396D54005B7072 /* EditRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880805322396D54005B7072 /* EditRegisterViewController.swift */; };
 		0880805622397557005B7072 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0880805522397557005B7072 /* UserData.swift */; };
 		088A50CB2242A3160028DA68 /* AcceptEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088A50CA2242A3160028DA68 /* AcceptEntity.swift */; };
+		088F9C992247C97E00900EE5 /* GetProductEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 088F9C982247C97E00900EE5 /* GetProductEntity.swift */; };
 		0891E2042230EBE200409038 /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891E2032230EBE200409038 /* AddProductViewController.swift */; };
 		0891E2062230EC1500409038 /* CreateProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891E2052230EC1500409038 /* CreateProductViewController.swift */; };
 		0891E2082230FA1B00409038 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891E2072230FA1B00409038 /* Router.swift */; };
@@ -183,10 +185,12 @@
 		087D0C2F2224336000E58BDE /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		087D0C312224344D00E58BDE /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		087D0C332224346000E58BDE /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		087F52E9224649050090369C /* EditRegisterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRegisterEntity.swift; sourceTree = "<group>"; };
 		08801EAF2238186F0086AB70 /* LogoutEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutEntity.swift; sourceTree = "<group>"; };
 		0880805322396D54005B7072 /* EditRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditRegisterViewController.swift; sourceTree = "<group>"; };
 		0880805522397557005B7072 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		088A50CA2242A3160028DA68 /* AcceptEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcceptEntity.swift; sourceTree = "<group>"; };
+		088F9C982247C97E00900EE5 /* GetProductEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetProductEntity.swift; sourceTree = "<group>"; };
 		0891E2032230EBE200409038 /* AddProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductViewController.swift; sourceTree = "<group>"; };
 		0891E2052230EC1500409038 /* CreateProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProductViewController.swift; sourceTree = "<group>"; };
 		0891E2072230FA1B00409038 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -559,6 +563,8 @@
 				08759A10224009BD0030C19D /* RegisterEntity.swift */,
 				08A613182242423600219465 /* OrderDetailEntity.swift */,
 				088A50CA2242A3160028DA68 /* AcceptEntity.swift */,
+				087F52E9224649050090369C /* EditRegisterEntity.swift */,
+				088F9C982247C97E00900EE5 /* GetProductEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1150,6 +1156,7 @@
 				08A3B6BF22255C8C0010058B /* EditTimingTableViewCell.swift in Sources */,
 				08A14DF5222FF95200F35B1E /* CreateCategoryViewController.swift in Sources */,
 				08A44AD42237B2CE00228233 /* CountryCodeTableViewCell.swift in Sources */,
+				088F9C992247C97E00900EE5 /* GetProductEntity.swift in Sources */,
 				087D0C192224241500E58BDE /* WebServiceConstants.swift in Sources */,
 				08A14DC0222FA01F00F35B1E /* HistoryViewController.swift in Sources */,
 				08A3B6B722254A330010058B /* Button.swift in Sources */,
@@ -1166,6 +1173,7 @@
 				0891E2042230EBE200409038 /* AddProductViewController.swift in Sources */,
 				087D0C0E2224110200E58BDE /* Constants.swift in Sources */,
 				0876C561223F86300035E2C5 /* FilterDeliveryViewController.swift in Sources */,
+				087F52EA224649050090369C /* EditRegisterEntity.swift in Sources */,
 				08AD752922269CDB002A0419 /* DeliveriesViewController.swift in Sources */,
 				0891E2202231562300409038 /* Toast.swift in Sources */,
 				08A44AC522379F3300228233 /* SelectCusineTableViewCell.swift in Sources */,

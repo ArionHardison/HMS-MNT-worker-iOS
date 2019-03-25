@@ -30,10 +30,14 @@ class CreateProductViewController: BaseViewController {
     var imageUploadData:Data!
     var featureImageUploadData:Data!
     var cusineId = ""
-    var category = ""
+    var categoryId = 0
     var status = ""
     var productOrder = ""
-    
+    var addOnsId = [String]()
+    var featureStr = ""
+    var productdata: GetProductEntity?
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -65,6 +69,7 @@ class CreateProductViewController: BaseViewController {
     
     @IBAction func onSelectAddonsAction(_ sender: Any) {
         let statusController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.SelectAddonsViewController) as! SelectAddonsViewController
+        statusController.delegate = self
         self.navigationController?.pushViewController(statusController, animated: true)
     }
     
@@ -105,22 +110,54 @@ class CreateProductViewController: BaseViewController {
         let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
         
         showActivityIndicator()
-        let parameters:[String:Any] = ["name": nameVal,
+        
+        if productdata != nil {
+            var parameters:[String:Any] = ["name": nameVal,
+                                           "description":descriptionVal,
+                                           "image":imageUploadData,
+                                           "price":priceTextField.text!,
+                                           "product_position":productOrder,
+                                           "shop":shopId,
+                                           "featured":featureStr,
+                                           "featured_position":"1",
+                                           "discount":discountTextField.text!,
+                                           "discount_type":"",
+                                           "status":status,
+                                           "cuisine_id":cusineId,
+                                           "category":categoryId,
+                                           "addons_price[1]":"4",
+                                           "_method":"PATCH"]
+            for i in 0..<addOnsId.count {
+                let AddonsStr = "addons[\(i)]"
+                parameters[AddonsStr] = addOnsId[i]
+            }
+            let productIdStr: String! = String(describing: productdata?.id ?? 0)
+
+            let urlStr = Base.productList.rawValue + "/" + productIdStr
+            self.presenter?.IMAGEPOST(api: urlStr, params: parameters, methodType: HttpType.POST, imgData: ["image":imageUploadData,"featured_image":featureImageUploadData], imgName: "image", modelClass: GetProductEntity.self, token: true)
+        }else{
+        
+        var parameters:[String:Any] = ["name": nameVal,
                                        "description":descriptionVal,
                                        "image":imageUploadData,
                                        "price":priceTextField.text!,
-                                       "product_position":shopId,
+                                       "product_position":productOrder,
                                        "shop":shopId,
-                                       "featured":"",
-                                       "featured_position":"",
+                                       "featured":featureStr,
+                                       "featured_position":"1",
                                        "discount":discountTextField.text!,
                                        "discount_type":"",
                                        "status":status,
-                                       "cuisine_id":"",
-                                       "category":category,
-                                       "addons_price":""]
+                                       "cuisine_id":cusineId,
+                                       "category":categoryId,
+                                       "addons_price[1]":"4"]
+        for i in 0..<addOnsId.count {
+            let AddonsStr = "addons[\(i)]"
+            parameters[AddonsStr] = addOnsId[i]
+        }
         
-        self.presenter?.IMAGEPOST(api: Base.categoryList.rawValue, params: parameters, methodType: HttpType.POST, imgData: ["image":imageUploadData,"featured_image":featureImageUploadData], imgName: "image", modelClass: CreateCategoryModel.self, token: true)
+        self.presenter?.IMAGEPOST(api: Base.productList.rawValue, params: parameters, methodType: HttpType.POST, imgData: ["image":imageUploadData,"featured_image":featureImageUploadData], imgName: "image", modelClass: CategoryListModel.self, token: true)
+        }
     }
     
 }
@@ -133,6 +170,15 @@ extension CreateProductViewController {
         setTextFieldPadding()
         setShadow()
         self.hideKeyboardWhenTappedAround()
+        
+        if productdata != nil {
+            let priceStr: String! = String(describing: productdata?.prices?.price ?? 0)
+            priceTextField.text = priceStr
+            discountTypeValueLabel.text = productdata?.prices?.discount_type
+            let discountStr: String! = String(describing: productdata?.prices?.discount ?? 0)
+            discountTextField.text = discountStr
+
+        }
         
     }
     private func setFont() {
@@ -230,6 +276,16 @@ extension CreateProductViewController: PresenterOutputProtocol {
                 let tabController = self.storyboard?.instantiateViewController(withIdentifier: "TabbarController") as! TabbarController
                 self.navigationController?.pushViewController(tabController, animated: true)
             }
+        }else if String(describing: modelClass) == model.type.CategoryListModel {
+            let controllers = self.navigationController?.viewControllers
+            for vc in controllers! {
+                if vc is AddProductViewController {
+                    _ = self.navigationController?.popToViewController(vc as! AddProductViewController, animated: true)
+                }
+            }
+
+            self.HideActivityIndicator()
+
         }
         
     }
@@ -246,3 +302,21 @@ extension CreateProductViewController: PresenterOutputProtocol {
     }
 }
 /******************************************************************/
+extension CreateProductViewController: SelectAddonsViewControllerDelegate{
+    func featchSelectAddonsLabel(AddOnnsArr: NSMutableArray) {
+        print(AddOnnsArr)
+        var addonsStr = [String]()
+        addonsStr.removeAll()
+        addOnsId.removeAll()
+        for item in AddOnnsArr {
+            let Result = item as! ListAddOns
+            let name = Result.name
+            addonsStr.append(name ?? "")
+            let idStr: String! = String(describing: Result.id ?? 0)
+
+            addOnsId.append(idStr)
+        }
+        
+        selectAddonsValueLabel.text = addonsStr.joined(separator: ", ")
+    }
+}

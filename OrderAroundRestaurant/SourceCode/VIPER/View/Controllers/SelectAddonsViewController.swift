@@ -13,6 +13,9 @@ class SelectAddonsViewController: BaseViewController {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var selectAddonsTableView: UITableView!
     var addOnsListResponse = [ListAddOns]()
+    var selectAddons: NSMutableArray = []
+    weak var delegate: SelectAddonsViewControllerDelegate?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +41,8 @@ class SelectAddonsViewController: BaseViewController {
     }
     */
     @IBAction func onSaveButtonAction(_ sender: Any) {
+        self.delegate?.featchSelectAddonsLabel(AddOnnsArr: selectAddons)
+        self.navigationController?.popViewController(animated: true)
     }
     
 }
@@ -48,6 +53,7 @@ extension SelectAddonsViewController{
         setNavigationController()
         setAddonsList()
         setCornerRadius()
+        
         
     }
     
@@ -67,6 +73,7 @@ extension SelectAddonsViewController{
         selectAddonsTableView.delegate = self
         selectAddonsTableView.dataSource = self
         selectAddonsTableView.reloadData()
+        selectAddonsTableView.allowsMultipleSelection = true
     }
     
     private func setNavigationController(){
@@ -99,12 +106,35 @@ extension SelectAddonsViewController: UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.SelectAddonsTableViewCell, for: indexPath) as! SelectAddonsTableViewCell
         let dict = self.addOnsListResponse[indexPath.row]
         cell.addonNameLabel.text = dict.name
-        //cell.priceTextField.text = dict.
+       // cell.priceTextField.text = dict.
         
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! SelectAddonsTableViewCell
+        let dict = self.addOnsListResponse[indexPath.row]
+        
+        cell.radioImageView.image = UIImage(named: "radioon")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        cell.radioImageView.tintColor = UIColor.primary
+        
+        self.selectAddons.add(dict)
+        
+    }
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath) as! SelectAddonsTableViewCell
+        let dict = self.addOnsListResponse[indexPath.row]
+        
+        cell.radioImageView.image = UIImage(named: "radiooff")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+        cell.radioImageView.tintColor = UIColor.primary
+        self.selectAddons.remove(dict)
+        
+        
+        
+        
     }
    
 }
@@ -137,4 +167,8 @@ extension SelectAddonsViewController: PresenterOutputProtocol {
     
     
     
+}
+// MARK: - Protocol for set Value for DateWise Label
+protocol SelectAddonsViewControllerDelegate: class {
+    func featchSelectAddonsLabel(AddOnnsArr: NSMutableArray)
 }

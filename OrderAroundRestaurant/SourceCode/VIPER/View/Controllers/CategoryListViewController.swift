@@ -96,6 +96,7 @@ extension CategoryListViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let createCategoryController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.CreateCategoryViewController) as! CreateCategoryViewController
         createCategoryController.categoryListModel = self.categoryListArr[indexPath.row]
+        createCategoryController.delegate = self
         self.navigationController?.pushViewController(createCategoryController, animated: true)
     }
     
@@ -104,7 +105,7 @@ extension CategoryListViewController: UITableViewDelegate,UITableViewDataSource{
         let dict = self.categoryListArr[indexPath.row]
         cell.categoryNameLabel.text = dict.name
         cell.categoryDesLabel.text = dict.description
-//        cell.imageView.sd_setImage(with: URL(string: dict.images), placeholderImage: UIImage(named: "what's-special"))
+        cell.categoryImageView?.sd_setImage(with: URL(string: dict.images?.first?.url ?? ""), placeholderImage: UIImage(named: "what's-special"))
         cell.deleteButton.addTarget(self, action: #selector(self.deleteBtnAction(sender:)), for: .touchUpInside)
         cell.deleteButton.tag = indexPath.row
         

@@ -70,7 +70,8 @@ class RegisterViewController: BaseViewController {
     var isShopBannerImage = false
     var isNo = false
     var isYes = false
-    
+    var cusineId = [String]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -500,12 +501,16 @@ extension RegisterViewController: CountryCodeViewControllerDelegate,SelectCusine
         print(cusineArr)
         var cusineStr = [String]()
         cusineStr.removeAll()
+        cusineId.removeAll()
         for item in cusineArr {
             let Result = item as! CusineListModel
             let name = Result.name
             cusineStr.append(name ?? "")
+            let idStr: String! = String(describing: Result.id ?? 0)
+            
+            cusineId.append(idStr)
         }
-
+        
         cuisineValueLabel.text = cusineStr.joined(separator: ", ")
     }
     

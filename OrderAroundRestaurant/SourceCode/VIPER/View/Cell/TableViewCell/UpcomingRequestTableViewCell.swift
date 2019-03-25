@@ -10,6 +10,7 @@ import UIKit
 
 class UpcomingRequestTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var waitingView: UIView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var overView: UIView!
     @IBOutlet weak var paymentLabel: UILabel!

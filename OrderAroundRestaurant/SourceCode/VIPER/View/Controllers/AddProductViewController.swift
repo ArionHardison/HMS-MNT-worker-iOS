@@ -28,6 +28,8 @@ class AddProductViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.isNavigationBarHidden = false
+        setProductListApi()
+
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
@@ -53,7 +55,6 @@ extension AddProductViewController{
         setNavigationController()
         setCornerRadius()
         setRegister()
-        setProductListApi()
     }
     private func setProductListApi(){
         showActivityIndicator()
@@ -111,6 +112,10 @@ extension AddProductViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let createProductController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.CreateProductAddonsViewController) as! CreateProductAddonsViewController
+        let dict = self.categoryListArr[indexPath.section]
+        let productArr = dict.products?[indexPath.row]
+        createProductController.productModel = productArr
+        createProductController.categoryListArr = categoryListArr
         self.navigationController?.pushViewController(createProductController, animated: true)
     }
     

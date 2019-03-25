@@ -118,6 +118,7 @@ extension AddonsListViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let createAddonsController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.CreateAddonsViewController) as! CreateAddonsViewController
         createAddonsController.addOnsListResponse = self.addOnsListResponse[indexPath.row]
+        createAddonsController.delegate = self
         self.navigationController?.pushViewController(createAddonsController, animated: true)
     }
     @objc func deleteBtnAction(sender: UIButton!) {

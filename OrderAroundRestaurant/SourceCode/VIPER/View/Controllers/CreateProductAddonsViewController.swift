@@ -50,11 +50,15 @@ class CreateProductAddonsViewController: BaseViewController {
     @IBOutlet weak var noButton: UIButton!
     
     var categoryListArr = [CategoryListModel]()
+    var productModel: Products?
 
-    
+    var productdata: GetProductEntity?
+
     var isNo = false
     var isYes = false
-
+    var categoryId = 0
+    var productCusineId = 0
+    var featureStr = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +94,7 @@ class CreateProductAddonsViewController: BaseViewController {
             let image = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
             noButton.setImage(image, for: .normal)
             noButton.tintColor = UIColor.primary
+            featureStr = "0"
         }else{
             isNo = true
             let image1 = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
@@ -98,6 +103,8 @@ class CreateProductAddonsViewController: BaseViewController {
             let image = UIImage(named: "radioon")?.withRenderingMode(.alwaysTemplate)
             noButton.setImage(image, for: .normal)
             noButton.tintColor = UIColor.primary
+            featureStr = "0"
+
         }
         
     }
@@ -107,6 +114,8 @@ class CreateProductAddonsViewController: BaseViewController {
             let image = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
             yesButton.setImage(image, for: .normal)
             yesButton.tintColor = UIColor.primary
+            featureStr = "0"
+
         }else{
             isYes = false
             let image1 = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
@@ -115,6 +124,8 @@ class CreateProductAddonsViewController: BaseViewController {
             let image = UIImage(named: "radioon")?.withRenderingMode(.alwaysTemplate)
             yesButton.setImage(image, for: .normal)
             yesButton.tintColor = UIColor.primary
+            featureStr = "1"
+
         }
     }
     
@@ -230,13 +241,15 @@ class CreateProductAddonsViewController: BaseViewController {
         
         let createProductController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.CreateProductViewController) as! CreateProductViewController
         createProductController.nameVal = nameTextField.text ?? ""
-        createProductController.category = categoryValueLabel.text ?? ""
+        createProductController.categoryId = categoryId
         createProductController.descriptionVal = descriptionTextView.text ?? ""
         createProductController.imageUploadData = uploadimgeData
         createProductController.featureImageUploadData = featureUploadimgeData
         createProductController.status = statusVal
-        createProductController.cusineId = ""
+        createProductController.cusineId = String(productCusineId)
         createProductController.productOrder = productOrederTextField.text ?? ""
+        createProductController.featureStr = featureStr
+        createProductController.productdata = productdata
         self.navigationController?.pushViewController(createProductController, animated: true)
        
     }
@@ -263,9 +276,17 @@ extension CreateProductAddonsViewController{
         self.hideKeyboardWhenTappedAround()
         setCusineList()
         setImageTintColor()
+        
+        if productModel != nil {
+            let idStr: String! = String(describing: productModel?.id ?? 0)
+            let urlStr = Base.productList.rawValue + "/" + idStr
+            showActivityIndicator()
+            self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: GetProductEntity.self, token: true)
+          
+
+        }
 
     }
-    
     private func setImageTintColor(){
         let image = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
         yesButton.setImage(image, for: .normal)
@@ -314,7 +335,7 @@ extension CreateProductAddonsViewController{
         self.navigationController?.navigationBar.barTintColor = UIColor.primary
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
-        self.title = "Create Addons"
+        self.title = "Create Product"
         let btnBack = UIButton(type: .custom)
         btnBack.setImage(UIImage(named: "back-white"), for: .normal)
         btnBack.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
@@ -373,6 +394,42 @@ extension CreateProductAddonsViewController: PresenterOutputProtocol {
             HideActivityIndicator()
             self.cusineListArr = dataArray as! [CusineListModel]
            // cusineTableView.reloadData()
+        }else if String(describing: modelClass) == model.type.GetProductEntity {
+            self.productdata = dataDict as? GetProductEntity
+            nameTextField.text = productdata?.name
+            descriptionTextView.text = productdata?.description
+            productCusineValueLabel.text = productdata?.shop?.cuisines?.first?.name
+            productCusineId = productdata?.shop?.cuisines?.first?.id ?? 0
+            if productdata?.status == "enabled" {
+                statusValueLabel.text = "Enable"
+            }else{
+                statusValueLabel.text = "Disable"
+            }
+            productOrederTextField.text = productdata?.position ?? "0"
+            
+            categoryValueLabel.text = productdata?.categories?.first?.name
+            categoryId = productdata?.categories?.first?.id ?? 0
+            let uploadImageView = productdata?.images?.first?.url ?? ""
+            if uploadImageView == "" {
+                isUploadImage = false
+            }else{
+                isUploadImage = true
+            }
+            imageUploadImageView.sd_setImage(with: URL(string: uploadImageView), placeholderImage: UIImage(named: "what's-special"))
+            let featureIdStr: String! = String(describing: productModel?.featured ?? 0)
+
+            featureStr = featureIdStr
+            if productdata?.featured == 0 {
+                isNo = true
+                let image = UIImage(named: "radioon")?.withRenderingMode(.alwaysTemplate)
+                noButton.setImage(image, for: .normal)
+                noButton.tintColor = UIColor.primary
+            }else{
+                isYes = true
+                let image = UIImage(named: "radioon")?.withRenderingMode(.alwaysTemplate)
+                yesButton.setImage(image, for: .normal)
+                yesButton.tintColor = UIColor.primary
+            }
         }
     }
     
@@ -401,6 +458,12 @@ extension CreateProductAddonsViewController: CategoryStatusViewControllerDelegat
 extension CreateProductAddonsViewController: StatusViewControllerDelegate {
     func setValueShowStatusLabel(statusValue: String) {
         self.productCusineValueLabel.text = statusValue
+        for item in cusineListArr {
+            if item.name == statusValue{
+                productCusineId = item.id ?? 0
+                return
+            }
+        }
     }
     
     
@@ -410,7 +473,12 @@ extension CreateProductAddonsViewController: StatusViewControllerDelegate {
 extension CreateProductAddonsViewController: ProductCategoryViewControllerDelegate {
     func featchCategoryLabel(statusValue: String) {
          self.categoryValueLabel.text = statusValue
-
+        for item in categoryListArr {
+            if item.name == statusValue{
+                categoryId = item.id ?? 0
+                return
+            }
+        }
     }
     
 }

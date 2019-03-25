@@ -14,7 +14,7 @@ var tokenType = "Bearer"
 
 var client_ID = "2"
 
-var client_Secret = "Xbe0mfn3DZslxO2oReCxvDZEhqHzaBbfHKEywClW"
+var client_Secret = "O5UIpF9H1QXSx3Kc41E5WZUP6UauJmRaoqyE8itq"
 
 var access_token = "access_token"
 

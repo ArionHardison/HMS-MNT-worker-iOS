@@ -18,7 +18,7 @@ struct CategoryListModel : Mappable {
     var position : String?
     var status : String?
     var products : [Products]?
-    var images : [String]?
+    var images : [Images]?
     
     init?(map: Map) {
         

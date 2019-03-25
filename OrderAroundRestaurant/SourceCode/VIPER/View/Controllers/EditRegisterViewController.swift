@@ -63,6 +63,7 @@ class EditRegisterViewController: BaseViewController {
     var isYes = false
     var latStr = ""
     var longStr = ""
+    var cusineId = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -277,11 +278,10 @@ class EditRegisterViewController: BaseViewController {
         }
         
         showActivityIndicator()
-        let parameters:[String:Any] = ["name": nameTextField.text!,
+        var parameters:[String:Any] = ["name": nameTextField.text!,
                                        "email":emailAddressTextField.text!,
                                        "phone":phoneNumberTextField.text!,
                                        "country_code":countryCodeLabel.text!,
-                                       "cusine":cuisineValueLabel.text!,
                                        "status":statusValueLabel.text!,
                                        "pureVeg":isPureVeg,
                                        "offer_min_amount":minAmountTextField.text!,
@@ -292,17 +292,15 @@ class EditRegisterViewController: BaseViewController {
                                        "offer_percent":offerPercentTextField.text!,
                                        "latitude":latStr,
                                        "longitude":longStr]
+        
+        for i in 0..<cusineId.count {
+            var cusineStr = "cuisine_id[\(i)]"
+            parameters[cusineStr] = cusineId[i]
+        }
         let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
 
         let profileURl = Base.getprofile.rawValue + "/" + String(shopId)
-        self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["avatar":uploadimgeData,"default_banner":BannerUploadimgeData], imgName: "image", modelClass: CreateCategoryModel.self, token: true)
-
-        
-        self.presenter?.GETPOST(api: Base.login.rawValue, params:parameters, methodType: HttpType.POST, modelClass: LoginModel.self, token: false)
-        
-        
-        
-        
+        self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["avatar":uploadimgeData,"default_banner":BannerUploadimgeData], imgName: "image", modelClass: EditRegisterModel.self, token: true)  
     }
     
     
@@ -524,9 +522,16 @@ extension EditRegisterViewController: PresenterOutputProtocol {
             descriptionTextField.text = data?.description
             addressValueLabel.text = data?.address
             landmarkTextField.text = data?.maps_address
+            let logitudeStr: String! = String(describing: data?.longitude ?? 0.0)
+            let latitudeStr: String! = String(describing: data?.latitude ?? 0.0)
+
+            longStr = logitudeStr
+            latStr = latitudeStr
             
-            
-            
+        }else if String(describing: modelClass) == model.type.EditRegisterModel {
+            showToast(msg: "Profile Updated Successfully")
+            self.navigationController?.popViewController(animated: true)
+
         }
         
     }
@@ -547,10 +552,14 @@ extension EditRegisterViewController: CountryCodeViewControllerDelegate,SelectCu
         print(cusineArr)
         var cusineStr = [String]()
         cusineStr.removeAll()
+        cusineId.removeAll()
         for item in cusineArr {
             let Result = item as! CusineListModel
             let name = Result.name
             cusineStr.append(name ?? "")
+            let idStr: String! = String(describing: Result.id ?? 0)
+
+            cusineId.append(idStr)
         }
         
         cuisineValueLabel.text = cusineStr.joined(separator: ", ")

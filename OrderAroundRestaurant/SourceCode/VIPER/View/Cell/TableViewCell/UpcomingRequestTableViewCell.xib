@@ -19,6 +19,33 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="146.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Mb-1q-JWN">
+                        <rect key="frame" x="10" y="10" width="300" height="126.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hour-glass" translatesAutoresizingMaskIntoConstraints="NO" id="qUF-Sd-r3o">
+                                <rect key="frame" x="107.5" y="8" width="85" height="85"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="85" id="Dwn-tr-tx7"/>
+                                    <constraint firstAttribute="width" constant="85" id="hcJ-V3-dn3"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WAITING FOR THE UPCOMING TASK" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V87-hY-bZB">
+                                <rect key="frame" x="20" y="103" width="260" height="11"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="qUF-Sd-r3o" firstAttribute="centerY" secondItem="2Mb-1q-JWN" secondAttribute="centerY" multiplier="0.8" id="5pv-9d-tka"/>
+                            <constraint firstItem="V87-hY-bZB" firstAttribute="top" secondItem="qUF-Sd-r3o" secondAttribute="bottom" constant="10" id="NKe-09-r9x"/>
+                            <constraint firstItem="V87-hY-bZB" firstAttribute="leading" secondItem="2Mb-1q-JWN" secondAttribute="leading" constant="20" id="XZE-3I-0dx"/>
+                            <constraint firstAttribute="bottom" secondItem="V87-hY-bZB" secondAttribute="bottom" constant="12.5" id="cfv-qn-1gf"/>
+                            <constraint firstItem="V87-hY-bZB" firstAttribute="centerX" secondItem="2Mb-1q-JWN" secondAttribute="centerX" id="gPe-5s-eCB"/>
+                            <constraint firstItem="qUF-Sd-r3o" firstAttribute="centerX" secondItem="2Mb-1q-JWN" secondAttribute="centerX" id="lDL-wR-Y7c"/>
+                        </constraints>
+                    </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mgk-Oo-Ana">
                         <rect key="frame" x="20" y="10" width="280" height="126.5"/>
                         <subviews>
@@ -101,10 +128,14 @@
                     </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="2Mb-1q-JWN" secondAttribute="trailing" constant="10" id="5qf-Ht-Ou8"/>
                     <constraint firstAttribute="bottom" secondItem="mgk-Oo-Ana" secondAttribute="bottom" constant="10" id="7No-Le-HGm"/>
                     <constraint firstItem="mgk-Oo-Ana" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="ALe-b8-zON"/>
                     <constraint firstAttribute="trailing" secondItem="mgk-Oo-Ana" secondAttribute="trailing" constant="20" id="Ah6-xN-BuM"/>
+                    <constraint firstItem="2Mb-1q-JWN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="KZf-uS-F3b"/>
                     <constraint firstItem="mgk-Oo-Ana" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="VFV-H1-UOS"/>
+                    <constraint firstItem="2Mb-1q-JWN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="jgW-5k-okD"/>
+                    <constraint firstAttribute="bottom" secondItem="2Mb-1q-JWN" secondAttribute="bottom" constant="10" id="pDa-0i-Iaw"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -117,12 +148,14 @@
                 <outlet property="statusLabel" destination="Miu-ZB-KQo" id="sNF-Oh-7tA"/>
                 <outlet property="userImageView" destination="a5W-r5-5Xg" id="8xg-5w-PTA"/>
                 <outlet property="userNameLabel" destination="v6n-gD-5ZK" id="haC-Ry-vvy"/>
+                <outlet property="waitingView" destination="2Mb-1q-JWN" id="r4L-5u-FCt"/>
             </connections>
             <point key="canvasLocation" x="137.59999999999999" y="210.04497751124438"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="Location" width="20" height="20"/>
+        <image name="hour-glass" width="205" height="205"/>
         <image name="user-placeholder" width="300" height="300"/>
     </resources>
 </document>

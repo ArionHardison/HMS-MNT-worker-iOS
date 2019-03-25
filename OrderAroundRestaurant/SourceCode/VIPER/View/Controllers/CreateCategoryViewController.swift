@@ -115,6 +115,21 @@ class CreateCategoryViewController: BaseViewController {
         }
         
         showActivityIndicator()
+        if categoryListModel != nil {
+            let categoryIdStr: String! = String(describing: categoryListModel?.id ?? 0)
+            
+            let urlStr = Base.categoryList.rawValue + "/" + categoryIdStr
+
+            
+            let parameters:[String:Any] = ["name": categoryNameTextField.text!,
+                                           "description":categoryDescriptionTextView.text!,
+                                           "status":statusVal,
+                                           "position":categoryOrderTextField.text!,
+                                           "_method":"PATCH"]
+            
+            
+            self.presenter?.IMAGEPOST(api: urlStr, params: parameters, methodType: HttpType.POST, imgData: ["image":uploadimgeData], imgName: "image", modelClass: CategoryListModel.self, token: true)
+        }else{
         let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
         let parameters:[String:Any] = ["name": categoryNameTextField.text!,
                                        "description":categoryDescriptionTextView.text!,
@@ -124,6 +139,7 @@ class CreateCategoryViewController: BaseViewController {
         
         
         self.presenter?.IMAGEPOST(api: Base.categoryList.rawValue, params: parameters, methodType: HttpType.POST, imgData: ["image":uploadimgeData], imgName: "image", modelClass: CreateCategoryModel.self, token: true)
+        }
     }
 }
 extension CreateCategoryViewController {
@@ -144,7 +160,13 @@ extension CreateCategoryViewController {
             categoryOrderTextField.text = categoryOrderStr
             categoryDescriptionTextView.text = categoryListModel?.description
             statusValueLabel.text = categoryListModel?.status
-          //  categoryImageView.sd_setImage(with: URL(string: categoryListModel?.images. ?? ""), placeholderImage: UIImage(named: "what's-special"))
+            let uploadImageView = categoryListModel?.images?.first?.url ?? ""
+            if uploadImageView == "" {
+                isImage = false
+            }else{
+                isImage = true
+            }
+           categoryImageView.sd_setImage(with: URL(string: uploadImageView), placeholderImage: UIImage(named: ""))
             
         }
 
@@ -234,6 +256,13 @@ extension CreateCategoryViewController: PresenterOutputProtocol {
                 self.delegate?.callCategoryApi(issuccess: true)
                 self.navigationController?.popViewController(animated: true)
             }
+        }else if String(describing: modelClass) == model.type.CategoryListModel {
+            self.HideActivityIndicator()
+            self.navigationController?.popViewController(animated: true)
+            self.delegate?.callCategoryApi(issuccess: true)
+
+
+            
         }
         
     }

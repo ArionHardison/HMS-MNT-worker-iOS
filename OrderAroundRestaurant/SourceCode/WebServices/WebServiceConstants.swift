@@ -12,7 +12,7 @@ import Foundation
 
 import Foundation
 
-let baseUrl = "https://foodie.deliveryventure.com/"
+let baseUrl = "https://eataround.deliveryventure.com/"
 
 //MARK:- Status Code
 

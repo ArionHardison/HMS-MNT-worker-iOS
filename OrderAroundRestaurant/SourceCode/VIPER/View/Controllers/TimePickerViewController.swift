@@ -18,6 +18,7 @@ class TimePickerViewController: UIViewController {
     var dateValue = ""
     weak var delegate: TimePickerViewControllerDelegate?
     weak var timeDelegate: TimePickerValueViewControllerDelegate?
+    var isEditTime = false
 
     var isTime = false
     override func viewDidLoad() {
@@ -40,7 +41,11 @@ class TimePickerViewController: UIViewController {
     
     @IBAction func ondoneAction(_ sender: Any) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        if isEditTime {
+            dateFormatter.dateFormat = "HH:mm"
+        }else{
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+        }
         gradeTextField.text = dateFormatter.string(from: datePicker.date)
         if isTime {
             timeDelegate?.setFromTimeValue(statusValue: gradeTextField.text ?? "")
@@ -78,14 +83,24 @@ extension TimePickerViewController {
         // DatePicker
         self.datePicker.backgroundColor = UIColor.white
         self.datePicker.addTarget(self, action: #selector(handleDatePickerDob(sender:)), for: .valueChanged)
-        self.datePicker.datePickerMode = UIDatePicker.Mode.date
+        if isEditTime {
+            self.datePicker.datePickerMode = UIDatePicker.Mode.time
+
+        }else{
+            self.datePicker.datePickerMode = UIDatePicker.Mode.date
+
+        }
         textField.inputView = self.datePicker
     }
     
     @objc func handleDatePickerDob(sender: UIDatePicker) {
         
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy"
+        if isEditTime {
+            dateFormatter.dateFormat = "HH:mm"
+        }else{
+            dateFormatter.dateFormat = "dd/MM/yyyy"
+        }
         self.gradeTextField.text = dateFormatter.string(from: sender.date)
         
     }

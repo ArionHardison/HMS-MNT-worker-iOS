@@ -98,34 +98,54 @@ extension HomeViewController{
 }
 extension HomeViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.upcomingRequestArr.count
+        var count = 0
+        if upcomingRequestArr.count == 0 {
+            count = 1
+        }else{
+            count = upcomingRequestArr.count
+        }
+        return count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
         
-        let dict = self.upcomingRequestArr[indexPath.row]
-        cell.paymentLabel.text = dict.invoice?.payment_mode
-        cell.orderTimeValueLabel.text = dict.delivery_date
-        cell.locationLabel.text = dict.address?.city
-        cell.userNameLabel.text = dict.user?.name
-        cell.orderTimeLabel.text = "Order Time"
-        cell.userImageView.sd_setImage(with: URL(string: dict.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
-
-        cell.statusLabel.text = dict.status
+        let cell: UITableViewCell = UITableViewCell()
         
-        if (dict.status == "ORDERED") {
+        if upcomingRequestArr.count == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
+            cell.waitingView.isHidden = false
+            cell.overView.isHidden = true
+            return cell
+        }else {
             
+            let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
+            cell.waitingView.isHidden = true
+            cell.overView.isHidden = false
+            let dict = self.upcomingRequestArr[indexPath.row]
+            cell.paymentLabel.text = dict.invoice?.payment_mode
+            cell.orderTimeValueLabel.text = dict.delivery_date
+            cell.locationLabel.text = dict.address?.city
+            cell.userNameLabel.text = dict.user?.name
+            cell.orderTimeLabel.text = "Order Time"
+            cell.userImageView.sd_setImage(with: URL(string: dict.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
             
-            if (dict.dispute == "CREATED") {
-              
-                cell.statusLabel.text = "Dispute Created"
-                cell.statusLabel.textColor = UIColor.red
-            } else {
-                cell.statusLabel.text = "Incoming"
-                cell.statusLabel.textColor = UIColor.green
-
+            cell.statusLabel.text = dict.status
+            
+            if (dict.status == "ORDERED") {
+                
+                
+                if (dict.dispute == "CREATED") {
+                    
+                    cell.statusLabel.text = "Dispute Created"
+                    cell.statusLabel.textColor = UIColor.red
+                } else {
+                    cell.statusLabel.text = "Incoming"
+                    cell.statusLabel.textColor = UIColor.green
+                    
+                }
             }
+            return cell
+            
         }
         return cell
     }
