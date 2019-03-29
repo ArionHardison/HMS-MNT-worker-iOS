@@ -84,7 +84,6 @@ class LoginViewController: BaseViewController {
                                        "client_secret":client_Secret,
                                         "guard":WebConstants.string.shops]
         
-        
         self.presenter?.GETPOST(api: Base.login.rawValue, params:parameters, methodType: HttpType.POST, modelClass: LoginModel.self, token: false)
     }
 }
@@ -115,14 +114,11 @@ extension LoginViewController {
     private func setShadowTextField(){
         self.addShadowTextField(textField: self.emailAddressTextField)
         self.addShadowTextField(textField: self.passwordTextField)
-        
-    
     }
     
     private func setChangeTextColor(){
         RegisterButton.setTitle("Don't have an account. Register", for: .normal) 
         RegisterButton.halfTextColorChange(fullText: RegisterButton.titleLabel?.text ?? "", changeText: "Register")
-
     }
     
     private func setTextFieldPadding(){

@@ -151,11 +151,16 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource{
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        
+        if(self.upcomingRequestArr.count > 0)
+        {
         let dict = self.upcomingRequestArr[indexPath.row]
 
         let upcomingDetailController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.UpcomingDetailViewController) as! UpcomingDetailViewController
         upcomingDetailController.OrderId = dict.id ?? 0
         self.navigationController?.pushViewController(upcomingDetailController, animated: true)
+        }
     }
 }
 extension HomeViewController: PresenterOutputProtocol {

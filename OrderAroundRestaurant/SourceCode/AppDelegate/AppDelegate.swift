@@ -16,9 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let place_key = "AIzaSyBpk9s5L2o4iVB8bUdIIVEkBj7fW2NeQtI"
 
-    
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         

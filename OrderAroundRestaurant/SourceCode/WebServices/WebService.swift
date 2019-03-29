@@ -20,20 +20,25 @@ class Webservice {
 extension Webservice : WebServiceProtocol {
     
     func retrieve<T: Mappable>(api: String, params: [String : Any], imageData: [String : Data]?, type: HttpType, modelClass: T.Type, token: Bool, completion: ((CustomError?, Data?) -> ())?) {
+     
+        print("BASEURL-----\(baseUrl)")
         print("URL-----\(api)")
         print("Params----\(params)")
+        
         guard let url = URL(string: baseUrl+api) else {
             print("Invalid Url")
             return
         }
+        
         var headers = HTTPHeaders()
         headers.updateValue(WebConstants.string.XMLHttpRequest, forKey: WebConstants.string.X_Requested_With)
+       
+        
         if(token){
             let accessToken = UserDataDefaults.main.access_token ?? ""
                 //= UserDefaults.standard.value(forKey: Keys.list.access_token) as! String
             headers.updateValue("\(WebConstants.string.bearer) \(accessToken)", forKey: WebConstants.string.Authorization)
             headers.updateValue(WebConstants.string.application_json, forKey: "Content-Type")
-
         }
         
         let httpMethod = HTTPMethod(rawValue: type.rawValue) //GET or POST

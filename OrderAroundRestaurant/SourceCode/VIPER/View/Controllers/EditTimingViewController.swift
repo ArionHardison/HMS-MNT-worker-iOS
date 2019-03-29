@@ -24,6 +24,7 @@ class EditTimingViewController: BaseViewController {
     var endTime = ""
     var timeStr = ""
     var selectedIndex = IndexPath()
+    var IsSaveBool = false
     
     
     override func viewDidLoad() {
@@ -31,6 +32,7 @@ class EditTimingViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         setInitialLoad()
+        IsSaveBool = false
     }
     
     //MARK:- viewWillAppear
@@ -74,7 +76,7 @@ class EditTimingViewController: BaseViewController {
             
             
             for i in 0..<AllDateArray.count {
-                let Result = self.DateArray[i] as! NSDictionary
+                let Result = self.AllDateArray[i] as! NSDictionary
 
                 var dict: [AnyHashable : Any] = [:]
                 closeTime =  Result.value(forKey: "closetime") as? String ?? ""
@@ -84,48 +86,34 @@ class EditTimingViewController: BaseViewController {
                 }
             }
             
-            let param = [
-                "time":"1",
-                "day[]":"ALL",
-                "id":"ALL",
-                "hours_opening[ALL]":openTime,
-                "hours_closing[ALL]:":closeTime
-            ]
+            let param = [ 
+//                "time":"1",
+                "day":["ALL":"ALL"],
+                //"shop_id": UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int,
+                "hours_opening":["ALL":openTime],
+                "hours_closing":["ALL":closeTime]
+                ] as [String : Any]
             
             let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
-            let urlStr = Base.getprofile.rawValue + "/" + String(shopId)
+            let urlStr = Base.getTimeUpdate.rawValue + "/" + String(shopId)
             showActivityIndicator()
+            IsSaveBool = true
             self.presenter?.GETPOST(api: urlStr, params:param, methodType: HttpType.POST, modelClass: ProfileModel.self, token: true)
         } else {
            
-                
-//            var param = [
-//                    "time":"1",
-//                    "day[]":"SUN",
-//                    "day[]":"MON",
-//                    "day[]":"TUE",
-//                    "day[]":"WED",
-//                    "day[]":"THU",
-//                    "day[]":"FRI",
-//                    "day[]":"SAT"
-//                    ,
-//                    "hours_opening[SUN]":"",
-//                    "hours_opening[MON]:":"",
-//                    "hours_opening[TUE]":"",
-//                    "hours_opening[WED]":"",
-//                    "hours_opening[THU]":"",
-//                    "hours_opening[FRI]":"",
-//                    "hours_opening[SAT]":"",
-//                    "hours_closing[SUN]":"",
-//                    "hours_closing[MON]":"",
-//                    "hours_closing[SUN]":"",
-//                    "hours_closing[TUE]":"",
-//                    "hours_closing[WED]":"",
-//                    "hours_closing[THU]":"",
-//                    "hours_closing[FRI]":"",
-//                    "hours_closing[SAT]":"",
-//                ]
+            print(DateArray)
+                IsSaveBool = true
+            var param = [
+                    "time":"1",
+                    "day":["SUN","MON","TUE","WED","THU","FRI","SAT"],
+                    "hours_opening":["SUN":"07:00","MON":"02:00","TUE":"05:00","WED":"03:00","THU":"06:00","FRI":"09:00","SAT":"23:00"],
+                    "hours_closing":["SUN":"22:00","MON":"21:00","TUE":"20:00","WED":"19:00","THU":"16:00","FRI":"17:00","SAT":"17:00"]
+                    ] as [String : Any]
             
+//            var dayArray: NSMutableArray = ["SUN","MON","TUE","WED","THU","FRI","SAT"]
+//            var openingArray: NSMutableArray = []
+//            var closingArray: NSMutableArray = []
+//
 //            for i in 0..<DateArray.count {
 //                var dict: [AnyHashable : Any] = [:]
 //                let Result = self.DateArray[i] as! NSDictionary
@@ -135,20 +123,23 @@ class EditTimingViewController: BaseViewController {
 //                let close =  Result.value(forKey: "close") as? String ?? ""
 //                let open =  Result.value(forKey: "open") as? String ?? ""
 //
+               // dict[dayArray[i] : openTime]
+             
+
 //                param[open] = openTime
 //                param[close] = closeTime
-//
-//
-//
-//            }
-//
-//            print(param)
-//
-//
-//                let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
-//                let urlStr = Base.getprofile.rawValue + "/" + String(shopId)
-//                showActivityIndicator()
-//                self.presenter?.GETPOST(api: urlStr, params:param , methodType: HttpType.POST, modelClass: ProfileModel.self, token: true)
+
+
+
+           // }
+
+            print(param)
+
+
+                let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
+                let urlStr = Base.getTimeUpdate.rawValue + "/" + String(shopId)
+                showActivityIndicator()
+                self.presenter?.GETPOST(api: urlStr, params:param , methodType: HttpType.POST, modelClass: ProfileModel.self, token: true)
             
         }
     }
@@ -434,6 +425,9 @@ extension EditTimingViewController: PresenterOutputProtocol {
             timeArr = data?.timings ?? []
             setTiming()
             
+            if IsSaveBool {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
         
     }

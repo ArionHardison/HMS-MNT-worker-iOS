@@ -294,7 +294,7 @@ class EditRegisterViewController: BaseViewController {
                                        "longitude":longStr]
         
         for i in 0..<cusineId.count {
-            var cusineStr = "cuisine_id[\(i)]"
+            let cusineStr = "cuisine_id[\(i)]"
             parameters[cusineStr] = cusineId[i]
         }
         let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
@@ -477,7 +477,10 @@ extension EditRegisterViewController: PresenterOutputProtocol {
             cusineStr.removeAll()
             
             for item in data?.cuisines ?? [] {
-                cusineStr.append(data?.name ?? "")
+                cusineStr.append(item.name ?? "")
+                let idStr: String! = String(describing: item.id ?? 0)
+                cusineId.append(idStr)
+            
             }
             cuisineValueLabel.text = cusineStr.joined(separator: ", ")
             
@@ -570,8 +573,6 @@ extension EditRegisterViewController: CountryCodeViewControllerDelegate,SelectCu
         self.countryImageView.image = UIImage(named: "CountryPicker.bundle/"+Value.code)
         countryCodeLabel.text = Value.dial_code
     }
-    
-    
     
 }
 extension EditRegisterViewController: GMSAutocompleteViewControllerDelegate {

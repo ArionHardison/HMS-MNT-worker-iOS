@@ -14,6 +14,7 @@ class SelectAddonsViewController: BaseViewController {
     @IBOutlet weak var selectAddonsTableView: UITableView!
     var addOnsListResponse = [ListAddOns]()
     var selectAddons: NSMutableArray = []
+    var addonsPriceArray: NSMutableArray = []
     weak var delegate: SelectAddonsViewControllerDelegate?
 
 
@@ -41,7 +42,7 @@ class SelectAddonsViewController: BaseViewController {
     }
     */
     @IBAction func onSaveButtonAction(_ sender: Any) {
-        self.delegate?.featchSelectAddonsLabel(AddOnnsArr: selectAddons)
+        self.delegate?.featchSelectAddonsLabel(AddOnnsArr: selectAddons, AddonPriceArr: addonsPriceArray)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -115,13 +116,31 @@ extension SelectAddonsViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+       
+
+        
         let cell = tableView.cellForRow(at: indexPath) as! SelectAddonsTableViewCell
-        let dict = self.addOnsListResponse[indexPath.row]
         
-        cell.radioImageView.image = UIImage(named: "radioon")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
-        cell.radioImageView.tintColor = UIColor.primary
-        
-        self.selectAddons.add(dict)
+        if cell.priceTextField.text?.isEmpty ?? true
+        {
+      
+            let alert = showAlert(message: "Please add Addon price")
+           
+                self.present(alert, animated: true, completion:nil)
+            
+            
+
+        }else{
+            let dict = self.addOnsListResponse[indexPath.row]
+            addonsPriceArray.add(cell.priceTextField.text)
+            
+    
+            cell.radioImageView.image = UIImage(named: "radioon")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
+            cell.radioImageView.tintColor = UIColor.primary
+            
+            self.selectAddons.add(dict)
+        }
+       
         
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
@@ -170,5 +189,5 @@ extension SelectAddonsViewController: PresenterOutputProtocol {
 }
 // MARK: - Protocol for set Value for DateWise Label
 protocol SelectAddonsViewControllerDelegate: class {
-    func featchSelectAddonsLabel(AddOnnsArr: NSMutableArray)
+    func featchSelectAddonsLabel(AddOnnsArr: NSMutableArray,AddonPriceArr: NSMutableArray)
 }
