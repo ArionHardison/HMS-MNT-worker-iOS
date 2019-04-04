@@ -12,6 +12,7 @@ import Foundation
 
 import Foundation
 
+
 let baseUrl = "https://eataround.deliveryventure.com/"
 
 //MARK:- Status Code
@@ -44,6 +45,7 @@ enum Base : String{
     case getOrder = "/api/shop/order"
     case getTransportList = "/api/shop/transporterlist"
     case getTimeUpdate = "/api/shop/time"
+    case getDelete = "/api/shop/remove/"
     
    
     

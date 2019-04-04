@@ -66,14 +66,14 @@ extension UIViewController {
     
     //MARK: Password Validation
     func isValidPassword(password : String)->Bool{
-        if( password.characters.count >= 6){
+        if( password.count >= 6){
             return true
         }
         return false
     }
     
     func isValidPhone(phone : String)->Bool{
-        if (phone.characters.count <= 7) || (phone.characters.count >= 15) {
+        if (phone.count <= 7) || (phone.count >= 15) {
             return false
         }
         return true

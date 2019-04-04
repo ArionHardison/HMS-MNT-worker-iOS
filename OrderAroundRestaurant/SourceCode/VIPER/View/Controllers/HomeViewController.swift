@@ -22,6 +22,8 @@ class HomeViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       self.navigationController?.isNavigationBarHidden = true
 
         // Do any additional setup after loading the view.
         setInitialLoad()
@@ -37,7 +39,7 @@ class HomeViewController: BaseViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = false
+      //  self.navigationController?.isNavigationBarHidden = false
         timerGetRequest?.invalidate()
         timerGetRequest = nil
     }
@@ -75,7 +77,8 @@ extension HomeViewController{
     
     
     @objc private func getProfile(){
-        self.presenter?.GETPOST(api: Base.getprofile.rawValue, params:[:], methodType: HttpType.GET, modelClass: ProfileModel.self, token: true)
+        let url =  Base.getprofile.rawValue + "?device_id=" + device_ID + "&device_token=" + deviceToken + "&device_type=" + deviceType
+        self.presenter?.GETPOST(api: url, params:[:], methodType: HttpType.GET, modelClass: ProfileModel.self, token: true)
     }
     private func setFont(){
         restaurantNameLabel.font = UIFont.bold(size: 20)
@@ -109,8 +112,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell: UITableViewCell = UITableViewCell()
-        
+
         if upcomingRequestArr.count == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
             cell.waitingView.isHidden = false
@@ -147,7 +149,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource{
             return cell
             
         }
-        return cell
+       
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

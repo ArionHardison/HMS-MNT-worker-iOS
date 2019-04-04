@@ -935,7 +935,7 @@
             </objects>
             <point key="canvasLocation" x="-978" y="112"/>
         </scene>
-        <!--Restaurant Menu View Controller-->
+        <!--Home-->
         <scene sceneID="xf1-9G-uyz">
             <objects>
                 <viewController storyboardIdentifier="RestaurantMenuViewController" id="tu5-VY-vaW" customClass="RestaurantMenuViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
@@ -992,20 +992,24 @@
                                             <constraint firstAttribute="height" constant="128" id="ghU-KL-N1o"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hlP-y7-qFw">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GEn-DZ-oXQ">
                                         <rect key="frame" x="0.0" y="128" width="375" height="557"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="tu5-VY-vaW" id="pRN-Cz-0f6"/>
+                                            <outlet property="delegate" destination="tu5-VY-vaW" id="lho-8X-b4U"/>
+                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="1eS-6d-ouz" firstAttribute="top" secondItem="wJa-f7-rmO" secondAttribute="top" id="8aB-Eu-7h0"/>
                                     <constraint firstAttribute="trailing" secondItem="1eS-6d-ouz" secondAttribute="trailing" id="Bzg-ua-9Do"/>
-                                    <constraint firstItem="hlP-y7-qFw" firstAttribute="top" secondItem="1eS-6d-ouz" secondAttribute="bottom" id="R0m-S7-HQ6"/>
+                                    <constraint firstItem="GEn-DZ-oXQ" firstAttribute="top" secondItem="1eS-6d-ouz" secondAttribute="bottom" id="TRZ-ty-5SC"/>
+                                    <constraint firstItem="GEn-DZ-oXQ" firstAttribute="leading" secondItem="wJa-f7-rmO" secondAttribute="leading" id="cT5-XF-kni"/>
                                     <constraint firstItem="1eS-6d-ouz" firstAttribute="leading" secondItem="wJa-f7-rmO" secondAttribute="leading" id="cjk-9M-dlG"/>
-                                    <constraint firstAttribute="bottom" secondItem="hlP-y7-qFw" secondAttribute="bottom" id="ecy-0Q-X8b"/>
-                                    <constraint firstAttribute="trailing" secondItem="hlP-y7-qFw" secondAttribute="trailing" id="qUA-0c-2sO"/>
-                                    <constraint firstItem="hlP-y7-qFw" firstAttribute="leading" secondItem="wJa-f7-rmO" secondAttribute="leading" id="x5p-mE-r0h"/>
+                                    <constraint firstAttribute="trailing" secondItem="GEn-DZ-oXQ" secondAttribute="trailing" id="qay-4k-LAj"/>
+                                    <constraint firstAttribute="bottom" secondItem="GEn-DZ-oXQ" secondAttribute="bottom" id="ymK-oW-wKb"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1018,9 +1022,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Lnt-1t-npC"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="shop" id="eHS-28-e1J"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="shop" id="eHS-28-e1J"/>
+                    <navigationItem key="navigationItem" id="pA7-ND-OBV"/>
                     <connections>
-                        <outlet property="menuTableView" destination="hlP-y7-qFw" id="N9I-hw-5dU"/>
+                        <outlet property="menuTableView" destination="GEn-DZ-oXQ" id="Kck-px-oil"/>
                         <outlet property="restaurantImageView" destination="GtI-MQ-VmT" id="4P7-sX-gDH"/>
                         <outlet property="restaurantLocationButton" destination="ihz-Tk-E7N" id="4sP-Td-z6I"/>
                         <outlet property="restaurantNameLabel" destination="ki6-by-F5N" id="7gg-hJ-wAD"/>
@@ -1029,7 +1034,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dDb-Vi-cV5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3977" y="211"/>
+            <point key="canvasLocation" x="2866" y="-1057"/>
         </scene>
         <!--History View Controller-->
         <scene sceneID="tSb-Gg-QK7">
@@ -1823,7 +1828,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="05J-CN-RLJ" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="249" width="375" height="470"/>
+                                <rect key="frame" x="0.0" y="249" width="375" height="480"/>
                                 <color key="backgroundColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
@@ -1832,7 +1837,7 @@
                             <constraint firstItem="ATe-Y0-f2h" firstAttribute="leading" secondItem="gKI-HT-9FC" secondAttribute="leading" id="17k-zr-NtV"/>
                             <constraint firstItem="gKI-HT-9FC" firstAttribute="trailing" secondItem="ATe-Y0-f2h" secondAttribute="trailing" id="NGN-ch-m5w"/>
                             <constraint firstItem="05J-CN-RLJ" firstAttribute="top" secondItem="ATe-Y0-f2h" secondAttribute="bottom" id="UtF-9T-TJd"/>
-                            <constraint firstItem="gKI-HT-9FC" firstAttribute="bottom" secondItem="05J-CN-RLJ" secondAttribute="bottom" constant="10" id="ZDR-Bf-dqA"/>
+                            <constraint firstItem="gKI-HT-9FC" firstAttribute="bottom" secondItem="05J-CN-RLJ" secondAttribute="bottom" id="ZDR-Bf-dqA"/>
                             <constraint firstItem="ATe-Y0-f2h" firstAttribute="top" secondItem="gKI-HT-9FC" secondAttribute="top" id="bx6-Mx-W35"/>
                             <constraint firstItem="gKI-HT-9FC" firstAttribute="trailing" secondItem="05J-CN-RLJ" secondAttribute="trailing" id="dqD-Il-4Aj"/>
                             <constraint firstItem="05J-CN-RLJ" firstAttribute="leading" secondItem="gKI-HT-9FC" secondAttribute="leading" id="ndx-RW-0UR"/>
@@ -1840,6 +1845,7 @@
                         <viewLayoutGuide key="safeArea" id="gKI-HT-9FC"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="cash" id="cYr-tx-b6Y"/>
+                    <navigationItem key="navigationItem" id="Chz-VQ-NB7"/>
                     <connections>
                         <outlet property="barChartView" destination="05J-CN-RLJ" id="nML-QV-ul8"/>
                         <outlet property="monthlyEarningLabel" destination="7uZ-0i-S9d" id="Ze9-5i-ifs"/>
@@ -1856,7 +1862,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dnm-cf-uhX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3864.8000000000002" y="-502.46305418719214"/>
+            <point key="canvasLocation" x="2295" y="-1728"/>
         </scene>
         <!--Up Coming Request View Controller-->
         <scene sceneID="jtg-JV-aBe">
@@ -3565,22 +3571,60 @@
             </objects>
             <point key="canvasLocation" x="3124" y="274"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Profile-->
         <scene sceneID="5B4-UO-jQs">
             <objects>
-                <navigationController id="Lc5-ik-xLa" sceneMemberID="viewController">
+                <navigationController navigationBarHidden="YES" id="Lc5-ik-xLa" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Profile" image="shop" id="3lo-rr-QLw"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Tt9-qk-nas">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <textAttributes key="largeTitleTextAttributes">
                             <color key="textColor" red="0.82745098039999998" green="0.41568627450000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
                     </navigationBar>
+                    <connections>
+                        <segue destination="tu5-VY-vaW" kind="relationship" relationship="rootViewController" id="5ea-Qf-obw"/>
+                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AO7-7D-Bkj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-108" y="-502"/>
+            <point key="canvasLocation" x="3777" y="-1056"/>
+        </scene>
+        <!--Dishes-->
+        <scene sceneID="see-17-EV4">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pma-mb-krJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController navigationBarHidden="YES" id="Fjg-uJ-pRJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Dishes" image="options" id="cak-7l-2Uc"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="X5d-rD-91b">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.98823529409999999" green="0.2274509804" blue="0.078431372550000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="sxb-Re-2eK" kind="relationship" relationship="rootViewController" id="YfU-kv-ZXF"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="5482" y="-1002"/>
+        </scene>
+        <!--Home-->
+        <scene sceneID="QOg-ic-phj">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="Ow6-bN-zD0" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Home" image="salver" id="Nn9-sJ-3bp"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OYw-r8-bmf">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="7k2-92-BKC" kind="relationship" relationship="rootViewController" id="xqQ-f7-q6W"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FO9-TC-lPt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6017" y="-1810"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="scD-XV-56f">
@@ -3681,6 +3725,7 @@
                     <tabBarItem key="tabBarItem" title="" image="salver" id="Mfv-64-nuh">
                         <color key="badgeColor" red="0.82745098039999998" green="0.44705882349999998" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" id="hjL-Gj-t4A"/>
                     <connections>
                         <outlet property="bannerImageView" destination="g9c-p2-XYr" id="fjU-nF-BKL"/>
                         <outlet property="restaurantLocation" destination="SGk-Y9-DBy" id="j4a-xw-qyv"/>
@@ -3690,7 +3735,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m6W-wo-4QE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5718" y="-572"/>
+            <point key="canvasLocation" x="6855" y="-1810"/>
         </scene>
         <!--Time Picker View Controller-->
         <scene sceneID="oPe-Ae-4H4">
@@ -3767,7 +3812,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NnK-ae-6Uf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6429.6000000000004" y="-565.27093596059115"/>
+            <point key="canvasLocation" x="6319" y="-233"/>
         </scene>
         <!--Deliveries View Controller-->
         <scene sceneID="Hm3-YK-gQ4">
@@ -3799,11 +3844,29 @@
             </objects>
             <point key="canvasLocation" x="4740" y="447"/>
         </scene>
+        <!--Revenue-->
+        <scene sceneID="zPc-S4-LqF">
+            <objects>
+                <navigationController navigationBarHidden="YES" id="PdC-KD-gSJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Revenue" image="cash" id="Bcq-XT-OPc"/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="OnB-2e-25X">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="5WQ-1Q-lC7" kind="relationship" relationship="rootViewController" id="C1J-8y-RbP"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CCd-YQ-g0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3777" y="-2274"/>
+        </scene>
         <!--Tabbar Controller-->
         <scene sceneID="eFT-gL-cZF">
             <objects>
                 <tabBarController storyboardIdentifier="TabbarController" id="DpS-6i-n6E" customClass="TabbarController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="13s-Wd-2VZ"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dWP-Dj-wVR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -3812,15 +3875,15 @@
                         <color key="selectedImageTintColor" red="0.82745098039999998" green="0.44705882349999998" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="7k2-92-BKC" kind="relationship" relationship="viewControllers" id="5lf-Qf-euO"/>
-                        <segue destination="5WQ-1Q-lC7" kind="relationship" relationship="viewControllers" id="kxI-Ei-sLM"/>
-                        <segue destination="sxb-Re-2eK" kind="relationship" relationship="viewControllers" id="bN9-Vx-gwl"/>
-                        <segue destination="tu5-VY-vaW" kind="relationship" relationship="viewControllers" id="78h-Vj-CWa"/>
+                        <segue destination="Ow6-bN-zD0" kind="relationship" relationship="viewControllers" id="dBT-WV-Yd6"/>
+                        <segue destination="PdC-KD-gSJ" kind="relationship" relationship="viewControllers" id="s4Y-w7-TfN"/>
+                        <segue destination="Fjg-uJ-pRJ" kind="relationship" relationship="viewControllers" id="ruv-5E-vtj"/>
+                        <segue destination="Lc5-ik-xLa" kind="relationship" relationship="viewControllers" id="GWW-vO-RHm"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Xc-jH-8sx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4774" y="-436"/>
+            <point key="canvasLocation" x="4988" y="-2408"/>
         </scene>
         <!--Edit Timing View Controller-->
         <scene sceneID="dfV-Ge-b0d">
@@ -3898,7 +3961,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="24L-sR-06R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3050.4000000000001" y="-418.9655172413793"/>
+            <point key="canvasLocation" x="3124" y="-420"/>
         </scene>
         <!--Dishes View Controller-->
         <scene sceneID="bul-6I-VGd">
@@ -3923,13 +3986,14 @@
                         <viewLayoutGuide key="safeArea" id="oKw-vh-tri"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="options" id="eZI-VD-l13"/>
+                    <navigationItem key="navigationItem" id="Gbw-4U-jCm"/>
                     <connections>
                         <outlet property="dishTableView" destination="6dl-qV-sVc" id="APK-e4-W2X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eEF-ov-u60" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5777" y="86"/>
+            <point key="canvasLocation" x="6318" y="-1002"/>
         </scene>
         <!--Change Pwd View Controller-->
         <scene sceneID="cJJ-qQ-NR7">
@@ -4347,7 +4411,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cKF-uq-h6g">
-                                                        <rect key="frame" x="313.33333333333331" y="20" width="41.666666666666686" height="20.333333333333329"/>
+                                                        <rect key="frame" x="323.33333333333331" y="20" width="41.666666666666686" height="20.333333333333329"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
@@ -4363,7 +4427,7 @@
                                                 <constraints>
                                                     <constraint firstItem="fuu-lw-8g1" firstAttribute="top" secondItem="zv2-GE-8hY" secondAttribute="top" id="Brj-1L-ZCF"/>
                                                     <constraint firstItem="cKF-uq-h6g" firstAttribute="centerY" secondItem="zv2-GE-8hY" secondAttribute="centerY" id="KUR-BV-Pxp"/>
-                                                    <constraint firstAttribute="trailing" secondItem="cKF-uq-h6g" secondAttribute="trailing" constant="20" id="PpQ-nU-zjM"/>
+                                                    <constraint firstAttribute="trailing" secondItem="cKF-uq-h6g" secondAttribute="trailing" constant="10" id="PpQ-nU-zjM"/>
                                                     <constraint firstItem="qa4-eV-0FS" firstAttribute="leading" secondItem="zv2-GE-8hY" secondAttribute="leading" constant="10" id="VHm-h7-1kg"/>
                                                     <constraint firstItem="qa4-eV-0FS" firstAttribute="centerY" secondItem="zv2-GE-8hY" secondAttribute="centerY" id="oba-Jg-Xf8"/>
                                                     <constraint firstItem="fuu-lw-8g1" firstAttribute="leading" secondItem="zv2-GE-8hY" secondAttribute="leading" constant="20" id="uf4-r7-fkb"/>
@@ -4411,6 +4475,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKZ-gN-7BI">
                                         <rect key="frame" x="10" y="10" width="165.66666666666666" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="IUa-8a-xsu"/>
                                         </constraints>
@@ -5313,24 +5378,24 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Add" width="120" height="120"/>
-        <image name="Location" width="20" height="20"/>
-        <image name="antenna" width="128" height="128"/>
+        <image name="Add" width="360" height="360"/>
+        <image name="Location" width="48" height="48"/>
+        <image name="antenna" width="341.33334350585938" height="341.33334350585938"/>
         <image name="app_icon" width="512" height="512"/>
-        <image name="calendar" width="30" height="30"/>
-        <image name="call-answer" width="30" height="30"/>
-        <image name="cash" width="25" height="25"/>
-        <image name="drop-down" width="30" height="30"/>
-        <image name="fillstar" width="128" height="128"/>
-        <image name="invisible" width="20" height="20"/>
-        <image name="options" width="25" height="25"/>
-        <image name="plus" width="40" height="40"/>
-        <image name="radiooff" width="128" height="128"/>
-        <image name="radioon" width="128" height="128"/>
-        <image name="refresh" width="30" height="30"/>
-        <image name="salver" width="25" height="25"/>
-        <image name="shop" width="25" height="25"/>
-        <image name="unfillstar" width="128" height="128"/>
+        <image name="calendar" width="72" height="72"/>
+        <image name="call-answer" width="72" height="72"/>
+        <image name="cash" width="60" height="60"/>
+        <image name="drop-down" width="90" height="90"/>
+        <image name="fillstar" width="384" height="384"/>
+        <image name="invisible" width="60" height="60"/>
+        <image name="options" width="60" height="60"/>
+        <image name="plus" width="96" height="96"/>
+        <image name="radiooff" width="384" height="384"/>
+        <image name="radioon" width="384" height="384"/>
+        <image name="refresh" width="72" height="72"/>
+        <image name="salver" width="60" height="60"/>
+        <image name="shop" width="60" height="60"/>
+        <image name="unfillstar" width="96" height="96"/>
         <image name="user-placeholder" width="300" height="300"/>
     </resources>
 </document>

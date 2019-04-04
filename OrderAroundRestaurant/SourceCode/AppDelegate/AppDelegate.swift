@@ -9,6 +9,7 @@
 import UIKit
 import ObjectMapper
 import GooglePlaces
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
         
         device_ID = (UIDevice.current.identifierForVendor?.uuidString)!
         print("Device_ID----\(device_ID)")
@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSPlacesClient.provideAPIKey(place_key)
         
-        
+        registerPush(forApp: application)
         return true
     }
 
@@ -59,5 +59,43 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+// MARK:- Register Push
+private func registerPush(forApp application : UIApplication){
+    let center = UNUserNotificationCenter.current()
+    center.requestAuthorization(options:[.alert, .sound]) { (granted, error) in
+        
+        if granted {
+            DispatchQueue.main.async {
+                application.registerForRemoteNotifications()
+            }
+        }
+    }
+}
 
-
+extension AppDelegate {
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken1: Data) {
+        // Pass device token to auth
+        // Auth.auth().setAPNSToken(deviceToken, type: AuthAPNSTokenType.sandbox)
+        // Messaging.messaging().apnsToken = deviceToken
+        deviceToken = deviceToken1.map { String(format: "%02.2hhx", $0) }.joined()
+        print("Apn Token ", deviceToken1.map { String(format: "%02.2hhx", $0) }.joined())
+    }
+    
+    func application(_ application: UIApplication,
+                     didReceiveRemoteNotification notification: [AnyHashable : Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("Notification  :  ", notification)
+        
+        completionHandler(.newData)
+        
+    }
+    
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        
+        print("Error in Notification  \(error.localizedDescription)")
+    }
+    
+    
+}

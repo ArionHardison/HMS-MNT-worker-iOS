@@ -27,12 +27,39 @@ class EditTimingViewController: BaseViewController {
     var IsSaveBool = false
     
     
+    var nameStr = ""
+    var emailStr = ""
+    var descriptionStr = ""
+    var phoneStr = ""
+    var passwordStr = ""
+    var confirmPasswordStr = ""
+    var imageUploadData:Data!
+    var featureImageUploadData:Data!
+    var cusineId = [String]()
+    var categoryId = 0
+    var status = ""
+    var productOrder = ""
+    var addOnsId = [String]()
+    var addOnsPrice = [String]()
+    var featureStr = ""
+    var offerPercent = ""
+    var maxDelivery = ""
+    var address = ""
+    var landmark = ""
+    var offer_min_amount = ""
+    var latitude = ""
+    var longitude = ""
+    var isYes = ""
+    
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setInitialLoad()
         IsSaveBool = false
+        everyDayStr = "ON"
     }
     
     //MARK:- viewWillAppear
@@ -44,15 +71,7 @@ class EditTimingViewController: BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     @IBAction func onSwitchAction(_ sender: Any) {
         print(daySwitch.isOn)
         if daySwitch.isOn {
@@ -67,6 +86,148 @@ class EditTimingViewController: BaseViewController {
     
     @IBAction func onSaveButtonAction(_ sender: Any) {
       
+        
+        if(IsRegister){
+            
+
+            if (everyDayStr == "ON") {
+                
+                var closeTime = ""
+                var openTime = ""
+                
+                for i in 0..<AllDateArray.count {
+                    let Result = self.AllDateArray[i] as! NSDictionary
+                    
+                    var dict: [AnyHashable : Any] = [:]
+                    closeTime =  Result.value(forKey: "closetime") as? String ?? ""
+                    openTime =  Result.value(forKey: "opentime") as? String ?? ""
+                    if let mutable = AllDateArray[i] as? [AnyHashable : Any] {
+                        dict = mutable
+                    }
+                }
+                
+                var param = [
+                "name": nameStr,
+                "email": emailStr,
+                "password": passwordStr,
+                "password_confirmation": confirmPasswordStr,
+                "phone": phoneStr,
+                "description":descriptionStr,
+                "offer_min_amount":offer_min_amount,
+                "offer_percent":offerPercent,
+                "address":landmark,
+                "maps_address":address,
+                "latitude":latitude,
+                "longitude":longitude,
+                "pure_veg":isYes,
+                "estimated_delivery_time":maxDelivery,
+                "day[]":"ALL",
+                "hours_opening[ALL]":openTime,
+                "hours_closing[ALL]":closeTime,
+                
+                ] as [String : Any]
+                
+                for i in 0..<cusineId.count {
+                    let cusineStr = "cuisine_id[\(i)]"
+                    param[cusineStr] = cusineId[i]
+                }
+
+                print(param)
+                
+                //let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
+                let urlStr = Base.register.rawValue 
+                // let urlStr = Base.getprofile.rawValue //+ "/" + String(shopId)
+                showActivityIndicator()
+                IsSaveBool = true
+          
+                self.presenter?.IMAGEPOST(api: urlStr, params: param, methodType: HttpType.POST, imgData: ["avatar":imageUploadData], imgName: "image", modelClass: RegisterModel.self, token: false)
+                
+            } else {
+                
+                print(DateArray)
+                IsSaveBool = true
+                
+              //  var dayArray: [String] = ["SUN","MON","TUE","WED","THU","FRI","SAT"]
+                let openingArray: NSMutableArray = []
+                let closingArray: NSMutableArray = []
+                
+                for i in 0..<DateArray.count {
+                    
+//                    var openDict: [String : Any] = [:]
+//                    var closeDict: [String : Any] = [:]
+                    
+                    let Result = self.DateArray[i] as! NSDictionary
+                    
+                    let openTime =  Result.value(forKey: "opentime") as? String ?? ""
+                    let closeTime =  Result.value(forKey: "closetime") as? String ?? ""
+                    
+//                    openDict = [openTime]
+//                    closeDict = [closeTime]
+//
+//                    print("openDict ----",openDict)
+                    
+                    openingArray.add(openTime)
+                    closingArray.add(closeTime)
+                }
+                
+                var param = [
+                    "name": nameStr,
+                    "email": emailStr,
+                    "password": passwordStr,
+                    "password_confirmation": confirmPasswordStr,
+                    "phone": phoneStr,
+                    "description":descriptionStr,
+                    "offer_min_amount":offer_min_amount,
+                    "offer_percent":offerPercent,
+                    "address":landmark,
+                    "maps_address":address,
+                    "latitude":latitude,
+                    "longitude":longitude,
+                    "pure_veg":isYes,
+                    "estimated_delivery_time":maxDelivery,
+                    "day[SUN]":"SUN",
+                    "hours_opening[SUN]":openingArray[0],
+                    "hours_closing[SUN]":closingArray[0],
+                    "day[MON]":"MON",
+                    "hours_opening[MON]":openingArray[1],
+                    "hours_closing[MON]":closingArray[1],
+                    "day[TUE]":"TUE",
+                    "hours_opening[TUE]":openingArray[2],
+                    "hours_closing[TUE]":closingArray[2],
+                    "day[WED]":"WED",
+                    "hours_opening[WED]":openingArray[3],
+                    "hours_closing[WED]":closingArray[3],
+                    "day[THU]":"THU",
+                    "hours_opening[THU]":openingArray[4],
+                    "hours_closing[THU]":closingArray[4],
+                    "day[FRI]":"FRI",
+                    "hours_opening[FRI]":openingArray[5],
+                    "hours_closing[FRI]":closingArray[5],
+                    "day[SAT]":"SAT",
+                    "hours_opening[SAT]":openingArray[6],
+                    "hours_closing[SAT]":closingArray[6],
+                    ] as [String : Any]
+                
+                
+                for i in 0..<cusineId.count {
+                    let cusineStr = "cuisine_id[\(i)]"
+                    param[cusineStr] = cusineId[i]
+                }
+
+                print("Params---->>>",param)
+                
+               // let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
+                let urlStr = Base.register.rawValue
+                showActivityIndicator()
+                 self.presenter?.IMAGEPOST(api: urlStr, params: param, methodType: HttpType.POST, imgData: ["avatar":imageUploadData], imgName: "image", modelClass: RegisterModel.self, token: false)
+       
+                
+            }
+            
+            
+        }else {
+        
+        
         
         if (everyDayStr == "ON") {
             
@@ -103,39 +264,48 @@ class EditTimingViewController: BaseViewController {
            
             print(DateArray)
                 IsSaveBool = true
-            var param = [
-                    "time":"1",
-                    "day":["SUN","MON","TUE","WED","THU","FRI","SAT"],
-                    "hours_opening":["SUN":"07:00","MON":"02:00","TUE":"05:00","WED":"03:00","THU":"06:00","FRI":"09:00","SAT":"23:00"],
-                    "hours_closing":["SUN":"22:00","MON":"21:00","TUE":"20:00","WED":"19:00","THU":"16:00","FRI":"17:00","SAT":"17:00"]
-                    ] as [String : Any]
+          
+            var dayArray: [String] = ["SUN","MON","TUE","WED","THU","FRI","SAT"]
+            let openingArray: NSMutableArray = []
+            let closingArray: NSMutableArray = []
+
+            for i in 0..<DateArray.count {
+               
+                var openDict: NSMutableDictionary!
+                var closeDict: NSMutableDictionary!
+                
+                let Result = self.DateArray[i] as! NSDictionary
+
+                let openTime =  Result.value(forKey: "opentime") as? String ?? ""
+                let closeTime =  Result.value(forKey: "closetime") as? String ?? ""
+               
+//                openDict = [dayArray[i] : openTime]
+//                closeDict = [dayArray[i] : closeTime]
+                
+                print("openDict ----",openDict)
+
+                openingArray.add(openTime)
+                closingArray.add(closeTime)
+            }
+
+            print(">>>>",openingArray)
             
-//            var dayArray: NSMutableArray = ["SUN","MON","TUE","WED","THU","FRI","SAT"]
-//            var openingArray: NSMutableArray = []
-//            var closingArray: NSMutableArray = []
-//
-//            for i in 0..<DateArray.count {
-//                var dict: [AnyHashable : Any] = [:]
-//                let Result = self.DateArray[i] as! NSDictionary
-//
-//                let openTime =  Result.value(forKey: "opentime") as? String ?? ""
-//                let closeTime =  Result.value(forKey: "closetime") as? String ?? ""
-//                let close =  Result.value(forKey: "close") as? String ?? ""
-//                let open =  Result.value(forKey: "open") as? String ?? ""
-//
-               // dict[dayArray[i] : openTime]
-             
+//            let param = [
+//                "time":"1",
+//                "day":dayArray,
+//                "hours_opening":openingArray,
+//                "hours_closing":closingArray
+//                ] as [String : Any]
+            
+         let param = [
+            "day":dayArray,
+            "hours_opening":["SUN":openingArray[0],"MON":openingArray[1],"TUE":openingArray[2],"WED":openingArray[3],"THU":openingArray[4],"FRI":openingArray[5],"SAT":openingArray[6]],
+              "hours_closing":["SUN":closingArray[0],"MON":closingArray[1],"TUE":closingArray[2],"WED":closingArray[3],"THU":closingArray[4],"FRI":closingArray[5],"SAT":closingArray[6]]
 
-//                param[open] = openTime
-//                param[close] = closeTime
+            ] as [String : Any]
 
-
-
-           // }
-
-            print(param)
-
-
+            print("Params---->>>",param)
+            
                 let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
                 let urlStr = Base.getTimeUpdate.rawValue + "/" + String(shopId)
                 showActivityIndicator()
@@ -143,7 +313,7 @@ class EditTimingViewController: BaseViewController {
             
         }
     }
-  
+    }
 }
 extension EditTimingViewController{
     private func setInitialLoad(){
@@ -152,6 +322,8 @@ extension EditTimingViewController{
         setNavigationController()
         if !IsRegister {
             getProfileApi()
+        }else{
+            setregTiming()
         }
         daySwitch.isOn = false
     }
@@ -190,26 +362,158 @@ extension EditTimingViewController{
     private func setFont(){
         dayLabel.font = UIFont.regular(size: 14)
     }
-    private func setTiming(){
-       
+    //******************
+    private func setregTiming(){
+        
+        
         everyDayStr = "OFF"
-
-        let dayDict2 = [
+        
+        let dayDict2 =
             [
                 "name": "Monday",
                 "id": "ALL",
                 "opentime": "00:00",
                 "closetime": "00:00"
             ]
+     
+        
+        AllDateArray.add(dayDict2)
+//        for i in 0..<7 {
+//            selectedDayArray.add(NSNumber(value: false))
+//        }
+//
+//
+//
+//        for i in 0..<timeArr.count {
+//
+//
+//
+//
+//
+//
+//        }
+//
+        getregDateArr()
+        
+        print(self.DateArray)
+        print(self.AllDateArray)
+        timeTableView.delegate = self
+        timeTableView.dataSource = self
+        timeTableView.reloadData()
+    }
+    private func getregDateArr(){
+        for j in 0..<7 {
+            
+            if j == 0 {
+                let Dict1 =  [
+                    "name": "Monday",
+                    "id": "MON",
+                    "opentime": "00:00",
+                    "closetime": "00:00",
+                    "open": "hours_opening[MON]",
+                    "close": "hours_closing[MON]"
+                ]
+                DateArray.add(Dict1)
+            }else if j == 1 {
+                let Dict1 =  [
+                    "name": "Tuesday",
+                    "id": "TUE",
+                    "opentime": "00:00",
+                    "closetime": "00:00",
+                    "open": "hours_opening[TUE]",
+                    "close": "hours_closing[TUE]"
+                ]
+                DateArray.add(Dict1)
+            }else if j == 2 {
+                let Dict1 =  [
+                    "name": "Wednesday",
+                    "id": "WED",
+                    "opentime": "00:00",
+                    "closetime": "00:00",
+                    "open": "hours_opening[WED]",
+                    "close": "hours_closing[WED]"
+                ]
+                DateArray.add(Dict1)
+            }else if j == 3 {
+                let Dict1 =  [
+                    "name": "Thursday",
+                    "id": "THUR",
+                    "opentime": "00:00",
+                    "closetime": "00:00",
+                    "open": "hours_opening[THUR]",
+                    "close": "hours_closing[THUR]"
+                ]
+                DateArray.add(Dict1)
+            }else if j == 4 {
+                let Dict1 =  [
+                    "name": "Friday",
+                    "id": "FRI",
+                    "opentime": "00:00",
+                    "closetime": "00:00",
+                    "open": "hours_opening[FRI]",
+                    "close": "hours_closing[FRI]"
+                ]
+                DateArray.add(Dict1)
+            }else if j == 5 {
+                let Dict1 =  [
+                    "name": "Saturday",
+                    "id": "SAT",
+                    "opentime": "00:00",
+                    "closetime": "00:00",
+                    "open": "hours_opening[SAT]",
+                    "close": "hours_closing[SAT]"
+                ]
+                DateArray.add(Dict1)
+            }else if j == 6 {
+                let Dict1 =  [
+                    "name": "Sunday",
+                    "id": "SUN",
+                    "opentime": "00:00",
+                    "closetime": "00:00",
+                    "open": "hours_opening[SUN]",
+                    "close": "hours_closing[SUN]"
+                ]
+                DateArray.add(Dict1)
+            }
+            
+            
+            selectedDayArray[j] = NSNumber(value: true)
+            
+            
+            
+        }
+    }
+
+    
+    
+    
+    //*****************************
+    
+    
+    
+    
+    
+    private func setTiming(){
+       
+        everyDayStr = "OFF"
+
+        let dayDict2 = [
+            
+                "name": "Monday",
+                "id": "ALL",
+                "opentime": "00:00",
+                "closetime": "00:00"
+            
         ]
         
         AllDateArray.add(dayDict2)
+    
         for i in 0..<7 {
             selectedDayArray.add(NSNumber(value: false))
         }
         
         
-       
+       print (timeArr)
         for i in 0..<timeArr.count {
             
             let Result = timeArr[i]
@@ -250,10 +554,6 @@ extension EditTimingViewController{
 
         getDateArr()
 
-        
-        
-       
-        
         print(self.DateArray)
         print(self.AllDateArray)
         timeTableView.delegate = self
@@ -358,6 +658,7 @@ extension EditTimingViewController: UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.EditTimingTableViewCell, for: indexPath) as! EditTimingTableViewCell
         print(self.DateArray)
         print(self.everyDayStr)
+        print(self.AllDateArray)
 
         if everyDayStr == "ON" {
             let Result = self.AllDateArray[indexPath.row] as! NSDictionary
@@ -428,6 +729,10 @@ extension EditTimingViewController: PresenterOutputProtocol {
             if IsSaveBool {
                 self.navigationController?.popViewController(animated: true)
             }
+        }
+        else  if String(describing: modelClass) == model.type.RegisterModel {
+            
+             self.navigationController?.popToRootViewController(animated: true)
         }
         
     }
@@ -513,13 +818,13 @@ extension EditTimingViewController: TimePickerViewControllerDelegate{
                     dict["close"] = close
                     dict["opentime"] = cell.openTimeValueLabel.text
                     dict["closetime"] = cell.closeTimeValueLabel.text
-                    return
+                    
                 }
                 
-          
-                
                 DateArray[i] = dict
+                
             }
+             print(self.DateArray)
         }
         print(self.DateArray)
 

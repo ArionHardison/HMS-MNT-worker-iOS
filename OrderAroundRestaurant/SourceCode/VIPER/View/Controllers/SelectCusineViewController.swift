@@ -129,10 +129,6 @@ extension SelectCusineViewController: UITableViewDelegate,UITableViewDataSource{
         cell.selectImageView.image = UIImage(named: "radiooff")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         cell.selectImageView.tintColor = UIColor.primary
         self.selectCusine.remove(dict)
-        
-        
-        
-        
     }
 }
 /******************************************************************/

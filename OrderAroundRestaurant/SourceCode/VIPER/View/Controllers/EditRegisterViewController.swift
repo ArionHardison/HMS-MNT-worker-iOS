@@ -291,7 +291,8 @@ class EditRegisterViewController: BaseViewController {
                                        "maps_address":landmarkTextField.text!,
                                        "offer_percent":offerPercentTextField.text!,
                                        "latitude":latStr,
-                                       "longitude":longStr]
+                                       "longitude":longStr,
+                                       "method":"PATCH"]
         
         for i in 0..<cusineId.count {
             let cusineStr = "cuisine_id[\(i)]"

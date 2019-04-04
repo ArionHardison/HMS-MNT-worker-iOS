@@ -52,33 +52,46 @@ class UpcomingDetailViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         setInitialLoad()
+        disputeButton.isHidden = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+          enableKeyboardHandling()
         self.navigationController?.isNavigationBarHidden = false
         
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+        disableKeyboardHandling()
 
+    }
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // User finished typing (hit return): hide the keyboard.
+        textField.resignFirstResponder()
+        self.view.endEditing(true)
+        return true
     }
     
     //  update TableView Height
     private func updateOrderItemTableHeight(){
         var counts: [String: Int] = [:]
         var itemsArr = [String]()
-        for var i in 0..<(CartOrderArr.count)
+        for i in 0..<(CartOrderArr.count)
         {
             let Result = CartOrderArr[i]
             
             let cartaddons = Result.cart_addons?.count
+            
+            if(cartaddons != nil)
+            {
             if cartaddons! > 0 {
                 itemsArr.append("withaddonsItems")
             }else{
                 itemsArr.append("withoutaddonsItems")
                 
+            }
             }
         }
         for item in itemsArr {
@@ -95,7 +108,7 @@ class UpcomingDetailViewController: BaseViewController {
             }
         }
         
-        let itemCountHeight = CGFloat(itemCount * 40)
+        let itemCountHeight = CGFloat(itemCount * 70)
         let cartaddOns = CGFloat(cartaddonCount * 80)
         self.orderHeight.constant = itemCountHeight + cartaddOns
         scrollView.contentSize = CGSize(width: self.overView.frame.size.width, height:  overView        .frame.size.height)
@@ -103,13 +116,14 @@ class UpcomingDetailViewController: BaseViewController {
     }
     
     @IBAction func onAcceptAction(_ sender: Any) {
-        
+        self.view.endEditing(true)
         self.acceptOrderApi(statusStr: "RECEIVED")
 
     }
     
     @IBAction func onCancelAction(_ sender: Any) {
         acceptOverView.isHidden = true
+        self.view.endEditing(true)
     }
     
     /*
@@ -138,6 +152,8 @@ class UpcomingDetailViewController: BaseViewController {
     }
     
     @IBAction func onacceptButtonAction(_ sender: Any) {
+        
+               acceptOverView.isHidden = false
     }
     
     private func acceptOrderApi(statusStr: String){
@@ -145,7 +161,7 @@ class UpcomingDetailViewController: BaseViewController {
         let urlStr = "\(Base.getOrder.rawValue)/" + String(OrderId)
         let parameters:[String:Any] = ["status": statusStr,
                                        "order_ready_time":orderTimeTextField.text!,
-                                       "_method":""]
+                                       "_method":"PATCH"]
         self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
     }
     
@@ -231,7 +247,7 @@ extension UpcomingDetailViewController{
         discountLabel.font = UIFont.regular(size: 14)
         subTotalValueLabel.font = UIFont.regular(size: 14)
         subTotalLabel.font = UIFont.regular(size: 14)
-       emptyLabel.font = UIFont.regular(size: 14)
+        emptyLabel.font = UIFont.regular(size: 14)
         noteLabel.font = UIFont.regular(size: 14)
         OrderListLabel.font = UIFont.regular(size: 14)
         paymentModeLabel.font = UIFont.regular(size: 14)
@@ -250,22 +266,22 @@ extension UpcomingDetailViewController{
         let currency = UserDefaults.standard.value(forKey: Keys.list.currency) as! String
 
         let deliveryChargeStr: String! = String(describing: data.invoice?.delivery_charge ?? 0)
-        deliveryChargeValueLabel.text = currency + String(format: " $%.02f", Double(deliveryChargeStr) ?? 0.0)
+        deliveryChargeValueLabel.text = currency + String(format: " %.02f", Double(deliveryChargeStr) ?? 0.0)
         
         let subTotalStr: String! = String(describing: data.invoice?.gross ?? 0)
-        subTotalValueLabel.text = currency + String(format: " $%.02f", Double(subTotalStr) ?? 0.0)
+        subTotalValueLabel.text = currency + String(format: " %.02f", Double(subTotalStr) ?? 0.0)
         let TotalStr: String! = String(describing: data.invoice?.net ?? 0)
 
-        totalValueLabel.text = currency + String(format: " $%.02f", Double(TotalStr) ?? 0.0)
+        totalValueLabel.text = currency + String(format: " %.02f", Double(TotalStr) ?? 0.0)
         
         let discountStr: String! = String(describing: data.invoice?.discount ?? 0)
-        discountValueLabel.text = currency + String(format: " $%.02f", Double(discountStr) ?? 0.0)
+        discountValueLabel.text = currency + String(format: " %.02f", Double(discountStr) ?? 0.0)
         
         let sgstStr: String! = String(describing: data.invoice?.payable ?? 0)
-        sgstValueLabel.text = currency + String(format: " $%.02f", Double(sgstStr) ?? 0.0)
+        sgstValueLabel.text = currency + String(format: " %.02f", Double(sgstStr) ?? 0.0)
         
         let cgstStr: String! = String(describing: data.invoice?.tax ?? 0)
-        cgstValueLabel.text = currency + String(format: " $%.02f", Double(cgstStr) ?? 0.0)
+        cgstValueLabel.text = currency + String(format: " %.02f", Double(cgstStr) ?? 0.0)
         
         
         if (data.status == "ORDERED") {
@@ -300,23 +316,25 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
         let productName = Data.product?.name
         let quantityStr = "\(Data.quantity ?? 0)"
         cell.titleLabel.text = productName! + " x " + quantityStr
-        let currency = Data.product?.prices?.currency
+        let currency = Data.product?.prices?.currency ?? "$"
         let priceStr: String! = String(describing: Data.product?.prices?.price ?? 0)
 
-        cell.descriptionLabel.text = currency ?? "" + String(format: " $%.02f", Double(priceStr) ?? 0.0)
+        cell.descriptionLabel.text = currency + String(format: " %.02f", Double(priceStr) ?? 0.0)
         
         
         var addonsNameArr = [String]()
         addonsNameArr.removeAll()
-        for var i in 0..<(Data.cart_addons!.count)
-        {
-            let Result = Data.cart_addons![i]
-            
-            
-          //  let str = "\(Result.addon_product?.addon?.name! ?? "")"
-          //  addonsNameArr.append(str)
-            
-        }
+        
+        if(Data.cart_addons != nil) {
+//            for i in 0..<(Data.cart_addons!.count)
+//        {
+//            let Result = Data.cart_addons![i]
+//
+//
+//          //  let str = "\(Result.addon_product?.addon?.name! ?? "")"
+//          //  addonsNameArr.append(str)
+//
+//        }
         
         if Data.cart_addons!.count == 0 {
             cell.subTitleLabel.isHidden = true
@@ -325,8 +343,11 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
             let addonsstr = addonsNameArr.joined(separator: ", ")
             cell.subTitleLabel.text = addonsstr
         }
-        
+        }
         return cell
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
     }
  
     

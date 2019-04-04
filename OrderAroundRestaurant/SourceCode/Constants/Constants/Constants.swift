@@ -31,7 +31,7 @@ struct Constants {
     
     var deviceType = "no deviceType"
     var noDeviceID = "no device id"
-    var noDeviceToken = "no device token"
+    var noDeviceToken = "123456"
     var deleteCategory = "Are you sure want to delete Category?"
     var deleteProduct = "Are you sure want to delete Product?"
 

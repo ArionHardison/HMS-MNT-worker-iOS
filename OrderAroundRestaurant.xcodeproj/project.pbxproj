@@ -281,6 +281,7 @@
 		915B0DF90E6F700F351463E9 /* Pods-OrderAroundRestaurantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantUITests.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantUITests/Pods-OrderAroundRestaurantUITests.release.xcconfig"; sourceTree = "<group>"; };
 		96562278739C1FFA52E020AA /* Pods-OrderAroundRestaurantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantUITests.debug.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantUITests/Pods-OrderAroundRestaurantUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ADFC8BDAA3EBD2DD537EC2CA /* Pods_OrderAroundRestaurant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrderAroundRestaurant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4BC6BCD2254BE83007427BD /* OrderAroundRestaurant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OrderAroundRestaurant.entitlements; sourceTree = "<group>"; };
 		C5A079EBE806DF346E387BC6 /* Pods-OrderAroundRestaurantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantTests.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantTests/Pods-OrderAroundRestaurantTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC2C017217BF53DC674AEEA1 /* Pods-OrderAroundRestaurantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantTests.debug.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantTests/Pods-OrderAroundRestaurantTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D57F8BFB4377CBE978AFCAF5 /* Pods-OrderAroundRestaurant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurant.debug.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurant/Pods-OrderAroundRestaurant.debug.xcconfig"; sourceTree = "<group>"; };
@@ -340,6 +341,7 @@
 		087D0BC5222403FC00E58BDE /* OrderAroundRestaurant */ = {
 			isa = PBXGroup;
 			children = (
+				B4BC6BCD2254BE83007427BD /* OrderAroundRestaurant.entitlements */,
 				087D0BFE2224087F00E58BDE /* SourceCode */,
 				087D0BF4222404F300E58BDE /* Resources */,
 				087D0BD2222403FF00E58BDE /* Info.plist */,
@@ -882,6 +884,11 @@
 				TargetAttributes = {
 					087D0BC2222403FC00E58BDE = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					087D0BD6222403FF00E58BDE = {
 						CreatedOnToolsVersion = 10.1;
@@ -1341,6 +1348,7 @@
 			baseConfigurationReference = D57F8BFB4377CBE978AFCAF5 /* Pods-OrderAroundRestaurant.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QLVQQ74552;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
@@ -1361,6 +1369,7 @@
 			baseConfigurationReference = 720967599EA4387BC1D693F4 /* Pods-OrderAroundRestaurant.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QLVQQ74552;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;

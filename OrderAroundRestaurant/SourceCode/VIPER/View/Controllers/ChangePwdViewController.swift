@@ -209,7 +209,7 @@ extension ChangePwdViewController {
                                        "password":newPwdTextField.text!,
                                        "password_confirmation":confirmPwdTextField.text!]
         
-        self.presenter?.GETPOST(api: Base.changePassword.rawValue, params:parameters, methodType: HttpType.POST, modelClass: ChangePwdModel.self, token: false)
+        self.presenter?.GETPOST(api: Base.changePassword.rawValue, params:parameters, methodType: HttpType.POST, modelClass: ChangePwdModel.self, token: true)
 
     }
 }

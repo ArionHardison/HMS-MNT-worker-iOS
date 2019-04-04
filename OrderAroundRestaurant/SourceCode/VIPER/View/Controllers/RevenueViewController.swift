@@ -30,9 +30,10 @@ class RevenueViewController: BaseViewController, ChartViewDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+       //self.navigationController?.isNavigationBarHidden = true
         // Do any additional setup after loading the view.
         setInitialLoad()
+        
     }
     
 
@@ -80,14 +81,17 @@ extension RevenueViewController{
         
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.primary
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.title = "Revenue"
+         self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
  
-        let btnBack = UIButton(type: .custom)
-        btnBack.setTitle("Revenue", for: .normal)
-        btnBack.titleLabel?.textColor = UIColor.white
-        btnBack.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-        btnBack.isUserInteractionEnabled = false
-        let item = UIBarButtonItem(customView: btnBack)
-        self.navigationItem.setLeftBarButtonItems([item], animated: true)
+//        let btnBack = UIButton(type: .custom)
+//        btnBack.setTitle("Revenue", for: .normal)
+//        btnBack.titleLabel?.textColor = UIColor.white
+//        btnBack.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+//        btnBack.isUserInteractionEnabled = false
+//        let item = UIBarButtonItem(customView: btnBack)
+//        self.navigationItem.setLeftBarButtonItems([item], animated: true)
         
     }
    

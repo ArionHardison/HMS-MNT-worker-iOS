@@ -270,13 +270,13 @@ extension Webservice : WebServiceProtocol {
             self.completion?(nil, data)
             
             if(responseError?.result.value as AnyObject).isKind(of: NSDictionary.self){ //Dictionary:
-                guard let responseJSON = responseError?.result.value as? [String: AnyObject] else {
+                guard (responseError?.result.value as? [String: AnyObject]) != nil else {
                     print("Error reading response")
                     return
                 }
                /* self.interactor?.dictModelClass(className: modelClass, response: responseJSON)*/
             }else{ //Array:
-                if let json = responseError?.result.value as? [[String:Any]] {
+                if (responseError?.result.value as? [[String:Any]]) != nil {
                     /*self.interactor?.arrayModelClass(className: modelClass, arrayResponse: json)*/
                 }
             }

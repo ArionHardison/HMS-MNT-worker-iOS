@@ -65,6 +65,9 @@ extension DeliveriesViewController{
         
     }
     private func setRegister(){
+        
+        deliveriesTableView.tableFooterView = UIView()
+        
         let upcomingRequestViewnib = UINib(nibName: XIB.Names.DeliveriesTableViewCell, bundle: nil)
         deliveriesTableView.register(upcomingRequestViewnib, forCellReuseIdentifier: XIB.Names.DeliveriesTableViewCell)
         deliveriesTableView.delegate = self

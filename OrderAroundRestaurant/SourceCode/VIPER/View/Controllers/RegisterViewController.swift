@@ -71,6 +71,9 @@ class RegisterViewController: BaseViewController {
     var isNo = false
     var isYes = false
     var cusineId = [String]()
+    var latitude = ""
+    var longitude = ""
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -123,12 +126,12 @@ class RegisterViewController: BaseViewController {
     }
     @IBAction func onyesButtonAction(_ sender: Any) {
         if isYes {
-            isYes = true
+            isYes = false
             let image = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
             yesRadioButton.setImage(image, for: .normal)
             yesRadioButton.tintColor = UIColor.primary
         }else{
-            isYes = false
+            isYes = true
             let image1 = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
             noRadioButton.setImage(image1, for: .normal)
             noRadioButton.tintColor = UIColor.primary
@@ -194,6 +197,7 @@ class RegisterViewController: BaseViewController {
     //MARK: Validate
     func Validate(){
         view.endEditing(true)
+        
         guard let name = nameTextField.text, !name.isEmpty else{
             showToast(msg: ErrorMessage.list.enterName)
             return
@@ -296,18 +300,50 @@ class RegisterViewController: BaseViewController {
             return
         }
         
+        var uploadimgeData:Data!
         
+        if  let dataImg = imageUploadImageView.image?.jpegData(compressionQuality: 0.5) {
+            uploadimgeData = dataImg
+        }
+        
+        var featureUploadimgeData:Data!
+        
+        if  let dataImg = shopBannerImageView.image?.jpegData(compressionQuality: 0.5) {
+            featureUploadimgeData = dataImg
+        }
+        
+        var isyes = ""
+       
+        if(isYes)
+        {
+            isyes = "1"
+        }
+      
+        print(cusineId)
+    
         let editTimingController = self.storyboard?.instantiateViewController(withIdentifier: "EditTimingViewController") as! EditTimingViewController
+        editTimingController.nameStr = name
+        editTimingController.emailStr = email
+        editTimingController.passwordStr = password
+        editTimingController.confirmPasswordStr = confirmpassword
+        editTimingController.phoneStr = phone
+        editTimingController.descriptionStr = description
+        editTimingController.offer_min_amount = minAmt
+        editTimingController.offerPercent = offerPercent
+        editTimingController.maxDelivery = maxDelivery
+        editTimingController.address = address
+        editTimingController.landmark = landmark
+        editTimingController.latitude = latitude
+        editTimingController.longitude = longitude
+        editTimingController.cusineId = cusineId
+        editTimingController.imageUploadData = uploadimgeData
+        editTimingController.featureImageUploadData = featureUploadimgeData
+        editTimingController.isYes = isyes
         editTimingController.IsRegister = true
         self.navigationController?.pushViewController(editTimingController, animated: true)
         
-
-
-        
     }
-    
-    
-    
+
 }
 extension RegisterViewController {
     private func setShadow(){
@@ -329,9 +365,6 @@ extension RegisterViewController {
         self.addShadowView(view: phoneNumberView)
         self.addShadowView(view: imageUploadView)
         self.addShadowView(view: shopBannerView)
-
-
-
         
     }
     private func setRadioTintColor(){
@@ -341,8 +374,6 @@ extension RegisterViewController {
         noRadioButton.tintColor = UIColor.primary
     }
  
-    
-    
     private func setInitialLoads(){
         setTableViewContentInset()
         setFont()
@@ -469,11 +500,15 @@ extension RegisterViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
-        print("Place name: \(place.name)")
-        print("Place ID: \(place.placeID)")
-        print("Place attributions: \(place.attributions)")
+        print("Place name: \(String(describing: place.name))")
+        print("Place ID: \(String(describing: place.placeID))")
+        print("Place attributions: \(String(describing: place.attributions))")
         addressValueLabel.text = place.name ?? ""
+
         dismiss(animated: true, completion: nil)
+        
+         latitude = String(place.coordinate.latitude)
+         longitude = String(place.coordinate.longitude)
     }
     
     func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
@@ -519,8 +554,6 @@ extension RegisterViewController: CountryCodeViewControllerDelegate,SelectCusine
         self.countryImageView.image = UIImage(named: "CountryPicker.bundle/"+Value.code)
         countryCodeLabel.text = Value.dial_code
     }
-    
-    
     
 }
 

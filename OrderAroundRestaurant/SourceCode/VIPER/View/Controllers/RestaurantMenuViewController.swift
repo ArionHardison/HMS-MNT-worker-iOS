@@ -158,13 +158,14 @@ extension RestaurantMenuViewController: PresenterOutputProtocol {
             
             DispatchQueue.main.async {
                 self.HideActivityIndicator()
+                
                 UserDataDefaults.main.access_token = ""
                // UserDefaults.standard.set(nil, forKey: "access_token")
                 let data = NSKeyedArchiver.archivedData(withRootObject: "")
                 UserDefaults.standard.set(data, forKey:  Keys.list.userData)
                 UserDefaults.standard.synchronize()
-                let loginController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.LoginViewController) as! LoginViewController
-                self.navigationController?.pushViewController(loginController, animated: true)
+                forceLogout()
+
             }
         }
     }

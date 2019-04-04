@@ -23,7 +23,7 @@ class LoginViewController: BaseViewController {
     //MARK:- viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-
+// self.navigationController?.isNavigationBarHidden = true
         // Do any additional setup after loading the view.
         setInitialLoads()
     }
@@ -32,12 +32,12 @@ class LoginViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         enableKeyboardHandling()
-        self.navigationController?.isNavigationBarHidden = true
+       // self.navigationController?.isNavigationBarHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         disableKeyboardHandling()
-        self.navigationController?.isNavigationBarHidden = false
+      //  self.navigationController?.isNavigationBarHidden = false
     }
 
     /*
@@ -168,6 +168,7 @@ extension LoginViewController: PresenterOutputProtocol {
                  UserDataDefaults.main.access_token = self.logindata?.access_token ?? ""
                // print(UserDataDefaults.main.access_token)
                 let tabController = self.storyboard?.instantiateViewController(withIdentifier: "TabbarController") as! TabbarController
+                self.navigationController?.navigationBar.isHidden = true
                 self.navigationController?.pushViewController(tabController, animated: true)
             }
         }
