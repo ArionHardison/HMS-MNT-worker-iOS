@@ -62,8 +62,6 @@ struct GetProductEntity : Mappable {
 }
 
 
-
-
 struct ProductShop : Mappable {
     var id : Int?
     var name : String?

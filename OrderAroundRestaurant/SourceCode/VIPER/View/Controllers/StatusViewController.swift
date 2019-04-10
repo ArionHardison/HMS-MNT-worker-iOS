@@ -66,8 +66,10 @@ extension StatusViewController {
         pickerView.dataSource = self
         pickerView.delegate = self
         gradeTextField.inputView = pickerView
+        if(datePickerValues.count>0){
         gradeTextField.text = datePickerValues[0]
         dateValue = datePickerValues[0]
+        }
     }
 }
 // MARK: - UIPicker Delegate & Datasource

@@ -59,7 +59,7 @@ class EditTimingViewController: BaseViewController {
         // Do any additional setup after loading the view.
         setInitialLoad()
         IsSaveBool = false
-        everyDayStr = "ON"
+        everyDayStr = "OFF"
     }
     
     //MARK:- viewWillAppear
@@ -69,7 +69,7 @@ class EditTimingViewController: BaseViewController {
         self.navigationController?.isNavigationBarHidden = false
     }
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
+       self.navigationController?.isNavigationBarHidden = true
     }
     
     @IBAction func onSwitchAction(_ sender: Any) {
@@ -140,7 +140,7 @@ class EditTimingViewController: BaseViewController {
                 showActivityIndicator()
                 IsSaveBool = true
           
-                self.presenter?.IMAGEPOST(api: urlStr, params: param, methodType: HttpType.POST, imgData: ["avatar":imageUploadData], imgName: "image", modelClass: RegisterModel.self, token: false)
+                self.presenter?.IMAGEPOST(api: urlStr, params: param, methodType: HttpType.POST, imgData: ["avatar":imageUploadData,"default_banner":featureImageUploadData], imgName: "image", modelClass: RegisterModel.self, token: false)
                 
             } else {
                 
@@ -219,7 +219,7 @@ class EditTimingViewController: BaseViewController {
                // let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
                 let urlStr = Base.register.rawValue
                 showActivityIndicator()
-                 self.presenter?.IMAGEPOST(api: urlStr, params: param, methodType: HttpType.POST, imgData: ["avatar":imageUploadData], imgName: "image", modelClass: RegisterModel.self, token: false)
+                self.presenter?.IMAGEPOST(api: urlStr, params: param, methodType: HttpType.POST, imgData: ["avatar":imageUploadData,"default_banner":featureImageUploadData], imgName: "image", modelClass: RegisterModel.self, token: false)
        
                 
             }
@@ -731,7 +731,10 @@ extension EditTimingViewController: PresenterOutputProtocol {
             }
         }
         else  if String(describing: modelClass) == model.type.RegisterModel {
-            
+             IsRegister = false
+           
+            fromRegister = true 
+             
              self.navigationController?.popToRootViewController(animated: true)
         }
         

@@ -57,7 +57,12 @@ class CreateProductViewController: BaseViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
-
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // User finished typing (hit return): hide the keyboard.
+        textField.resignFirstResponder()
+        self.view.endEditing(true)
+        return true
+    }
     /*
     // MARK: - Navigation
 
@@ -195,7 +200,7 @@ extension CreateProductViewController {
         priceTextField.font = UIFont.regular(size: 14)
         discountTypeValueLabel.font =  UIFont.regular(size: 14)
         discountTypeLabel.font = UIFont.regular(size: 14)
-        priceLabel.font = UIFont.bold(size: 15)
+        priceLabel.font = UIFont.regular(size: 14)
     }
     private func setTableViewContentInset(){
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: self.bottomView.bounds.height + 10, right: 0)

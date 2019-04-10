@@ -72,6 +72,15 @@ extension PastOrderViewController: UITableViewDelegate,UITableViewDataSource{
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return 108
 //    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let orderDetailController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.OrderTrackingViewController) as! OrderTrackingViewController
+          let dict = self.completedOrderArr[indexPath.row]
+        orderDetailController.OrderId = dict.id ?? 0
+        self.navigationController?.pushViewController(orderDetailController, animated: true)
+    }
+    
 }
 /******************************************************************/
 //MARK: VIPER Extension:

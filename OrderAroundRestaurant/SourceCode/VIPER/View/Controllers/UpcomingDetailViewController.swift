@@ -11,6 +11,8 @@ import ObjectMapper
 
 class UpcomingDetailViewController: BaseViewController {
 
+    @IBOutlet weak var cancelTimeButton: UIButton!
+    @IBOutlet weak var acceptTimeButton: UIButton!
     @IBOutlet weak var orderHeight: NSLayoutConstraint!
     @IBOutlet weak var orderTimeTextField: UITextField!
     @IBOutlet weak var enterOrderPreparationTime: UILabel!
@@ -108,10 +110,10 @@ class UpcomingDetailViewController: BaseViewController {
             }
         }
         
-        let itemCountHeight = CGFloat(itemCount * 70)
+        let itemCountHeight = CGFloat(itemCount * 40)
         let cartaddOns = CGFloat(cartaddonCount * 80)
         self.orderHeight.constant = itemCountHeight + cartaddOns
-        scrollView.contentSize = CGSize(width: self.overView.frame.size.width, height:  overView        .frame.size.height)
+        scrollView.contentSize = CGSize(width: self.overView.frame.size.width, height:  overView.frame.size.height+self.orderHeight.constant-128)
         
     }
     
@@ -253,6 +255,11 @@ extension UpcomingDetailViewController{
         paymentModeLabel.font = UIFont.regular(size: 14)
         userNameLabel.font = UIFont.regular(size: 14)
         locationLabel.font = UIFont.regular(size: 14)
+        orderDeliveryTimeLabel.font = UIFont.regular(size: 15)
+        enterOrderPreparationTime.font = UIFont.regular(size:14)
+        acceptTimeButton.titleLabel?.font = UIFont.regular(size:14)
+        cancelButton.titleLabel?.font = UIFont.regular(size:14)
+
     }
     
     private func fetchOrderDetails(data: Order) {
@@ -275,7 +282,7 @@ extension UpcomingDetailViewController{
         totalValueLabel.text = currency + String(format: " %.02f", Double(TotalStr) ?? 0.0)
         
         let discountStr: String! = String(describing: data.invoice?.discount ?? 0)
-        discountValueLabel.text = currency + String(format: " %.02f", Double(discountStr) ?? 0.0)
+        discountValueLabel.text = "-" + currency + String(format: " %.02f", Double(discountStr) ?? 0.0)
         
         let sgstStr: String! = String(describing: data.invoice?.payable ?? 0)
         sgstValueLabel.text = currency + String(format: " %.02f", Double(sgstStr) ?? 0.0)

@@ -130,6 +130,8 @@
 		1BD6C97884E76DCBF540DD4D /* Pods_OrderAroundRestaurant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFC8BDAA3EBD2DD537EC2CA /* Pods_OrderAroundRestaurant.framework */; };
 		42263AE623592704DF50816F /* Pods_OrderAroundRestaurantUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B90A2AD7EE3688EC6AFB2E /* Pods_OrderAroundRestaurantUITests.framework */; };
 		B30085D993ED1BEB02A85F42 /* Pods_OrderAroundRestaurantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA45E69BE11C915040938385 /* Pods_OrderAroundRestaurantTests.framework */; };
+		B4B405DB225B87D700D86215 /* DeleteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B405DA225B87D600D86215 /* DeleteEntity.swift */; };
+		B4DBB6E9225CA46600CB31F8 /* OrderTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DBB6E8225CA46600CB31F8 /* OrderTrackingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -281,7 +283,9 @@
 		915B0DF90E6F700F351463E9 /* Pods-OrderAroundRestaurantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantUITests.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantUITests/Pods-OrderAroundRestaurantUITests.release.xcconfig"; sourceTree = "<group>"; };
 		96562278739C1FFA52E020AA /* Pods-OrderAroundRestaurantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantUITests.debug.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantUITests/Pods-OrderAroundRestaurantUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ADFC8BDAA3EBD2DD537EC2CA /* Pods_OrderAroundRestaurant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrderAroundRestaurant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4B405DA225B87D600D86215 /* DeleteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteEntity.swift; sourceTree = "<group>"; };
 		B4BC6BCD2254BE83007427BD /* OrderAroundRestaurant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OrderAroundRestaurant.entitlements; sourceTree = "<group>"; };
+		B4DBB6E8225CA46600CB31F8 /* OrderTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackingViewController.swift; sourceTree = "<group>"; };
 		C5A079EBE806DF346E387BC6 /* Pods-OrderAroundRestaurantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantTests.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantTests/Pods-OrderAroundRestaurantTests.release.xcconfig"; sourceTree = "<group>"; };
 		CC2C017217BF53DC674AEEA1 /* Pods-OrderAroundRestaurantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantTests.debug.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantTests/Pods-OrderAroundRestaurantTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D57F8BFB4377CBE978AFCAF5 /* Pods-OrderAroundRestaurant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurant.debug.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurant/Pods-OrderAroundRestaurant.debug.xcconfig"; sourceTree = "<group>"; };
@@ -520,6 +524,7 @@
 				08AD19EF223BE0080009F5F6 /* TimePickerViewController.swift */,
 				0876C560223F86300035E2C5 /* FilterDeliveryViewController.swift */,
 				08A6131222421F5300219465 /* UpcomingDetailViewController.swift */,
+				B4DBB6E8225CA46600CB31F8 /* OrderTrackingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -543,6 +548,7 @@
 		087D0C1522241C5300E58BDE /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				B4B405DA225B87D600D86215 /* DeleteEntity.swift */,
 				0891E2092230FFB900409038 /* LoginEntity.swift */,
 				08AB876B2236441C00740520 /* AddOnsListEntity.swift */,
 				08A44ABF22378CE800228233 /* OrderHistoryEntity.swift */,
@@ -1128,6 +1134,8 @@
 				087D0C322224344D00E58BDE /* Font.swift in Sources */,
 				08A20C28223A44640081256F /* RemoveAddonsEntity.swift in Sources */,
 				087D0C302224336000E58BDE /* Colors.swift in Sources */,
+				B4DBB6E9225CA46600CB31F8 /* OrderTrackingViewController.swift in Sources */,
+				B4B405DB225B87D700D86215 /* DeleteEntity.swift in Sources */,
 				08A14DDD222FB4B300F35B1E /* PastOrderViewController.swift in Sources */,
 				0891E2122231026D00409038 /* Protocol.swift in Sources */,
 				08A613162242225600219465 /* ItemListTableViewCell.swift in Sources */,

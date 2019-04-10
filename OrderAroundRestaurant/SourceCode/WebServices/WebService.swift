@@ -121,6 +121,7 @@ extension Webservice : WebServiceProtocol {
                                     self.interactor?.responseSuccess(className: modelClass, responseDict: [:], responseArray: json)
                                 }
                             }
+                           
                         }else{
                             self.handleError(responseError: response, modelClass: modelClass)
                         }
@@ -148,7 +149,8 @@ extension Webservice : WebServiceProtocol {
                                 }
                             }
                         }else{
-                            self.handleError(responseError: response, modelClass: modelClass)
+                            
+                        self.handleError(responseError: response, modelClass: modelClass)
                         }
                     }
                 }
@@ -212,10 +214,23 @@ extension Webservice : WebServiceProtocol {
             
             self.completion?(CustomError(description: responseError?.error?.localizedDescription ?? "", code: (responseError!.response?.statusCode) ?? StatusCode.ServerError.rawValue), nil)
             
-            if UserDataDefaults.main.access_token == nil {
-                 self.interactor?.responseError(error: CustomError(description: responseError?.error?.localizedDescription ?? "", code: (responseError?.response?.statusCode) ?? StatusCode.ServerError.rawValue))
+            if UserDataDefaults.main.access_token == "" {
+                var message : String?
+                
+                if let error = responseError?.data?.getDecodedObject(from: ErrorLogger.self) {  // Retriving Error message from Server
+                    
+                    message = error.error
+                }
+                 self.interactor?.responseError(error: CustomError(description:message ?? "", code: responseError?.response?.statusCode ?? StatusCode.ServerError.rawValue))
+//         //      self.interactor?.on(api: apiType, error: CustomError(description: ErrorMessage.list.serverError.localize(), code : StatusCode.notreachable.rawValue))
             }else{
-                forceLogout(with: responseError?.error?.localizedDescription ?? "") // Force Logout user by clearing all cache
+                
+                 var message : String?
+                if let error = responseError?.data?.getDecodedObject(from: ErrorLogger.self) {  // Retriving Error message from Server
+                    
+                    message = error.error
+                }
+                forceLogout(with: message ?? "") // Force Logout user by clearing all cache
 
             }
             
@@ -286,6 +301,33 @@ extension Webservice : WebServiceProtocol {
            self.interactor?.responseError(error: CustomError(description: responseError?.error?.localizedDescription ?? "", code: (responseError?.response?.statusCode) ?? StatusCode.ServerError.rawValue))
         }
     }
+}
+
+
+struct ErrorLogger : Decodable {
+    
+    var error : String?
+}
+// MARK:- For Data
+
+extension Data {
+    
+    func getDecodedObject<T>(from object : T.Type)->T? where T : Decodable {
+        
+        do {
+            
+            return try JSONDecoder().decode(object, from: self)
+            
+        } catch let error {
+            
+            print("Manually parsed  ", (try? JSONSerialization.jsonObject(with: self, options: .allowFragments)) ?? "nil")
+            
+            print("Error in Decoding OBject ", error.localizedDescription)
+            return nil
+        }
+        
+    }
+    
 }
 
 

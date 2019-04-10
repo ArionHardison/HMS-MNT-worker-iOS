@@ -141,6 +141,7 @@ struct model {
     let AcceptModel = "AcceptModel"
     let EditRegisterModel = "EditRegisterModel"
     let GetProductEntity = "GetProductEntity"
+    let DeleteEntity = "DeleteEntity"
 }
 
 

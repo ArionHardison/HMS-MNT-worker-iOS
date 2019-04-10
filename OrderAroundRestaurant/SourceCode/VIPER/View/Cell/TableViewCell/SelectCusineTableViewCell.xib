@@ -32,7 +32,7 @@
                             <constraint firstAttribute="height" constant="20" id="yrC-0C-dUE"/>
                         </constraints>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuM-gq-Vas">
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kuM-gq-Vas">
                         <rect key="frame" x="260" y="5" width="50" height="33.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="Bx0-vp-BpQ"/>
@@ -61,6 +61,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="radiooff" width="128" height="128"/>
+        <image name="radiooff" width="384" height="384"/>
     </resources>
 </document>

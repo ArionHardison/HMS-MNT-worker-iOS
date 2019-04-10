@@ -37,7 +37,9 @@ class DishesViewController: UIViewController {
         self.navigationController?.isNavigationBarHidden = false
           setNavigationController()
     }
-   
+    override func viewWillDisappear(_ animated: Bool) {
+           self.navigationController?.isNavigationBarHidden = true
+    }
 
 }
 extension DishesViewController{

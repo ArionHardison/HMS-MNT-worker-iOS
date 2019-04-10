@@ -81,6 +81,14 @@ extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
         }
         return cell
     }
+  
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let orderDetailController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.OrderTrackingViewController) as! OrderTrackingViewController
+        let dict = self.onGoingOrderArr[indexPath.row]
+        orderDetailController.OrderId = dict.id ?? 0
+        self.navigationController?.pushViewController(orderDetailController, animated: true)
+    }
    
 }
 /******************************************************************/

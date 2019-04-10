@@ -83,14 +83,14 @@ class RegisterViewController: BaseViewController {
 
     }
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
+      //  self.navigationController?.isNavigationBarHidden = true
         enableKeyboardHandling()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         disableKeyboardHandling()
 
-        self.navigationController?.isNavigationBarHidden = false
+      //  self.navigationController?.isNavigationBarHidden = false
     }
 
     @IBAction func onShopBannerUploadAction(_ sender: Any) {

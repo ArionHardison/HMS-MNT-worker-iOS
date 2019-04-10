@@ -76,6 +76,7 @@ class CreateProductAddonsViewController: BaseViewController {
         disableKeyboardHandling()
         self.navigationController?.isNavigationBarHidden = true
     }
+    
     /*
     // MARK: - Navigation
 
@@ -110,14 +111,14 @@ class CreateProductAddonsViewController: BaseViewController {
     }
     @IBAction func yesAction(_ sender: Any) {
         if isYes {
-            isYes = true
+            isYes = false
             let image = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
             yesButton.setImage(image, for: .normal)
             yesButton.tintColor = UIColor.primary
             featureStr = "0"
 
         }else{
-            isYes = false
+            isYes = true
             let image1 = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
             noButton.setImage(image1, for: .normal)
             noButton.tintColor = UIColor.primary
@@ -127,6 +128,7 @@ class CreateProductAddonsViewController: BaseViewController {
             featureStr = "1"
 
         }
+        
     }
     
     @IBAction func onCategoryAction(_ sender: Any) {
@@ -383,6 +385,7 @@ extension CreateProductAddonsViewController: UITextFieldDelegate {
         }else{
             textField.resignFirstResponder()
         }
+        view.endEditing(true)
         return true
     }
 }

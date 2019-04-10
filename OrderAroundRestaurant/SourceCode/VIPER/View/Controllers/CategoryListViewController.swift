@@ -173,6 +173,7 @@ extension CategoryListViewController: PresenterOutputProtocol {
 extension CategoryListViewController : CreateCategoryViewControllerDelegate{
     func callCategoryApi(issuccess: Bool) {
         if issuccess {
+            showToast(msg: "Category added successfully")
             self.setCategoryListApi()
         }
     }

@@ -10,6 +10,7 @@ import UIKit
 
 class FilterDeliveryViewController: BaseViewController {
 
+    @IBOutlet weak var filterBGView: UIView!
     @IBOutlet weak var toLabel: UILabel!
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var filterByLabel: UILabel!
@@ -42,7 +43,20 @@ class FilterDeliveryViewController: BaseViewController {
         // Do any additional setup after loading the view.
         setInitalLoads()
     }
-    
+//   override func touchesBegan(_ touches: Set<AnyHashable>, with event: UIEvent) {
+//        var touch: UITouch! = touches.first
+//        //location is relative to the current view
+//        // do something with the touched point
+//        if touch?.view != filterBGView  {
+//            self.navigationController?.popViewController(animated: true)
+//        }
+//    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+          //  self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
+//        self.helpView.isHidden = true
+    }
 
     /*
     // MARK: - Navigation

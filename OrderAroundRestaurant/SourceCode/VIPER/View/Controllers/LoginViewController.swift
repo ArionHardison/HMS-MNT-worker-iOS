@@ -18,6 +18,7 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var emailAddressTextField: UITextField!
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var emailAddressLabel: UILabel!
+   
     
     private var logindata: LoginModel?
     //MARK:- viewDidLoad
@@ -32,6 +33,15 @@ class LoginViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         enableKeyboardHandling()
+        if(fromRegister) {
+            
+            self.showToast(msg: "Registered successfully")
+            fromRegister = false
+        }else if(fromDelete) {
+            
+            self.showToast(msg: "Restaurant deleted successfully")
+            fromRegister = false
+        }
        // self.navigationController?.isNavigationBarHidden = true
     }
     
@@ -177,6 +187,7 @@ extension LoginViewController: PresenterOutputProtocol {
     
     func showError(error: CustomError) {
         print(error)
+        passwordTextField.text = ""
         let alert = showAlert(message: error.localizedDescription)
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: {

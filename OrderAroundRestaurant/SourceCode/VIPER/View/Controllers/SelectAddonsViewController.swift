@@ -26,12 +26,21 @@ class SelectAddonsViewController: BaseViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
+        enableKeyboardHandling()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+        disableKeyboardHandling()
     }
-
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // User finished typing (hit return): hide the keyboard.
+        textField.resignFirstResponder()
+        self.view.endEditing(true)
+        selectAddonsTableView.endEditing(true)
+        return true
+    }
+   
     /*
     // MARK: - Navigation
 
@@ -150,7 +159,7 @@ extension SelectAddonsViewController: UITableViewDelegate,UITableViewDataSource{
         cell.radioImageView.image = UIImage(named: "radiooff")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         cell.radioImageView.tintColor = UIColor.primary
         self.selectAddons.remove(dict)
-        
+        view.endEditing(true)
         
         
         

@@ -27,11 +27,12 @@ class AddonsListViewController: BaseViewController {
     //MARK:- viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        
+          enableKeyboardHandling()
         self.navigationController?.isNavigationBarHidden = false
     }
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
+        disableKeyboardHandling()
     }
     /*
     // MARK: - Navigation
@@ -63,7 +64,13 @@ extension AddonsListViewController{
         addOnsButton.layer.cornerRadius = 5
         addOnsButton.titleLabel?.font = UIFont.bold(size: 14)
     }
-    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        // User finished typing (hit return): hide the keyboard.
+        textField.resignFirstResponder()
+        self.view.endEditing(true)
+        addOnsTableView.endEditing(true)
+        return true
+    }
     
     private func setAddonsList(){
         showActivityIndicator()
@@ -116,6 +123,7 @@ extension AddonsListViewController: UITableViewDelegate,UITableViewDataSource{
         return 70
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         let createAddonsController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.CreateAddonsViewController) as! CreateAddonsViewController
         createAddonsController.addOnsListResponse = self.addOnsListResponse[indexPath.row]
         createAddonsController.delegate = self
@@ -185,6 +193,7 @@ extension AddonsListViewController: PresenterOutputProtocol {
 extension AddonsListViewController: CreateAddonsViewControllerDelegate{
     func callAddAdonsApi(issuccess: Bool) {
         if issuccess {
+            showToast(msg: "Addon added successfully")
             self.setAddonsList()
         }
     }

@@ -138,7 +138,11 @@ extension RestaurantMenuViewController: UITableViewDelegate,UITableViewDataSourc
         }else if indexPath.row == 6 {
             let alertController = UIAlertController(title: Constants.string.appName, message: Constants.string.deleteAccount, preferredStyle: .alert)
             let yesAction = UIAlertAction(title: Constants.string.yes, style: .default) { (action) in
-                
+                let parameters:[String:Any] = ["method": "Delete"]
+                 let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
+                 let deleteURl = Base.getDelete.rawValue + String(shopId)
+                 self.presenter?.GETPOST(api: deleteURl, params: parameters, methodType: .POST, modelClass: DeleteEntity.self, token: true)
+               
             }
             alertController.addAction(yesAction)
             let noAction = UIAlertAction(title: Constants.string.no, style: .default) { (action) in
@@ -166,6 +170,20 @@ extension RestaurantMenuViewController: PresenterOutputProtocol {
                 UserDefaults.standard.synchronize()
                 forceLogout()
 
+            }
+        }else if String(describing: modelClass) ==  model.type.DeleteEntity {
+            
+            DispatchQueue.main.async {
+                self.HideActivityIndicator()
+                
+                UserDataDefaults.main.access_token = ""
+                // UserDefaults.standard.set(nil, forKey: "access_token")
+                let data = NSKeyedArchiver.archivedData(withRootObject: "")
+                UserDefaults.standard.set(data, forKey:  Keys.list.userData)
+                UserDefaults.standard.synchronize()
+                fromDelete = true
+                forceLogout()
+                
             }
         }
     }

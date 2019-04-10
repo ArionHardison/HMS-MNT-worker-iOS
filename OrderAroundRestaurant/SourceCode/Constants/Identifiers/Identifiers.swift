@@ -45,6 +45,7 @@ struct Storyboard {
     let FilterDeliveryViewController = "FilterDeliveryViewController"
     let TimePickerViewController = "TimePickerViewController"
     let UpcomingDetailViewController = "UpcomingDetailViewController"
+    let OrderTrackingViewController = "OrderTrackingViewController"
 }
 
 

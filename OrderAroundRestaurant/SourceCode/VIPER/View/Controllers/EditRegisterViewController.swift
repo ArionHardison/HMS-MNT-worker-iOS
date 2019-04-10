@@ -123,12 +123,12 @@ class EditRegisterViewController: BaseViewController {
     }
     @IBAction func onYesButtonAction(_ sender: Any) {
         if isYes {
-            isYes = true
+            isYes = false
             let image = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
             yesRadioButton.setImage(image, for: .normal)
             yesRadioButton.tintColor = UIColor.primary
         }else{
-            isYes = false
+            isYes = true
             let image1 = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
             noRadioButton.setImage(image1, for: .normal)
             noRadioButton.tintColor = UIColor.primary
@@ -524,8 +524,8 @@ extension EditRegisterViewController: PresenterOutputProtocol {
             offerPercentTextField.text = offer_percentStr
             maximumDeliveryTextField.text = estimatedDeliveryStr
             descriptionTextField.text = data?.description
-            addressValueLabel.text = data?.address
-            landmarkTextField.text = data?.maps_address
+            addressValueLabel.text = data?.maps_address
+            landmarkTextField.text = data?.address
             let logitudeStr: String! = String(describing: data?.longitude ?? 0.0)
             let latitudeStr: String! = String(describing: data?.latitude ?? 0.0)
 
