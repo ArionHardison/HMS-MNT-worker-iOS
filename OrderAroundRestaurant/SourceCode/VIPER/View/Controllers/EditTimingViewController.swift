@@ -544,16 +544,93 @@ extension EditTimingViewController{
                 dict["id"] = dayStr
                 dict["opentime"] = start_time
                 dict["closetime"] = end_time
-               
+                everyDayStr = "ON"
+                daySwitch.isOn = true
                 AllDateArray[i] = dict
                 print(self.DateArray)
+            } else{
+            
+            if i == 0 {
+                let Dict1 =  [
+                    "name": "Sunday",
+                    "id": "SUN",
+                    "opentime": startTime,
+                    "closetime": endTime,
+                    "open": "hours_opening[SUN]",
+                    "close": "hours_closing[SUN]"
+                ]
+                DateArray.add(Dict1)
+            }  else if i == 1 {
+                let Dict1 =  [
+                    "name": "Monday",
+                    "id": "MON",
+                    "opentime": startTime,
+                    "closetime": endTime,
+                    "open": "hours_opening[MON]",
+                    "close": "hours_closing[MON]"
+                ]
+                DateArray.add(Dict1)
+            }else if i == 2 {
+                let Dict1 =  [
+                    "name": "Tuesday",
+                    "id": "TUE",
+                    "opentime": startTime,
+                    "closetime": endTime,
+                    "open": "hours_opening[TUE]",
+                    "close": "hours_closing[TUE]"
+                ]
+                DateArray.add(Dict1)
+            }else if i == 3 {
+                let Dict1 =  [
+                    "name": "Wednesday",
+                    "id": "WED",
+                    "opentime": startTime,
+                    "closetime": endTime,
+                    "open": "hours_opening[WED]",
+                    "close": "hours_closing[WED]"
+                ]
+                DateArray.add(Dict1)
+            }else if i == 4 {
+                let Dict1 =  [
+                    "name": "Thursday",
+                    "id": "THUR",
+                    "opentime": startTime,
+                    "closetime": endTime,
+                    "open": "hours_opening[THUR]",
+                    "close": "hours_closing[THUR]"
+                ]
+                DateArray.add(Dict1)
+            }else if i == 5 {
+                let Dict1 =  [
+                    "name": "Friday",
+                    "id": "FRI",
+                    "opentime": startTime,
+                    "closetime": endTime,
+                    "open": "hours_opening[FRI]",
+                    "close": "hours_closing[FRI]"
+                ]
+                DateArray.add(Dict1)
+            }else if i == 6 {
+                let Dict1 =  [
+                    "name": "Saturday",
+                    "id": "SAT",
+                    "opentime": startTime,
+                    "closetime": endTime,
+                    "open": "hours_opening[SAT]",
+                    "close": "hours_closing[SAT]"
+                ]
+                DateArray.add(Dict1)
+                
+           // getDateArr()
+            }
             }
             
-            
-            }
-
-        getDateArr()
-
+        }
+if(everyDayStr == "ON")
+{
+    getDateArr()
+        }
+        
         print(self.DateArray)
         print(self.AllDateArray)
         timeTableView.delegate = self
@@ -564,7 +641,20 @@ extension EditTimingViewController{
     private func getDateArr(){
         for j in 0..<7 {
 
+            print("Start >>>>>",startTime)
+             print("end >>>>>",endTime)
             if j == 0 {
+                let Dict1 =  [
+                    "name": "Sunday",
+                    "id": "SUN",
+                    "opentime": startTime,
+                    "closetime": endTime,
+                    "open": "hours_opening[SUN]",
+                    "close": "hours_closing[SUN]"
+                ]
+                DateArray.add(Dict1)
+            }
+            else if j == 1 {
                 let Dict1 =  [
                     "name": "Monday",
                     "id": "MON",
@@ -574,7 +664,7 @@ extension EditTimingViewController{
                     "close": "hours_closing[MON]"
                 ]
                 DateArray.add(Dict1)
-            }else if j == 1 {
+            }else if j == 2 {
                 let Dict1 =  [
                     "name": "Tuesday",
                     "id": "TUE",
@@ -584,7 +674,7 @@ extension EditTimingViewController{
                     "close": "hours_closing[TUE]"
                 ]
                 DateArray.add(Dict1)
-            }else if j == 2 {
+            }else if j == 3 {
                 let Dict1 =  [
                     "name": "Wednesday",
                     "id": "WED",
@@ -594,7 +684,7 @@ extension EditTimingViewController{
                     "close": "hours_closing[WED]"
                 ]
                 DateArray.add(Dict1)
-            }else if j == 3 {
+            }else if j == 4 {
                 let Dict1 =  [
                     "name": "Thursday",
                     "id": "THUR",
@@ -604,7 +694,7 @@ extension EditTimingViewController{
                     "close": "hours_closing[THUR]"
                 ]
                 DateArray.add(Dict1)
-            }else if j == 4 {
+            }else if j == 5 {
                 let Dict1 =  [
                     "name": "Friday",
                     "id": "FRI",
@@ -614,7 +704,7 @@ extension EditTimingViewController{
                     "close": "hours_closing[FRI]"
                 ]
                 DateArray.add(Dict1)
-            }else if j == 5 {
+            }else if j == 6 {
                 let Dict1 =  [
                     "name": "Saturday",
                     "id": "SAT",
@@ -622,16 +712,6 @@ extension EditTimingViewController{
                     "closetime": endTime,
                     "open": "hours_opening[SAT]",
                     "close": "hours_closing[SAT]"
-                ]
-                DateArray.add(Dict1)
-            }else if j == 6 {
-                let Dict1 =  [
-                    "name": "Sunday",
-                    "id": "SUN",
-                    "opentime": startTime,
-                    "closetime": endTime,
-                    "open": "hours_opening[SUN]",
-                    "close": "hours_closing[SUN]"
                 ]
                 DateArray.add(Dict1)
             }
@@ -678,8 +758,8 @@ extension EditTimingViewController: UITableViewDelegate,UITableViewDataSource{
             cell.openTimeValueLabel.text = Result.value(forKey: "opentime") as? String ?? ""
             cell.closeTimeValueLabel.text = Result.value(forKey: "closetime") as? String ?? ""
             cell.dayLabel.isHidden = false
-            cell.radioImageView.isHidden = false
-            cell.radioButton.isHidden = false
+            cell.radioImageView.isHidden = true
+            cell.radioButton.isHidden = true
             cell.openButton.addTarget(self, action: #selector(self.openTimebtnAction(_:)), for: .touchUpInside)
             cell.closeButton.addTarget(self, action: #selector(self.closeTimebtnAction(_:)), for: .touchUpInside)
             

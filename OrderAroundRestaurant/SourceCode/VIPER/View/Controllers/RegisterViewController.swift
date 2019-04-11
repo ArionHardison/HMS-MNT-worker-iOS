@@ -538,15 +538,19 @@ extension RegisterViewController: CountryCodeViewControllerDelegate,SelectCusine
         cusineStr.removeAll()
         cusineId.removeAll()
         for item in cusineArr {
-            let Result = item as! CusineListModel
-            let name = Result.name
-            cusineStr.append(name ?? "")
-            let idStr: String! = String(describing: Result.id ?? 0)
-            
-            cusineId.append(idStr)
+            if item is String {
+                
+            }else{
+                let Result = item as! CusineListModel
+                let name = Result.name
+                cusineStr.append(name ?? "")
+                let idStr: String! = String(describing: Result.id ?? 0)
+                cusineId.append(idStr)
+            }
         }
-        
+        print(cusineId)
         cuisineValueLabel.text = cusineStr.joined(separator: ", ")
+        
     }
     
     func fetchCountryCode(Value: Country) {

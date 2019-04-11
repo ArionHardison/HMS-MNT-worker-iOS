@@ -17,6 +17,9 @@ class SelectCusineViewController: BaseViewController {
     var cusineListArr = [CusineListModel]()
     weak var delegate: SelectCusineViewControllerDelegate?
     var selectCusine: NSMutableArray = []
+    var isSelected = false
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,21 +118,36 @@ extension SelectCusineViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! SelectCusineTableViewCell
         let dict = self.cusineListArr[indexPath.row]
+        
 
         cell.selectImageView.image = UIImage(named: "radioon")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         cell.selectImageView.tintColor = UIColor.primary
 
-        self.selectCusine.add(dict)
+        self.selectCusine.replaceObject(at: indexPath.row, with: dict)
+        print("Select>>>>>",self.selectCusine)
         
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! SelectCusineTableViewCell
         let dict = self.cusineListArr[indexPath.row]
-
+        
         cell.selectImageView.image = UIImage(named: "radiooff")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate)
         cell.selectImageView.tintColor = UIColor.primary
-        self.selectCusine.remove(dict)
+        
+        //        self.selectCusine.remove(dict)
+        print(self.selectCusine)
+//        for index in 0..<self.selectCusine.count {
+            //            if index == indexPath.row {
+        
+            self.selectCusine.count
+//            self.selectCusine.removeObject(at: indexPath.row)
+        self.selectCusine.replaceObject(at: indexPath.row, with: "")
+            //            }
+            print("DeSelect>>>>>",self.selectCusine)
+            
+//        }
     }
+    
 }
 /******************************************************************/
 //MARK: VIPER Extension:
@@ -138,6 +156,9 @@ extension SelectCusineViewController: PresenterOutputProtocol {
         if String(describing: modelClass) == model.type.CusineListModel {
             HideActivityIndicator()
             self.cusineListArr = dataArray as! [CusineListModel]
+            for index in 0..<self.cusineListArr.count {
+                self.selectCusine.add("")
+            }
             cusineTableView.reloadData()
         }
     }

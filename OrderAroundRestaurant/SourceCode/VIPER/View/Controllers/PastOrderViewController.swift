@@ -60,6 +60,8 @@ extension PastOrderViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
         let dict = self.completedOrderArr[indexPath.row]
+    
+     
         cell.paymentLabel.text = dict.invoice?.payment_mode
         cell.orderTimeValueLabel.text = dict.delivery_date
         cell.locationLabel.text = dict.address?.city

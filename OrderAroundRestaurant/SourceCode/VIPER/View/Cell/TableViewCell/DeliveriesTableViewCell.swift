@@ -49,7 +49,7 @@ class DeliveriesTableViewCell: UITableViewCell {
         priceLabel.text = ""
         userNameLabel.text = data.user?.name
         let netTotalStr: String! = String(describing: data.invoice?.net ?? 0)
-        priceLabel.text = netTotalStr
+        priceLabel.text = "$" + netTotalStr
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss" //Your date format
         //according to date format your date string

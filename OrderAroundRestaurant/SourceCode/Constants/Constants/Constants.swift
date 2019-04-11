@@ -36,7 +36,7 @@ struct Constants {
     var deleteProduct = "Are you sure want to delete Product?"
 
     var deleteAccount = "Are you sure want to delete your account?"
-    var appName = "Foodie Restaurant"
+    var appName = "RestaurantAround"
     var logout = "Are you sure want to logout?"
     var yes = "YES"
     var no = "NO"

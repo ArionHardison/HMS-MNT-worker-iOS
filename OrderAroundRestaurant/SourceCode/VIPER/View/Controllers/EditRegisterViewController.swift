@@ -553,20 +553,40 @@ extension EditRegisterViewController: PresenterOutputProtocol {
 /******************************************************************/
 extension EditRegisterViewController: CountryCodeViewControllerDelegate,SelectCusineViewControllerDelegate {
     func featchCusineLabel(cusineArr: NSMutableArray) {
-        print(cusineArr)
-        var cusineStr = [String]()
-        cusineStr.removeAll()
-        cusineId.removeAll()
-        for item in cusineArr {
-            let Result = item as! CusineListModel
-            let name = Result.name
-            cusineStr.append(name ?? "")
-            let idStr: String! = String(describing: Result.id ?? 0)
-
-            cusineId.append(idStr)
-        }
+//        print(cusineArr)
+//        var cusineStr = [String]()
+//        cusineStr.removeAll()
+//        cusineId.removeAll()
+//        for item in cusineArr {
+//            let Result = item as! CusineListModel
+//            let name = Result.name
+//            cusineStr.append(name ?? "")
+//            let idStr: String! = String(describing: Result.id ?? 0)
+//
+//            cusineId.append(idStr)
+//        }
+//
+//        cuisineValueLabel.text = cusineStr.joined(separator: ", ")
         
-        cuisineValueLabel.text = cusineStr.joined(separator: ", ")
+            print(cusineArr)
+            var cusineStr = [String]()
+            cusineStr.removeAll()
+            cusineId.removeAll()
+            for item in cusineArr {
+                if item is String {
+                    
+                }else{
+                    let Result = item as! CusineListModel
+                    let name = Result.name
+                    cusineStr.append(name ?? "")
+                    let idStr: String! = String(describing: Result.id ?? 0)
+                    cusineId.append(idStr)
+                }
+            }
+            print(cusineId)
+            cuisineValueLabel.text = cusineStr.joined(separator: ", ")
+            
+        
     }
     
     func fetchCountryCode(Value: Country) {

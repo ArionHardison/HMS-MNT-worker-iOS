@@ -6,7 +6,7 @@
 //  Copyright © 2018 Appoets. All rights reserved.
 //
 
-var AppName = "OrderAroundRestaurant"
+var AppName = "RestaurantAround"
 
 let deviceType = "ios"
 

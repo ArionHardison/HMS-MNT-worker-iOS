@@ -37,8 +37,12 @@ class SelectAddonsViewController: BaseViewController {
         // User finished typing (hit return): hide the keyboard.
         textField.resignFirstResponder()
         self.view.endEditing(true)
-        selectAddonsTableView.endEditing(true)
+      //  selectAddonsTableView.endEditing(true)
+         view.endEditing(true)
         return true
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
    
     /*
@@ -150,7 +154,7 @@ extension SelectAddonsViewController: UITableViewDelegate,UITableViewDataSource{
             self.selectAddons.add(dict)
         }
        
-        
+         view.endEditing(true)
     }
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! SelectAddonsTableViewCell
