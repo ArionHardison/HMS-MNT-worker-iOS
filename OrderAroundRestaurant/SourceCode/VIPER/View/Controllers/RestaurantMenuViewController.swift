@@ -71,7 +71,7 @@ extension RestaurantMenuViewController {
         restaurantImageView.layer.cornerRadius = 5
     }
     private func setValueSideMenu(){
-        self.menuTitleArr = ["History","Edit Restaurant","Edit Timing","Deliveries","Change Password","Logout","Delete Account"]
+        self.menuTitleArr = [APPLocalize.localizestring.history.localize(),APPLocalize.localizestring.editRestaurant.localize(),APPLocalize.localizestring.editTiming.localize(),APPLocalize.localizestring.Deliveries.localize(),APPLocalize.localizestring.changePassword.localize(),APPLocalize.localizestring.logout.localize(),APPLocalize.localizestring.deleteAccount.localize()]
         self.menuImgArr = ["timer","edit","edit-time","delivery-truck","padlock","logout","trash"]
     }
     private func registerTableView(){
@@ -123,21 +123,21 @@ extension RestaurantMenuViewController: UITableViewDelegate,UITableViewDataSourc
             let changePwdController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ChangePwdViewController) as! ChangePwdViewController
             self.navigationController?.pushViewController(changePwdController, animated: true)
         }else if indexPath.row == 5{
-            let alertController = UIAlertController(title: Constants.string.appName, message: Constants.string.logout, preferredStyle: .alert)
-            let yesAction = UIAlertAction(title: Constants.string.yes, style: .default) { (action) in
+            let alertController = UIAlertController(title: Constant.string.appName, message: APPLocalize.localizestring.logout.localize(), preferredStyle: .alert)
+            let yesAction = UIAlertAction(title: APPLocalize.localizestring.yes.localize(), style: .default) { (action) in
                 self.showActivityIndicator()
                 self.presenter?.GETPOST(api: Base.logout.rawValue, params: [:], methodType: .GET, modelClass: LogoutModel.self, token: true)
               
             }
             alertController.addAction(yesAction)
-            let noAction = UIAlertAction(title: Constants.string.no, style: .default) { (action) in
+            let noAction = UIAlertAction(title: APPLocalize.localizestring.no.localize(), style: .default) { (action) in
                 self.dismiss(animated: true, completion: nil)
             }
             alertController.addAction(noAction)
             self.present(alertController, animated: true, completion: nil)
         }else if indexPath.row == 6 {
-            let alertController = UIAlertController(title: Constants.string.appName, message: Constants.string.deleteAccount, preferredStyle: .alert)
-            let yesAction = UIAlertAction(title: Constants.string.yes, style: .default) { (action) in
+            let alertController = UIAlertController(title: Constant.string.appName, message: APPLocalize.localizestring.deleteAccount.localize(), preferredStyle: .alert)
+            let yesAction = UIAlertAction(title: APPLocalize.localizestring.yes.localize(), style: .default) { (action) in
                 let parameters:[String:Any] = ["method": "Delete"]
                  let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
                  let deleteURl = Base.getDelete.rawValue + String(shopId)
@@ -145,7 +145,7 @@ extension RestaurantMenuViewController: UITableViewDelegate,UITableViewDataSourc
                
             }
             alertController.addAction(yesAction)
-            let noAction = UIAlertAction(title: Constants.string.no, style: .default) { (action) in
+            let noAction = UIAlertAction(title: APPLocalize.localizestring.no.localize(), style: .default) { (action) in
                 self.dismiss(animated: true, completion: nil)
             }
             alertController.addAction(noAction)

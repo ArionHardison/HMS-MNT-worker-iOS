@@ -125,8 +125,8 @@ extension CategoryListViewController: UITableViewDelegate,UITableViewDataSource{
         let apiurl = Base.categoryList.rawValue + "/" + categoryIdStr
         
         
-        let alertController = UIAlertController(title: Constants.string.appName, message: Constants.string.deleteProduct, preferredStyle: .alert)
-        let yesAction = UIAlertAction(title: Constants.string.yes, style: .default) { (action) in
+        let alertController = UIAlertController(title: Constant.string.appName, message: Constant.string.deleteProduct, preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: APPLocalize.localizestring.yes.localize(), style: .default) { (action) in
                self.presenter?.GETPOST(api: apiurl, params: [:], methodType: .DELETE, modelClass: RemoveCategoryModel.self, token: true)
             
             self.categoryListArr.remove(at: indexPath.row)
@@ -134,7 +134,7 @@ extension CategoryListViewController: UITableViewDelegate,UITableViewDataSource{
             
         }
         alertController.addAction(yesAction)
-        let noAction = UIAlertAction(title: Constants.string.no, style: .default) { (action) in
+        let noAction = UIAlertAction(title: APPLocalize.localizestring.no.localize(), style: .default) { (action) in
             self.dismiss(animated: true, completion: nil)
         }
         alertController.addAction(noAction)

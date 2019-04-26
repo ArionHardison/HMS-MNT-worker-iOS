@@ -55,7 +55,7 @@ extension HistoryViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor.primary
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
-        self.title = "History"
+        self.title = APPLocalize.localizestring.history.localize()
         let btnBack = UIButton(type: .custom)
         btnBack.setImage(UIImage(named: "back-white"), for: .normal)
         btnBack.frame = CGRect(x: 0, y: 0, width: 30, height: 30)

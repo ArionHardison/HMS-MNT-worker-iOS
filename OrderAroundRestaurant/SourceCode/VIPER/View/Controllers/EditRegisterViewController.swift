@@ -387,8 +387,8 @@ extension EditRegisterViewController {
     
     
     private func setCountryCode(){
-        countryCodeLabel.text = Constants.string.countryNumber
-        countryImageView.image = UIImage(named: "CountryPicker.bundle/"+Constants.string.countryCode)
+        countryCodeLabel.text = Constant.string.countryNumber
+        countryImageView.image = UIImage(named: "CountryPicker.bundle/"+Constant.string.countryCode)
     }
     
     private func getProfileApi(){

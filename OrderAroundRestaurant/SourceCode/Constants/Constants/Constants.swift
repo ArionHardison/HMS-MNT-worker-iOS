@@ -101,24 +101,6 @@ struct APPLocalize {
     var openTime = "localize.openTime"
     var closeTime = "localize.closeTime"
     
-    var deviceType = "no deviceType"
-    var noDeviceID = "no device id"
-    var noDeviceToken = "123456"
-    var deleteCategory = "Are you sure want to delete Category?"
-    var deleteProduct = "Are you sure want to delete Product?"
-    
-    var ongoingOrder = "Ongoing Orders"
-    var pastOrder = "Past Orders"
-    var cancelOrder = "Cancel Orders"
-
-   // var deleteAccountDescr = "Are you sure want to delete your account?"
-    var appName = "RestaurantAround"
-   // var logout = "Are you sure want to logout?"
-   
-    let OK = "localize.OK"
-    var countryNumber = "+91"
-    var countryCode = "IN"
-    
     var subTotal = "localize.subTotal"
     var deliverycharge = "localize.deliverycharge"
     var tax = "localize.tax"
@@ -149,6 +131,8 @@ struct APPLocalize {
     var from = "localize.from"
     var to  = "localize.to"
     var filter = "localize.filter"
+    var OK = "localize.OK"
+    var alreadyRegister = "localize.alreadyRegister"
 
 //
 //    var deviceType = "デバイスタイプなし"
@@ -356,4 +340,25 @@ struct Constants {
     let uploadFileName = "avatar"
     let addZero = ".00"
     let Japanese = "Japanese"
+}
+
+struct Constant {
+    static var string = Constant()
+
+    var deviceType = "no deviceType"
+    var noDeviceID = "no device id"
+    var noDeviceToken = "123456"
+    var countryNumber = "+91"
+    var countryCode = "IN"
+    var deleteCategory = "Are you sure want to delete Category?"
+    var deleteProduct = "Are you sure want to delete Product?"
+    
+    var ongoingOrder = "Ongoing Orders"
+    var pastOrder = "Past Orders"
+    var cancelOrder = "Cancel Orders"
+    
+    // var deleteAccountDescr = "Are you sure want to delete your account?"
+    var appName = "RestaurantAround"
+    // var logout = "Are you sure want to logout?"
+    
 }

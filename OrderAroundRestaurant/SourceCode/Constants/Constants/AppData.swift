@@ -18,9 +18,9 @@ var client_Secret = "Xbe0mfn3DZslxO2oReCxvDZEhqHzaBbfHKEywClW"//"O5UIpF9H1QXSx3K
 
 var access_token = "access_token"
 
-var device_ID = Constants.string.noDeviceID
+var device_ID = Constant.string.noDeviceID
 
-var deviceToken = Constants.string.noDeviceToken
+var deviceToken = Constant.string.noDeviceToken
 
 var fromRegister = false
 

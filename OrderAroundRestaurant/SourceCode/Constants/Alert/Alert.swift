@@ -34,7 +34,7 @@ struct Alert {
 func showAlert(message : String?, handler : ((UIAlertAction) -> Void)? = nil)->UIAlertController{
     
     let alert = UIAlertController(title: AppName, message: message, preferredStyle: .alert)
-    alert.addAction(UIAlertAction(title:  Constants.string.OK, style: .default, handler: handler))
+    alert.addAction(UIAlertAction(title:  APPLocalize.localizestring.OK.localize(), style: .default, handler: handler))
     alert.view.tintColor = UIColor.primary
     return alert
     

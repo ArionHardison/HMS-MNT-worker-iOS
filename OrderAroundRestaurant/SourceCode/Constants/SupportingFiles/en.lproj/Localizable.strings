@@ -74,9 +74,6 @@
 "localize.openTime" = "Open Time";
 "localize.closeTime" = "Close Time";
 
-"localize.deviceType" = "no deviceType";
-"localize.noDeviceID" = "no device id";
-"localize.noDeviceToken" = "123456";
 "localize.deleteCategory" = "Are you sure want to delete Category?";
 "localize.deleteProduct" = "Are you sure want to delete Product?";
 
@@ -123,3 +120,4 @@
 "localize.from" = "from";
 "localize.to " = "to";
 "localize.filter" = "Filter";
+"localize.alreadyRegister" = "Already Registered? Login";

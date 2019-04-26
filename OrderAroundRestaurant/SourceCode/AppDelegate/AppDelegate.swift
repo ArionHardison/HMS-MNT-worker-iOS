@@ -22,9 +22,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         device_ID = (UIDevice.current.identifierForVendor?.uuidString)!
         print("Device_ID----\(device_ID)")
-        Constants.string.deviceType = UIDevice.current.screenType.rawValue
-        print("screenType:",Constants.string.deviceType)
-        
+        Constant.string.deviceType = UIDevice.current.screenType.rawValue
+        print("screenType:",Constant.string.deviceType)
+
        
         window?.rootViewController = Router.createModule()
         window?.makeKeyAndVisible()

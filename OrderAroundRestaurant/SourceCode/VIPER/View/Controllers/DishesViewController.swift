@@ -53,7 +53,7 @@ extension DishesViewController{
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.primary
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.title = "Dishes"
+        self.title = APPLocalize.localizestring.Dishes.localize()
         self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
 
 //        let btnBack = UIButton(type: .custom)

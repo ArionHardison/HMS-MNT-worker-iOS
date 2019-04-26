@@ -62,6 +62,9 @@ extension RevenueViewController{
         getRevenueApi()
     }
     private func setFont(){
+        totalRevenueValueLabel.text = APPLocalize.localizestring.totalRevenue.localize()
+        orderReceivedLabel.text = APPLocalize.localizestring.orderReceived.localize()
+        orderDeliveryLabel.text = APPLocalize.localizestring.orderDelivered.localize()
         totalEarningValueLabel.font = UIFont.regular(size: 14)
         monthlyEarningLabel.font = UIFont.bold(size: 15)
         monthlyEarningValueLabel.font = UIFont.regular(size: 15)
@@ -82,7 +85,7 @@ extension RevenueViewController{
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.primary
         self.navigationController?.navigationBar.tintColor = UIColor.white
-        self.title = "Revenue"
+        self.title = APPLocalize.localizestring.Revenue.localize()
          self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
  
 //        let btnBack = UIButton(type: .custom)

@@ -127,8 +127,8 @@ extension LoginViewController {
     }
     
     private func setChangeTextColor(){
-        RegisterButton.setTitle("Don't have an account. Register", for: .normal) 
-        RegisterButton.halfTextColorChange(fullText: RegisterButton.titleLabel?.text ?? "", changeText: "Register")
+        RegisterButton.setTitle(APPLocalize.localizestring.donthanve.localize(), for: .normal) 
+        RegisterButton.halfTextColorChange(fullText: RegisterButton.titleLabel?.text ?? "", changeText: APPLocalize.localizestring.register.localize())
     }
     
     private func setTextFieldPadding(){

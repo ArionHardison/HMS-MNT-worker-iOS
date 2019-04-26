@@ -75,9 +75,6 @@
 "localize.openTime" = "オープンタイム";
 "localize.closeTime" = "クローズタイム";
 
-"localize.deviceType" = "no deviceType";
-"localize.noDeviceID" = "デバイスIDなし";
-"localize.noDeviceToken" = "123456";
 "localize.deleteCategory" = "いいえdeviceTypeカテゴリを削除してもよろしいですか？";
 "localize.deleteProduct" = "本当にProductを削除しますか？";
 
@@ -124,3 +121,4 @@
 "localize.from" = "から";
 "localize.to " = "に";
 "localize.filter" = "フィルタ";
+"localize.alreadyRegister" = "すでに登録？ログイン";

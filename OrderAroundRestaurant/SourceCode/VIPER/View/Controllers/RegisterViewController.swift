@@ -387,8 +387,8 @@ extension RegisterViewController {
     }
     
     private func setCountryCode(){
-        countryCodeLabel.text = Constants.string.countryNumber
-        countryImageView.image = UIImage(named: "CountryPicker.bundle/"+Constants.string.countryCode)
+        countryCodeLabel.text = Constant.string.countryNumber
+        countryImageView.image = UIImage(named: "CountryPicker.bundle/"+Constant.string.countryCode)
     }
     
     private func setTextFieldDelegate(){
@@ -409,8 +409,8 @@ extension RegisterViewController {
 
     }
     private func setChangeTextColor(){
-        registerButton.setTitle("Already Registered? Login", for: .normal)
-        registerButton.halfTextColorChange(fullText: registerButton.titleLabel?.text ?? "", changeText: "Login")
+        registerButton.setTitle(APPLocalize.localizestring.alreadyRegister.localize(), for: .normal)
+        registerButton.halfTextColorChange(fullText: registerButton.titleLabel?.text ?? "", changeText: APPLocalize.localizestring.login.localize())
         
     }
     private func setTextFieldPadding(){
