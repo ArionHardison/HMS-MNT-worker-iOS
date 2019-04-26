@@ -1,0 +1,125 @@
+/* 
+  Localizable.strings
+  OrderAroundRestaurant
+
+  Created by Thiru on 25/04/19.
+  Copyright © 2019 CSS.All rights reserved.
+*/
+
+
+"localize.password" = "Password";
+"localize.donthanve" = "Don't have an account.";
+"localize.register" = "Register";
+"localize.login" = "Login"
+
+"localize.Home   " = "Home";
+"localize.Revenue" = "Revenue";
+"localize.Dishes " = "Dishes";
+"localize.Profile" = "Profile";
+
+"localize.history" = "History"
+"localize.editrestaurant" = "Edit Restaurant";
+"localize.edittiming" = "Edit Timing";
+"localize.Deliveries" = "Deliveries";
+"localize.changePassword" = "Change Password";
+"localize.logout" = "Logout";
+"localize.deleteAccount" = "Delete Account";
+"localize.deleteAccountDescr" = "Are you sure want to delete your account?";
+"localize.logoutDescr" = "Are you sure want to logout?";
+
+"localize.waiting" = "WAITING FOR THE UPCOMING TASK";
+
+"localize.totalRevenue   " = "Total Revenue";
+"localize.orderReceived  " = "Order Received";
+"localize.orderDelivered " = "Order Delivered";
+"localize.todayEarnings  " = "Today Earnings";
+"localize.monthlyEarnings" = "Monthly Earnings";
+"localize.orderCancelled " = "Ordered Cancelled";
+
+"localize.addons  " = "ADDONS";
+"localize.category" = "CATEGORY";
+"localize.product " = "PRODUCT"
+
+"localize.addonsList" = "Addons List"
+"localize.addAddons " = "Add Addons"
+
+"localize.categoryList " = "Category List"
+"localize.addCategories" = "Add Categories"
+
+"localize.productList" = "Product List"
+"localize.addProducts" = "Add Products"
+
+"localize.createProduct" = "Create Product"
+"localize.name" = "Name"
+"localize.description" = "Description"
+"localize.productCusine" = "Product Cusine"
+"localize.status" = "Status"
+"localize.productOrder" = "Product Order"
+"localize.Category" = "Category"
+"localize.imageUpload" = "Image Upload"
+"localize.Isfeatured" = "Is this featured product?"
+"localize.yes" = "YES"
+"localize.no" = "NO"
+"localize.next" = "Next"
+"localize.price" = "Price"
+"localize.discountType" = "Discount Type"
+"localize.discount" = "Discount"
+"localize.selectAddons" = "Select Addons"
+"localize.categoryOrder" = "Category Order"
+"localize.save" = "Save"
+
+"localize.editRestaurant" = "Edit Restaurant"
+"localize.editTiming" = "Edit Timing"
+"localize.everyday" = "Everyday"
+"localize.openTime" = "Open Time"
+"localize.closeTime" = "Close Time"
+
+"localize.deviceType" = "no deviceType"
+"localize.noDeviceID" = "no device id"
+"localize.noDeviceToken" = "123456"
+"localize.deleteCategory" = "Are you sure want to delete Category?"
+"localize.deleteProduct" = "Are you sure want to delete Product?"
+
+"localize.ongoingOrder" = "Ongoing Orders"
+"localize.pastOrder" = "Past Orders"
+"localize.cancelOrder" = "Cancel Orders"
+
+// "localize.deleteAccountDescr" = "Are you sure want to delete your account?"
+"localize.appName" = "RestaurantAround"
+// "localize.logout" = "Are you sure want to logout?"
+
+"localize.OK" = "OK"
+"localize.countryNumber" = "+91"
+"localize.countryCode" = "IN"
+
+"localize.subTotal" = "Sub Total"
+"localize.deliverycharge" = "Delivery Charges"
+"localize.tax" = "Tax"
+"localize.payable" = "Payable"
+"localize.total" = "Total"
+
+"localize.emailAddr" = "Email Address"
+"localize.cuisine" = "Cuisine"
+"localize.phonenumber" = "Phone Number"
+"localize.shopbannerImage" = "Shop banner image"
+"localize.isthisveg" = "Is this a pure veg restaurant?"
+"localize.minAmount" = "Min Amount"
+"localize.offerinper" = "Offer in Percentage"
+"localize.maxdelivery" = "Maximum Delivery Time (Mins)"
+"localize.address" = "Address"
+"localize.landmark" = "Landmark"
+
+
+"localize.currentPassword" = "Current Password"
+"localize.newPassword" = "New Password"
+"localize.confirmPassword" = "Confirm Password"
+
+"localize.filterby" = "Filter By"
+"localize.deliveryPer" = "Delivery Person"
+"localize.selectdeliveryperson" = "Select Delivery Person"
+"localize.All" = "All"
+"localize.Completed" = "Completed"
+"localize.Cancelled" = "Cancelled"
+"localize.from" = "from"
+"localize.to " = "to"
+"localize.filter" = "Filter"

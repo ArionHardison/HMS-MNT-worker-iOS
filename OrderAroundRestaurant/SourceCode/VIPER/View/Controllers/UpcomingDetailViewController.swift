@@ -51,10 +51,11 @@ class UpcomingDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //self.view.backgroundColor = .white
 
         // Do any additional setup after loading the view.
         setInitialLoad()
-        disputeButton.isHidden = false
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -196,11 +197,18 @@ class UpcomingDetailViewController: BaseViewController {
 }
 extension UpcomingDetailViewController{
     private func setInitialLoad(){
+        
+        acceptButton.isHidden = true
+        cancelButton.isHidden = true
+        disputeButton.isHidden = true
+        acceptOverView.isHidden = true
+        overView.isHidden = true
+        
         setFont()
         setRegister()
         setNavigationController()
         setOrderHistoryApi()
-        acceptOverView.isHidden = true
+     
     }
     
     private func setOrderHistoryApi(){
@@ -263,6 +271,14 @@ extension UpcomingDetailViewController{
     }
     
     private func fetchOrderDetails(data: Order) {
+        
+        overView.isHidden = false
+        subTotalLabel.text = Constants.string.subTotal
+        deliveryChargeLabel.text = Constants.string.deliverycharge
+        CgstLabel.text = Constants.string.tax
+        discountLabel.text = Constants.string.discount
+        sgstLablel.text  = Constants.string.payable
+        totalLabel.text = Constants.string.total
         
        shopImageView.sd_setImage(with: URL(string: data.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
         userNameLabel.text = data.user?.name

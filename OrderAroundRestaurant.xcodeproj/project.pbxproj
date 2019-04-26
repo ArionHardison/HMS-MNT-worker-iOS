@@ -130,6 +130,7 @@
 		1BD6C97884E76DCBF540DD4D /* Pods_OrderAroundRestaurant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFC8BDAA3EBD2DD537EC2CA /* Pods_OrderAroundRestaurant.framework */; };
 		42263AE623592704DF50816F /* Pods_OrderAroundRestaurantUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B90A2AD7EE3688EC6AFB2E /* Pods_OrderAroundRestaurantUITests.framework */; };
 		B30085D993ED1BEB02A85F42 /* Pods_OrderAroundRestaurantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA45E69BE11C915040938385 /* Pods_OrderAroundRestaurantTests.framework */; };
+		B4086EDD2271F159008C5BC0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4086EDF2271F159008C5BC0 /* Localizable.strings */; };
 		B4B405DB225B87D700D86215 /* DeleteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B405DA225B87D600D86215 /* DeleteEntity.swift */; };
 		B4DBB6E9225CA46600CB31F8 /* OrderTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DBB6E8225CA46600CB31F8 /* OrderTrackingViewController.swift */; };
 /* End PBXBuildFile section */
@@ -283,6 +284,8 @@
 		915B0DF90E6F700F351463E9 /* Pods-OrderAroundRestaurantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantUITests.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantUITests/Pods-OrderAroundRestaurantUITests.release.xcconfig"; sourceTree = "<group>"; };
 		96562278739C1FFA52E020AA /* Pods-OrderAroundRestaurantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantUITests.debug.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantUITests/Pods-OrderAroundRestaurantUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		ADFC8BDAA3EBD2DD537EC2CA /* Pods_OrderAroundRestaurant.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrderAroundRestaurant.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B4086EDE2271F159008C5BC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B4086EE02271F16A008C5BC0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B4B405DA225B87D600D86215 /* DeleteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteEntity.swift; sourceTree = "<group>"; };
 		B4BC6BCD2254BE83007427BD /* OrderAroundRestaurant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OrderAroundRestaurant.entitlements; sourceTree = "<group>"; };
 		B4DBB6E8225CA46600CB31F8 /* OrderTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackingViewController.swift; sourceTree = "<group>"; };
@@ -473,6 +476,7 @@
 		087D0C0A22240DCB00E58BDE /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				B4086ED82271F0DD008C5BC0 /* SupportingFiles */,
 				08AD19EA223B8DA60009F5F6 /* Chart */,
 				08ACEA0E22393DA50050591D /* UserDefaults */,
 				08ACEA0B223925870050591D /* Error */,
@@ -804,6 +808,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		B4086ED82271F0DD008C5BC0 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				B4086EDF2271F159008C5BC0 /* Localizable.strings */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
 		DB24E01876FE22BC4ACF205C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -913,6 +925,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ja,
 			);
 			mainGroup = 087D0BBA222403FC00E58BDE;
 			productRefGroup = 087D0BC4222403FC00E58BDE /* Products */;
@@ -941,6 +954,7 @@
 				087D0BCE222403FF00E58BDE /* Assets.xcassets in Resources */,
 				08AD751E2226728F002A0419 /* UpcomingRequestTableViewCell.xib in Resources */,
 				08A3B6A622253D120010058B /* Nunito-Regular.ttf in Resources */,
+				B4086EDD2271F159008C5BC0 /* Localizable.strings in Resources */,
 				08A3B6C022255C8C0010058B /* EditTimingTableViewCell.xib in Resources */,
 				08A14DF3222FE37E00F35B1E /* AddCategoryTableViewCell.xib in Resources */,
 				08A3B6B4222546BB0010058B /* SideMenuTableViewCell.xib in Resources */,
@@ -1234,11 +1248,24 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		B4086EDF2271F159008C5BC0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B4086EDE2271F159008C5BC0 /* en */,
+				B4086EE02271F16A008C5BC0 /* ja */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		087D0BE9222403FF00E58BDE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1300,6 +1327,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
