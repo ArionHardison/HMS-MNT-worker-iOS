@@ -26,11 +26,14 @@ enum NunitoText: String {
 
 
 //MARK:- Constant Strings
-struct Constants {
-    static var string = Constants()
+struct APPLocalize {
     
-    
+    static let localizestring = APPLocalize()
 
+    let English = "localize.English"
+    let Arabic = "localize.Arabic"
+    let Japanese = "localize.Japanese"
+    
     var password  = "localize.password"
     var donthanve = "localize.donthanve"
     var register  = "localize.register"
@@ -146,10 +149,7 @@ struct Constants {
     var from = "localize.from"
     var to  = "localize.to"
     var filter = "localize.filter"
-    
-    
-    
-    
+
 //
 //    var deviceType = "デバイスタイプなし"
 //    var noDeviceID = "デバイスIDなし"
@@ -173,9 +173,8 @@ struct Constants {
 //    var payable = "買掛金"
  //   var total = "合計"
 //
-
-
 }
+
 //MARK:- Error Message:
 struct ErrorMessage {
     static let list = ErrorMessage()
@@ -268,13 +267,9 @@ struct ErrorMessage {
     let enterFirstName = "名を入力"
     let enterLastName = "名字を入力"
     let enterOldPassword = "以前のパスワードを入力してください"
-
     let enterValidCurrentPassword = "このパスワードは間違っています."
-
-
-
-    
 }
+
 
 //MARK:- Success Message:
 struct SuccessMessage {
@@ -284,7 +279,6 @@ struct SuccessMessage {
     
     let loginSucess : NSString = "ログイン成功."
     let changePasswordSuccess : NSString = "パスワードは正常に変更されました."
-    
 }
 
 //MARK:- HTTP Methods
@@ -344,9 +338,22 @@ internal func retrieveUserData()->Bool{
     }
     
     return false
-    
 }
+
 internal func initializeUserData()->UserDataDefaults
 {
     return UserDataDefaults()
+}
+
+struct Constants {
+    
+    static let string = Constants()
+    
+    let empty = ""
+    let noDevice = "no device"
+    let English = "English"
+    let Arabic = "Arabic"
+    let uploadFileName = "avatar"
+    let addZero = ".00"
+    let Japanese = "Japanese"
 }

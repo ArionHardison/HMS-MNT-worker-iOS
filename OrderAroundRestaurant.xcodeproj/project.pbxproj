@@ -128,6 +128,9 @@
 		08AD75272226912F002A0419 /* DeliveriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08AD75252226912F002A0419 /* DeliveriesTableViewCell.xib */; };
 		08AD752922269CDB002A0419 /* DeliveriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD752822269CDB002A0419 /* DeliveriesViewController.swift */; };
 		1BD6C97884E76DCBF540DD4D /* Pods_OrderAroundRestaurant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFC8BDAA3EBD2DD537EC2CA /* Pods_OrderAroundRestaurant.framework */; };
+		24FC05B422734385003243D9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B322734385003243D9 /* Global.swift */; };
+		24FC05B6227343E3003243D9 /* LocaliseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B5227343E3003243D9 /* LocaliseManager.swift */; };
+		24FC05B822734548003243D9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B722734548003243D9 /* String.swift */; };
 		42263AE623592704DF50816F /* Pods_OrderAroundRestaurantUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B90A2AD7EE3688EC6AFB2E /* Pods_OrderAroundRestaurantUITests.framework */; };
 		B30085D993ED1BEB02A85F42 /* Pods_OrderAroundRestaurantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA45E69BE11C915040938385 /* Pods_OrderAroundRestaurantTests.framework */; };
 		B4086EDD2271F159008C5BC0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4086EDF2271F159008C5BC0 /* Localizable.strings */; };
@@ -279,6 +282,9 @@
 		08AD75242226912F002A0419 /* DeliveriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveriesTableViewCell.swift; sourceTree = "<group>"; };
 		08AD75252226912F002A0419 /* DeliveriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveriesTableViewCell.xib; sourceTree = "<group>"; };
 		08AD752822269CDB002A0419 /* DeliveriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveriesViewController.swift; sourceTree = "<group>"; };
+		24FC05B322734385003243D9 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
+		24FC05B5227343E3003243D9 /* LocaliseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaliseManager.swift; sourceTree = "<group>"; };
+		24FC05B722734548003243D9 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		49B90A2AD7EE3688EC6AFB2E /* Pods_OrderAroundRestaurantUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrderAroundRestaurantUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		720967599EA4387BC1D693F4 /* Pods-OrderAroundRestaurant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurant.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurant/Pods-OrderAroundRestaurant.release.xcconfig"; sourceTree = "<group>"; };
 		915B0DF90E6F700F351463E9 /* Pods-OrderAroundRestaurantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantUITests.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantUITests/Pods-OrderAroundRestaurantUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -603,6 +609,9 @@
 			children = (
 				087D0C0D2224110200E58BDE /* Constants.swift */,
 				0891E2162231049C00409038 /* AppData.swift */,
+				24FC05B322734385003243D9 /* Global.swift */,
+				24FC05B5227343E3003243D9 /* LocaliseManager.swift */,
+				24FC05B722734548003243D9 /* String.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1130,6 +1139,7 @@
 				08ACEA002238D0E30050591D /* changePwdEntity.swift in Sources */,
 				08A3B6AE2225441C0010058B /* View.swift in Sources */,
 				087D0C2E22242A9A00E58BDE /* RegisterViewController.swift in Sources */,
+				24FC05B822734548003243D9 /* String.swift in Sources */,
 				08A3B6C2222578B10010058B /* EditTimingViewController.swift in Sources */,
 				08A6131322421F5300219465 /* UpcomingDetailViewController.swift in Sources */,
 				0891E21C223125BC00409038 /* TabbarController.swift in Sources */,
@@ -1155,6 +1165,7 @@
 				08A613162242225600219465 /* ItemListTableViewCell.swift in Sources */,
 				08A3B6AB2225439D0010058B /* ChangePwdViewController.swift in Sources */,
 				088A50CB2242A3160028DA68 /* AcceptEntity.swift in Sources */,
+				24FC05B6227343E3003243D9 /* LocaliseManager.swift in Sources */,
 				0880805422396D54005B7072 /* EditRegisterViewController.swift in Sources */,
 				087D0C1F2224288A00E58BDE /* KeyboardHandler.swift in Sources */,
 				08A613192242423600219465 /* OrderDetailEntity.swift in Sources */,
@@ -1186,6 +1197,7 @@
 				08A14DF5222FF95200F35B1E /* CreateCategoryViewController.swift in Sources */,
 				08A44AD42237B2CE00228233 /* CountryCodeTableViewCell.swift in Sources */,
 				088F9C992247C97E00900EE5 /* GetProductEntity.swift in Sources */,
+				24FC05B422734385003243D9 /* Global.swift in Sources */,
 				087D0C192224241500E58BDE /* WebServiceConstants.swift in Sources */,
 				08A14DC0222FA01F00F35B1E /* HistoryViewController.swift in Sources */,
 				08A3B6B722254A330010058B /* Button.swift in Sources */,
