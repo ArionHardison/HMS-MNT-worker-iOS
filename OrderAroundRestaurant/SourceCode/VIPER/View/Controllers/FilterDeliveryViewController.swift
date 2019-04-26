@@ -15,6 +15,7 @@ class FilterDeliveryViewController: BaseViewController {
     @IBOutlet weak var fromLabel: UILabel!
     @IBOutlet weak var filterByLabel: UILabel!
     @IBOutlet weak var deliveryPersonLabel: UILabel!
+     @IBOutlet weak var allLabel: UILabel!
     @IBOutlet weak var deliveryPersonView: UIView!
     
     @IBOutlet weak var fromCalendarImageView: UIImageView!
@@ -156,8 +157,20 @@ class FilterDeliveryViewController: BaseViewController {
 extension FilterDeliveryViewController {
     private func setInitalLoads(){
         setImageTintColor()
+        setTitle()
         setFont()
         statusStr = "COMPLETED"
+    }
+    private func setTitle(){
+        filterByLabel.text = APPLocalize.localizestring.filterby.localize()
+        deliveryPersonLabel.text = APPLocalize.localizestring.deliveryPer.localize()
+        selectDeliveryPersonValueLabel.text = APPLocalize.localizestring.selectdeliveryperson.localize()
+        allLabel.text = APPLocalize.localizestring.All.localize()
+        fromLabel.text = APPLocalize.localizestring.from.localize()
+        fromValueLabel.text = APPLocalize.localizestring.from.localize()
+        toLabel.text = APPLocalize.localizestring.to.localize()
+        toValueLabel.text = APPLocalize.localizestring.to.localize()
+        filterButton.setTitle(APPLocalize.localizestring.filter.localize(), for: .normal)
     }
     private func setFont(){
         filterButton.layer.cornerRadius = 8

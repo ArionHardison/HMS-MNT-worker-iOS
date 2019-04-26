@@ -127,6 +127,7 @@ class OrderTrackingViewController: BaseViewController {
 }
 extension OrderTrackingViewController{
     private func setInitialLoad(){
+        setTitle()
         setFont()
         setRegister()
         setNavigationController()
@@ -155,6 +156,12 @@ extension OrderTrackingViewController{
         
     }
   
+    private func setTitle(){
+        subTotalLabel.text = APPLocalize.localizestring.subTotal.localize()
+        deliveryChargeLabel.text = APPLocalize.localizestring.deliverycharge.localize()
+        CgstLabel.text = APPLocalize.localizestring.tax.localize()
+        sgstLablel.text = APPLocalize.localizestring.payable.localize()
+    }
     private func setRegister(){
         let editTimenib = UINib(nibName: XIB.Names.ItemListTableViewCell, bundle: nil)
         orderTableView.register(editTimenib, forCellReuseIdentifier: XIB.Names.ItemListTableViewCell)

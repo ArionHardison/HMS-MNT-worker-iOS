@@ -62,6 +62,7 @@ extension CategoryListViewController{
         addCategoryButton.layer.cornerRadius = 5
     }
     private func setRegister(){
+    addCategoryButton.setTitle(APPLocalize.localizestring.addCategories.localize(), for: .normal)
         let addOnsListnib = UINib(nibName: XIB.Names.AddCategoryTableViewCell, bundle: nil)
         categoryListTableView.register(addOnsListnib, forCellReuseIdentifier: XIB.Names.AddCategoryTableViewCell)
         categoryListTableView.delegate = self
@@ -73,7 +74,7 @@ extension CategoryListViewController{
         self.navigationController?.navigationBar.barTintColor = UIColor.primary
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
-        self.title = "Category List"
+        self.title = APPLocalize.localizestring.categoryList.localize()
         let btnBack = UIButton(type: .custom)
         btnBack.setImage(UIImage(named: "back-white"), for: .normal)
         btnBack.frame = CGRect(x: 0, y: 0, width: 30, height: 30)

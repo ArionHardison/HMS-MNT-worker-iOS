@@ -376,6 +376,7 @@ extension RegisterViewController {
  
     private func setInitialLoads(){
         setTableViewContentInset()
+        setTitle()
         setFont()
         setRadioTintColor()
         setTextFieldPadding()
@@ -384,6 +385,22 @@ extension RegisterViewController {
         setTextFieldDelegate()
         setCountryCode()
         hideKeyboardWhenTappedAround()
+    }
+    
+    private func setTitle() {
+        imageUploadLabel.text = APPLocalize.localizestring.imageUpload.localize()
+        saveButton.setTitle(APPLocalize.localizestring.save.localize(), for: .normal)
+         emailAddressLabel.text = APPLocalize.localizestring.emailAddr.localize()
+        cuisineLabel.text = APPLocalize.localizestring.cuisine.localize()
+        phoneNumberLabel.text = APPLocalize.localizestring.phonenumber.localize()
+        shopBannerImagelabel.text = APPLocalize.localizestring.shopbannerImage.localize()
+        vegRestaurantLabel.text = APPLocalize.localizestring.isthisveg.localize()
+        minAmountLabel.text = APPLocalize.localizestring.minAmount.localize()
+        offerPercentLabel.text = APPLocalize.localizestring.offerinper.localize()
+        maximumDeliveryLabel.text = APPLocalize.localizestring.maxdelivery.localize()
+        addressLabel.text = APPLocalize.localizestring.address.localize()
+        landmarkLabel.text = APPLocalize.localizestring.landmark.localize()
+    registerButton.setTitle(APPLocalize.localizestring.alreadyRegister.localize(), for: .normal)
     }
     
     private func setCountryCode(){
@@ -409,8 +426,8 @@ extension RegisterViewController {
 
     }
     private func setChangeTextColor(){
-        registerButton.setTitle(APPLocalize.localizestring.alreadyRegister.localize(), for: .normal)
-        registerButton.halfTextColorChange(fullText: registerButton.titleLabel?.text ?? "", changeText: APPLocalize.localizestring.login.localize())
+    registerButton.setTitle(APPLocalize.localizestring.alreadyRegister.localize(), for: .normal)
+        registerButton.halfTextColorChange(fullText:registerButton.titleLabel?.text ?? "", changeText: APPLocalize.localizestring.login.localize())
         
     }
     private func setTextFieldPadding(){

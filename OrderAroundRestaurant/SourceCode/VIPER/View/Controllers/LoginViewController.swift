@@ -103,6 +103,7 @@ extension LoginViewController {
     
     private func setInitialLoads(){
         setFont()
+        setTitle()
         setShadowTextField()
         setTextFieldPadding()
         setChangeTextColor()
@@ -114,6 +115,10 @@ extension LoginViewController {
     
     private func setCornerRadius(){
         loginButton.layer.cornerRadius = 5
+    }
+    
+    private func setTitle(){
+         emailAddressLabel.text = APPLocalize.localizestring.emailAddr.localize()
     }
     
     private func setTextFieldDelegate(){

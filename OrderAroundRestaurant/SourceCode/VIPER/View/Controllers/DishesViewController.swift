@@ -44,7 +44,7 @@ class DishesViewController: UIViewController {
 }
 extension DishesViewController{
     private func setInitialLoad(){
-        self.menuTitleArr = ["ADDONS","CATEGORY","PRODUCT"]
+        self.menuTitleArr = [APPLocalize.localizestring.addons.localize(),APPLocalize.localizestring.category.localize(),APPLocalize.localizestring.product.localize()]
         setRegister()
       
 

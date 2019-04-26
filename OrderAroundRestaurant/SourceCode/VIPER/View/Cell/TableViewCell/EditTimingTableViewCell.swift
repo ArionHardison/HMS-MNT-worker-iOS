@@ -26,6 +26,7 @@ class EditTimingTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         changeTintColor()
+        setTitle()
         setFont()
     }
 
@@ -33,6 +34,12 @@ class EditTimingTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    private func setTitle(){
+        openTimeLabel.text = APPLocalize.localizestring.openTime.localize()
+        closeTimeLabel.text = APPLocalize.localizestring.closeTime.localize()
+
     }
     
     private func setFont(){

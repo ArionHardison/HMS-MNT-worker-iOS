@@ -203,7 +203,7 @@ extension UpcomingDetailViewController{
         disputeButton.isHidden = true
         acceptOverView.isHidden = true
         overView.isHidden = true
-        
+        setTitle()
         setFont()
         setRegister()
         setNavigationController()
@@ -242,6 +242,12 @@ extension UpcomingDetailViewController{
         orderTableView.register(editTimenib, forCellReuseIdentifier: XIB.Names.ItemListTableViewCell)
         orderTableView.delegate = self
         orderTableView.dataSource = self
+    }
+    
+    private func setTitle(){
+        deliveryChargeLabel.text = APPLocalize.localizestring.deliverycharge.localize()
+        CgstLabel.text = APPLocalize.localizestring.tax.localize()
+        sgstLablel.text = APPLocalize.localizestring.payable.localize()
     }
     private func setFont(){
         shopImageView.setRounded()

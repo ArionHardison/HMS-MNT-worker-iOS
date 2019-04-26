@@ -269,6 +269,7 @@ extension CreateProductAddonsViewController{
     
     private func setInitialLoads(){
         setTableViewContentInset()
+        setTitle()
         setFont()
         setCornerRadius()
         setNavigationController()
@@ -289,6 +290,15 @@ extension CreateProductAddonsViewController{
         }
 
     }
+    
+    private func setTitle() {
+        productCusineLabel.text = APPLocalize.localizestring.productCusine.localize()
+        productOrderLabel.text = APPLocalize.localizestring.productOrder.localize()
+        imageUploadLabel.text = APPLocalize.localizestring.imageUpload.localize()
+        featuredProductLabel.text = APPLocalize.localizestring.Isfeatured.localize()
+        btnSave.setTitle(APPLocalize.localizestring.next.localize(), for: .normal)
+    }
+    
     private func setImageTintColor(){
         let image = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
         yesButton.setImage(image, for: .normal)
@@ -337,7 +347,7 @@ extension CreateProductAddonsViewController{
         self.navigationController?.navigationBar.barTintColor = UIColor.primary
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
-        self.title = "Create Product"
+        self.title = APPLocalize.localizestring.createProduct.localize()
         let btnBack = UIButton(type: .custom)
         btnBack.setImage(UIImage(named: "back-white"), for: .normal)
         btnBack.frame = CGRect(x: 0, y: 0, width: 30, height: 30)

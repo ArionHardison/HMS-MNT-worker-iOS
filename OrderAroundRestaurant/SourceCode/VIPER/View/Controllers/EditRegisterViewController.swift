@@ -314,7 +314,7 @@ extension EditRegisterViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor.primary
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
-        self.title = "Edit Restaurant"
+        self.title = APPLocalize.localizestring.editrestaurant.localize()
         let btnBack = UIButton(type: .custom)
         btnBack.setImage(UIImage(named: "back-white"), for: .normal)
         btnBack.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
@@ -345,6 +345,7 @@ extension EditRegisterViewController {
     
     private func setInitialLoads(){
         getProfileApi()
+        setTitle()
         setTableViewContentInset()
         setFont()
         setRadioTintColor()
@@ -384,6 +385,21 @@ extension EditRegisterViewController {
     }
     
     
+    private func setTitle() {
+        imageUploadLabel.text = APPLocalize.localizestring.imageUpload.localize()
+        saveButton.setTitle(APPLocalize.localizestring.save.localize(), for: .normal)
+        emailAddressLabel.text = APPLocalize.localizestring.emailAddr.localize()
+        cuisineLabel.text = APPLocalize.localizestring.cuisine.localize()
+        phoneNumberLabel.text = APPLocalize.localizestring.phonenumber.localize()
+        shopBannerImagelabel.text = APPLocalize.localizestring.shopbannerImage.localize()
+        vegRestaurantLabel.text = APPLocalize.localizestring.isthisveg.localize()
+        minAmountLabel.text = APPLocalize.localizestring.minAmount.localize()
+        offerPercentLabel.text = APPLocalize.localizestring.offerinper.localize()
+        maximumDeliveryLabel.text = APPLocalize.localizestring.maxdelivery.localize()
+        addressLabel.text = APPLocalize.localizestring.address.localize()
+        landmarkLabel.text = APPLocalize.localizestring.landmark.localize()
+
+    }
     
     
     private func setCountryCode(){
@@ -409,7 +425,6 @@ extension EditRegisterViewController {
     }
     private func setTableViewContentInset(){
         registerScrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: self.bottomView.bounds.height, right: 0)
-        
     }
   
     private func setTextFieldPadding(){

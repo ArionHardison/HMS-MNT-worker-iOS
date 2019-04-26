@@ -65,6 +65,8 @@ extension RevenueViewController{
         totalRevenueValueLabel.text = APPLocalize.localizestring.totalRevenue.localize()
         orderReceivedLabel.text = APPLocalize.localizestring.orderReceived.localize()
         orderDeliveryLabel.text = APPLocalize.localizestring.orderDelivered.localize()
+        totalEarningLabel.text = APPLocalize.localizestring.todayEarnings.localize()
+        monthlyEarningLabel.text = APPLocalize.localizestring.monthlyEarnings.localize()
         totalEarningValueLabel.font = UIFont.regular(size: 14)
         monthlyEarningLabel.font = UIFont.bold(size: 15)
         monthlyEarningValueLabel.font = UIFont.regular(size: 15)
@@ -169,8 +171,8 @@ extension RevenueViewController {
             dataEntries1.append(dataEntry1)
         }
         
-        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Ordered Delivered")
-        let chartDataSet1 = BarChartDataSet(values: dataEntries1, label: "Ordered Cancelled")
+        let chartDataSet = BarChartDataSet(values: dataEntries, label: APPLocalize.localizestring.orderDelivered.localize())
+        let chartDataSet1 = BarChartDataSet(values: dataEntries1, label: APPLocalize.localizestring.orderCancelled.localize())
         
         let dataSets: [BarChartDataSet] = [chartDataSet,chartDataSet1]
         chartDataSet.colors = [UIColor(red: 247/255, green: 152/255, blue: 29/255, alpha: 1)]

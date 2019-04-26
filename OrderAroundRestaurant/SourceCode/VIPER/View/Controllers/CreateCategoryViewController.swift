@@ -144,6 +144,7 @@ class CreateCategoryViewController: BaseViewController {
 }
 extension CreateCategoryViewController {
     private func setInitialLoad(){
+        setTitle()
         setFont()
         setNavigationController()
         setTextFieldPadding()
@@ -199,6 +200,12 @@ extension CreateCategoryViewController {
         categoryOrderTextField.setRightPaddingPoints(10)
     }
     
+    private func setTitle() {
+        imageUploadLabel.text = APPLocalize.localizestring.imageUpload.localize()
+        categoryOrderLabel.text = APPLocalize.localizestring.categoryOrder.localize()
+        saveButton.setTitle(APPLocalize.localizestring.save.localize(), for: .normal)
+    }
+    
     
     private func setFont(){
         categoryNameLabel.font = UIFont.bold(size: 15)
@@ -209,9 +216,8 @@ extension CreateCategoryViewController {
         statusValueLabel.font = UIFont.regular(size: 14)
         categoryOrderLabel.font = UIFont.bold(size: 15)
         imageUploadLabel.font = UIFont.bold(size: 15)
-        
-        
     }
+    
     private func setNavigationController(){
         
         self.navigationController?.navigationBar.isTranslucent = false

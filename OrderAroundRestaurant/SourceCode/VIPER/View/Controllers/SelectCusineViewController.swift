@@ -58,11 +58,16 @@ class SelectCusineViewController: BaseViewController {
 extension SelectCusineViewController{
     private func setInitialLoad(){
         setNavigationController()
+        setTitle()
         setRegister()
         setCusineList()
 
     }
    
+    private func setTitle() {
+    saveButton.setTitle(APPLocalize.localizestring.save.localize(), for: .normal)
+    }
+    
     private func setCusineList(){
         showActivityIndicator()
         self.presenter?.GETPOST(api: Base.cusineList.rawValue, params: [:], methodType: .GET, modelClass: CusineListModel.self, token: true)

@@ -133,6 +133,9 @@ struct APPLocalize {
     var filter = "localize.filter"
     var OK = "localize.OK"
     var alreadyRegister = "localize.alreadyRegister"
+    var ongoingOrders = "localize.ongoingOrder"
+    var pastOrders = "localize.pastOrder"
+    var cancelOrder = "localize.cancelOrder"
 
 //
 //    var deviceType = "デバイスタイプなし"

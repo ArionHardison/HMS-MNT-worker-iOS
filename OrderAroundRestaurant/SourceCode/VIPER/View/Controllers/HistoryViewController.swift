@@ -76,15 +76,15 @@ extension HistoryViewController {
         var controllerArray : [UIViewController] = []
         
         let ongoingOrderVc : OnGoingOrderViewController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.OnGoingOrderViewController) as! OnGoingOrderViewController
-        ongoingOrderVc.title = "Ongoing Orders"
+        ongoingOrderVc.title = APPLocalize.localizestring.ongoingOrders.localize()
         controllerArray.append(ongoingOrderVc)
         
         let pastOrderVc:PastOrderViewController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.PastOrderViewController) as! PastOrderViewController
-        pastOrderVc.title = "Past Orders"
+        pastOrderVc.title = APPLocalize.localizestring.pastOrders.localize()
         controllerArray.append(pastOrderVc)
         
         let cancelOrderVc:CancelOrderViewController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.CancelOrderViewController) as! CancelOrderViewController
-        cancelOrderVc.title = "Cancel Orders"
+        cancelOrderVc.title = APPLocalize.localizestring.cancelOrder.localize()
         controllerArray.append(cancelOrderVc)
         
         

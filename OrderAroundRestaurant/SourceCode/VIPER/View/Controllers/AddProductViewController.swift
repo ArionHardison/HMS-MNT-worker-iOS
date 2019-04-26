@@ -66,6 +66,7 @@ extension AddProductViewController{
         addProductButton.layer.cornerRadius = 8
     }
     private func setRegister(){
+    addProductButton.setTitle(APPLocalize.localizestring.addProducts.localize(), for: .normal)
         let addOnsListnib = UINib(nibName: XIB.Names.AddCategoryTableViewCell, bundle: nil)
         productTableView.register(addOnsListnib, forCellReuseIdentifier: XIB.Names.AddCategoryTableViewCell)
         productTableView.delegate = self
@@ -77,7 +78,7 @@ extension AddProductViewController{
         self.navigationController?.navigationBar.barTintColor = UIColor.primary
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
-        self.title = "Product List"
+        self.title = APPLocalize.localizestring.productList.localize()
         let btnBack = UIButton(type: .custom)
         btnBack.setImage(UIImage(named: "back-white"), for: .normal)
         btnBack.frame = CGRect(x: 0, y: 0, width: 30, height: 30)

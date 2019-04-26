@@ -109,12 +109,20 @@ extension ChangePwdViewController: UITextFieldDelegate {
 extension ChangePwdViewController {
     private func setInitialLoad(){
         setNavigationController()
+        setTitle()
         setShadow()
         setCornerRadius()
         setdefualtPwdType()
         setTextFieldDelegate()
     }
     
+    private func setTitle() {
+        saveButton.setTitle(APPLocalize.localizestring.save.localize(), for: .normal)
+        currentPasswordLabel.text = APPLocalize.localizestring.currentPassword.localize()
+        newPwdLabel.text = APPLocalize.localizestring.newPassword.localize()
+        confirmPwdLabel.text = APPLocalize.localizestring.confirmPassword.localize()
+
+    }
     private func setTextFieldDelegate(){
         currentPwdTextField.delegate = self
         newPwdTextField.delegate = self

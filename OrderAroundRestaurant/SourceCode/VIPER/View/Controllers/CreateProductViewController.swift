@@ -175,6 +175,7 @@ extension CreateProductViewController {
     private func setInitialLoads(){
         setTableViewContentInset()
         setNavigationController()
+        setTitle()
         setFont()
         setCornerRadius()
         setTextFieldPadding()
@@ -191,6 +192,14 @@ extension CreateProductViewController {
         }
         
     }
+    
+    private func setTitle() {
+    saveButton.setTitle(APPLocalize.localizestring.next.localize(), for: .normal)
+        discountTypeLabel.text = APPLocalize.localizestring.discountType.localize()
+        discount.text = APPLocalize.localizestring.discount.localize()
+        selectAddonsLabel.text = APPLocalize.localizestring.selectAddons.localize()
+    }
+    
     private func setFont() {
         saveButton.titleLabel?.font = UIFont.bold(size: 15)
         selectAddonsValueLabel.font =  UIFont.regular(size: 14)
@@ -238,7 +247,7 @@ extension CreateProductViewController {
         self.navigationController?.navigationBar.barTintColor = UIColor.primary
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
-        self.title = "Create Product"
+        self.title = APPLocalize.localizestring.createProduct.localize()
         let btnBack = UIButton(type: .custom)
         btnBack.setImage(UIImage(named: "back-white"), for: .normal)
         btnBack.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
