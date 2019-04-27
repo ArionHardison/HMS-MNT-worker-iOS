@@ -372,11 +372,8 @@ extension EditRegisterViewController {
         self.addShadowView(view: phoneNumberView)
         self.addShadowView(view: imageUploadView)
         self.addShadowView(view: shopBannerView)
-        
-        
-        
-        
     }
+    
     private func setRadioTintColor(){
         yesRadioButton.setImage(UIImage(named: "radiooff")?.withRenderingMode(UIImage.RenderingMode.alwaysTemplate), for: .normal)
         yesRadioButton.tintColor = UIColor.primary
@@ -386,6 +383,9 @@ extension EditRegisterViewController {
     
     
     private func setTitle() {
+        descriptionLabel.text = APPLocalize.localizestring.description.localize()
+        nameLabel.text = APPLocalize.localizestring.name.localize()
+        statusLabel.text = APPLocalize.localizestring.status.localize()
         imageUploadLabel.text = APPLocalize.localizestring.imageUpload.localize()
         saveButton.setTitle(APPLocalize.localizestring.save.localize(), for: .normal)
         emailAddressLabel.text = APPLocalize.localizestring.emailAddr.localize()
@@ -398,7 +398,6 @@ extension EditRegisterViewController {
         maximumDeliveryLabel.text = APPLocalize.localizestring.maxdelivery.localize()
         addressLabel.text = APPLocalize.localizestring.address.localize()
         landmarkLabel.text = APPLocalize.localizestring.landmark.localize()
-
     }
     
     

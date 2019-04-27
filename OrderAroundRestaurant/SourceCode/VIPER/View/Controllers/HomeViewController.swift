@@ -33,6 +33,7 @@ class HomeViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         self.navigationController?.isNavigationBarHidden = true
+        self.title = APPLocalize.localizestring.Home.localize()
         getProfile()
         timerGetRequest = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.getProfile), userInfo: nil, repeats: true)
 
@@ -97,8 +98,8 @@ extension HomeViewController{
         upcomingRequestTableView.dataSource = self
         upcomingRequestTableView.reloadData()
     }
-    
 }
+
 extension HomeViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         var count = 0

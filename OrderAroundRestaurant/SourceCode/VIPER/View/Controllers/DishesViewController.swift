@@ -34,6 +34,7 @@ class DishesViewController: UIViewController {
     
     //MARK:- viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
+        self.title = APPLocalize.localizestring.Dishes.localize()
         self.navigationController?.isNavigationBarHidden = false
           setNavigationController()
     }

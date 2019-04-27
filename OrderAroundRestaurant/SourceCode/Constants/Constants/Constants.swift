@@ -47,7 +47,7 @@ struct APPLocalize {
     var history = "localize.history"
     var editrestaurant = "localize.editrestaurant"
     var edittiming = "localize.edittiming"
-    var Deliveries = "localizeDeliveries"
+    var Deliveries = "localize.Deliveries"
     var changePassword = "localize.changePassword"
     var logout = "localize.logout"
     var deleteAccount = "localize.deleteAccount"

@@ -32,7 +32,7 @@ class RestaurantMenuViewController: BaseViewController {
     //MARK:- viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = true
-        
+        self.title = APPLocalize.localizestring.Profile.localize()
     }
     
     /*
