@@ -13,9 +13,9 @@
 "localize.register" = "登録";
 "localize.login" = "ログイン";
 
-"localize.Home   " = "ホーム";
+"localize.Home" = "ホーム";
 "localize.Revenue" = "収入";
-"localize.Dishes " = "お料理";
+"localize.Dishes" = "お料理";
 "localize.Profile" = "プロフィール";
 
 "localize.history" = "歴史";
@@ -30,21 +30,21 @@
 
 "localize.waiting" = "今後の課題を待つ";
 
-"localize.totalRevenue   " = "総収入";
-"localize.orderReceived  " = "ご注文承りました";
-"localize.orderDelivered " = "配送された注文";
-"localize.todayEarnings  " = "今日の収益";
+"localize.totalRevenue" = "総収入";
+"localize.orderReceived" = "ご注文承りました";
+"localize.orderDelivered" = "配送された注文";
+"localize.todayEarnings" = "今日の収益";
 "localize.monthlyEarnings" = "月々の収益";
-"localize.orderCancelled " = "キャンセル済み";
+"localize.orderCancelled" = "キャンセル済み";
 
-"localize.addons  " = "アドオン";
+"localize.addons" = "アドオン";
 "localize.category" = "カテゴリー";
-"localize.product " = "製品";
+"localize.product" = "製品";
 
 "localize.addonsList" = "アドオンリスト";
-"localize.addAddons " = "アドオンを追加する";
+"localize.addAddons" = "アドオンを追加する";
 
-"localize.categoryList " = "カテゴリー一覧";
+"localize.categoryList" = "カテゴリー一覧";
 "localize.addCategories" = "カテゴリを追加";
 
 "localize.productList" = "製品リスト";
@@ -119,6 +119,6 @@
 "localize.Completed" = "完了しました";
 "localize.Cancelled" = "キャンセル";
 "localize.from" = "から";
-"localize.to " = "に";
+"localize.to" = "に";
 "localize.filter" = "フィルタ";
 "localize.alreadyRegister" = "すでに登録？ログイン";

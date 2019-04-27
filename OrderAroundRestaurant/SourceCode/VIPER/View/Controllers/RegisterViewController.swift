@@ -388,6 +388,8 @@ extension RegisterViewController {
     }
     
     private func setTitle() {
+        nameLabel.text = APPLocalize.localizestring.name.localize()
+        passwordLabel.text = APPLocalize.localizestring.password.localize()
         imageUploadLabel.text = APPLocalize.localizestring.imageUpload.localize()
         saveButton.setTitle(APPLocalize.localizestring.save.localize(), for: .normal)
          emailAddressLabel.text = APPLocalize.localizestring.emailAddr.localize()

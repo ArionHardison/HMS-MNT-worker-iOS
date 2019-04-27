@@ -12,9 +12,9 @@
 "localize.register" = "Register";
 "localize.login" = "Login";
 
-"localize.Home   " = "Home";
+"localize.Home" = "Home";
 "localize.Revenue" = "Revenue";
-"localize.Dishes " = "Dishes";
+"localize.Dishes" = "Dishes";
 "localize.Profile" = "Profile";
 
 "localize.history" = "History";
@@ -29,21 +29,21 @@
 
 "localize.waiting" = "WAITING FOR THE UPCOMING TASK";
 
-"localize.totalRevenue   " = "Total Revenue";
-"localize.orderReceived  " = "Order Received";
-"localize.orderDelivered " = "Order Delivered";
-"localize.todayEarnings  " = "Today Earnings";
+"localize.totalRevenue" = "Total Revenue";
+"localize.orderReceived" = "Order Received";
+"localize.orderDelivered" = "Order Delivered";
+"localize.todayEarnings" = "Today Earnings";
 "localize.monthlyEarnings" = "Monthly Earnings";
-"localize.orderCancelled " = "Ordered Cancelled";
+"localize.orderCancelled" = "Ordered Cancelled";
 
-"localize.addons  " = "ADDONS";
+"localize.addons" = "ADDONS";
 "localize.category" = "CATEGORY";
-"localize.product " = "PRODUCT";
+"localize.product" = "PRODUCT";
 
 "localize.addonsList" = "Addons List";
-"localize.addAddons " = "Add Addons";
+"localize.addAddons" = "Add Addons";
 
-"localize.categoryList " = "Category List";
+"localize.categoryList" = "Category List";
 "localize.addCategories" = "Add Categories";
 
 "localize.productList" = "Product List";
@@ -118,6 +118,6 @@
 "localize.Completed" = "Completed";
 "localize.Cancelled" = "Cancelled";
 "localize.from" = "from";
-"localize.to " = "to";
+"localize.to" = "to";
 "localize.filter" = "Filter";
 "localize.alreadyRegister" = "Already Registered? Login";

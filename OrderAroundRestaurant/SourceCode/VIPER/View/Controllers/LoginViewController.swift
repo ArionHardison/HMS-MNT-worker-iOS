@@ -119,6 +119,8 @@ extension LoginViewController {
     
     private func setTitle(){
          emailAddressLabel.text = APPLocalize.localizestring.emailAddr.localize()
+         passwordLabel.text = APPLocalize.localizestring.password.localize()
+        loginButton.setTitle(APPLocalize.localizestring.login.localize(), for: .normal)
     }
     
     private func setTextFieldDelegate(){

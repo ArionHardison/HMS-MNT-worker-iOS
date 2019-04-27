@@ -19,6 +19,10 @@ class UpcomingRequestTableViewCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
+    
+    @IBOutlet weak var waitingLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,6 +31,7 @@ class UpcomingRequestTableViewCell: UITableViewCell {
     }
     
     private func setFont(){
+        waitingLabel.text = APPLocalize.localizestring.waiting.localize()
         paymentLabel.font = UIFont.regular(size: 14)
         orderTimeLabel.font = UIFont.regular(size: 14)
         orderTimeValueLabel.font = UIFont.regular(size: 14)

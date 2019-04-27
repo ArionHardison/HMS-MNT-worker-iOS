@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        setLocalization(language: .english)
+        setLocalization(language: .japanese)
         device_ID = (UIDevice.current.identifierForVendor?.uuidString)!
         print("Device_ID----\(device_ID)")
         Constant.string.deviceType = UIDevice.current.screenType.rawValue

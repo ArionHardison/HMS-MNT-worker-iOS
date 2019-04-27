@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -148,13 +148,14 @@
                 <outlet property="statusLabel" destination="Miu-ZB-KQo" id="sNF-Oh-7tA"/>
                 <outlet property="userImageView" destination="a5W-r5-5Xg" id="8xg-5w-PTA"/>
                 <outlet property="userNameLabel" destination="v6n-gD-5ZK" id="haC-Ry-vvy"/>
+                <outlet property="waitingLabel" destination="V87-hY-bZB" id="LM9-uF-Cp5"/>
                 <outlet property="waitingView" destination="2Mb-1q-JWN" id="r4L-5u-FCt"/>
             </connections>
             <point key="canvasLocation" x="137.59999999999999" y="210.04497751124438"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="Location" width="32" height="32"/>
+        <image name="Location" width="20" height="20"/>
         <image name="hour-glass" width="205" height="205"/>
         <image name="user-placeholder" width="300" height="300"/>
     </resources>
