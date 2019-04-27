@@ -10,6 +10,7 @@ import UIKit
 import ObjectMapper
 import GooglePlaces
 import UserNotifications
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,7 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Constant.string.deviceType = UIDevice.current.screenType.rawValue
         print("screenType:",Constant.string.deviceType)
 
-       
+        FirebaseApp.configure()
+
         window?.rootViewController = Router.createModule()
         window?.makeKeyAndVisible()
         

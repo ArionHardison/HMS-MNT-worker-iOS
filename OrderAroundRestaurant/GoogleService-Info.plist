@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>772235683656-6c097u1r7o04241q9tdoju5n1emi7q1i.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.772235683656-6c097u1r7o04241q9tdoju5n1emi7q1i</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>772235683656-4csigiq9cvq26g12bea118nfr5bsvv06.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAivOHqZWJd3kxGBqSc41xBYJ6DvgiTRYU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>772235683656</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.Foddie.Resturant</string>
+	<key>PROJECT_ID</key>
+	<string>food-delivery-232504</string>
+	<key>STORAGE_BUCKET</key>
+	<string>food-delivery-232504.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:772235683656:ios:0f90427b7b4dd6ad</string>
+	<key>DATABASE_URL</key>
+	<string>https://food-delivery-232504.firebaseio.com</string>
+</dict>
+</plist>

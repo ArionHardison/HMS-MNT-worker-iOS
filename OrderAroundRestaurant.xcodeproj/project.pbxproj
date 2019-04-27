@@ -128,6 +128,7 @@
 		08AD75272226912F002A0419 /* DeliveriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08AD75252226912F002A0419 /* DeliveriesTableViewCell.xib */; };
 		08AD752922269CDB002A0419 /* DeliveriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08AD752822269CDB002A0419 /* DeliveriesViewController.swift */; };
 		1BD6C97884E76DCBF540DD4D /* Pods_OrderAroundRestaurant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFC8BDAA3EBD2DD537EC2CA /* Pods_OrderAroundRestaurant.framework */; };
+		24F903232274724200EC0FA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24F903222274724200EC0FA2 /* GoogleService-Info.plist */; };
 		24FC05B422734385003243D9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B322734385003243D9 /* Global.swift */; };
 		24FC05B6227343E3003243D9 /* LocaliseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B5227343E3003243D9 /* LocaliseManager.swift */; };
 		24FC05B822734548003243D9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B722734548003243D9 /* String.swift */; };
@@ -282,6 +283,7 @@
 		08AD75242226912F002A0419 /* DeliveriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveriesTableViewCell.swift; sourceTree = "<group>"; };
 		08AD75252226912F002A0419 /* DeliveriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeliveriesTableViewCell.xib; sourceTree = "<group>"; };
 		08AD752822269CDB002A0419 /* DeliveriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveriesViewController.swift; sourceTree = "<group>"; };
+		24F903222274724200EC0FA2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		24FC05B322734385003243D9 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		24FC05B5227343E3003243D9 /* LocaliseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaliseManager.swift; sourceTree = "<group>"; };
 		24FC05B722734548003243D9 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 		087D0BC5222403FC00E58BDE /* OrderAroundRestaurant */ = {
 			isa = PBXGroup;
 			children = (
+				24F903222274724200EC0FA2 /* GoogleService-Info.plist */,
 				B4BC6BCD2254BE83007427BD /* OrderAroundRestaurant.entitlements */,
 				087D0BFE2224087F00E58BDE /* SourceCode */,
 				087D0BF4222404F300E58BDE /* Resources */,
@@ -851,6 +854,7 @@
 				087D0BC1222403FC00E58BDE /* Resources */,
 				B46AE329D6A65EC53ACBB283 /* [CP] Embed Pods Frameworks */,
 				0CB6EBDCD82D3B60D184AE9C /* [CP] Copy Pods Resources */,
+				24F903242274725B00EC0FA2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -966,6 +970,7 @@
 				B4086EDD2271F159008C5BC0 /* Localizable.strings in Resources */,
 				08A3B6C022255C8C0010058B /* EditTimingTableViewCell.xib in Resources */,
 				08A14DF3222FE37E00F35B1E /* AddCategoryTableViewCell.xib in Resources */,
+				24F903232274724200EC0FA2 /* GoogleService-Info.plist in Resources */,
 				08A3B6B4222546BB0010058B /* SideMenuTableViewCell.xib in Resources */,
 				087D0C092224093400E58BDE /* LaunchScreen.storyboard in Resources */,
 				08A3B6A922253D1A0010058B /* Nunito-ExtraLight.ttf in Resources */,
@@ -1064,6 +1069,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		24F903242274725B00EC0FA2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n\n";
+		};
 		5F78723D96DCD9FD4A4DABE8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1098,10 +1121,12 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
@@ -1110,10 +1135,12 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1398,6 +1425,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = QLVQQ74552;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
