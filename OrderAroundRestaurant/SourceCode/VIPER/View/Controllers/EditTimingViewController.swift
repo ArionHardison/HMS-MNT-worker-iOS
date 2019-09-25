@@ -16,6 +16,10 @@ class EditTimingViewController: BaseViewController {
     
     @IBOutlet weak var saveBtn: UIButton!
     
+    @IBOutlet weak var regiterButton: UIButton!
+    
+  
+    
     var timeArr = [Timings]()
     var AllDateArray:NSMutableArray = []
     var DateArray: NSMutableArray = []
@@ -62,6 +66,14 @@ class EditTimingViewController: BaseViewController {
         setInitialLoad()
         IsSaveBool = false
         everyDayStr = "OFF"
+    }
+    
+    @IBAction func editButtonActiion(_ sender: UIButton) {
+        
+          //self.navigationController?.popViewController(animated: true)
+        let regiterController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.LoginViewController) as! LoginViewController
+       // countryCodeController.delegate = self
+        self.navigationController?.pushViewController(regiterController, animated: true)
     }
     
     //MARK:- viewWillAppear
@@ -332,7 +344,7 @@ extension EditTimingViewController {
     }
     
     private func setTitle() {
-        saveBtn.setTitle(APPLocalize.localizestring.save.localize(), for: .normal)
+        saveBtn.setTitle(APPLocalize.localizestring.register.localize(), for: .normal)
         dayLabel.text = APPLocalize.localizestring.everyday.localize()
     }
     

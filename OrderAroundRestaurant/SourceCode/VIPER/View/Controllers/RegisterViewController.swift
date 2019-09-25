@@ -49,6 +49,12 @@ class RegisterViewController: BaseViewController {
     @IBOutlet weak var minAmountLabel: UILabel!
     @IBOutlet weak var minAmountTextField: UITextField!
     
+    @IBOutlet weak var deliveryLabel: UILabel!
+    @IBOutlet weak var deliveryButton: UIButton!
+    @IBOutlet weak var offerLabel: UILabel!
+    
+    @IBOutlet weak var takeAwayLabel: UILabel!
+    @IBOutlet weak var takeAwayButton: UIButton!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var addressValueLabel: UILabel!
@@ -261,11 +267,11 @@ class RegisterViewController: BaseViewController {
             return
         }
         
-        guard isImageUpload(isupdate: isShopBannerImage) else{
-            showToast(msg: "Please Upload Shop Banner Image")
-            
-            return
-        }
+//        guard isImageUpload(isupdate: isShopBannerImage) else{
+//            showToast(msg: "Please Upload Shop Banner Image")
+//
+//            return
+//        }
         
         guard isCheckFeatureProduct(yesVal : isYes,noVal : isNo) else{
             showToast(msg: "Please Select Is pure Veg Restaurant")
@@ -391,7 +397,7 @@ extension RegisterViewController {
         nameLabel.text = APPLocalize.localizestring.name.localize()
         passwordLabel.text = APPLocalize.localizestring.password.localize()
         imageUploadLabel.text = APPLocalize.localizestring.imageUpload.localize()
-        saveButton.setTitle(APPLocalize.localizestring.save.localize(), for: .normal)
+        saveButton.setTitle(APPLocalize.localizestring.next.localize(), for: .normal)
          emailAddressLabel.text = APPLocalize.localizestring.emailAddr.localize()
         cuisineLabel.text = APPLocalize.localizestring.cuisine.localize()
         phoneNumberLabel.text = APPLocalize.localizestring.phonenumber.localize()
@@ -402,7 +408,8 @@ extension RegisterViewController {
         maximumDeliveryLabel.text = APPLocalize.localizestring.maxdelivery.localize()
         addressLabel.text = APPLocalize.localizestring.address.localize()
         landmarkLabel.text = APPLocalize.localizestring.landmark.localize()
-    registerButton.setTitle(APPLocalize.localizestring.alreadyRegister.localize(), for: .normal)
+        offerLabel.text = APPLocalize.localizestring.landmark.localize()
+       registerButton.setTitle(APPLocalize.localizestring.alreadyRegister.localize(), for: .normal)
     }
     
     private func setCountryCode(){
@@ -421,6 +428,7 @@ extension RegisterViewController {
         landmarkTextField.delegate = self
         descriptionTextField.delegate = self
         confirmPasswordTextfield.delegate = self
+        
         
     }
     private func setTableViewContentInset(){

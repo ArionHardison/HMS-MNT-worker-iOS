@@ -176,6 +176,8 @@ extension RevenueViewController {
         
         let dataSets: [BarChartDataSet] = [chartDataSet,chartDataSet1]
         chartDataSet.colors = [UIColor(red: 247/255, green: 152/255, blue: 29/255, alpha: 1)]
+       // (red: 38/255, green: 148/255, blue: 38/255, alpha: 1)
+        
         chartDataSet1.colors = [UIColor(red: 136/255, green: 180/255, blue: 80/255, alpha: 1)]
         
         let chartData = BarChartData(dataSets: dataSets)

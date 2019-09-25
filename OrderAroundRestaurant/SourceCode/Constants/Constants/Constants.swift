@@ -33,6 +33,7 @@ struct APPLocalize {
     let English = "localize.English"
     let Arabic = "localize.Arabic"
     let Japanese = "localize.Japanese"
+    let empty = ""
     
     var password  = "localize.password"
     var donthanve = "localize.donthanve"
@@ -117,6 +118,8 @@ struct APPLocalize {
     var maxdelivery = "localize.maxdelivery"
     var address = "localize.address"
     var landmark = "localize.landmark"
+    var offerLabel = "localize.offerLabel"
+    
     
     var currentPassword = "localize.currentPassword"
     var newPassword = "localize.newPassword"
