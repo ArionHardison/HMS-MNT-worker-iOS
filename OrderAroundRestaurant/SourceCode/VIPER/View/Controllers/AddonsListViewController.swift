@@ -58,6 +58,8 @@ extension AddonsListViewController{
         setNavigationController()
         setAddonsList()
         setCornerRadius()
+        addOnsButton.layer.cornerRadius = 16
+        addOnsButton.layer.borderWidth = 1
     }
     
     private func setCornerRadius(){

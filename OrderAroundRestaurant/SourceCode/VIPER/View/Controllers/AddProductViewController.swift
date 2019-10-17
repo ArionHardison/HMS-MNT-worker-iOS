@@ -55,6 +55,8 @@ extension AddProductViewController{
         setNavigationController()
         setCornerRadius()
         setRegister()
+        addProductButton.layer.cornerRadius = 16
+        addProductButton.layer.borderWidth = 1
     }
     private func setProductListApi(){
         showActivityIndicator()

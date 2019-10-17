@@ -208,6 +208,17 @@ extension UpcomingDetailViewController{
         setRegister()
         setNavigationController()
         setOrderHistoryApi()
+        acceptTimeButton.layer.cornerRadius = 16
+        acceptTimeButton.layer.borderWidth = 1
+        cancelTimeButton.layer.cornerRadius = 16
+        cancelTimeButton.layer.borderWidth = 1
+        cancelButton.layer.cornerRadius = 16
+        cancelButton.layer.borderWidth = 1
+        acceptButton.layer.cornerRadius = 16
+        acceptButton.layer.borderWidth = 1
+        disputeButton.layer.cornerRadius = 16
+        disputeButton.layer.borderWidth = 1
+        
      
     }
     

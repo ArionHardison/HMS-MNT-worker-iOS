@@ -68,7 +68,8 @@ extension SelectAddonsViewController{
         setNavigationController()
         setAddonsList()
         setCornerRadius()
-        
+        saveButton.layer.borderWidth = 1
+        saveButton.layer.cornerRadius = 16
         
     }
     

@@ -144,6 +144,8 @@ class CreateCategoryViewController: BaseViewController {
 }
 extension CreateCategoryViewController {
     private func setInitialLoad(){
+        saveButton.layer.cornerRadius = 16
+        saveButton.layer.borderWidth = 1
         setTitle()
         setFont()
         setNavigationController()

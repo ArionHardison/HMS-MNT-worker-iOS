@@ -391,6 +391,8 @@ extension RegisterViewController {
         setTextFieldDelegate()
         setCountryCode()
         hideKeyboardWhenTappedAround()
+        saveButton.layer.cornerRadius = 16
+        saveButton.layer.borderWidth = 1
     }
     
     private func setTitle() {

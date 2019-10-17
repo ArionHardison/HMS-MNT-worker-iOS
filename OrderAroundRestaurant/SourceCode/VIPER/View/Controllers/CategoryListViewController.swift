@@ -52,6 +52,8 @@ extension CategoryListViewController{
         setCornerRadius()
         setNavigationController()
         setCategoryListApi()
+        addCategoryButton.layer.cornerRadius = 16
+        addCategoryButton.layer.borderWidth = 1
 
     }
     private func setCategoryListApi(){

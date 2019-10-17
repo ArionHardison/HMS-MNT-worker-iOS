@@ -331,6 +331,10 @@ class EditTimingViewController: BaseViewController {
 }
 extension EditTimingViewController {
     private func setInitialLoad(){
+        saveBtn.layer.cornerRadius = 16
+        saveBtn.layer.borderWidth = 1
+        regiterButton.layer.cornerRadius = 16
+        regiterButton.layer.borderWidth = 16
         setTitle()
         setFont()
         setRegister()

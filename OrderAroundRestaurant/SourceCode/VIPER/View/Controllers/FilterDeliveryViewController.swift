@@ -160,6 +160,10 @@ extension FilterDeliveryViewController {
         setTitle()
         setFont()
         statusStr = "COMPLETED"
+        refreshButton.layer.cornerRadius = 16
+        refreshButton.layer.borderWidth = 1
+        filterButton.layer.cornerRadius = 16
+        filterButton.layer.borderWidth = 1
     }
     private func setTitle(){
         filterByLabel.text = APPLocalize.localizestring.filterby.localize()

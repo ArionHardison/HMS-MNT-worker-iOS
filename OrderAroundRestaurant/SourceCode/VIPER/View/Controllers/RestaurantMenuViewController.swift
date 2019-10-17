@@ -53,6 +53,8 @@ extension RestaurantMenuViewController {
         registerTableView()
         setValuesProfile()
         setCornerRadius()
+//        restaurantLocationButton.layer.cornerRadius = 16
+//        restaurantLocationButton.layer.borderWidth = 1
     }
     
     private func setValuesProfile(){

@@ -114,6 +114,9 @@ extension ChangePwdViewController {
         setCornerRadius()
         setdefualtPwdType()
         setTextFieldDelegate()
+        saveButton.layer.cornerRadius = 16
+        saveButton.layer.borderWidth = 1
+        
     }
     
     private func setTitle() {

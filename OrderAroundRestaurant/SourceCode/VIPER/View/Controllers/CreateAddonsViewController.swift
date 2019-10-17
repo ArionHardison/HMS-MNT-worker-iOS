@@ -83,6 +83,8 @@ extension CreateAddonsViewController {
         if addOnsListResponse != nil {
             nameTextField.text = addOnsListResponse?.name
         }
+        saveButton.layer.borderWidth = 1
+        saveButton.layer.cornerRadius = 16
 
     }
     private func setTextFieldPadding(){

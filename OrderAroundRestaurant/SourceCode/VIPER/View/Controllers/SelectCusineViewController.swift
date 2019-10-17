@@ -61,6 +61,8 @@ extension SelectCusineViewController{
         setTitle()
         setRegister()
         setCusineList()
+        saveButton.layer.cornerRadius = 16
+        saveButton.layer.borderWidth = 1
 
     }
    

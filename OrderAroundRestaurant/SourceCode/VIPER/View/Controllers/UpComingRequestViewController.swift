@@ -29,8 +29,15 @@ class UpComingRequestViewController: UIViewController {
     @IBOutlet weak var acceptButton: UIButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.initialLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    func initialLoad(){
+        acceptButton.layer.cornerRadius = 16
+        acceptButton.layer.borderWidth = 1
+        cancelButton.layer.cornerRadius = 16
+        cancelButton.layer.borderWidth = 1
     }
     
     //MARK:- viewWillAppear

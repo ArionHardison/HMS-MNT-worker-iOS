@@ -110,6 +110,10 @@ extension LoginViewController {
         setCornerRadius()
         setTextFieldDelegate()
         hideKeyboardWhenTappedAround()
+        loginButton.layer.cornerRadius = 16
+        loginButton.layer.borderWidth = 1
+//        RegisterButton.layer.cornerRadius = 16
+//        RegisterButton.layer.borderWidth = 1
 
     }
     

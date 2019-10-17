@@ -173,6 +173,8 @@ class CreateProductViewController: BaseViewController {
 }
 extension CreateProductViewController {
     private func setInitialLoads(){
+        saveButton.layer.cornerRadius = 16
+        saveButton.layer.borderWidth = 1
         setTableViewContentInset()
         setNavigationController()
         setTitle()

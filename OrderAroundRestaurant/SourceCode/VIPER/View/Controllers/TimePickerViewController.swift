@@ -62,6 +62,8 @@ extension TimePickerViewController {
     private func initalLoads(){
         setCornerRadius()
         setPickerValue()
+        doneButton.layer.cornerRadius = 16
+        doneButton.layer.borderWidth = 1
     }
     
     private func setCornerRadius(){
