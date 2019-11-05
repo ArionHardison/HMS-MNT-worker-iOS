@@ -48,6 +48,8 @@ class UpcomingDetailViewController: BaseViewController {
     var OrderId = 0
     var CartOrderArr:[Cart] = []
     var OrderModel: Order?
+    var fromwhere = ""
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,7 +122,11 @@ class UpcomingDetailViewController: BaseViewController {
     
     @IBAction func onAcceptAction(_ sender: Any) {
         self.view.endEditing(true)
-        self.acceptOrderApi(statusStr: "RECEIVED")
+        
+     
+        
+            self.acceptOrderApi(statusStr: "RECEIVED")
+       
 
     }
     
@@ -156,7 +162,30 @@ class UpcomingDetailViewController: BaseViewController {
     
     @IBAction func onacceptButtonAction(_ sender: Any) {
         
-               acceptOverView.isHidden = false
+        
+        
+        
+        if fromwhere == "HOME" {
+            
+           acceptOverView.isHidden = false
+            
+        }else{
+            
+            if acceptButton.titleLabel?.text == "Order Ready" {
+                
+                
+                self.updateTakeAwayOrderStatus(status: "READY")
+                
+            }
+            else
+            {
+                
+                self.updateTakeAwayOrderStatus(status: "COMPLETED")
+                
+            }
+            
+        }
+        
     }
     
     private func acceptOrderApi(statusStr: String){
@@ -166,6 +195,17 @@ class UpcomingDetailViewController: BaseViewController {
                                        "order_ready_time":orderTimeTextField.text!,
                                        "_method":"PATCH"]
         self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
+    }
+    
+    
+    private func updateTakeAwayOrderStatus(status:String?) {
+        
+        showActivityIndicator()
+        let urlStr = "\(Base.getOrder.rawValue)/" + String(OrderId)
+        let parameters:[String:Any] = ["status": status!,
+                                       "_method":"PATCH"]
+        self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
+        
     }
     
     @IBAction func onCallAction(_ sender: Any) {
@@ -198,8 +238,15 @@ class UpcomingDetailViewController: BaseViewController {
 extension UpcomingDetailViewController{
     private func setInitialLoad(){
         
-        acceptButton.isHidden = true
-        cancelButton.isHidden = true
+        
+        
+        
+        
+       // acceptButton.isHidden = true
+        //cancelButton.isHidden = true
+        
+        acceptButton.isHidden = false
+        cancelButton.isHidden = false
         disputeButton.isHidden = true
         acceptOverView.isHidden = true
         overView.isHidden = true
@@ -286,12 +333,18 @@ extension UpcomingDetailViewController{
         cancelButton.titleLabel?.font = UIFont.regular(size:14)
 
     }
-    
     private func fetchOrderDetails(data: Order) {
         
         overView.isHidden = false
         subTotalLabel.text = APPLocalize.localizestring.subTotal.localize()
-        deliveryChargeLabel.text = APPLocalize.localizestring.deliverycharge.localize()
+        if fromwhere == "HOME" {
+            
+            deliveryChargeLabel.text = APPLocalize.localizestring.deliverycharge.localize()
+
+        }else
+        {
+            acceptButton.setTitle("Order Ready", for: .normal)
+        }
         CgstLabel.text = APPLocalize.localizestring.tax.localize()
         discountLabel.text = APPLocalize.localizestring.discount.localize()
         sgstLablel.text  = APPLocalize.localizestring.payable.localize()
@@ -324,13 +377,32 @@ extension UpcomingDetailViewController{
         cgstValueLabel.text = currency + String(format: " %.02f", Double(cgstStr) ?? 0.0)
         
         
-        if (data.status == "ORDERED") {
-            acceptButton.isHidden = false
-            cancelButton.isHidden = false
+        if (data.status == "ORDERED") || (data.status == "PICKUP_USER") || (data.status == "READY")  {
+           // acceptButton.isHidden = false
+            //cancelButton.isHidden = false
             disputeButton.isHidden = true
+           // acceptButton.setTitle(data.status == "ORDERED" ? "ACCEPT" : "READY", for: .normal)
+            
+            
+            if fromwhere == "TAKEAWAY"{
+              
+                self.acceptButton.setTitle(data.status == "PICKUP_USER" ? "Order Ready" : "Deliver", for:.normal)
+                
+            }
+            
+ 
+            acceptButton.isHidden = false
+            cancelButton.isHidden = fromwhere == "HOME" ? false : true
+           
+            
             if (data.dispute == "CREATED") {
-                acceptButton.isHidden = true
-                cancelButton.isHidden = true
+                //acceptButton.isHidden = true
+                //cancelButton.isHidden = true
+                acceptButton.isHidden = fromwhere == "HOME" ? true : false
+                 cancelButton.isHidden = fromwhere == "HOME" ? false : true
+               // cancelButton.isHidden = fromwhere == "HOME" ? true : false
+                
+                
                 disputeButton.isHidden = false
                 disputeButton.titleLabel?.text = "DISPUTE CREATED"
                 disputeButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -397,6 +469,9 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
 //MARK: VIPER Extension:
 extension UpcomingDetailViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        
+        
+        
         if String(describing: modelClass) == model.type.OrderDetailModel {
             HideActivityIndicator()
             let data = dataDict as? OrderDetailModel
@@ -406,7 +481,31 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
             orderTableView.reloadData()
             updateOrderItemTableHeight()
         }else if String(describing: modelClass) == model.type.AcceptModel {
-            self.navigationController?.popViewController(animated: true)
+          
+
+            if fromwhere == "HOME" {
+                self.navigationController?.popViewController(animated: true)
+            }else{
+                  HideActivityIndicator()
+                 let data = dataDict as? AcceptModel
+                if data?.status == "READY" {
+                    
+               acceptButton.setTitle("DELIVER", for: .normal)
+                    
+                }else if data?.status == "PICKUP_USER" {
+                    
+                }else{
+                    
+                self.navigationController?.popViewController(animated: true)
+                    
+                }
+     
+                
+            }
+            
+            
+            
+            
         }
     }
     

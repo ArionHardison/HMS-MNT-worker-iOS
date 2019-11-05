@@ -8,6 +8,8 @@
 
 import UIKit
 import ObjectMapper
+import Alamofire
+
 class CreateAddonsViewController: BaseViewController {
 
     @IBOutlet weak var nameLabel: UILabel!
@@ -63,12 +65,47 @@ class CreateAddonsViewController: BaseViewController {
             let urlStr = Base.addOnList.rawValue + "/" + orderIdStr
             let parameters:[String:Any] = ["name": nameTextField.text!]
             self.presenter?.GETPOST(api: urlStr, params:parameters, methodType: .PATCH, modelClass: ListAddOns.self, token: true)
-        }else{
-            let parameters:[String:Any] = ["name": nameTextField.text!]
+        }else
+        {
+            
+            
+             let shopID  = UserDefaults.standard.value(forKey: "shopId") as! Int
+            let parameters:[String:Any] = ["name": nameTextField.text!,"shop_id":shopID]
             self.presenter?.GETPOST(api: Base.addOnList.rawValue, params:parameters, methodType: HttpType.POST, modelClass: AddAddonsModel.self, token: true)
+            
+            //self.addAddOns(params: parameters)
+ 
+            
         }
     }
     
+    
+    func addAddOns(params:[String:Any]?){
+        
+          let accessToken = UserDataDefaults.main.access_token ?? ""
+        
+        let headers = ["Authorization" : "Bearer "+accessToken+"",
+                       "Content-Type": "application/json"]
+        
+        let requestString : URL = URL(string:"https://oyola.com.au/api/shop/addons")!
+        //let params = ["request_id":self.requestID] as [String:Any]
+        Alamofire.request(requestString, method: .post, parameters: params,encoding: JSONEncoding.default, headers: headers).responseJSON {
+            response in
+            
+            switch response.result {
+            case .success:
+                print(response)
+                self.navigationController?.popViewController(animated: true)
+                self.delegate?.callAddAdonsApi(issuccess: true)
+                break
+            case .failure(let error):
+                
+                print(error)
+            }
+        }
+  
+    }
+
 
 }
 extension CreateAddonsViewController {

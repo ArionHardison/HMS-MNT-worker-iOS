@@ -65,6 +65,14 @@ class EditRegisterViewController: BaseViewController {
     var longStr = ""
     var cusineId = [String]()
     
+    @IBOutlet weak var buttonTakeAway: UIButton!
+    
+    @IBOutlet weak var buttonDelivery: UIButton!
+    
+    var isTakeAway = false
+    var isDelivery = false
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -105,7 +113,10 @@ class EditRegisterViewController: BaseViewController {
     }
     
     @IBAction func onNoButtonAction(_ sender: Any) {
-        if isNo {
+        
+        
+        
+     /*   if isNo {
             isNo = false
             
             let image = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
@@ -119,10 +130,33 @@ class EditRegisterViewController: BaseViewController {
             let image = UIImage(named: "radioon")?.withRenderingMode(.alwaysTemplate)
             noRadioButton.setImage(image, for: .normal)
             noRadioButton.tintColor = UIColor.primary
-        }
+        }*/
+        
+        
+      /*  if isNo {
+            isNo = false
+            
+            let image = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
+            noRadioButton.setImage(image, for: .normal)
+            noRadioButton.tintColor = UIColor.primary
+        }else{
+            isNo = true
+            let image1 = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
+            yesRadioButton.setImage(image1, for: .normal)
+            yesRadioButton.tintColor = UIColor.primary
+            let image = UIImage(named: "radioon")?.withRenderingMode(.alwaysTemplate)
+            noRadioButton.setImage(image, for: .normal)
+            noRadioButton.tintColor = UIColor.primary
+        }*/
+        
+        
+        isNo = !isNo
+        self.noRadioButton.setImage(isNo ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
+        self.yesRadioButton.setImage( #imageLiteral(resourceName: "radiooff"), for: .normal)
+        self.noRadioButton.tintColor = UIColor.primary
     }
     @IBAction func onYesButtonAction(_ sender: Any) {
-        if isYes {
+      /*  if isYes {
             isYes = false
             let image = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
             yesRadioButton.setImage(image, for: .normal)
@@ -135,7 +169,30 @@ class EditRegisterViewController: BaseViewController {
             let image = UIImage(named: "radioon")?.withRenderingMode(.alwaysTemplate)
             yesRadioButton.setImage(image, for: .normal)
             yesRadioButton.tintColor = UIColor.primary
-        }
+        }*/
+        
+        
+       /* if isYes {
+            isYes = false
+            let image = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
+            yesRadioButton.setImage(image, for: .normal)
+            yesRadioButton.tintColor = UIColor.primary
+        }else{
+            isYes = true
+            let image1 = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
+            noRadioButton.setImage(image1, for: .normal)
+            noRadioButton.tintColor = UIColor.primary
+            let image = UIImage(named: "radioon")?.withRenderingMode(.alwaysTemplate)
+            yesRadioButton.setI mage(image, for: .normal)
+            yesRadioButton.tintColor = UIColor.primary*/
+        
+        isYes = !isYes
+        self.yesRadioButton.setImage(isYes ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
+        self.noRadioButton.setImage( #imageLiteral(resourceName: "radiooff"), for: .normal)
+        self.yesRadioButton.tintColor = UIColor.primary
+        
+        
+        //}
     }
     @IBAction func onCountryAction(_ sender: Any) {
         let countryCodeController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.CountryCodeViewController) as! CountryCodeViewController
@@ -170,13 +227,32 @@ class EditRegisterViewController: BaseViewController {
         // Display the autocomplete view controller.
         present(autocompleteController, animated: true, completion: nil)
     }
-    
+    @IBAction func deliveryOptions(sender:UIButton)
+        
+    {
+        if sender.tag == 1
+        {
+            isTakeAway = !isTakeAway
+            self.buttonTakeAway.setImage(isTakeAway ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
+            
+            
+        }
+        else if sender.tag == 2
+        {
+            isDelivery = !isDelivery
+            self.buttonDelivery.setImage(isDelivery ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
+            
+        }
+    }
     
     @IBAction func onsaveButton(_ sender: Any) {
+        
+        
         Validate()
     }
     //MARK: Validate
     func Validate(){
+        
         view.endEditing(true)
         guard let name = nameTextField.text, !name.isEmpty else{
             showToast(msg: ErrorMessage.list.enterName)
@@ -292,6 +368,8 @@ class EditRegisterViewController: BaseViewController {
                                        "offer_percent":offerPercentTextField.text!,
                                        "latitude":latStr,
                                        "longitude":longStr,
+                                       "i_offer[0]": isTakeAway ? 1 : 0,
+                                       "i_offer[1]": isDelivery ? 2 : 0,
                                        "method":"PATCH"]
         
         for i in 0..<cusineId.count {
@@ -303,7 +381,6 @@ class EditRegisterViewController: BaseViewController {
         let profileURl = Base.getprofile.rawValue + "/" + String(shopId)
         self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["avatar":uploadimgeData,"default_banner":BannerUploadimgeData], imgName: "image", modelClass: EditRegisterModel.self, token: true)  
     }
-    
     
 
 }
@@ -484,6 +561,7 @@ extension EditRegisterViewController {
 extension EditRegisterViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         self.HideActivityIndicator()
+        
         if String(describing: modelClass) == model.type.ProfileModel {
             let data = dataDict  as? ProfileModel
             
@@ -532,6 +610,30 @@ extension EditRegisterViewController: PresenterOutputProtocol {
                 isYes = true
 
             }
+            
+            for item in (data?.deliveryoption)! {
+                if item.delivery_option_id == 1
+                {
+                    
+                 self.buttonTakeAway.setImage(#imageLiteral(resourceName: "radioon"), for: .normal)
+                 isTakeAway = true
+                    
+                }
+                else if item.delivery_option_id == 2
+                    
+                {
+                    self.buttonDelivery.setImage(#imageLiteral(resourceName: "radioon"), for: .normal)
+                    isDelivery = true
+
+                }
+                else{
+                    self.buttonTakeAway.setImage(#imageLiteral(resourceName: "radiooff"), for: .normal)
+                    self.buttonDelivery.setImage(#imageLiteral(resourceName: "radiooff"), for: .normal)
+
+                }
+                
+            }
+            
             let offerminamountStr: String! = String(describing: data?.offer_min_amount ?? 0)
             let offer_percentStr: String! = String(describing: data?.offer_percent ?? 0)
             let estimatedDeliveryStr: String! = String(describing: data?.estimated_delivery_time ?? 0)

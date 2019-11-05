@@ -47,6 +47,7 @@
 		0891E21C223125BC00409038 /* TabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891E21B223125BC00409038 /* TabbarController.swift */; };
 		0891E2202231562300409038 /* Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891E21F2231562300409038 /* Toast.swift */; };
 		0891E2222231581100409038 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0891E2212231581100409038 /* TextField.swift */; };
+		089A738823703C1300DD89B1 /* TakeAwayOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089A738723703C1300DD89B1 /* TakeAwayOrdersViewController.swift */; };
 		089F2D5D223270F3000D7C8D /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089F2D5C223270F3000D7C8D /* FilterViewController.swift */; };
 		089F2D5F22327615000D7C8D /* CountryCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 089F2D5E22327615000D7C8D /* CountryCodeViewController.swift */; };
 		08A14DC0222FA01F00F35B1E /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A14DBF222FA01F00F35B1E /* HistoryViewController.swift */; };
@@ -211,6 +212,7 @@
 		0891E21B223125BC00409038 /* TabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarController.swift; sourceTree = "<group>"; };
 		0891E21F2231562300409038 /* Toast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Toast.swift; sourceTree = "<group>"; };
 		0891E2212231581100409038 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
+		089A738723703C1300DD89B1 /* TakeAwayOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeAwayOrdersViewController.swift; sourceTree = "<group>"; };
 		089F2D5C223270F3000D7C8D /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		089F2D5E22327615000D7C8D /* CountryCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodeViewController.swift; sourceTree = "<group>"; };
 		08A14DBF222FA01F00F35B1E /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
@@ -538,6 +540,7 @@
 				0876C560223F86300035E2C5 /* FilterDeliveryViewController.swift */,
 				08A6131222421F5300219465 /* UpcomingDetailViewController.swift */,
 				B4DBB6E8225CA46600CB31F8 /* OrderTrackingViewController.swift */,
+				089A738723703C1300DD89B1 /* TakeAwayOrdersViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1204,6 +1207,7 @@
 				08A44AD92237CAA500228233 /* CusineListEntity.swift in Sources */,
 				08A20C30223A9B2A0081256F /* ProfileEntity.swift in Sources */,
 				08A14DDB222FB47E00F35B1E /* OnGoingOrderViewController.swift in Sources */,
+				089A738823703C1300DD89B1 /* TakeAwayOrdersViewController.swift in Sources */,
 				08ACEA042239012A0050591D /* ProductEntity.swift in Sources */,
 				08AB876A22363DE900740520 /* UpComingRequestViewController.swift in Sources */,
 				08AD19EC223B8DB90009F5F6 /* CustomLabelsXAxisValueFormatter.swift in Sources */,

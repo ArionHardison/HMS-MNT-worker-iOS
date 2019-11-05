@@ -46,6 +46,8 @@ struct Storyboard {
     let TimePickerViewController = "TimePickerViewController"
     let UpcomingDetailViewController = "UpcomingDetailViewController"
     let OrderTrackingViewController = "OrderTrackingViewController"
+    let TakeAwayOrdersViewController = "TakeAwayOrdersViewController"
+    
 }
 
 

@@ -79,6 +79,10 @@ class RegisterViewController: BaseViewController {
     var cusineId = [String]()
     var latitude = ""
     var longitude = ""
+    var isDelivery = false
+    var isTakeAway = false
+    
+    
     
 
     override func viewDidLoad() {
@@ -113,7 +117,33 @@ class RegisterViewController: BaseViewController {
         }
     }
     
+    
+    
+    @IBAction func deliveryOptions(sender:UIButton)
+        
+    {
+        if sender.tag == 1
+        {
+            isTakeAway = !isTakeAway
+            self.takeAwayButton.setImage(isTakeAway ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
+           // self.deliveryButton.setImage(#imageLiteral(resourceName: "radiooff"), for: .normal)
+            //isDelivery = false
+
+        }
+        else if sender.tag == 2
+        {
+            isDelivery = !isDelivery
+            self.deliveryButton.setImage(isDelivery ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
+           // self.takeAwayButton.setImage(#imageLiteral(resourceName: "radiooff"), for: .normal)
+           // isTakeAway = false
+
+        }
+    }
+    
     @IBAction func onnoButtonAction(_ sender: Any) {
+        
+        
+        
         if isNo {
             isNo = false
             
@@ -131,12 +161,15 @@ class RegisterViewController: BaseViewController {
         }
     }
     @IBAction func onyesButtonAction(_ sender: Any) {
+        
         if isYes {
             isYes = false
             let image = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
             yesRadioButton.setImage(image, for: .normal)
             yesRadioButton.tintColor = UIColor.primary
-        }else{
+        }
+        else
+        {
             isYes = true
             let image1 = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
             noRadioButton.setImage(image1, for: .normal)
@@ -158,6 +191,11 @@ class RegisterViewController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    
+   
+
     
     @IBAction func onStatusAction(_ sender: Any) {
         let statusController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.StatusViewController) as! StatusViewController
@@ -306,6 +344,13 @@ class RegisterViewController: BaseViewController {
             return
         }
         
+        if isDelivery == false && isTakeAway == false {
+            
+            showToast(msg: "Please Selecet Delivery Options")
+            
+        }
+        
+    
         var uploadimgeData:Data!
         
         if  let dataImg = imageUploadImageView.image?.jpegData(compressionQuality: 0.5) {
@@ -346,6 +391,8 @@ class RegisterViewController: BaseViewController {
         editTimingController.featureImageUploadData = featureUploadimgeData
         editTimingController.isYes = isyes
         editTimingController.IsRegister = true
+        editTimingController.isTakeaway = isTakeAway
+        editTimingController.isDelivery = isDelivery
         self.navigationController?.pushViewController(editTimingController, animated: true)
         
     }
@@ -503,6 +550,22 @@ extension RegisterViewController {
         landmarkTextField.font = UIFont.regular(size: 14)
         addressLabel.font = UIFont.bold(size: 14)
     }
+    
+    
+    
+    
+ 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
 extension RegisterViewController: StatusViewControllerDelegate {

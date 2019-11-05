@@ -56,8 +56,9 @@ class EditTimingViewController: BaseViewController {
     var latitude = ""
     var longitude = ""
     var isYes = ""
+    var isTakeaway = false
+    var isDelivery = false
     
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,11 +100,8 @@ class EditTimingViewController: BaseViewController {
     }
     
     @IBAction func onSaveButtonAction(_ sender: Any) {
-      
         
         if(IsRegister){
-            
-
             if (everyDayStr == "ON") {
                 
                 var closeTime = ""
@@ -138,6 +136,8 @@ class EditTimingViewController: BaseViewController {
                 "day[]":"ALL",
                 "hours_opening[ALL]":openTime,
                 "hours_closing[ALL]":closeTime,
+                "i_offer[0]": isTakeaway ? 1 : 0,
+                "i_offer[1]": isDelivery ? 2 : 0
                 
                 ] as [String : Any]
                 
@@ -145,7 +145,6 @@ class EditTimingViewController: BaseViewController {
                     let cusineStr = "cuisine_id[\(i)]"
                     param[cusineStr] = cusineId[i]
                 }
-
                 print(param)
                 
                 //let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
@@ -220,6 +219,8 @@ class EditTimingViewController: BaseViewController {
                     "day[SAT]":"SAT",
                     "hours_opening[SAT]":openingArray[6],
                     "hours_closing[SAT]":closingArray[6],
+                    "i_offer[0]": isTakeaway ? 1 : 0,
+                    "i_offer[1]": isDelivery ? 2 : 0
                     ] as [String : Any]
                 
                 

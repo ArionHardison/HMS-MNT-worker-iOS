@@ -53,8 +53,8 @@ extension Webservice : WebServiceProtocol {
                         print("ERROR---\(response.error?.localizedDescription ?? "API ERROR")")
                         self.handleError(responseError: response, modelClass: modelClass)  //Handling Error Cases:
                     case .success:
-                        print("RESPONSE---\(response.result)")
                         
+                        print("RESPONSE---\(response.result)")
                         if response.response?.statusCode == StatusCode.success.rawValue {
                             if(response.result.value as AnyObject).isKind(of: NSDictionary.self){ //Dictionary:
                                 guard let responseJSON = response.result.value as? [String: AnyObject] else {
@@ -102,7 +102,11 @@ extension Webservice : WebServiceProtocol {
             }
             else  if httpMethod == .post {
                 request(url, method: .post, parameters: params,encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                    
+                    
+                    
                     switch response.result {
+         
                     case .failure:
                         print("ERROR---\(response.error?.localizedDescription ?? "API ERROR")")
                         self.handleError(responseError: response, modelClass: modelClass)  //Handling Error Cases:

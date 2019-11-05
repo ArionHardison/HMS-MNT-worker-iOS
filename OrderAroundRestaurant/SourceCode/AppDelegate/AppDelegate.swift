@@ -25,14 +25,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         print("Device_ID----\(device_ID)")
         Constant.string.deviceType = UIDevice.current.screenType.rawValue
         print("screenType:",Constant.string.deviceType)
-
         FirebaseApp.configure()
-
         window?.rootViewController = Router.createModule()
         window?.makeKeyAndVisible()
         
         GMSPlacesClient.provideAPIKey(place_key)
-        
         registerPush(forApp: application)
         return true
     }

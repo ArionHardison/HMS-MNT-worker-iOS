@@ -10,6 +10,7 @@ import Foundation
 import ObjectMapper
 
 struct ProfileModel : Mappable {
+    
     var id : Int?
     var name : String?
     var email : String?
@@ -38,6 +39,7 @@ struct ProfileModel : Mappable {
     var cuisines : [Cuisines]?
     var timings : [Timings]?
     var tokens : [Tokens]?
+    var deliveryoption : [DeliveyOptions]?
     
     init?(map: Map) {
         
@@ -73,6 +75,8 @@ struct ProfileModel : Mappable {
         cuisines <- map["cuisines"]
         timings <- map["timings"]
         tokens <- map["tokens"]
+        deliveryoption <- map["deliveryoption"]
+        
     }
     
 }
@@ -104,11 +108,29 @@ struct Tokens : Mappable {
         updated_at <- map["updated_at"]
         expires_at <- map["expires_at"]
     }
+}
+
+struct DeliveyOptions : Mappable {
     
+    
+    var id : Int?
+    var shop_id : Int?
+    var name : String?
+    var delivery_option_id : Int?
+    init?(map: Map) {
+        
+    }
+    mutating func mapping(map: Map) {
+        id <- map["id"]
+        shop_id <- map["shop_id"]
+        name <- map["name"]
+        delivery_option_id <- map["delivery_option_id"]
+    }
 }
 
 
 struct Timings : Mappable {
+    
     var id : Int?
     var shop_id : Int?
     var start_time : String?
