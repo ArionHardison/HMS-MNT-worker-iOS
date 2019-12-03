@@ -37,6 +37,8 @@ class CreateProductViewController: BaseViewController {
     var addOnsPrice = [String]()
     var featureStr = ""
     var productdata: GetProductEntity?
+    var imageID = 0
+    
 
 
     override func viewDidLoad() {
@@ -112,7 +114,6 @@ class CreateProductViewController: BaseViewController {
             return
         }
         
-        
         let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
         
         showActivityIndicator()
@@ -131,6 +132,7 @@ class CreateProductViewController: BaseViewController {
                                            "status":status,
                                            "cuisine_id":cusineId,
                                            "category":categoryId,
+                                            "image_gallery_id" : imageID,
                                            "_method":"PATCH"]
             for i in 0..<addOnsId.count {
                 let AddonsStr = "addons[\(i)]"
@@ -141,7 +143,7 @@ class CreateProductViewController: BaseViewController {
             let productIdStr: String! = String(describing: productdata?.id ?? 0)
 
             let urlStr = Base.productList.rawValue + "/" + productIdStr
-            self.presenter?.IMAGEPOST(api: urlStr, params: parameters, methodType: HttpType.POST, imgData: ["avatar[0]":imageUploadData,"featured_image":featureImageUploadData], imgName: "image", modelClass: CategoryListModel.self, token: true)
+            self.presenter?.IMAGEPOST(api: urlStr, params: parameters, methodType: HttpType.POST, imgData: ["featured_image":featureImageUploadData], imgName: "image", modelClass: CategoryListModel.self, token: true)
         }else{
         
         var parameters:[String:Any] = ["name": nameVal,
@@ -157,6 +159,7 @@ class CreateProductViewController: BaseViewController {
                                        "discount_type":discountTypeValueLabel.text!,
                                        "status":status,
                                        "cuisine_id":cusineId,
+                                       "image_gallery_id" : imageID,
                                        "category":categoryId,
                                       ]
         for i in 0..<addOnsId.count {
@@ -166,7 +169,7 @@ class CreateProductViewController: BaseViewController {
             parameters[AddonpriceStr] = addOnsPrice[i]
         }
         
-        self.presenter?.IMAGEPOST(api: Base.productList.rawValue, params: parameters, methodType: HttpType.POST, imgData: ["avatar[0]":imageUploadData,"featured_image":featureImageUploadData], imgName: "image", modelClass: CategoryListModel.self, token: true)
+        self.presenter?.IMAGEPOST(api: Base.productList.rawValue, params: parameters, methodType: HttpType.POST, imgData: ["featured_image":featureImageUploadData], imgName: "image", modelClass: CategoryListModel.self, token: true)
         }
     }
     

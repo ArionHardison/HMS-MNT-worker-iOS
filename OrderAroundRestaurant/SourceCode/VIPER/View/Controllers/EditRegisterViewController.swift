@@ -57,6 +57,11 @@ class EditRegisterViewController: BaseViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var AddressView: UIView!
     
+    
+    
+    @IBOutlet weak var imagesGalleryCV: UICollectionView!
+    
+    
     var isImageUpload = false
     var isShopBannerImage = false
     var isNo = false
@@ -72,6 +77,7 @@ class EditRegisterViewController: BaseViewController {
     var isTakeAway = false
     var isDelivery = false
  
+    @IBOutlet weak var cusinesCollectionHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -301,7 +307,7 @@ class EditRegisterViewController: BaseViewController {
         }
         
         guard isCheckFeatureProduct(yesVal : isYes,noVal : isNo) else{
-            showToast(msg: "Please Select Is pure Veg Restaurant")
+            showToast(msg: "Please Select Is pure Veg Kitchen")
             
             return
         }
@@ -434,6 +440,9 @@ extension EditRegisterViewController {
         hideKeyboardWhenTappedAround()
         saveButton.layer.cornerRadius = 16
         saveButton.layer.borderWidth = 1
+        self.buttonDelivery.addTarget(self, action: #selector(deliveryOptions(sender:)), for: .touchUpInside)
+        self.buttonTakeAway.addTarget(self, action: #selector(deliveryOptions(sender:)), for: .touchUpInside)
+        
     }
     
     private func setShadow(){

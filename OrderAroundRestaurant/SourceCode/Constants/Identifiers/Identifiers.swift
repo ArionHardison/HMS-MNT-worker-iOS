@@ -47,6 +47,10 @@ struct Storyboard {
     let UpcomingDetailViewController = "UpcomingDetailViewController"
     let OrderTrackingViewController = "OrderTrackingViewController"
     let TakeAwayOrdersViewController = "TakeAwayOrdersViewController"
+    let ImageGalleryViewController = "ImageGalleryViewController"
+    let UserDetiailsViewController  = "UserDetiailsViewController"
+    
+    
     
 }
 
@@ -67,6 +71,8 @@ struct XIB {
     let CountryCodeTableViewCell = "CountryCodeTableViewCell"
     let SelectAddonsTableViewCell = "SelectAddonsTableViewCell"
     let ItemListTableViewCell = "ItemListTableViewCell"
+    let GalleryCollectionViewCell = "GalleryCollectionViewCell"
+    
 
 }
 

@@ -29,13 +29,19 @@ class CreateCategoryViewController: BaseViewController {
     var isImage = false
     weak var delegate: CreateCategoryViewControllerDelegate?
     var categoryListModel: CategoryListModel?
+    var imageList = [ImageList]()
 
-
+    @IBOutlet weak var imageGalleryCV: UICollectionView!
+    var selectedIndex = -1
+    var selectedImageID = Int()
+    var isImageSelected = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setInitialLoad()
+         imageGalleryCV.register(UINib(nibName: XIB.Names.GalleryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.GalleryCollectionViewCell)
     }
     
     //MARK:- viewWillAppear
@@ -95,11 +101,11 @@ class CreateCategoryViewController: BaseViewController {
             return
         }
         
-        guard isImageUpload(isupdate: isImage) else{
+     /*   guard isImageUpload(isupdate: isImage) else{
             showToast(msg: ErrorMessage.list.enterUploadImg)
             
             return
-        }
+        }*/
         
         var uploadimgeData:Data!
 
@@ -125,20 +131,33 @@ class CreateCategoryViewController: BaseViewController {
                                            "description":categoryDescriptionTextView.text!,
                                            "status":statusVal,
                                            "position":categoryOrderTextField.text!,
+                                           "image_gallery_id":selectedImageID,
                                            "_method":"PATCH"]
             
             
-            self.presenter?.IMAGEPOST(api: urlStr, params: parameters, methodType: HttpType.POST, imgData: ["image":uploadimgeData], imgName: "image", modelClass: CategoryListModel.self, token: true)
+//            self.presenter?.IMAGEPOST(api: urlStr, params: parameters, methodType: HttpType.POST, imgData: ["image":uploadimgeData], imgName: "image", modelClass: CategoryListModel.self, token: true)
+            
+            
+            
+         self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: HttpType.POST, modelClass: CategoryListModel.self, token: true)
+            
+            
+            
         }else{
         let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
         let parameters:[String:Any] = ["name": categoryNameTextField.text!,
                                        "description":categoryDescriptionTextView.text!,
                                        "status":statusVal,
                                        "position":categoryOrderTextField.text!,
+                                       "image_gallery_id":selectedImageID,
                                        "shop_id":shopId]
         
         
-        self.presenter?.IMAGEPOST(api: Base.categoryList.rawValue, params: parameters, methodType: HttpType.POST, imgData: ["image":uploadimgeData], imgName: "image", modelClass: CreateCategoryModel.self, token: true)
+       // self.presenter?.IMAGEPOST(api: Base.categoryList.rawValue, params: parameters, methodType: HttpType.POST, imgData: ["image":uploadimgeData], imgName: "image", modelClass: CreateCategoryModel.self, token: true)
+            
+            
+            self.presenter?.GETPOST(api: Base.categoryList.rawValue, params: parameters, methodType: HttpType.POST, modelClass: CategoryListModel.self, token: true)
+
         }
     }
 }
@@ -172,6 +191,9 @@ extension CreateCategoryViewController {
            categoryImageView.sd_setImage(with: URL(string: uploadImageView), placeholderImage: UIImage(named: ""))
             
         }
+        
+        
+         self.presenter?.GETPOST(api: Base.getImagesGallery.rawValue, params:[:], methodType: .GET, modelClass: ImagesGallery.self, token: false)
 
     }
     private func setShadowTextField(){
@@ -271,6 +293,30 @@ extension CreateCategoryViewController: PresenterOutputProtocol {
 
 
             
+        }else if String(describing: modelClass) == model.type.ImagesGallery {
+            
+            
+            if dataArray!.count > 0 {
+                
+                for eachObject in dataArray! {
+                    let images = eachObject as! ImagesGallery
+                    for item in images.image_gallery!
+                    {
+                        self.imageList.append(item)
+                    }
+                    
+                }
+            }else{
+                
+//                self.viewHeight.constant = 0
+//                self.CVHeight.constant = 0
+                
+            }
+            
+            print(self.imageList.count)
+            self.imageGalleryCV.reloadData()
+            
+            
         }
         
     }
@@ -301,4 +347,111 @@ extension CreateCategoryViewController : UITextViewDelegate{
 // MARK: - Protocol for set Value for DateWise Label
 protocol CreateCategoryViewControllerDelegate: class {
     func callCategoryApi(issuccess: Bool)
+}
+
+extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        
+        return  self.imageList.count > 0 ?  self.imageList.count + 1 : 0
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:XIB.Names.GalleryCollectionViewCell, for: indexPath)  as! GalleryCollectionViewCell
+        
+        cell.test.tag = indexPath.row
+        cell.test.addTarget(self, action: #selector(testClick), for: .touchUpInside)
+        
+        if indexPath.row == self.imageList.count
+            
+        {
+            
+            cell.cuisineImage.image = #imageLiteral(resourceName: "Add")
+            
+        }else{
+            
+            
+            cell.cuisineImage.sd_setImage(with: URL(string:self.imageList[indexPath.row].image ?? ""), placeholderImage:#imageLiteral(resourceName: "Add"))
+            
+            if selectedIndex == indexPath.row {
+                
+                cell.selectedImage.image = #imageLiteral(resourceName: "check-mark-2")
+                
+            }else{
+                
+                cell.selectedImage.image = nil
+                
+            }
+            // bannerImageView.sd_setImage(with: URL(string: profile.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+            
+            
+        }
+        return cell
+        
+    }
+    
+    /* func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+     
+     if indexPath.row == self.imageList.count
+     {
+     
+     }
+     else
+     {
+     
+     self.selectedIndex = indexPath.row
+     self.imagesGalleryCV.reloadData()
+     
+     }
+     
+     
+     }*/
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print(">>>>>>>>>>DID SELECT>>>>>>>>>")
+        
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
+        UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let padding: CGFloat =  10
+        let collectionViewSize = collectionView.frame.size.width - padding
+        return CGSize(width: collectionViewSize/4, height: collectionViewSize/4)
+        
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        self.selectedIndex = -1
+        self.selectedImageID = self.imageList[indexPath.row].id!
+        self.imageGalleryCV.reloadData()
+        
+    }
+    
+    @objc func testClick(sender: UIButton) {
+        if sender.tag == self.imageList.count
+        {
+            
+            let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+            registerController.imageArray = self.imageList
+            registerController.selectedIndex = self.selectedIndex
+            self.navigationController?.pushViewController(registerController, animated: true)
+            
+        }
+        else
+        {
+            isImageSelected = !isImageSelected
+            self.selectedIndex = isImageSelected ? sender.tag : -1
+            self.selectedImageID = isImageSelected ? self.imageList[self.selectedIndex].id! : 0
+            self.imageGalleryCV.reloadData()
+            
+        }
+    }
 }

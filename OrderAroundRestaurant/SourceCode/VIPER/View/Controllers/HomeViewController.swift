@@ -180,7 +180,17 @@ extension HomeViewController: PresenterOutputProtocol {
             setOrderHistoryApi()
             
             
-        }else if String(describing: modelClass) == model.type.OrderModel {
+            if self.profileDataResponse?.bank == nil {
+                
+                let bankVC = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.UserDetiailsViewController) as! UserDetiailsViewController
+                bankVC.isFromHome = true
+                self.navigationController?.pushViewController(bankVC, animated: true)
+                
+            }
+  
+            
+        }
+        else if String(describing: modelClass) == model.type.OrderModel {
             HideActivityIndicator()
             let data = dataDict as! OrderModel
             self.upcomingRequestArr = data.orders ?? []

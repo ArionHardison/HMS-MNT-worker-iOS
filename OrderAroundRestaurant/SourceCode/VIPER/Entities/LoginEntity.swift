@@ -9,7 +9,6 @@
 import Foundation
 import ObjectMapper
 
-
 //MARK:- Login Model:
 public class LoginModel: Mappable {
     //Success:
@@ -28,8 +27,10 @@ public class LoginModel: Mappable {
     internal var error: String?
     internal var message: String?
     
+    
     required public init?(map: Map) {
         mapping(map: map)
+        
     }
     
     public func mapping(map: Map) {
@@ -40,4 +41,6 @@ public class LoginModel: Mappable {
         error <- map[KEY_error]
         message <- map[KEY_message]
     }
+    
 }
+

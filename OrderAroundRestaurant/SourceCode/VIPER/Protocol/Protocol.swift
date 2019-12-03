@@ -102,3 +102,4 @@ protocol UIViewStructure {
     // All Constraint and size handling to be written here
     func layouts()
 }
+

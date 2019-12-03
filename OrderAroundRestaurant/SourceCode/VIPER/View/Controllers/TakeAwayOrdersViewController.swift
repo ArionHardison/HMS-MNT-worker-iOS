@@ -31,7 +31,7 @@ class TakeAwayOrdersViewController: BaseViewController {
         
         super.viewWillAppear(true)
         self.navigationController?.isNavigationBarHidden = true
-        self.title = APPLocalize.localizestring.Home.localize()
+        self.title = APPLocalize.localizestring.takeaway.localize()
         getProfile()
         timerGetRequest = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.getProfile), userInfo: nil, repeats: true)
     }
@@ -92,7 +92,8 @@ extension TakeAwayOrdersViewController : UITableViewDelegate,UITableViewDataSour
             cell.waitingView.isHidden = false
             cell.overView.isHidden = true
             return cell
-        }else {
+        }else
+        {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
             cell.waitingView.isHidden = true

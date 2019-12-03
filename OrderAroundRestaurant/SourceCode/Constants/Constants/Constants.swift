@@ -14,6 +14,7 @@ var profiledata: ProfileModel?
 
 // MARK: - Font
 enum NunitoText: String {
+    
     case nunitoTextbold = "Nunito-Bold"
     case nunitoTextBlack = "Nunito-Black"
     case nunitoTextExtraBold = "Nunito-ExtraBold"
@@ -23,7 +24,6 @@ enum NunitoText: String {
     case nunitoTextlight = "Nunito-Light"
     case nunitoTextsemibold = "Nunito-SemiBold"
 }
-
 
 //MARK:- Constant Strings
 struct APPLocalize {
@@ -41,11 +41,15 @@ struct APPLocalize {
     var login     = "localize.login"
     
     var Home    = "localize.Home"
+    var takeaway = "localize.Takeaway"
+    
     var Revenue = "localize.Revenue"
     var Dishes  = "localize.Dishes"
     var Profile = "localize.Profile"
     
     var history = "localize.history"
+    var bankDetails = "localize.bankdetails"
+    
     var editrestaurant = "localize.editrestaurant"
     var edittiming = "localize.edittiming"
     var Deliveries = "localize.Deliveries"
@@ -169,7 +173,7 @@ struct APPLocalize {
 struct ErrorMessage {
     static let list = ErrorMessage()
     
-    /*
+    
     let serverError = "Server Could not be reached. \n Try Again"
     let addCard = "Add Card to Continue..."
     let enterLocationName = "Enter Location Name"
@@ -197,7 +201,6 @@ struct ErrorMessage {
     let enterDiscount = "Please Enter Discount"
     let enterDiscountType = "Please Choose Discount Type"
 
-
     
     let passwordlength = "Password Must have Atleast 6 Characters."
     let enterNewPassword = "Please Enter New Password."
@@ -214,9 +217,9 @@ struct ErrorMessage {
     
     let enterValidCurrentPassword = "Current Password is incorrect."
  
- */
+
     
-    let serverError = "サーバーに到達できませんでした。\n 再試行"
+ /*   let serverError = "サーバーに到達できませんでした。\n 再試行"
     let addCard = "続行するにはカードを追加してください....."
     let enterLocationName = "所在地を入力してください"
     let enterStreetNumber = "番地を入力してください"
@@ -257,7 +260,7 @@ struct ErrorMessage {
     let enterFirstName = "名を入力"
     let enterLastName = "名字を入力"
     let enterOldPassword = "以前のパスワードを入力してください"
-    let enterValidCurrentPassword = "このパスワードは間違っています."
+    let enterValidCurrentPassword = "このパスワードは間違っています."*/
 }
 
 
@@ -309,6 +312,7 @@ struct model {
     let EditRegisterModel = "EditRegisterModel"
     let GetProductEntity = "GetProductEntity"
     let DeleteEntity = "DeleteEntity"
+    let ImagesGallery = "ImagesGallery"
 }
 
 
@@ -354,8 +358,8 @@ struct Constant {
     var deviceType = "no deviceType"
     var noDeviceID = "no device id"
     var noDeviceToken = "123456"
-    var countryNumber = "+91"
-    var countryCode = "IN"
+    var countryNumber = "+61"
+    var countryCode = "AU"
     var deleteCategory = "Are you sure want to delete Category?"
     var deleteProduct = "Are you sure want to delete Product?"
     
@@ -364,7 +368,7 @@ struct Constant {
     var cancelOrder = "Cancel Orders"
     
     // var deleteAccountDescr = "Are you sure want to delete your account?"
-    var appName = "RestaurantAround"
+    var appName = "Oyola Kitchen"
     // var logout = "Are you sure want to logout?"
     
 }

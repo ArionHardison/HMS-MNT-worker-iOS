@@ -86,8 +86,39 @@ struct Products : Mappable {
 }
 
 
-
-
-
-
-
+struct ImagesGallery : Mappable {
+    
+    var id : Int?
+    var image_gallery : [ImageList]?
+    
+    init?(map: Map) {
+        
+     
+        
+    }
+    mutating func mapping(map: Map) {
+        
+        id  <- map["id"]
+        image_gallery  <- map ["image_gallery"]
+        
+    }
+    
+}
+struct ImageList : Mappable {
+    
+    
+    var id : Int?
+    var image : String?
+ 
+    init?(map: Map) {
+        
+    }
+    mutating func mapping(map: Map) {
+        
+    id <- map["id"]
+    image <- map["image"]
+        
+    }
+    
+    
+}

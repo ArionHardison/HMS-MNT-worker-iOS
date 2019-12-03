@@ -71,6 +71,7 @@ extension SelectCusineViewController{
     }
     
     private func setCusineList(){
+        
         showActivityIndicator()
         self.presenter?.GETPOST(api: Base.cusineList.rawValue, params: [:], methodType: .GET, modelClass: CusineListModel.self, token: true)
 
@@ -161,6 +162,7 @@ extension SelectCusineViewController: UITableViewDelegate,UITableViewDataSource{
 extension SelectCusineViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         if String(describing: modelClass) == model.type.CusineListModel {
+            
             HideActivityIndicator()
             self.cusineListArr = dataArray as! [CusineListModel]
             for index in 0..<self.cusineListArr.count {

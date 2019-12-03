@@ -13,12 +13,13 @@
 "localize.login" = "Login";
 
 "localize.Home" = "Home";
+"localize.Takeaway" = "Takeaway" ;
 "localize.Revenue" = "Revenue";
 "localize.Dishes" = "Dishes";
 "localize.Profile" = "Profile";
 
 "localize.history" = "History";
-"localize.editrestaurant" = "Edit Restaurant";
+"localize.editrestaurant" = "Edit Kitchen";
 "localize.edittiming" = "Edit Timing";
 "localize.Deliveries" = "Deliveries";
 "localize.changePassword" = "Change Password";
@@ -68,7 +69,7 @@
 "localize.categoryOrder" = "Category Order";
 "localize.save" = "Save";
 
-"localize.editRestaurant" = "Edit Restaurant";
+"localize.editRestaurant" = "Edit Kitchen";
 "localize.editTiming" = "Edit Timing";
 "localize.everyday" = "Everyday";
 "localize.openTime" = "Open Time";
@@ -82,7 +83,7 @@
 "localize.cancelOrder" = "Cancel Orders";
 
 // "localize.deleteAccountDescr" = "Are you sure want to delete your account?"
-"localize.appName" = "RestaurantAround";
+"localize.appName" = "OyolaKitchen";
 // "localize.logout" = "Are you sure want to logout?"
 
 "localize.OK" = "OK";
@@ -99,7 +100,7 @@
 "localize.cuisine" = "Cuisine";
 "localize.phonenumber" = "Phone Number";
 "localize.shopbannerImage" = "Shop banner image";
-"localize.isthisveg" = "Is this a pure veg restaurant?";
+"localize.isthisveg" = "Is this a pure veg kitchen?";
 "localize.minAmount" = "Min Amount";
 "localize.offerinper" = "Offer in Percentage";
 "localize.maxdelivery" = "Maximum Delivery Time (Mins)";

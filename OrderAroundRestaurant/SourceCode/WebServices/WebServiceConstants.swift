@@ -26,10 +26,10 @@ enum StatusCode : Int {
     case notFound = 404
     case ServerError = 500
     case UnprocessableEntity = 422
+    
 }
 
 enum Base : String{
-    
    
     case login = "/oauth/token"
     case register = "/api/shop/register"
@@ -46,8 +46,8 @@ enum Base : String{
     case getTransportList = "/api/shop/transporterlist"
     case getTimeUpdate = "/api/shop/time"
     case getDelete = "/api/shop/remove/"
+    case getImagesGallery = "/image-gallery"
     
-   
     
     init(fromRawValue: String){
         self = Base(rawValue: fromRawValue) ?? .addOnList
@@ -74,10 +74,9 @@ enum Base : String{
 }
 
 
-
-
 //MARK:- Web Constants:
 struct WebConstants {
+    
     static let string = WebConstants()
     let get = "GET"
     let post = "POST"

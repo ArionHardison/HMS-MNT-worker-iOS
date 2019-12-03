@@ -31,7 +31,7 @@ class EditTimingViewController: BaseViewController {
     var timeStr = ""
     var selectedIndex = IndexPath()
     var IsSaveBool = false
-    
+    var daysArray = [String]()
     
     var nameStr = ""
     var emailStr = ""
@@ -41,7 +41,7 @@ class EditTimingViewController: BaseViewController {
     var confirmPasswordStr = ""
     var imageUploadData:Data!
     var featureImageUploadData:Data!
-    var cusineId = [String]()
+    var cusineId = [Int]()
     var categoryId = 0
     var status = ""
     var productOrder = ""
@@ -58,6 +58,8 @@ class EditTimingViewController: BaseViewController {
     var isYes = ""
     var isTakeaway = false
     var isDelivery = false
+    var shopImageId = 0
+    
     
 
     override func viewDidLoad() {
@@ -133,28 +135,35 @@ class EditTimingViewController: BaseViewController {
                 "longitude":longitude,
                 "pure_veg":isYes,
                 "estimated_delivery_time":maxDelivery,
-                "day[]":"ALL",
-                "hours_opening[ALL]":openTime,
-                "hours_closing[ALL]":closeTime,
+                /*"day[0]":"ALL",*/
+                    "hours_opening":["ALL":openTime],
+                    "hours_closing":["ALL":closeTime],
+                "image_gallery_id":self.shopImageId,
                 "i_offer[0]": isTakeaway ? 1 : 0,
                 "i_offer[1]": isDelivery ? 2 : 0
-                
                 ] as [String : Any]
                 
+               
+                
+                var cusine = [Int]()
                 for i in 0..<cusineId.count {
                     let cusineStr = "cuisine_id[\(i)]"
-                    param[cusineStr] = cusineId[i]
+                    //param[cusineStr] = cusineId[i]
+                    cusine.append(cusineId[i])
                 }
-                print(param)
                 
+                let days = "day[\(0)]"
+               // param[days] = "ALL"
+                param["cuisine_id"] = cusine
+                param["day"] = ["ALL"]
+                print(param)
                 //let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
                 let urlStr = Base.register.rawValue 
                 // let urlStr = Base.getprofile.rawValue //+ "/" + String(shopId)
                 showActivityIndicator()
                 IsSaveBool = true
-          
-                self.presenter?.IMAGEPOST(api: urlStr, params: param, methodType: HttpType.POST, imgData: ["avatar":imageUploadData,"default_banner":featureImageUploadData], imgName: "image", modelClass: RegisterModel.self, token: false)
-                
+//                self.presenter?.IMAGEPOST(api: urlStr, params: param, methodType: HttpType.POST, imgData: ["avatar":imageUploadData,"default_banner":featureImageUploadData], imgName: "image", modelClass: RegisterModel.self, token: false)
+                self.presenter?.GETPOST(api: urlStr, params: param, methodType: HttpType.POST, modelClass: RegisterModel.self, token: false)
             } else {
                 
                 print(DateArray)
@@ -178,10 +187,13 @@ class EditTimingViewController: BaseViewController {
 //                    closeDict = [closeTime]
 //
 //                    print("openDict ----",openDict)
-                    
                     openingArray.add(openTime)
                     closingArray.add(closeTime)
                 }
+                
+               // var hourOpenig = <#value#>
+                
+                
                 
                 var param = [
                     "name": nameStr,
@@ -198,43 +210,62 @@ class EditTimingViewController: BaseViewController {
                     "longitude":longitude,
                     "pure_veg":isYes,
                     "estimated_delivery_time":maxDelivery,
-                    "day[SUN]":"SUN",
-                    "hours_opening[SUN]":openingArray[0],
-                    "hours_closing[SUN]":closingArray[0],
-                    "day[MON]":"MON",
-                    "hours_opening[MON]":openingArray[1],
-                    "hours_closing[MON]":closingArray[1],
-                    "day[TUE]":"TUE",
-                    "hours_opening[TUE]":openingArray[2],
-                    "hours_closing[TUE]":closingArray[2],
-                    "day[WED]":"WED",
-                    "hours_opening[WED]":openingArray[3],
-                    "hours_closing[WED]":closingArray[3],
-                    "day[THU]":"THU",
-                    "hours_opening[THU]":openingArray[4],
-                    "hours_closing[THU]":closingArray[4],
-                    "day[FRI]":"FRI",
-                    "hours_opening[FRI]":openingArray[5],
-                    "hours_closing[FRI]":closingArray[5],
-                    "day[SAT]":"SAT",
-                    "hours_opening[SAT]":openingArray[6],
-                    "hours_closing[SAT]":closingArray[6],
+                    /*"day[SUN]":"SUN",*/
+                    "hours_opening":["MON":openingArray[0],
+                                     "TUE":openingArray[1],
+                                     "WED":openingArray[2],
+                                     "THU":openingArray[3],
+                                     "FRI":openingArray[4],
+                                     "SAT":openingArray[5],
+                                     "SUN":openingArray[6]],
+                    "hours_closing":["MON":closingArray[0],
+                                     "TUE":closingArray[1],
+                                     "WED":closingArray[2],
+                                     "THU":closingArray[3],
+                                     "FRI":closingArray[4],
+                                     "SAT":closingArray[5],
+                                     "SUN":closingArray[6]],
+//                    "hours_opening[SUN]":openingArray[0],
+//                    "hours_closing[SUN]":closingArray[0],
+                    /*"day[MON]":"MON",*/
+//                    "hours_opening[MON]":openingArray[1],
+//                    "hours_closing[MON]":closingArray[1],
+                    /*"day[TUE]":"TUE",*/
+//                    "hours_opening[TUE]":openingArray[2],
+//                    "hours_closing[TUE]":closingArray[2],
+                    /*"day[WED]":"WED",*/
+//                    "hours_opening[WED]":openingArray[3],
+//                    "hours_closing[WED]":closingArray[3],
+                    /*"day[THU]":"THU",*/
+//                    "hours_opening[THU]":openingArray[4],
+//                    "hours_closing[THU]":closingArray[4],
+                    /*"day[FRI]":"FRI",*/
+//                    "hours_opening[FRI]":openingArray[5],
+//                    "hours_closing[FRI]":closingArray[5],
+                    /*"day[SAT]":"SAT",*/
+                    "day":daysArray,
+//                    "hours_opening[SAT]":openingArray[6],
+//                    "hours_closing[SAT]":closingArray[6],
+                    "image_gallery_id":self.shopImageId,
                     "i_offer[0]": isTakeaway ? 1 : 0,
                     "i_offer[1]": isDelivery ? 2 : 0
                     ] as [String : Any]
                 
-                
+                 var cusine = [Int]()
                 for i in 0..<cusineId.count {
                     let cusineStr = "cuisine_id[\(i)]"
-                    param[cusineStr] = cusineId[i]
+                   // param[cusineStr] = cusineId[i]
+                     cusine.append(cusineId[i])
                 }
-
+                param["cuisine_id"] = cusine
                 print("Params---->>>",param)
                 
                // let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
                 let urlStr = Base.register.rawValue
                 showActivityIndicator()
-                self.presenter?.IMAGEPOST(api: urlStr, params: param, methodType: HttpType.POST, imgData: ["avatar":imageUploadData,"default_banner":featureImageUploadData], imgName: "image", modelClass: RegisterModel.self, token: false)
+               // self.presenter?.IMAGEPOST(api: urlStr, params: param, methodType: HttpType.POST, imgData: ["avatar":imageUploadData,"default_banner":featureImageUploadData], imgName: "image", modelClass: RegisterModel.self, token: false)
+                
+                self.presenter?.GETPOST(api: urlStr, params: param, methodType: HttpType.POST, modelClass: RegisterModel.self, token: false)
        
                 
             }
@@ -281,8 +312,8 @@ class EditTimingViewController: BaseViewController {
                 IsSaveBool = true
           
             var dayArray: [String] = ["SUN","MON","TUE","WED","THU","FRI","SAT"]
-            let openingArray: NSMutableArray = []
-            let closingArray: NSMutableArray = []
+            var openingArray = [String]()
+            var closingArray = [String]()
 
             for i in 0..<DateArray.count {
                
@@ -299,8 +330,12 @@ class EditTimingViewController: BaseViewController {
                 
                 print("openDict ----",openDict)
 
-                openingArray.add(openTime)
-                closingArray.add(closeTime)
+              //  openingArray[i].append(openTime)
+               // closingArray[i].append(closeTime)
+                
+                openingArray.insert(openTime, at: i)
+                closingArray.insert(closeTime, at: i)
+                
             }
 
             print(">>>>",openingArray)
@@ -439,6 +474,8 @@ extension EditTimingViewController {
                     "close": "hours_closing[MON]"
                 ]
                 DateArray.add(Dict1)
+               // daysArray[0].append("MON")
+                daysArray.insert("MON", at: 0)
             }else if j == 1 {
                 let Dict1 =  [
                     "name": "Tuesday",
@@ -449,6 +486,9 @@ extension EditTimingViewController {
                     "close": "hours_closing[TUE]"
                 ]
                 DateArray.add(Dict1)
+               // daysArray[1].append("TUE")
+                daysArray.insert("TUE", at: 1)
+
             }else if j == 2 {
                 let Dict1 =  [
                     "name": "Wednesday",
@@ -459,6 +499,9 @@ extension EditTimingViewController {
                     "close": "hours_closing[WED]"
                 ]
                 DateArray.add(Dict1)
+                //daysArray[2].append("WED")
+                daysArray.insert("WED", at: 2)
+
             }else if j == 3 {
                 let Dict1 =  [
                     "name": "Thursday",
@@ -469,6 +512,9 @@ extension EditTimingViewController {
                     "close": "hours_closing[THUR]"
                 ]
                 DateArray.add(Dict1)
+                //daysArray[3].append("THUR")
+                daysArray.insert("THUR", at: 3)
+
             }else if j == 4 {
                 let Dict1 =  [
                     "name": "Friday",
@@ -479,6 +525,10 @@ extension EditTimingViewController {
                     "close": "hours_closing[FRI]"
                 ]
                 DateArray.add(Dict1)
+               // daysArray[4].append("FRI")
+                daysArray.insert("FRI", at: 4)
+
+
             }else if j == 5 {
                 let Dict1 =  [
                     "name": "Saturday",
@@ -489,6 +539,10 @@ extension EditTimingViewController {
                     "close": "hours_closing[SAT]"
                 ]
                 DateArray.add(Dict1)
+              //  daysArray[5].append("SAT")
+                daysArray.insert("SAT", at: 5)
+
+
             }else if j == 6 {
                 let Dict1 =  [
                     "name": "Sunday",
@@ -499,11 +553,13 @@ extension EditTimingViewController {
                     "close": "hours_closing[SUN]"
                 ]
                 DateArray.add(Dict1)
+              //  daysArray[6].append("SUN")
+                daysArray.insert("SUN", at: 6)
+
             }
             
             
             selectedDayArray[j] = NSNumber(value: true)
-            
             
             
         }

@@ -14,7 +14,6 @@ class AddProductViewController: BaseViewController {
     @IBOutlet weak var addProductButton: UIButton!
     @IBOutlet weak var productTableView: UITableView!
     
-  
     var categoryListArr = [CategoryListModel]()
     
     override func viewDidLoad() {

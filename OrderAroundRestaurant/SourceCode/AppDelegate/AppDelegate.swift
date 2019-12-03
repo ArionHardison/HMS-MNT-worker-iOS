@@ -17,7 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let place_key = "AIzaSyDNmSE7xEYTKxPOXp1rkda67va-HTr_Mes"//"AIzaSyBpk9s5L2o4iVB8bUdIIVEkBj7fW2NeQtI"
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         setLocalization(language: .english)
@@ -28,7 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         window?.rootViewController = Router.createModule()
         window?.makeKeyAndVisible()
-        
         GMSPlacesClient.provideAPIKey(place_key)
         registerPush(forApp: application)
         return true

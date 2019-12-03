@@ -23,7 +23,6 @@ class BaseViewController: UIViewController,NVActivityIndicatorViewable {
         guard let urlString = string else {return false}
         guard let url = NSURL(string: urlString) else {return false}
         if !UIApplication.shared.canOpenURL(url as URL) {return false}
-        
         //
         let regEx = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
         let predicate = NSPredicate(format:"SELF MATCHES %@", argumentArray:[regEx])
@@ -133,7 +132,6 @@ extension UIViewController {
 //        }))
 //        alert.addAction(UIAlertAction(title: Constants.string.Cancel, style: .cancel, handler:nil))
         self.chooseImage(with: .photoLibrary)
-
 //        alert.view.tintColor = .primary
         imageCompletion = completion
         //self.present(alert, animated: true, completion: nil)

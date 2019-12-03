@@ -44,6 +44,7 @@ class CreateProductAddonsViewController: BaseViewController {
     var isUploadImage = false
     var isFeatureUploadImage = false
     
+    @IBOutlet weak var imagesGallery: UICollectionView!
     var cusineListArr = [CusineListModel]()
     
     @IBOutlet weak var yesButton: UIButton!
@@ -51,6 +52,7 @@ class CreateProductAddonsViewController: BaseViewController {
     
     var categoryListArr = [CategoryListModel]()
     var productModel: Products?
+    var imageList = [ImageList]()
 
     var productdata: GetProductEntity?
 
@@ -59,12 +61,18 @@ class CreateProductAddonsViewController: BaseViewController {
     var categoryId = 0
     var productCusineId = 0
     var featureStr = ""
+    var selectedIndex = -1
+    var selectedImageID = Int()
+    var isImageSelected = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setInitialLoads()
+        
+         imagesGallery.register(UINib(nibName: XIB.Names.GalleryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.GalleryCollectionViewCell)
+          self.presenter?.GETPOST(api: Base.getImagesGallery.rawValue, params:[:], methodType: .GET, modelClass: ImagesGallery.self, token: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -205,18 +213,18 @@ class CreateProductAddonsViewController: BaseViewController {
             return
         }
                 
-        guard isImageUpload(isupdate: isUploadImage) else{
+        /*guard isImageUpload(isupdate: isUploadImage) else{
             showToast(msg: ErrorMessage.list.enterUploadImg)
             
             return
-        }
+        }*/
         guard isCheckFeatureProduct(yesVal: isYes, noVal: isNo) else{
             showToast(msg: ErrorMessage.list.enterFeatureProduct)
             
             return
         }
         
-        guard isImageUpload(isupdate: isFeatureUploadImage) else{
+       guard isImageUpload(isupdate: isFeatureUploadImage) else{
             showToast(msg: ErrorMessage.list.enterFeatureUploadImg)
             
             return
@@ -245,13 +253,14 @@ class CreateProductAddonsViewController: BaseViewController {
         createProductController.nameVal = nameTextField.text ?? ""
         createProductController.categoryId = categoryId
         createProductController.descriptionVal = descriptionTextView.text ?? ""
-        createProductController.imageUploadData = uploadimgeData
+       // createProductController.imageUploadData = uploadimgeData
         createProductController.featureImageUploadData = featureUploadimgeData
         createProductController.status = statusVal
         createProductController.cusineId = String(productCusineId)
         createProductController.productOrder = productOrederTextField.text ?? ""
         createProductController.featureStr = featureStr
         createProductController.productdata = productdata
+        createProductController.imageID = self.selectedImageID
         self.navigationController?.pushViewController(createProductController, animated: true)
        
     }
@@ -407,7 +416,33 @@ extension CreateProductAddonsViewController: PresenterOutputProtocol {
             HideActivityIndicator()
             self.cusineListArr = dataArray as! [CusineListModel]
            // cusineTableView.reloadData()
-        }else if String(describing: modelClass) == model.type.GetProductEntity {
+        }
+   else if String(describing: modelClass) == model.type.ImagesGallery {
+    
+    
+    if dataArray!.count > 0 {
+    
+    for eachObject in dataArray! {
+    let images = eachObject as! ImagesGallery
+    for item in images.image_gallery!
+    {
+    self.imageList.append(item)
+    }
+    
+    }
+    }else{
+    
+    //                self.viewHeight.constant = 0
+    //                self.CVHeight.constant = 0
+    
+    }
+    
+    print(self.imageList.count)
+    self.imagesGallery.reloadData()
+    
+    
+    }
+        else if String(describing: modelClass) == model.type.GetProductEntity {
             self.productdata = dataDict as? GetProductEntity
             nameTextField.text = productdata?.name
             descriptionTextView.text = productdata?.description
@@ -494,4 +529,111 @@ extension CreateProductAddonsViewController: ProductCategoryViewControllerDelega
         }
     }
     
+}
+
+extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        
+        return  self.imageList.count > 0 ?  self.imageList.count + 1 : 0
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:XIB.Names.GalleryCollectionViewCell, for: indexPath)  as! GalleryCollectionViewCell
+        
+        cell.test.tag = indexPath.row
+        cell.test.addTarget(self, action: #selector(testClick), for: .touchUpInside)
+        
+        if indexPath.row == self.imageList.count
+            
+        {
+            
+            cell.cuisineImage.image = #imageLiteral(resourceName: "Add")
+            
+        }else{
+            
+            
+            cell.cuisineImage.sd_setImage(with: URL(string:self.imageList[indexPath.row].image ?? ""), placeholderImage:#imageLiteral(resourceName: "Add"))
+            
+            if selectedIndex == indexPath.row {
+                
+                cell.selectedImage.image = #imageLiteral(resourceName: "check-mark-2")
+                
+            }else{
+                
+                cell.selectedImage.image = nil
+                
+            }
+            // bannerImageView.sd_setImage(with: URL(string: profile.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+            
+            
+        }
+        return cell
+        
+    }
+    
+    /* func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+     
+     if indexPath.row == self.imageList.count
+     {
+     
+     }
+     else
+     {
+     
+     self.selectedIndex = indexPath.row
+     self.imagesGalleryCV.reloadData()
+     
+     }
+     
+     
+     }*/
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print(">>>>>>>>>>DID SELECT>>>>>>>>>")
+        
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
+        UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let padding: CGFloat =  10
+        let collectionViewSize = collectionView.frame.size.width - padding
+        return CGSize(width: collectionViewSize/4, height: collectionViewSize/4)
+        
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        self.selectedIndex = -1
+        self.selectedImageID = self.imageList[indexPath.row].id!
+        self.imagesGallery.reloadData()
+        
+    }
+    
+    @objc func testClick(sender: UIButton) {
+        if sender.tag == self.imageList.count
+        {
+            
+            let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+            registerController.imageArray = self.imageList
+            registerController.selectedIndex = self.selectedIndex
+            self.navigationController?.pushViewController(registerController, animated: true)
+            
+        }
+        else
+        {
+            isImageSelected = !isImageSelected
+            self.selectedIndex = isImageSelected ? sender.tag : -1
+            self.selectedImageID = isImageSelected ? self.imageList[self.selectedIndex].id! : 0
+            self.imagesGallery.reloadData()
+            
+        }
+    }
 }

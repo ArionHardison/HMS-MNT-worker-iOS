@@ -27,6 +27,7 @@ struct ProfileModel : Mappable {
     var longitude : Double?
     var pure_veg : Int?
     var rating : Int?
+    var bank : BankDestails?
     var rating_status : Int?
     var status : String?
     var device_token : String?
@@ -76,6 +77,7 @@ struct ProfileModel : Mappable {
         timings <- map["timings"]
         tokens <- map["tokens"]
         deliveryoption <- map["deliveryoption"]
+        bank <- map["bank"]
         
     }
     
@@ -108,6 +110,38 @@ struct Tokens : Mappable {
         updated_at <- map["updated_at"]
         expires_at <- map["expires_at"]
     }
+}
+
+struct BankDestails : Mappable {
+    
+    
+    var id: Int?
+    var shop_id : Int?
+    var bank_id : String?
+    var bank_name : String?
+    var account_number : String?
+    var holder_name : String?
+    var routing_number : String?
+   
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        id <- map["id"]
+        shop_id <- map["shop_id"]
+        bank_id <- map["bank_id"]
+        bank_name <- map["bank_name"]
+        account_number <- map["account_number"]
+        holder_name <- map["holder_name"]
+        routing_number <- map["routing_number"]
+        
+    }
+    
+  
+    
+    
 }
 
 struct DeliveyOptions : Mappable {

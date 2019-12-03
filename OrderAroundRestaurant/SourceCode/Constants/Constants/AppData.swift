@@ -6,7 +6,7 @@
 //  Copyright © 2018 Appoets. All rights reserved.
 //
 
-var AppName = "RestaurantAround"
+var AppName = "Oyola Kitchen"
 
 let deviceType = "ios"
 

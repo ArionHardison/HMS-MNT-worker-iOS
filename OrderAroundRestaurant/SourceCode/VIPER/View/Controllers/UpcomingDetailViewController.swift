@@ -260,9 +260,9 @@ extension UpcomingDetailViewController{
         cancelTimeButton.layer.cornerRadius = 16
         cancelTimeButton.layer.borderWidth = 1
         cancelButton.layer.cornerRadius = 16
-        cancelButton.layer.borderWidth = 1
+        //cancelButton.layer.borderWidth = 1
         acceptButton.layer.cornerRadius = 16
-        acceptButton.layer.borderWidth = 1
+       // acceptButton.layer.borderWidth = 1
         disputeButton.layer.cornerRadius = 16
         disputeButton.layer.borderWidth = 1
         
@@ -387,6 +387,7 @@ extension UpcomingDetailViewController{
             if fromwhere == "TAKEAWAY"{
               
                 self.acceptButton.setTitle(data.status == "PICKUP_USER" ? "Order Ready" : "Deliver", for:.normal)
+                self.acceptButton.titleLabel?.textColor = UIColor.white
                 
             }
             

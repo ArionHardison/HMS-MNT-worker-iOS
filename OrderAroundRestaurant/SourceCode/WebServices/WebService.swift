@@ -48,6 +48,7 @@ extension Webservice : WebServiceProtocol {
         case nil:
             if httpMethod == .get {
                 request(url, method: .get, parameters: nil,encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                    
                     switch response.result {
                     case .failure:
                         print("ERROR---\(response.error?.localizedDescription ?? "API ERROR")")
