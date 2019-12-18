@@ -88,9 +88,7 @@ class UserDetiailsViewController: BaseViewController {
         self.navigationController?.isNavigationBarHidden = false
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-    }
+   
     private func setNavigationController(){
         
         self.navigationController?.navigationBar.isTranslucent = false

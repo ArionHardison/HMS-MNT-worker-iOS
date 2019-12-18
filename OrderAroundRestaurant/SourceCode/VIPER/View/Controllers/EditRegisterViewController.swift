@@ -58,10 +58,14 @@ class EditRegisterViewController: BaseViewController {
     @IBOutlet weak var AddressView: UIView!
     
     
+    @IBOutlet weak var buttonFreeDelivery: UIButton!
     
     @IBOutlet weak var imagesGalleryCV: UICollectionView!
     
+    @IBOutlet weak var buttonHalal: UIButton!
+    @IBOutlet weak var labelFreeDelivery: NSLayoutConstraint!
     
+    @IBOutlet weak var labelHalal: UILabel!
     var isImageUpload = false
     var isShopBannerImage = false
     var isNo = false
@@ -69,6 +73,14 @@ class EditRegisterViewController: BaseViewController {
     var latStr = ""
     var longStr = ""
     var cusineId = [String]()
+    
+    var imageList = [ImageList]()
+    var selectedImageID = Int()
+    var isImageSelected = false
+    var selectedIndex = -1
+
+    var isHalal = false
+    var isFreeDelivery = false
     
     @IBOutlet weak var buttonTakeAway: UIButton!
     
@@ -84,6 +96,7 @@ class EditRegisterViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         setInitialLoads()
+        imagesGalleryCV.register(UINib(nibName: XIB.Names.GalleryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.GalleryCollectionViewCell)
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -209,7 +222,7 @@ class EditRegisterViewController: BaseViewController {
         let statusController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.StatusViewController) as! StatusViewController
         statusController.delegate = self
         statusController.datePickerValues = ["Active", "Banned", "Onboarding"]
-        self.present(statusController, animated: true, completion: nil)
+       // self.present(statusController, animated: true, completion: nil)
     }
     @IBAction func onSelectCusineAction(_ sender: Any) {
         let selectCusineController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.SelectCusineViewController) as! SelectCusineViewController
@@ -294,11 +307,11 @@ class EditRegisterViewController: BaseViewController {
             return
         }
         
-        guard isImageUpload(isupdate: isImageUpload) else{
+     /*   guard isImageUpload(isupdate: isImageUpload) else{
             showToast(msg: ErrorMessage.list.enterUploadImg)
             
             return
-        }
+        }*/
         
         guard isImageUpload(isupdate: isShopBannerImage) else{
             showToast(msg: "Please Upload Shop Banner Image")
@@ -374,18 +387,32 @@ class EditRegisterViewController: BaseViewController {
                                        "offer_percent":offerPercentTextField.text!,
                                        "latitude":latStr,
                                        "longitude":longStr,
+                                       "image_gallery_id":self.selectedImageID,
                                        "i_offer[0]": isTakeAway ? 1 : 0,
                                        "i_offer[1]": isDelivery ? 2 : 0,
                                        "method":"PATCH"]
         
+        
+         var cusineArray = [Int]()
+        
         for i in 0..<cusineId.count {
             let cusineStr = "cuisine_id[\(i)]"
-            parameters[cusineStr] = cusineId[i]
+          //  parameters[cusineStr] = cusineId[i]
+            
+            let id = Int(cusineId[i])
+            cusineArray.append(id!)
+
         }
+        parameters["cuisine_id"] = cusineArray
         let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
 
         let profileURl = Base.getprofile.rawValue + "/" + String(shopId)
-        self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["avatar":uploadimgeData,"default_banner":BannerUploadimgeData], imgName: "image", modelClass: EditRegisterModel.self, token: true)  
+       // self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["avatar":uploadimgeData,"default_banner":BannerUploadimgeData], imgName: "image", modelClass: EditRegisterModel.self, token: true)
+        
+        self.presenter?.GETPOST(api: profileURl, params: parameters, methodType: .POST, modelClass: EditRegisterModel.self, token: true)
+        
+        
+        
     }
     
 
@@ -442,7 +469,7 @@ extension EditRegisterViewController {
         saveButton.layer.borderWidth = 1
         self.buttonDelivery.addTarget(self, action: #selector(deliveryOptions(sender:)), for: .touchUpInside)
         self.buttonTakeAway.addTarget(self, action: #selector(deliveryOptions(sender:)), for: .touchUpInside)
-        
+         self.presenter?.GETPOST(api: Base.getImagesGallery.rawValue, params:[:], methodType: .GET, modelClass: ImagesGallery.self, token: false)
     }
     
     private func setShadow(){
@@ -663,6 +690,28 @@ extension EditRegisterViewController: PresenterOutputProtocol {
             showToast(msg: "Profile Updated Successfully")
             self.navigationController?.popViewController(animated: true)
 
+        }else if String(describing: modelClass) == model.type.ImagesGallery {
+            
+            if dataArray!.count > 0 {
+                
+                for eachObject in dataArray! {
+                    let images = eachObject as! ImagesGallery
+                    for item in images.image_gallery!
+                    {
+                        self.imageList.append(item)
+                    }
+                    
+                }
+            }else{
+                
+//                self.viewHeight.constant = 0
+//                self.CVHeight.constant = 0
+                
+            }
+            
+            print(self.imageList.count)
+            self.imagesGalleryCV.reloadData()
+            
         }
         
     }
@@ -722,6 +771,113 @@ extension EditRegisterViewController: CountryCodeViewControllerDelegate,SelectCu
         countryCodeLabel.text = Value.dial_code
     }
     
+}
+
+extension EditRegisterViewController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        
+        return  self.imageList.count > 0 ?  self.imageList.count + 1 : 0
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:XIB.Names.GalleryCollectionViewCell, for: indexPath)  as! GalleryCollectionViewCell
+        
+        cell.test.tag = indexPath.row
+        cell.test.addTarget(self, action: #selector(testClick), for: .touchUpInside)
+        
+        if indexPath.row == self.imageList.count
+            
+        {
+            
+            cell.cuisineImage.image = #imageLiteral(resourceName: "Add")
+            
+        }else{
+            
+            
+            cell.cuisineImage.sd_setImage(with: URL(string:self.imageList[indexPath.row].image ?? ""), placeholderImage:#imageLiteral(resourceName: "Add"))
+            
+            if selectedIndex == indexPath.row {
+                
+                cell.selectedImage.image = #imageLiteral(resourceName: "check-mark-2")
+                
+            }else{
+                
+                cell.selectedImage.image = nil
+                
+            }
+            // bannerImageView.sd_setImage(with: URL(string: profile.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+            
+            
+        }
+        return cell
+        
+    }
+    
+    /* func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+     
+     if indexPath.row == self.imageList.count
+     {
+     
+     }
+     else
+     {
+     
+     self.selectedIndex = indexPath.row
+     self.imagesGalleryCV.reloadData()
+     
+     }
+     
+     
+     }*/
+    
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        print(">>>>>>>>>>DID SELECT>>>>>>>>>")
+        
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
+        UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let padding: CGFloat =  10
+        let collectionViewSize = collectionView.frame.size.width - padding
+        return CGSize(width: collectionViewSize/4, height: collectionViewSize/4)
+        
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        
+        self.selectedIndex = -1
+        self.selectedImageID = self.imageList[indexPath.row].id!
+        self.imagesGalleryCV.reloadData()
+        
+    }
+    
+    @objc func testClick(sender: UIButton) {
+        if sender.tag == self.imageList.count
+        {
+            
+            let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+            registerController.imageArray = self.imageList
+            registerController.selectedIndex = self.selectedIndex
+            self.navigationController?.pushViewController(registerController, animated: true)
+            
+        }
+        else
+        {
+            isImageSelected = !isImageSelected
+            self.selectedIndex = isImageSelected ? sender.tag : -1
+            self.selectedImageID = isImageSelected ? self.imageList[self.selectedIndex].id! : 0
+            self.imagesGalleryCV.reloadData()
+            
+        }
+    }
 }
 extension EditRegisterViewController: GMSAutocompleteViewControllerDelegate {
     

@@ -67,9 +67,11 @@ class RegisterViewController: BaseViewController {
     @IBOutlet weak var landmarkLabel: UILabel!
     @IBOutlet weak var landmarkTextField: UITextField!
     
+    @IBOutlet weak var buttonHalal: UIButton!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var AddressView: UIView!
     
+    @IBOutlet weak var labelHalal: UILabel!
     @IBOutlet weak var imagesGalleryCV: UICollectionView!
     //MARK:- Declaration
     
@@ -85,6 +87,7 @@ class RegisterViewController: BaseViewController {
     var imageList = [ImageList]()
     var selectedImageID = Int()
     var isImageSelected = false
+    var isHalal = false
     
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
     
@@ -146,7 +149,17 @@ class RegisterViewController: BaseViewController {
            // self.takeAwayButton.setImage(#imageLiteral(resourceName: "radiooff"), for: .normal)
            // isTakeAway = false
 
+        }else if sender.tag == 3 {
+            
+            isHalal = !isHalal
+            self.buttonHalal.setImage(isHalal ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
+            
+            
         }
+        
+        
+        
+        
     }
     
     @IBAction func onnoButtonAction(_ sender: Any) {
@@ -403,6 +416,7 @@ class RegisterViewController: BaseViewController {
         editTimingController.isTakeaway = isTakeAway
         editTimingController.isDelivery = isDelivery
         editTimingController.shopImageId = self.selectedImageID
+        editTimingController.isHalal = isHalal
         self.navigationController?.pushViewController(editTimingController, animated: true)
         
     }
@@ -544,6 +558,7 @@ extension RegisterViewController {
         descriptionTextField.setLeftPaddingPoints(10)
     }
     private func setFont(){
+        
         noLabel.font = UIFont.regular(size: 14)
         yesLabel.font = UIFont.regular(size: 14)
         noRadioButton.titleLabel?.font = UIFont.regular(size: 14)
@@ -581,6 +596,9 @@ extension RegisterViewController {
         landmarkLabel.font = UIFont.bold(size: 14)
         landmarkTextField.font = UIFont.regular(size: 14)
         addressLabel.font = UIFont.bold(size: 14)
+        labelHalal.font = UIFont.bold(size: 14)
+        deliveryLabel.font = UIFont.bold(size: 14)
+        takeAwayLabel.font = UIFont.bold(size: 14)
     }
     
 

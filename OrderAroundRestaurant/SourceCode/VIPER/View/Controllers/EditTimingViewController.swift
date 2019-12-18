@@ -59,6 +59,7 @@ class EditTimingViewController: BaseViewController {
     var isTakeaway = false
     var isDelivery = false
     var shopImageId = 0
+    var isHalal = false
     
     
 
@@ -136,14 +137,12 @@ class EditTimingViewController: BaseViewController {
                 "pure_veg":isYes,
                 "estimated_delivery_time":maxDelivery,
                 /*"day[0]":"ALL",*/
-                    "hours_opening":["ALL":openTime],
-                    "hours_closing":["ALL":closeTime],
+                "hours_opening":["ALL":openTime],
+                "hours_closing":["ALL":closeTime],
                 "image_gallery_id":self.shopImageId,
                 "i_offer[0]": isTakeaway ? 1 : 0,
                 "i_offer[1]": isDelivery ? 2 : 0
                 ] as [String : Any]
-                
-               
                 
                 var cusine = [Int]()
                 for i in 0..<cusineId.count {

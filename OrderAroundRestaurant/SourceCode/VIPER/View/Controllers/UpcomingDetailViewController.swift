@@ -206,6 +206,7 @@ class UpcomingDetailViewController: BaseViewController {
                                        "_method":"PATCH"]
         self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
         
+        
     }
     
     @IBAction func onCallAction(_ sender: Any) {
@@ -485,7 +486,14 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
           
 
             if fromwhere == "HOME" {
-                self.navigationController?.popViewController(animated: true)
+               // self.navigationController?.popViewController(animated: true)
+                
+                
+                let historyViewController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.HistoryViewController) as! HistoryViewController
+                historyViewController.fromUpComingDetails = true
+                self.navigationController?.pushViewController(historyViewController, animated: true)
+                
+                
             }else{
                   HideActivityIndicator()
                  let data = dataDict as? AcceptModel

@@ -12,6 +12,7 @@ import ObjectMapper
 class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
     
     var pageMenu : CAPSPageMenu?
+    var fromUpComingDetails = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,8 +66,18 @@ extension HistoryViewController {
         
     }
     @objc func ClickonBackBtn()
+        
+        
     {
-        self.navigationController?.popViewController(animated: true)
+        if !fromUpComingDetails {
+            self.navigationController?.popViewController(animated: true)
+
+        }else{
+            
+            
+            let homeVC = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.HomeViewController) as! HomeViewController
+            
+            self.navigationController?.pushViewController(homeVC, animated: true)        }
     }
 }
 
