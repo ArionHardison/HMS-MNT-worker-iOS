@@ -30,6 +30,7 @@ struct GetProductEntity : Mappable {
     var categories : [Categories]?
     var shop : ProductShop?
     var addons : [String]?
+    var ingradients : String?
     
     init?(map: Map) {
         
@@ -57,6 +58,7 @@ struct GetProductEntity : Mappable {
         categories <- map["categories"]
         shop <- map["shop"]
         addons <- map["addons"]
+        ingradients <- map["ingradients"]
     }
     
 }

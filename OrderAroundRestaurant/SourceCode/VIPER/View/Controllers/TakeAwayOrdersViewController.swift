@@ -156,7 +156,7 @@ extension TakeAwayOrdersViewController : PresenterOutputProtocol {
             setOrderHistoryApi()
             
             
-        }else if String(describing: modelClass) == model.type.OrderModel {
+        }else if String(describing: modelClass) == model.type.OrderModel  {
             HideActivityIndicator()
             let data = dataDict as! OrderModel
             self.upcomingRequestArr = data.orders ?? []

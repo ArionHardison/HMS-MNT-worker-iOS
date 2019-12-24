@@ -156,9 +156,7 @@ class RegisterViewController: BaseViewController {
             
             
         }
-        
-        
-        
+  
         
     }
     
@@ -214,11 +212,7 @@ class RegisterViewController: BaseViewController {
     }
     */
     
-    
-    
-   
 
-    
     @IBAction func onStatusAction(_ sender: Any) {
         let statusController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.StatusViewController) as! StatusViewController
         statusController.delegate = self
@@ -424,18 +418,17 @@ class RegisterViewController: BaseViewController {
 }
 extension RegisterViewController {
     private func setShadow(){
+        
         self.addShadowTextField(textField: self.emailAddressTextField)
         self.addShadowTextField(textField: self.nameTextField)
         self.addShadowTextField(textField: self.phoneNumberTextField)
         self.addShadowTextField(textField: self.passwordTextField)
-          self.addShadowTextField(textField: self.confirmPasswordTextfield)
+        self.addShadowTextField(textField: self.confirmPasswordTextfield)
         self.addShadowTextField(textField: self.offerPercentTextField)
-
         self.addShadowTextField(textField: self.minAmountTextField)
         self.addShadowTextField(textField: self.descriptionTextField)
         self.addShadowTextField(textField: self.landmarkTextField)
         self.addShadowTextField(textField: self.maximumDeliveryTextField)
-
         self.addShadowView(view: AddressView)
         self.addShadowView(view: statusView)
         self.addShadowView(view: cuisineView)

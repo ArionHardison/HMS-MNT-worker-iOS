@@ -141,7 +141,8 @@ class EditTimingViewController: BaseViewController {
                 "hours_closing":["ALL":closeTime],
                 "image_gallery_id":self.shopImageId,
                 "i_offer[0]": isTakeaway ? 1 : 0,
-                "i_offer[1]": isDelivery ? 2 : 0
+                "i_offer[1]": isDelivery ? 2 : 0,
+                "halal" : isHalal ? 1 : 0
                 ] as [String : Any]
                 
                 var cusine = [Int]()

@@ -56,14 +56,17 @@ class EditRegisterViewController: BaseViewController {
     @IBOutlet weak var landmarkTextField: UITextField!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var AddressView: UIView!
-    
+    @IBOutlet weak var labelTakeWay: UILabel!
+    @IBOutlet weak var labelDelivery: UILabel!
+
     
     @IBOutlet weak var buttonFreeDelivery: UIButton!
     
     @IBOutlet weak var imagesGalleryCV: UICollectionView!
     
+    @IBOutlet weak var labelIoofer: UILabel!
     @IBOutlet weak var buttonHalal: UIButton!
-    @IBOutlet weak var labelFreeDelivery: NSLayoutConstraint!
+    @IBOutlet weak var labelFreeDelivery: UILabel!
     
     @IBOutlet weak var labelHalal: UILabel!
     var isImageUpload = false
@@ -262,8 +265,18 @@ class EditRegisterViewController: BaseViewController {
             self.buttonDelivery.setImage(isDelivery ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
             
         }
+        else if sender.tag == 3
+        {
+            isHalal = !isHalal
+            self.buttonHalal.setImage(isHalal ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
+            
+        }else if sender.tag == 4
+        {
+            isFreeDelivery = !isFreeDelivery
+            self.buttonFreeDelivery.setImage(isFreeDelivery ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
+            
+        }
     }
-    
     @IBAction func onsaveButton(_ sender: Any) {
         
         
@@ -313,11 +326,11 @@ class EditRegisterViewController: BaseViewController {
             return
         }*/
         
-        guard isImageUpload(isupdate: isShopBannerImage) else{
+   /*     guard isImageUpload(isupdate: isShopBannerImage) else{
             showToast(msg: "Please Upload Shop Banner Image")
             
             return
-        }
+        }*/
         
         guard isCheckFeatureProduct(yesVal : isYes,noVal : isNo) else{
             showToast(msg: "Please Select Is pure Veg Kitchen")
@@ -379,7 +392,7 @@ class EditRegisterViewController: BaseViewController {
                                        "country_code":countryCodeLabel.text!,
                                        "status":statusValueLabel.text!,
                                        "pureVeg":isPureVeg,
-                                       "offer_min_amount":minAmountTextField.text!,
+                                      "offer_min_amount":minAmountTextField.text!,
                                        "estimated_delivery_time":maximumDeliveryTextField.text!,
                                        "description":descriptionTextField.text!,
                                        "address":addressValueLabel.text!,
@@ -390,6 +403,8 @@ class EditRegisterViewController: BaseViewController {
                                        "image_gallery_id":self.selectedImageID,
                                        "i_offer[0]": isTakeAway ? 1 : 0,
                                        "i_offer[1]": isDelivery ? 2 : 0,
+                                       "halal"  : isHalal ? 1 : 0,
+                                       "free_delivery" : isFreeDelivery ? 1 : 0,
                                        "method":"PATCH"]
         
         
@@ -469,6 +484,8 @@ extension EditRegisterViewController {
         saveButton.layer.borderWidth = 1
         self.buttonDelivery.addTarget(self, action: #selector(deliveryOptions(sender:)), for: .touchUpInside)
         self.buttonTakeAway.addTarget(self, action: #selector(deliveryOptions(sender:)), for: .touchUpInside)
+        self.buttonHalal.addTarget(self, action: #selector(deliveryOptions(sender:)), for: .touchUpInside)
+        self.buttonFreeDelivery.addTarget(self, action: #selector(deliveryOptions(sender:)), for: .touchUpInside)
          self.presenter?.GETPOST(api: Base.getImagesGallery.rawValue, params:[:], methodType: .GET, modelClass: ImagesGallery.self, token: false)
     }
     
@@ -591,6 +608,15 @@ extension EditRegisterViewController {
         landmarkLabel.font = UIFont.bold(size: 14)
         landmarkTextField.font = UIFont.regular(size: 14)
         addressLabel.font = UIFont.bold(size: 14)
+        labelHalal.font = UIFont.bold(size: 14)
+        labelFreeDelivery.font = UIFont.bold(size: 14)
+        labelHalal.font = UIFont.bold(size: 14)
+        labelFreeDelivery.font = UIFont.bold(size: 14)
+        labelTakeWay.font = UIFont.bold(size: 14)
+        labelDelivery.font = UIFont.bold(size: 14)
+        labelIoofer.font = UIFont.bold(size: 14)
+        
+        
     }
 }
 //MARK: VIPER Extension:
@@ -646,6 +672,12 @@ extension EditRegisterViewController: PresenterOutputProtocol {
                 isYes = true
 
             }
+            
+            self.buttonHalal.setImage(data?.halal == 1 ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
+            self.buttonFreeDelivery.setImage(data?.free_delivery == 1 ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
+            
+             isFreeDelivery = data?.free_delivery == 1 ? true : false
+             isHalal = data?.halal == 1 ? true : false
             
             for item in (data?.deliveryoption)! {
                 if item.delivery_option_id == 1

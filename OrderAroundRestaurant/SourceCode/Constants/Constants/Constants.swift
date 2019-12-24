@@ -189,6 +189,8 @@ struct ErrorMessage {
     let enterValidEmail = "Please Enter valid Email."
     let enterPassword = "Please Enter Password"
     let enterDescription = "Please Enter Description"
+    let enterIngradients = "Please Enter Ingradients"
+
     let enterStatus = "Please Select Status"
     let enterCaetgoryOrder = "Please Enter Category Order"
     let enterUploadImg = "Please Upload Image"

@@ -10,6 +10,8 @@ import UIKit
 import ObjectMapper
 class CreateProductAddonsViewController: BaseViewController {
 
+    @IBOutlet weak var existingImage: UIImageView!
+    @IBOutlet weak var labelExistingLabel: UILabel!
     @IBOutlet weak var overView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -39,10 +41,17 @@ class CreateProductAddonsViewController: BaseViewController {
     @IBOutlet weak var bottomView: UIView!
     @IBOutlet weak var imageUploadLabel: UILabel!
     
+    @IBOutlet weak var labelIngradients: UILabel!
     @IBOutlet weak var featureImageUploadImageView: UIImageView!
     @IBOutlet weak var imageUploadImageView: UIImageView!
     var isUploadImage = false
     var isFeatureUploadImage = false
+    
+    @IBOutlet weak var labelImageUpload: UILabel!
+    
+    
+    @IBOutlet weak var textViewInradients: UITextView!
+    
     
     @IBOutlet weak var imagesGallery: UICollectionView!
     var cusineListArr = [CusineListModel]()
@@ -61,6 +70,7 @@ class CreateProductAddonsViewController: BaseViewController {
     var categoryId = 0
     var productCusineId = 0
     var featureStr = ""
+    var ingradient = String()
     var selectedIndex = -1
     var selectedImageID = Int()
     var isImageSelected = false
@@ -194,6 +204,13 @@ class CreateProductAddonsViewController: BaseViewController {
             return
         }
         
+        guard let ingradients = textViewInradients.text, !ingradients.isEmpty else{
+            showToast(msg: ErrorMessage.list.enterIngradients)
+            return
+        }
+        
+        
+        
         guard let productCusine = productCusineValueLabel.text, !productCusine.isEmpty else{
             showToast(msg: ErrorMessage.list.enterProductCusine)
             return
@@ -259,6 +276,7 @@ class CreateProductAddonsViewController: BaseViewController {
         createProductController.cusineId = String(productCusineId)
         createProductController.productOrder = productOrederTextField.text ?? ""
         createProductController.featureStr = featureStr
+        createProductController.ingradient = ingradients
         createProductController.productdata = productdata
         createProductController.imageID = self.selectedImageID
         self.navigationController?.pushViewController(createProductController, animated: true)
@@ -303,7 +321,7 @@ extension CreateProductAddonsViewController{
     private func setTitle() {
         productCusineLabel.text = APPLocalize.localizestring.productCusine.localize()
         productOrderLabel.text = APPLocalize.localizestring.productOrder.localize()
-        imageUploadLabel.text = APPLocalize.localizestring.imageUpload.localize()
+        //imageUploadLabel.text = APPLocalize.localizestring.imageUpload.localize()
         featuredProductLabel.text = APPLocalize.localizestring.Isfeatured.localize()
         btnSave.setTitle(APPLocalize.localizestring.next.localize(), for: .normal)
     }
@@ -337,6 +355,8 @@ extension CreateProductAddonsViewController{
         self.addShadowTextField(textField: self.nameTextField)
         self.addShadowTextField(textField: self.productOrederTextField)
         self.addShadowTextView(textView: self.descriptionTextView)
+        self.addShadowTextView(textView: self.textViewInradients)
+
         self.addShadowView(view: self.statusView)
         self.addShadowView(view: self.imageUploadView)
         self.addShadowView(view: self.featureImageUploadView)
@@ -386,7 +406,10 @@ extension CreateProductAddonsViewController{
         featuredImageUpload.font = UIFont.bold(size: 15)
         productOrderLabel.font = UIFont.bold(size: 15)
         statusValueLabel.font = UIFont.regular(size: 14)
-        imageUploadLabel.font = UIFont.bold(size: 15)
+        labelExistingLabel.font = UIFont.bold(size: 15)
+        labelIngradients.font = UIFont.bold(size: 15)
+        labelExistingLabel.font = UIFont.bold(size: 15)
+        labelImageUpload.font = UIFont.bold(size: 15)
     }
     
     private func setTableViewContentInset(){
@@ -445,6 +468,7 @@ extension CreateProductAddonsViewController: PresenterOutputProtocol {
         else if String(describing: modelClass) == model.type.GetProductEntity {
             self.productdata = dataDict as? GetProductEntity
             nameTextField.text = productdata?.name
+            textViewInradients.text = productdata?.ingradients
             descriptionTextView.text = productdata?.description
             productCusineValueLabel.text = productdata?.shop?.cuisines?.first?.name
             productCusineId = productdata?.shop?.cuisines?.first?.id ?? 0
@@ -463,7 +487,7 @@ extension CreateProductAddonsViewController: PresenterOutputProtocol {
             }else{
                 isUploadImage = true
             }
-            imageUploadImageView.sd_setImage(with: URL(string: uploadImageView), placeholderImage: UIImage(named: "what's-special"))
+            existingImage.sd_setImage(with: URL(string: uploadImageView), placeholderImage: UIImage(named: "what's-special"))
             let featureIdStr: String! = String(describing: productModel?.featured ?? 0)
 
             featureStr = featureIdStr

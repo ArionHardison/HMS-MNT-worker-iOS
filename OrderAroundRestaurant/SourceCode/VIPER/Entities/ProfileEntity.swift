@@ -41,6 +41,9 @@ struct ProfileModel : Mappable {
     var timings : [Timings]?
     var tokens : [Tokens]?
     var deliveryoption : [DeliveyOptions]?
+    var halal : Int?
+    var free_delivery : Int?
+    
     
     init?(map: Map) {
         
@@ -78,6 +81,8 @@ struct ProfileModel : Mappable {
         tokens <- map["tokens"]
         deliveryoption <- map["deliveryoption"]
         bank <- map["bank"]
+        halal <- map["halal"]
+        free_delivery <- map["free_delivery"]
         
     }
     

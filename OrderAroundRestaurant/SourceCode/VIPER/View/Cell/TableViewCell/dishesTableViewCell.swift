@@ -24,8 +24,11 @@ class dishesTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    private func setFont(){
+    private func setFont()
+    {
+        
         titleLabel.font = UIFont.bold(size: 14)
+        titleLabel.textColor = #colorLiteral(red: 0.1134270206, green: 0.5806862712, blue: 0.1150311008, alpha: 1)
         
     }
     

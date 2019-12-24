@@ -16,6 +16,13 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var restaurantLocation: UILabel!
     @IBOutlet weak var upcomingRequestTableView: UITableView!
     
+    @IBOutlet weak var labelUpComingRequests: UILabel!
+    
+    
+    @IBOutlet weak var upcomingLabelHeight: NSLayoutConstraint!
+    
+    
+    
     private var profileDataResponse: ProfileModel?
     var upcomingRequestArr = [Orders]()
     var timerGetRequest: Timer?
@@ -59,6 +66,7 @@ class HomeViewController: BaseViewController {
 }
 extension HomeViewController{
     private func setInitialLoad(){
+        
         showActivityIndicator()
         setRegister()
         setFont()
@@ -86,6 +94,8 @@ extension HomeViewController{
     private func setFont(){
         restaurantNameLabel.font = UIFont.bold(size: 20)
         restaurantLocation.font = UIFont.bold(size: 18)
+        labelUpComingRequests.font = UIFont.bold(size: 20)
+
     }
     private func setValues(profile: ProfileModel){
         restaurantNameLabel.text = profile.name
@@ -120,6 +130,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
             cell.waitingView.isHidden = false
             cell.overView.isHidden = true
+            self.upcomingLabelHeight.constant = 0
             return cell
         }else {
             
@@ -194,6 +205,9 @@ extension HomeViewController: PresenterOutputProtocol {
             HideActivityIndicator()
             let data = dataDict as! OrderModel
             self.upcomingRequestArr = data.orders ?? []
+            
+            self.upcomingLabelHeight.constant = self.upcomingRequestArr.count > 0 ? 25 : 0
+            
             upcomingRequestTableView.reloadData()
         }
         

@@ -38,6 +38,7 @@ class CreateProductViewController: BaseViewController {
     var featureStr = ""
     var productdata: GetProductEntity?
     var imageID = 0
+    var ingradient = String()
     
 
 
@@ -132,6 +133,7 @@ class CreateProductViewController: BaseViewController {
                                            "status":status,
                                            "cuisine_id":cusineId,
                                            "category":categoryId,
+                                           "ingredients":ingradient,
                                             "image_gallery_id" : imageID,
                                            "_method":"PATCH"]
             for i in 0..<addOnsId.count {
@@ -158,6 +160,7 @@ class CreateProductViewController: BaseViewController {
                                        "discount":discountTextField.text!,
                                        "discount_type":discountTypeValueLabel.text!,
                                        "status":status,
+                                       "ingredients":ingradient,
                                        "cuisine_id":cusineId,
                                        "image_gallery_id" : imageID,
                                        "category":categoryId,
