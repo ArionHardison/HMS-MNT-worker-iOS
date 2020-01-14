@@ -19,6 +19,7 @@ target 'OrderAroundRestaurant' do
   pod 'Crashlytics', '~> 3.12.0'
   pod 'Firebase/Core'
   pod 'TextFieldEffects'
+  pod 'UnsplashPhotoPicker', '~> 1.1'
 
 
   target 'OrderAroundRestaurantTests' do

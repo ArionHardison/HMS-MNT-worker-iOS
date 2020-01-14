@@ -9,6 +9,7 @@
 import UIKit
 import ObjectMapper
 import GooglePlaces
+import UnsplashPhotoPicker
 
 class EditRegisterViewController: BaseViewController {
     
@@ -69,6 +70,18 @@ class EditRegisterViewController: BaseViewController {
     @IBOutlet weak var labelFreeDelivery: UILabel!
     
     @IBOutlet weak var labelHalal: UILabel!
+    
+    @IBOutlet weak var imgCuisine: UIImageView!
+    
+    
+    @IBOutlet weak var labelSelectBannerImg: UILabel!
+    
+    @IBOutlet weak var bannerCV: UICollectionView!
+    
+    @IBOutlet weak var imgBanner: UIImageView!
+    
+    @IBOutlet weak var labelSelectedBannerImg: UILabel!
+    
     var isImageUpload = false
     var isShopBannerImage = false
     var isNo = false
@@ -81,16 +94,26 @@ class EditRegisterViewController: BaseViewController {
     var selectedImageID = Int()
     var isImageSelected = false
     var selectedIndex = -1
+    var bannerIndex = -1
+    var bannerImgID = 0
 
+    var isBanner = false
     var isHalal = false
     var isFreeDelivery = false
     
     @IBOutlet weak var buttonTakeAway: UIButton!
     
     @IBOutlet weak var buttonDelivery: UIButton!
+    @IBOutlet weak var labelSelectCuisineImage: UILabel!
     
     var isTakeAway = false
     var isDelivery = false
+    var banner = 0
+    var shop = 0
+    var banneURL = String()
+    var shopURL = String()
+    private var photos = [UnsplashPhoto]()
+
  
     @IBOutlet weak var cusinesCollectionHeight: NSLayoutConstraint!
     
@@ -100,6 +123,8 @@ class EditRegisterViewController: BaseViewController {
         // Do any additional setup after loading the view.
         setInitialLoads()
         imagesGalleryCV.register(UINib(nibName: XIB.Names.GalleryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.GalleryCollectionViewCell)
+        bannerCV.register(UINib(nibName: XIB.Names.GalleryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.GalleryCollectionViewCell)
+
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -419,6 +444,26 @@ class EditRegisterViewController: BaseViewController {
 
         }
         parameters["cuisine_id"] = cusineArray
+        
+        if bannerImgID != 0  {
+            
+            parameters["image_banner_id"]  = bannerImgID
+            
+        }
+        
+        
+        if shopURL != "" {
+            
+            parameters["image_gallery_img"] = shopURL
+        }
+        
+        if banneURL != "" {
+            
+            
+            parameters["image_banner_img"] = banneURL
+        }
+        
+  
         let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
 
         let profileURl = Base.getprofile.rawValue + "/" + String(shopId)
@@ -615,6 +660,11 @@ extension EditRegisterViewController {
         labelTakeWay.font = UIFont.bold(size: 14)
         labelDelivery.font = UIFont.bold(size: 14)
         labelIoofer.font = UIFont.bold(size: 14)
+        labelSelectBannerImg.font = UIFont.bold(size: 14)
+        labelSelectedBannerImg.font = UIFont.bold(size: 14)
+        labelSelectCuisineImage.font = UIFont.bold(size: 14)
+
+
         
         
     }
@@ -643,9 +693,11 @@ extension EditRegisterViewController: PresenterOutputProtocol {
             
             phoneNumberTextField.text = data?.phone
             statusValueLabel.text = data?.status
+            shopURL = (data?.avatar)!
+            banneURL = (data?.default_banner)!
             
             if canOpenURL(string: data?.avatar){
-                imageUploadImageView.sd_setImage(with: URL(string: data?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+                imgCuisine.sd_setImage(with: URL(string: data?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
                 isImageUpload = true
 
             }else{
@@ -653,13 +705,18 @@ extension EditRegisterViewController: PresenterOutputProtocol {
             }
             
             if canOpenURL(string: data?.default_banner){
-                shopBannerImageView.sd_setImage(with: URL(string: data?.default_banner ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+                imgBanner.sd_setImage(with: URL(string: data?.default_banner ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
                 isShopBannerImage = true
             }else{
                 isShopBannerImage = false
 
             }
             
+            
+            imgBanner.sd_setImage(with: URL(string: banneURL), placeholderImage: UIImage(named: "user-placeholder"))
+            imgCuisine.sd_setImage(with: URL(string: shopURL), placeholderImage: UIImage(named: "user-placeholder"))
+
+
             if data?.pure_veg == 0 {
                 isNo = true
                 let image = UIImage(named: "radioon")?.withRenderingMode(.alwaysTemplate)
@@ -743,6 +800,7 @@ extension EditRegisterViewController: PresenterOutputProtocol {
             
             print(self.imageList.count)
             self.imagesGalleryCV.reloadData()
+            self.bannerCV.reloadData()
             
         }
         
@@ -810,42 +868,97 @@ extension EditRegisterViewController : UICollectionViewDelegate,UICollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         
-        return  self.imageList.count > 0 ?  self.imageList.count + 1 : 0
         
+        if collectionView == bannerCV || collectionView == imagesGalleryCV {
+        
+         return  self.imageList.count > 0 ?  self.imageList.count + 1 : 0
+            
+        }
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:XIB.Names.GalleryCollectionViewCell, for: indexPath)  as! GalleryCollectionViewCell
         
-        cell.test.tag = indexPath.row
-        cell.test.addTarget(self, action: #selector(testClick), for: .touchUpInside)
         
-        if indexPath.row == self.imageList.count
+        
+        
+        if collectionView == imagesGalleryCV {
             
-        {
+            let cell = imagesGalleryCV.dequeueReusableCell(withReuseIdentifier:XIB.Names.GalleryCollectionViewCell, for: indexPath)  as! GalleryCollectionViewCell
             
-            cell.cuisineImage.image = #imageLiteral(resourceName: "Add")
+            cell.test.tag = indexPath.row
+            cell.test.addTarget(self, action: #selector(testClick), for: .touchUpInside)
             
-        }else{
-            
-            
-            cell.cuisineImage.sd_setImage(with: URL(string:self.imageList[indexPath.row].image ?? ""), placeholderImage:#imageLiteral(resourceName: "Add"))
-            
-            if selectedIndex == indexPath.row {
+            if indexPath.row == self.imageList.count
                 
-                cell.selectedImage.image = #imageLiteral(resourceName: "check-mark-2")
+            {
+                
+                cell.cuisineImage.image = #imageLiteral(resourceName: "Add")
                 
             }else{
                 
-                cell.selectedImage.image = nil
+                
+                cell.cuisineImage.sd_setImage(with: URL(string:self.imageList[indexPath.row].image ?? ""), placeholderImage:#imageLiteral(resourceName: "Add"))
+                
+                if selectedIndex == indexPath.row {
+                    
+                    cell.selectedImage.image = #imageLiteral(resourceName: "check-mark-2")
+                    
+                }else{
+                    
+                    cell.selectedImage.image = nil
+                    
+                }
+                // bannerImageView.sd_setImage(with: URL(string: profile.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+                
                 
             }
-            // bannerImageView.sd_setImage(with: URL(string: profile.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+            return cell
+            
+        }else if collectionView == bannerCV {
+            
+            let cell = bannerCV.dequeueReusableCell(withReuseIdentifier:XIB.Names.GalleryCollectionViewCell, for: indexPath)  as! GalleryCollectionViewCell
+            
+            cell.test.tag = indexPath.row
+            cell.test.addTarget(self, action: #selector(bannerTap(sender:)), for: .touchUpInside)
+            
+            if indexPath.row == self.imageList.count
+                
+            {
+                
+                cell.cuisineImage.image = #imageLiteral(resourceName: "Add")
+                
+            }else{
+                
+                
+                cell.cuisineImage.sd_setImage(with: URL(string:self.imageList[indexPath.row].image ?? ""), placeholderImage:#imageLiteral(resourceName: "Add"))
+                
+                if bannerIndex == indexPath.row {
+                    
+                    cell.selectedImage.image = #imageLiteral(resourceName: "check-mark-2")
+                    
+                }else{
+                    
+                    cell.selectedImage.image = nil
+                    
+                }
+                // bannerImageView.sd_setImage(with: URL(string: profile.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+                
+                
+            }
+            return cell
+            
             
             
         }
-        return cell
+        
+
+        
+        return UICollectionViewCell()
+        
+        
+
         
     }
     
@@ -895,10 +1008,14 @@ extension EditRegisterViewController : UICollectionViewDelegate,UICollectionView
         if sender.tag == self.imageList.count
         {
             
-            let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+          /*  let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
             registerController.imageArray = self.imageList
             registerController.selectedIndex = self.selectedIndex
-            self.navigationController?.pushViewController(registerController, animated: true)
+            self.navigationController?.pushViewController(registerController, animated: true)*/
+            
+            
+            shop = 1
+            loadUnSplash()
             
         }
         else
@@ -910,6 +1027,78 @@ extension EditRegisterViewController : UICollectionViewDelegate,UICollectionView
             
         }
     }
+    
+    
+    @objc func bannerTap(sender: UIButton) {
+        
+        
+        if sender.tag == self.imageList.count
+        {
+            
+         /*   let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+            registerController.imageArray = self.imageList
+            registerController.selectedIndex = self.selectedIndex
+            self.navigationController?.pushViewController(registerController, animated: true)*/
+            
+            
+            banner = 1
+            loadUnSplash()
+            
+            
+        }
+        else
+        {
+            isBanner = !isBanner
+            self.bannerIndex = isBanner ? sender.tag : -1
+            self.bannerImgID = isBanner ? self.imageList[self.bannerIndex].id! : 0
+            self.bannerCV.reloadData()
+            
+        }
+    }
+
+    
+}
+
+extension EditRegisterViewController : UnsplashPhotoPickerDelegate {
+    
+    func unsplashPhotoPicker(_ photoPicker: UnsplashPhotoPicker, didSelectPhotos photos: [UnsplashPhoto]) {
+        
+        self.photos = photos
+        if banner == 1 {
+            banneURL =  self.photos.first?.urls[.regular]!.absoluteString ?? ""
+            //bannerViewHeight.constant = 150
+           imgBanner.sd_setImage(with: URL(string: banneURL), placeholderImage: UIImage(named: "user-placeholder"))
+            
+            
+        }
+        else if shop == 1 {
+            
+            shopURL = self.photos.first?.urls[.regular]!.absoluteString ?? ""
+            //unsplashViewHeight.constant = 150
+            imgCuisine.sd_setImage(with: URL(string: shopURL), placeholderImage: UIImage(named: "user-placeholder"))
+            
+        }
+    }
+    
+    func unsplashPhotoPickerDidCancel(_ photoPicker: UnsplashPhotoPicker) {
+        
+        
+    }
+    
+    func loadUnSplash(){
+        
+        let configuration = UnsplashPhotoPickerConfiguration(
+            accessKey:"0813811a510708005bed659afd6c652e6ef32ad72df534d37598dcd05f46af35",
+            secretKey:"42dc66500397d66972dea4952edb76699cf6f9c8824dba27df1354bc1bfdaa50",
+            query: "",
+            allowsMultipleSelection: false
+        )
+        let unsplashPhotoPicker = UnsplashPhotoPicker(configuration: configuration)
+        unsplashPhotoPicker.photoPickerDelegate = self
+        present(unsplashPhotoPicker, animated: true, completion: nil)
+        
+    }
+    
 }
 extension EditRegisterViewController: GMSAutocompleteViewControllerDelegate {
     

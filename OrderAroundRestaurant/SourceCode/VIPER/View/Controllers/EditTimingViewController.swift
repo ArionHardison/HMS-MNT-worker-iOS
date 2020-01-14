@@ -59,8 +59,10 @@ class EditTimingViewController: BaseViewController {
     var isTakeaway = false
     var isDelivery = false
     var shopImageId = 0
+    var bannerID = 0
     var isHalal = false
-    
+    var shopURL = String()
+    var bannerURL = String()
     
 
     override func viewDidLoad() {
@@ -139,7 +141,6 @@ class EditTimingViewController: BaseViewController {
                 /*"day[0]":"ALL",*/
                 "hours_opening":["ALL":openTime],
                 "hours_closing":["ALL":closeTime],
-                "image_gallery_id":self.shopImageId,
                 "i_offer[0]": isTakeaway ? 1 : 0,
                 "i_offer[1]": isDelivery ? 2 : 0,
                 "halal" : isHalal ? 1 : 0
@@ -151,6 +152,26 @@ class EditTimingViewController: BaseViewController {
                     //param[cusineStr] = cusineId[i]
                     cusine.append(cusineId[i])
                 }
+                
+                if self.shopImageId != 0 {
+                    
+                    param["image_gallery_id"] = self.shopImageId
+                }
+                if self.bannerID != 0 {
+                    
+                  param["image_banner_id"] = self.bannerID
+                }
+                if shopURL != "" {
+                   param["image_gallery_img"] = shopURL
+                    
+                }
+                if bannerURL != "" {
+                    
+                    param["image_banner_img"] = bannerURL
+                    
+                }
+                
+                
                 
                 let days = "day[\(0)]"
                // param[days] = "ALL"
@@ -209,6 +230,7 @@ class EditTimingViewController: BaseViewController {
                     "latitude":latitude,
                     "longitude":longitude,
                     "pure_veg":isYes,
+                     "image_banner_id": self.bannerID,
                     "estimated_delivery_time":maxDelivery,
                     /*"day[SUN]":"SUN",*/
                     "hours_opening":["MON":openingArray[0],

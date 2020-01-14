@@ -71,6 +71,7 @@ PODS:
   - SDWebImage/Core (4.4.5)
   - SwiftyJSON (4.2.0)
   - TextFieldEffects (1.6.0)
+  - UnsplashPhotoPicker (1.1.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -84,6 +85,7 @@ DEPENDENCIES:
   - SDWebImage
   - SwiftyJSON
   - TextFieldEffects
+  - UnsplashPhotoPicker (~> 1.1)
 
 SPEC REPOS:
   trunk:
@@ -106,6 +108,7 @@ SPEC REPOS:
     - SDWebImage
     - SwiftyJSON
     - TextFieldEffects
+    - UnsplashPhotoPicker
 
 SPEC CHECKSUMS:
   Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
@@ -127,7 +130,8 @@ SPEC CHECKSUMS:
   SDWebImage: ecc03494e973b93b80213649d32175f8d2d17d4d
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
+  UnsplashPhotoPicker: 9bbce3281825f0f61b98a53df84875e33723cd1d
 
-PODFILE CHECKSUM: 28ebfe72bb4753cb8f33a22125b6f7b676155b54
+PODFILE CHECKSUM: 7da108901840a440e38fe69801c8f49497642cad
 
 COCOAPODS: 1.8.4

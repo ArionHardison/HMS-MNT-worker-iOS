@@ -38,8 +38,10 @@ class CreateProductViewController: BaseViewController {
     var featureStr = ""
     var productdata: GetProductEntity?
     var imageID = 0
+    var featuredImageID = 0
     var ingradient = String()
-    
+    var cuisineURL = String()
+    var feturedURL = String()
 
 
     override func viewDidLoad() {
@@ -143,15 +145,34 @@ class CreateProductViewController: BaseViewController {
                 parameters[AddonpriceStr] = addOnsPrice[i]
             }
             let productIdStr: String! = String(describing: productdata?.id ?? 0)
+            if featuredImageID != 0 {
+                
+                parameters["featuredimage_gallery_id"] = featuredImageID
+                
+            }
+            
+            
+            if cuisineURL != "" {
+                
+                parameters["image_gallery_img"] = cuisineURL
+            }
+            if feturedURL != "" {
+                
+                parameters["featuredimage_gallery_img"] = feturedURL
 
+                
+                
+            }
+
+            
             let urlStr = Base.productList.rawValue + "/" + productIdStr
-            self.presenter?.IMAGEPOST(api: urlStr, params: parameters, methodType: HttpType.POST, imgData: ["featured_image":featureImageUploadData], imgName: "image", modelClass: CategoryListModel.self, token: true)
+            self.presenter?.IMAGEPOST(api: urlStr, params: parameters, methodType: HttpType.POST, imgData:nil, imgName: "image", modelClass: CategoryListModel.self, token: true)
         }else{
         
         var parameters:[String:Any] = ["name": nameVal,
                                        "description":descriptionVal,
                                        "avatar[0]":imageUploadData,
-                                       "featured_image":featureImageUploadData,
+                                       //"featured_image":featureImageUploadData,
                                        "price":priceTextField.text!,
                                        "product_position":productOrder,
                                        "shop":shopId,
@@ -171,8 +192,23 @@ class CreateProductViewController: BaseViewController {
             parameters[AddonsStr] = addOnsId[i]
             parameters[AddonpriceStr] = addOnsPrice[i]
         }
-        
-        self.presenter?.IMAGEPOST(api: Base.productList.rawValue, params: parameters, methodType: HttpType.POST, imgData: ["featured_image":featureImageUploadData], imgName: "image", modelClass: CategoryListModel.self, token: true)
+            
+            if featuredImageID != 0 {
+                
+              parameters["featuredimage_gallery_id"] = featuredImageID
+                
+            }
+            if cuisineURL != "" {
+                
+                parameters["image_gallery_img"] = cuisineURL
+            }
+            if feturedURL != "" {
+                
+                parameters["featuredimage_gallery_img"] = feturedURL
+                
+                
+            }
+        self.presenter?.IMAGEPOST(api: Base.productList.rawValue, params: parameters, methodType: HttpType.POST, imgData:nil, imgName: "image", modelClass: CategoryListModel.self, token: true)
         }
     }
     

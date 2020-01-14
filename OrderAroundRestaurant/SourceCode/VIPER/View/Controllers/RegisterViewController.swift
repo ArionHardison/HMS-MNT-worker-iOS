@@ -9,6 +9,12 @@
 import UIKit
 import ObjectMapper
 import GooglePlaces
+import UnsplashPhotoPicker
+
+enum SelectionType: Int {
+    case single
+    case multiple
+}
 
 class RegisterViewController: BaseViewController {
 
@@ -75,6 +81,8 @@ class RegisterViewController: BaseViewController {
     @IBOutlet weak var imagesGalleryCV: UICollectionView!
     //MARK:- Declaration
     
+    @IBOutlet weak var bannerGalleryCV: UICollectionView!
+    @IBOutlet weak var labelSelectBanner: UILabel!
     var isImageUpload = false
     var isShopBannerImage = false
     var isNo = false
@@ -88,20 +96,48 @@ class RegisterViewController: BaseViewController {
     var selectedImageID = Int()
     var isImageSelected = false
     var isHalal = false
+    var isBanner = false
+    var bannerImgID = 0
+    var bannerIndex = -1
+    var isbanner = 0
+    var  banner = 0
+    var shopImage = 0
+    var shopImgURL = String()
+    var bannerImgURL = String()
+
+    @IBOutlet weak var btnShopARemove: UIButton!
+    @IBOutlet weak var btnShopChange: UIButton!
     
+    @IBOutlet weak var shopUnsplashImage: UIImageView!
+    
+    @IBOutlet weak var unsplashViewHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var bannerViewHeight: NSLayoutConstraint!
     @IBOutlet weak var viewHeight: NSLayoutConstraint!
     
     @IBOutlet weak var CVHeight: NSLayoutConstraint!
     var selectedIndex = -1
-    
-    
+    private var photos = [UnsplashPhoto]()
 
+    
+    
+    @IBOutlet weak var btnBannerChane: UIButton!
+    @IBOutlet weak var bannerImgUnsplash: UIImageView!
+    
+    
+    
+    @IBOutlet weak var btnBannerRemove: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setInitialLoads()
         imagesGalleryCV.register(UINib(nibName: XIB.Names.GalleryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.GalleryCollectionViewCell)
+        bannerGalleryCV.register(UINib(nibName: XIB.Names.GalleryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.GalleryCollectionViewCell)
+        
+        unsplashViewHeight.constant = 0
+        bannerViewHeight.constant = 0
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -366,6 +402,18 @@ class RegisterViewController: BaseViewController {
             
         }
         
+        
+        if shopImgURL == "" {
+            
+            showToast(msg: "Please Selecet Shop Image")
+            
+      
+        }else if bannerImgURL == "" {
+            
+             showToast(msg: "Please Selecet Banner Image")
+            
+        }
+         
     
         var uploadimgeData:Data!
         
@@ -410,7 +458,18 @@ class RegisterViewController: BaseViewController {
         editTimingController.isTakeaway = isTakeAway
         editTimingController.isDelivery = isDelivery
         editTimingController.shopImageId = self.selectedImageID
+        editTimingController.bannerID = self.bannerImgID
         editTimingController.isHalal = isHalal
+        editTimingController.shopURL = shopImgURL
+        editTimingController.bannerURL = bannerImgURL
+
+
+//
+//        if shopImgURL != "" {
+//        }else if bannerImgURL != "" {
+//        }
+ 
+        
         self.navigationController?.pushViewController(editTimingController, animated: true)
         
     }
@@ -594,6 +653,12 @@ extension RegisterViewController {
         takeAwayLabel.font = UIFont.bold(size: 14)
     }
     
+    
+    
+    
+    
+    
+    
 
 }
 
@@ -684,16 +749,25 @@ extension RegisterViewController: CountryCodeViewControllerDelegate,SelectCusine
 
 extension RegisterViewController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        
-        return  self.imageList.count > 0 ?  self.imageList.count + 1 : 0
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+ 
+        if collectionView == imagesGalleryCV || collectionView == bannerGalleryCV {
+            return  self.imageList.count > 0 ?  self.imageList.count + 1 : 0
+
+        }
+        return   0
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:XIB.Names.GalleryCollectionViewCell, for: indexPath)  as! GalleryCollectionViewCell
+        
+        if collectionView == imagesGalleryCV {
+        
+ 
+        
+        let cell = imagesGalleryCV.dequeueReusableCell(withReuseIdentifier:XIB.Names.GalleryCollectionViewCell, for: indexPath)  as! GalleryCollectionViewCell
         
         cell.test.tag = indexPath.row
         cell.test.addTarget(self, action: #selector(testClick), for: .touchUpInside)
@@ -724,7 +798,43 @@ extension RegisterViewController : UICollectionViewDelegate,UICollectionViewData
         }
          return cell
         
-    }
+        }else if collectionView == bannerGalleryCV {
+            
+            
+            let cell = bannerGalleryCV.dequeueReusableCell(withReuseIdentifier:XIB.Names.GalleryCollectionViewCell, for: indexPath)  as! GalleryCollectionViewCell
+            
+            cell.test.tag = indexPath.row
+            cell.test.addTarget(self, action: #selector(bannerTap(sender:)), for: .touchUpInside)
+            
+            if indexPath.row == self.imageList.count
+                
+            {
+                
+                cell.cuisineImage.image = #imageLiteral(resourceName: "Add")
+                
+            }else{
+                
+                
+                cell.cuisineImage.sd_setImage(with: URL(string:self.imageList[indexPath.row].image ?? ""), placeholderImage:#imageLiteral(resourceName: "Add"))
+                
+                if bannerIndex == indexPath.row {
+                    
+                    cell.selectedImage.image = #imageLiteral(resourceName: "check-mark-2")
+                    
+                }else{
+                    
+                    cell.selectedImage.image = nil
+                    
+                }
+                // bannerImageView.sd_setImage(with: URL(string: profile.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+                
+                
+            }
+            return cell
+            
+            
+            
+        }
     
    /* func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -740,10 +850,12 @@ extension RegisterViewController : UICollectionViewDelegate,UICollectionViewData
             
         }
         
-        
+         
     }*/
+        
+        return UICollectionViewCell()
     
-    
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         print(">>>>>>>>>>DID SELECT>>>>>>>>>")
@@ -760,11 +872,23 @@ extension RegisterViewController : UICollectionViewDelegate,UICollectionViewData
         
     }
     
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath){
         
-        self.selectedIndex = -1
-        self.selectedImageID = self.imageList[indexPath.row].id!
-        self.imagesGalleryCV.reloadData()
+        
+        if collectionView == imagesGalleryCV {
+            self.selectedIndex = -1
+            self.selectedImageID = self.imageList[indexPath.row].id!
+            self.imagesGalleryCV.reloadData()
+            
+        }else if collectionView == bannerGalleryCV {
+            
+            self.bannerIndex = -1
+            self.bannerImgID = self.imageList[indexPath.row].id!
+            self.bannerGalleryCV.reloadData()
+            
+            
+        }
+      
         
     }
     
@@ -772,12 +896,18 @@ extension RegisterViewController : UICollectionViewDelegate,UICollectionViewData
         if sender.tag == self.imageList.count
         {
             
-            let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+           /* let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
             registerController.imageArray = self.imageList
             registerController.selectedIndex = self.selectedIndex
-            self.navigationController?.pushViewController(registerController, animated: true)
-     
+            self.navigationController?.pushViewController(registerController, animated: true)*/
+            
+          //  let allowsMultipleSelection = SelectionType.single.rawValue
+           
+            self.shopImage = 1
+            
+            loadUnSplash()
         }
+
         else
         {
             isImageSelected = !isImageSelected
@@ -787,7 +917,79 @@ extension RegisterViewController : UICollectionViewDelegate,UICollectionViewData
             
         }
     }
+    
+    @objc func bannerTap(sender: UIButton){
+        
+        
+        if sender.tag == self.imageList.count
+        {
+            
+          /*  let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+            registerController.imageArray = self.imageList
+            registerController.selectedIndex = self.selectedIndex
+            self.navigationController?.pushViewController(registerController, animated: true)*/
+            
+            self.banner = 1
+            loadUnSplash()
+            
+        }
+        else
+        {
+            isBanner = !isBanner
+            self.bannerIndex = isBanner ? sender.tag : -1
+            self.bannerImgID = isBanner ? self.imageList[self.bannerIndex].id! : 0
+            self.bannerGalleryCV.reloadData()
+            
+        }
+    }
+    
+    
+    
+    func loadUnSplash(){
+        
+        let configuration = UnsplashPhotoPickerConfiguration(
+            accessKey:"0813811a510708005bed659afd6c652e6ef32ad72df534d37598dcd05f46af35",
+            secretKey:"42dc66500397d66972dea4952edb76699cf6f9c8824dba27df1354bc1bfdaa50",
+            query: "",
+            allowsMultipleSelection: false
+        )
+        let unsplashPhotoPicker = UnsplashPhotoPicker(configuration: configuration)
+        unsplashPhotoPicker.photoPickerDelegate = self
+        present(unsplashPhotoPicker, animated: true, completion: nil)
+        
+    }
 }
+
+
+extension RegisterViewController : UnsplashPhotoPickerDelegate {
+    
+    func unsplashPhotoPicker(_ photoPicker: UnsplashPhotoPicker, didSelectPhotos photos: [UnsplashPhoto]) {
+     
+        self.photos = photos
+        if banner == 1 {
+            bannerImgURL =  self.photos.first?.urls[.regular]!.absoluteString ?? ""
+            bannerViewHeight.constant = 150
+            bannerImgUnsplash.sd_setImage(with: URL(string: bannerImgURL), placeholderImage: UIImage(named: "user-placeholder"))
+
+            
+        }
+        else if shopImage == 1 {
+            
+            shopImgURL = self.photos.first?.urls[.regular]!.absoluteString ?? ""
+            unsplashViewHeight.constant = 150
+            shopUnsplashImage.sd_setImage(with: URL(string: shopImgURL), placeholderImage: UIImage(named: "user-placeholder"))
+            
+        }
+    }
+    
+    func unsplashPhotoPickerDidCancel(_ photoPicker: UnsplashPhotoPicker) {
+        
+        
+    }
+    
+}
+
+
 
 
 extension RegisterViewController : PresenterOutputProtocol {
@@ -815,6 +1017,7 @@ extension RegisterViewController : PresenterOutputProtocol {
         
         print(self.imageList.count)
         self.imagesGalleryCV.reloadData()
+        self.bannerGalleryCV.reloadData()
     }
     
     func showError(error: CustomError) {

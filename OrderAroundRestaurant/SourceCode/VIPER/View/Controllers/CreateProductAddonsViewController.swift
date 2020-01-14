@@ -8,6 +8,8 @@
 
 import UIKit
 import ObjectMapper
+import UnsplashPhotoPicker
+
 class CreateProductAddonsViewController: BaseViewController {
 
     @IBOutlet weak var existingImage: UIImageView!
@@ -72,16 +74,37 @@ class CreateProductAddonsViewController: BaseViewController {
     var featureStr = ""
     var ingradient = String()
     var selectedIndex = -1
+    var featuredIndex = -1
     var selectedImageID = Int()
+    var featuredImageID = Int()
     var isImageSelected = false
+    var isFeturedSelected = false
+    
+    
+    var cuisine = 0
+    var fetured = 0
+    var cuisineURL = String()
+    var featuredURL = String()
+    private var photos = [UnsplashPhoto]()
 
+    
+    
+
+    @IBOutlet weak var featuredGalleryCV: UICollectionView!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setInitialLoads()
         
+
          imagesGallery.register(UINib(nibName: XIB.Names.GalleryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.GalleryCollectionViewCell)
+         featuredGalleryCV.register(UINib(nibName: XIB.Names.GalleryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.GalleryCollectionViewCell)
+
+        
           self.presenter?.GETPOST(api: Base.getImagesGallery.rawValue, params:[:], methodType: .GET, modelClass: ImagesGallery.self, token: false)
     }
     
@@ -241,23 +264,23 @@ class CreateProductAddonsViewController: BaseViewController {
             return
         }
         
-       guard isImageUpload(isupdate: isFeatureUploadImage) else{
-            showToast(msg: ErrorMessage.list.enterFeatureUploadImg)
-            
-            return
-        }
+//       guard isImageUpload(isupdate: isFeatureUploadImage) else{
+//            showToast(msg: ErrorMessage.list.enterFeatureUploadImg)
+//
+//            return
+//        }
         
         var uploadimgeData:Data!
         
-        if  let dataImg = imageUploadImageView.image?.jpegData(compressionQuality: 0.5) {
-            uploadimgeData = dataImg
-        }
-        
-        var featureUploadimgeData:Data!
-        
-        if  let dataImg = featureImageUploadImageView.image?.jpegData(compressionQuality: 0.5) {
-            featureUploadimgeData = dataImg
-        }
+//        if  let dataImg = imageUploadImageView.image?.jpegData(compressionQuality: 0.5) {
+//            uploadimgeData = dataImg
+//        }
+//
+//        var featureUploadimgeData:Data!
+//
+//        if  let dataImg = featureImageUploadImageView.image?.jpegData(compressionQuality: 0.5) {
+//            featureUploadimgeData = dataImg
+//        }
         
         var statusVal = ""
         if statusValueLabel.text == "Enable" {
@@ -271,7 +294,7 @@ class CreateProductAddonsViewController: BaseViewController {
         createProductController.categoryId = categoryId
         createProductController.descriptionVal = descriptionTextView.text ?? ""
        // createProductController.imageUploadData = uploadimgeData
-        createProductController.featureImageUploadData = featureUploadimgeData
+       // createProductController.featureImageUploadData = featureUploadimgeData
         createProductController.status = statusVal
         createProductController.cusineId = String(productCusineId)
         createProductController.productOrder = productOrederTextField.text ?? ""
@@ -279,6 +302,19 @@ class CreateProductAddonsViewController: BaseViewController {
         createProductController.ingradient = ingradients
         createProductController.productdata = productdata
         createProductController.imageID = self.selectedImageID
+        createProductController.featuredImageID = self.featuredImageID
+        
+        
+        if cuisineURL != "" {
+             createProductController.cuisineURL = cuisineURL
+        }
+        if featuredURL != "" {
+            
+            createProductController.feturedURL = featuredURL
+
+        
+        }
+        
         self.navigationController?.pushViewController(createProductController, animated: true)
        
     }
@@ -290,6 +326,51 @@ class CreateProductAddonsViewController: BaseViewController {
         }
 
     }
+}
+
+
+extension CreateProductAddonsViewController : UnsplashPhotoPickerDelegate {
+    
+    func unsplashPhotoPicker(_ photoPicker: UnsplashPhotoPicker, didSelectPhotos photos: [UnsplashPhoto]) {
+        
+        self.photos = photos
+        if cuisine == 1 {
+            cuisineURL =  self.photos.first?.urls[.regular]!.absoluteString ?? ""
+            //bannerViewHeight.constant = 150
+            existingImage.sd_setImage(with: URL(string: cuisineURL), placeholderImage: UIImage(named: "user-placeholder"))
+            cuisine = 0
+            
+        }
+        if fetured == 1 {
+            
+            featuredURL = self.photos.first?.urls[.regular]!.absoluteString ?? ""
+            //unsplashViewHeight.constant = 150
+            featureImageUploadImageView.sd_setImage(with: URL(string: featuredURL), placeholderImage: UIImage(named: "user-placeholder"))
+            
+            fetured = 0
+            
+        }
+    }
+    
+    func unsplashPhotoPickerDidCancel(_ photoPicker: UnsplashPhotoPicker) {
+        
+        
+    }
+    
+    func loadUnSplash(){
+        
+        let configuration = UnsplashPhotoPickerConfiguration(
+            accessKey:"0813811a510708005bed659afd6c652e6ef32ad72df534d37598dcd05f46af35",
+            secretKey:"42dc66500397d66972dea4952edb76699cf6f9c8824dba27df1354bc1bfdaa50",
+            query: "",
+            allowsMultipleSelection: false
+        )
+        let unsplashPhotoPicker = UnsplashPhotoPicker(configuration: configuration)
+        unsplashPhotoPicker.photoPickerDelegate = self
+        present(unsplashPhotoPicker, animated: true, completion: nil)
+        
+    }
+    
 }
 extension CreateProductAddonsViewController{
     
@@ -412,7 +493,9 @@ extension CreateProductAddonsViewController{
         labelImageUpload.font = UIFont.bold(size: 15)
     }
     
-    private func setTableViewContentInset(){
+    private func setTableViewContentInset()
+    {
+        
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: self.bottomView.bounds.height + 10, right: 0)
         
     }
@@ -462,6 +545,7 @@ extension CreateProductAddonsViewController: PresenterOutputProtocol {
     
     print(self.imageList.count)
     self.imagesGallery.reloadData()
+    self.featuredGalleryCV.reloadData()
     
     
     }
@@ -516,6 +600,14 @@ extension CreateProductAddonsViewController: PresenterOutputProtocol {
         
     }
 }
+
+
+
+
+
+
+
+
 /******************************************************************/
 /******************************************************************/
 extension CreateProductAddonsViewController: CategoryStatusViewControllerDelegate{
@@ -560,13 +652,34 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         
-        return  self.imageList.count > 0 ?  self.imageList.count + 1 : 0
+        
+        
+        if collectionView == imagesGallery {
+            
+            return  self.imageList.count > 0 ?  self.imageList.count + 1 : 0
+
+            
+        }else if collectionView == featuredGalleryCV {
+            
+            return  self.imageList.count > 0 ?  self.imageList.count + 1 : 0
+
+            
+        }
+        
+        return 0
         
     }
     
+
+    
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier:XIB.Names.GalleryCollectionViewCell, for: indexPath)  as! GalleryCollectionViewCell
+        
+        if collectionView == imagesGallery {
+        
+        
+        let cell = imagesGallery.dequeueReusableCell(withReuseIdentifier:XIB.Names.GalleryCollectionViewCell, for: indexPath)  as! GalleryCollectionViewCell
         
         cell.test.tag = indexPath.row
         cell.test.addTarget(self, action: #selector(testClick), for: .touchUpInside)
@@ -596,6 +709,46 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
             
         }
         return cell
+        
+        
+        }else if collectionView == featuredGalleryCV {
+            
+            
+            let cell = featuredGalleryCV.dequeueReusableCell(withReuseIdentifier:XIB.Names.GalleryCollectionViewCell, for: indexPath)  as! GalleryCollectionViewCell
+            
+            cell.test.tag = indexPath.row
+            cell.test.addTarget(self, action: #selector(featuredTap), for: .touchUpInside)
+            
+            if indexPath.row == self.imageList.count
+                
+            {
+                
+                cell.cuisineImage.image = #imageLiteral(resourceName: "Add")
+                
+            }else{
+                
+                
+                cell.cuisineImage.sd_setImage(with: URL(string:self.imageList[indexPath.row].image ?? ""), placeholderImage:#imageLiteral(resourceName: "Add"))
+                
+                if featuredIndex == indexPath.row {
+                    
+                    cell.selectedImage.image = #imageLiteral(resourceName: "check-mark-2")
+                    
+                }else{
+                    
+                    cell.selectedImage.image = nil
+                    
+                }
+                // bannerImageView.sd_setImage(with: URL(string: profile.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+                
+                
+            }
+            return cell
+            
+            
+        }
+        
+       return UICollectionViewCell()
         
     }
     
@@ -635,20 +788,40 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
-        self.selectedIndex = -1
-        self.selectedImageID = self.imageList[indexPath.row].id!
-        self.imagesGallery.reloadData()
         
+        if collectionView == imagesGallery {
+            self.selectedIndex = -1
+         
+            self.selectedImageID = self.imageList[indexPath.row].id!
+            
+            self.imagesGallery.reloadData()
+            
+            
+            
+        }else if collectionView == featuredGalleryCV {
+            
+              self.featuredIndex = -1
+            self.featuredImageID = self.imageList[indexPath.row].id!
+            self.featuredGalleryCV.reloadData()
+
+            
+        }
+        
+        
+     
     }
     
     @objc func testClick(sender: UIButton) {
         if sender.tag == self.imageList.count
         {
             
-            let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+         /*   let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
             registerController.imageArray = self.imageList
             registerController.selectedIndex = self.selectedIndex
-            self.navigationController?.pushViewController(registerController, animated: true)
+            self.navigationController?.pushViewController(registerController, animated: true)*/
+            
+            self.cuisine = 1
+            loadUnSplash()
             
         }
         else
@@ -660,4 +833,32 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
             
         }
     }
+    
+    @objc func featuredTap(sender: UIButton) {
+        
+        
+        if sender.tag == self.imageList.count
+        {
+            
+          /*  let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+            registerController.imageArray = self.imageList
+            registerController.selectedIndex = self.selectedIndex
+            self.navigationController?.pushViewController(registerController, animated: true)*/
+            
+            
+            self.fetured = 1
+            loadUnSplash()
+            
+            
+        }
+        else
+        {
+            isFeturedSelected = !isFeturedSelected
+            self.featuredIndex = isFeturedSelected ? sender.tag : -1
+            self.featuredImageID = isFeturedSelected ? self.imageList[self.featuredIndex].id! : 0
+            self.featuredGalleryCV.reloadData()
+            
+        }
+    }
+    
 }

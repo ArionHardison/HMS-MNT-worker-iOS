@@ -8,6 +8,9 @@
 
 import UIKit
 import ObjectMapper
+
+import UnsplashPhotoPicker
+
 class CreateCategoryViewController: BaseViewController {
 
     @IBOutlet weak var bottomView: UIView!
@@ -36,6 +39,11 @@ class CreateCategoryViewController: BaseViewController {
     var selectedImageID = Int()
     var isImageSelected = false
     
+    var category = 0
+    var categoryURL = String()
+
+    private var photos = [UnsplashPhoto]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -127,12 +135,22 @@ class CreateCategoryViewController: BaseViewController {
             let urlStr = Base.categoryList.rawValue + "/" + categoryIdStr
 
             
-            let parameters:[String:Any] = ["name": categoryNameTextField.text!,
+            var parameters:[String:Any] = ["name": categoryNameTextField.text!,
                                            "description":categoryDescriptionTextView.text!,
                                            "status":statusVal,
                                            "position":categoryOrderTextField.text!,
-                                           "image_gallery_id":selectedImageID,
                                            "_method":"PATCH"]
+            
+            if selectedImageID != 0 {
+                
+                parameters["image_gallery_id"] = selectedImageID
+                
+            }
+            if categoryURL != "" {
+                
+                
+                parameters["image_gallery_img"] = categoryURL
+            }
             
             
 //            self.presenter?.IMAGEPOST(api: urlStr, params: parameters, methodType: HttpType.POST, imgData: ["image":uploadimgeData], imgName: "image", modelClass: CategoryListModel.self, token: true)
@@ -145,13 +163,21 @@ class CreateCategoryViewController: BaseViewController {
             
         }else{
         let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
-        let parameters:[String:Any] = ["name": categoryNameTextField.text!,
+        var parameters:[String:Any] = ["name": categoryNameTextField.text!,
                                        "description":categoryDescriptionTextView.text!,
                                        "status":statusVal,
                                        "position":categoryOrderTextField.text!,
-                                       "image_gallery_id":selectedImageID,
                                        "shop_id":shopId]
-        
+            if selectedImageID != 0 {
+                
+                parameters["image_gallery_id"] = selectedImageID
+                
+            }
+            if categoryURL != "" {
+                
+                
+                parameters["image_gallery_img"] = categoryURL
+            }
         
        // self.presenter?.IMAGEPOST(api: Base.categoryList.rawValue, params: parameters, methodType: HttpType.POST, imgData: ["image":uploadimgeData], imgName: "image", modelClass: CreateCategoryModel.self, token: true)
             
@@ -332,6 +358,52 @@ extension CreateCategoryViewController: PresenterOutputProtocol {
         
     }
 }
+
+
+
+extension CreateCategoryViewController : UnsplashPhotoPickerDelegate {
+    
+    func unsplashPhotoPicker(_ photoPicker: UnsplashPhotoPicker, didSelectPhotos photos: [UnsplashPhoto]) {
+        
+        self.photos = photos
+        if category == 1 {
+            categoryURL =  self.photos.first?.urls[.regular]!.absoluteString ?? ""
+            //bannerViewHeight.constant = 150
+            categoryImageView.sd_setImage(with: URL(string: categoryURL), placeholderImage: UIImage(named: "user-placeholder"))
+            
+            
+        }
+       
+    }
+    
+    func unsplashPhotoPickerDidCancel(_ photoPicker: UnsplashPhotoPicker) {
+        
+        
+    }
+    
+    func loadUnSplash(){
+        
+        let configuration = UnsplashPhotoPickerConfiguration(
+            accessKey:"0813811a510708005bed659afd6c652e6ef32ad72df534d37598dcd05f46af35",
+            secretKey:"42dc66500397d66972dea4952edb76699cf6f9c8824dba27df1354bc1bfdaa50",
+            query: "",
+            allowsMultipleSelection: false
+        )
+        let unsplashPhotoPicker = UnsplashPhotoPicker(configuration: configuration)
+        unsplashPhotoPicker.photoPickerDelegate = self
+        present(unsplashPhotoPicker, animated: true, completion: nil)
+        
+    }
+    
+}
+
+
+
+
+
+
+
+
 /******************************************************************/
 extension CreateCategoryViewController: CategoryStatusViewControllerDelegate{
     func fetchStatusValue(value: String) {
@@ -439,10 +511,16 @@ extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionVi
         if sender.tag == self.imageList.count
         {
             
-            let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+           /* let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
             registerController.imageArray = self.imageList
             registerController.selectedIndex = self.selectedIndex
             self.navigationController?.pushViewController(registerController, animated: true)
+            */
+            
+            self.category = 1
+            self.loadUnSplash()
+            
+            
             
         }
         else

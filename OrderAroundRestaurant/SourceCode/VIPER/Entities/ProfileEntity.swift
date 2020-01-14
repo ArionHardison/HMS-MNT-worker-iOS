@@ -43,6 +43,7 @@ struct ProfileModel : Mappable {
     var deliveryoption : [DeliveyOptions]?
     var halal : Int?
     var free_delivery : Int?
+    var image_banner_id : String?
     
     
     init?(map: Map) {
@@ -83,6 +84,7 @@ struct ProfileModel : Mappable {
         bank <- map["bank"]
         halal <- map["halal"]
         free_delivery <- map["free_delivery"]
+        image_banner_id <- map["image_banner_id"]
         
     }
     
