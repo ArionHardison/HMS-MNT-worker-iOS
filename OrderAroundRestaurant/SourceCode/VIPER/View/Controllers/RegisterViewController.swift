@@ -120,6 +120,7 @@ class RegisterViewController: BaseViewController {
     private var photos = [UnsplashPhoto]()
 
     
+    @IBOutlet weak var buttonSignIn: UIButton!
     
     @IBOutlet weak var btnBannerChane: UIButton!
     @IBOutlet weak var bannerImgUnsplash: UIImageView!
@@ -139,6 +140,8 @@ class RegisterViewController: BaseViewController {
         unsplashViewHeight.constant = 0
         bannerViewHeight.constant = 0
 
+        
+        self.buttonSignIn.addTarget(self, action: #selector(signInAction(sender:)), for: .touchUpInside)
     }
     override func viewWillAppear(_ animated: Bool) {
        self.navigationController?.isNavigationBarHidden = true
@@ -165,7 +168,11 @@ class RegisterViewController: BaseViewController {
         }
     }
     
+    @IBAction func signInAction(sender:UIButton){
+        
+        self.navigationController?.popViewController(animated: true)
     
+    }
     
     @IBAction func deliveryOptions(sender:UIButton)
         
@@ -582,6 +589,8 @@ extension RegisterViewController {
         registerScrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: self.bottomView.bounds.height, right: 0)
 
     }
+    
+    
     private func setChangeTextColor(){
     registerButton.setTitle(APPLocalize.localizestring.alreadyRegister.localize(), for: .normal)
         registerButton.halfTextColorChange(fullText:registerButton.titleLabel?.text ?? "", changeText: APPLocalize.localizestring.login.localize())

@@ -210,8 +210,8 @@ extension RevenueViewController: PresenterOutputProtocol {
         if String(describing: modelClass) == model.type.RevenueModel {
             let data = dataDict  as? RevenueModel
             let totalRevenueStr: String! = String(describing: data?.totalRevenue ?? 0)
-
-            totalRevenueValueLabel.text = totalRevenueStr
+let currency = UserDefaults.standard.value(forKey: Keys.list.currency) as! String
+            totalRevenueValueLabel.text = "\(currency) \(totalRevenueStr ?? "")"
             let orderReceivedStr: String! = String(describing: data?.orderReceivedToday ?? 0)
             orderReceivedValueLabel.text = orderReceivedStr
             let orderDeliveryStr: String! = String(describing: data?.orderDeliveredToday ?? 0)

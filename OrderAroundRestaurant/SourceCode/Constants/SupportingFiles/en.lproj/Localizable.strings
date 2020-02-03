@@ -24,7 +24,7 @@
 "localize.Deliveries" = "Deliveries";
 "localize.changePassword" = "Change Password";
 "localize.logout" = "Logout";
-"localize.deleteAccount" = "Delete Account";
+"localize.deleteAccount" = "Permanently Delete Account";
 "localize.deleteAccountDescr" = "Are you sure want to delete your account?";
 "localize.logoutDescr" = "Are you sure want to logout?";
 

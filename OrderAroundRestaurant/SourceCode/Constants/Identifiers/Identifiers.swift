@@ -49,6 +49,8 @@ struct Storyboard {
     let TakeAwayOrdersViewController = "TakeAwayOrdersViewController"
     let ImageGalleryViewController = "ImageGalleryViewController"
     let UserDetiailsViewController  = "UserDetiailsViewController"
+    let FoodSafetyViewController = "FoodSafetyViewController"
+    let PDFLoaderViewController = "PDFLoaderViewController"
     
     
     
@@ -72,6 +74,8 @@ struct XIB {
     let SelectAddonsTableViewCell = "SelectAddonsTableViewCell"
     let ItemListTableViewCell = "ItemListTableViewCell"
     let GalleryCollectionViewCell = "GalleryCollectionViewCell"
+    let FoodSafetyCell = "FoodSafetyCell"
+    
     
 
 }

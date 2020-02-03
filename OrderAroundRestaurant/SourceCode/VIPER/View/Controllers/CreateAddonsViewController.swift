@@ -16,6 +16,8 @@ class CreateAddonsViewController: BaseViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var saveButton: UIButton!
     
+    @IBOutlet weak var textfiledCalories: UITextField!
+    @IBOutlet weak var labelCalories: UILabel!
     weak var delegate: CreateAddonsViewControllerDelegate?
     var addOnsListResponse: ListAddOns?
 
@@ -57,20 +59,24 @@ class CreateAddonsViewController: BaseViewController {
             showToast(msg: ErrorMessage.list.enterName)
             return
         }
+        guard let calories = textfiledCalories.text, !calories.isEmpty else{
+            showToast(msg: ErrorMessage.list.enterCalories)
+            return
+        }
         
         showActivityIndicator()
         if addOnsListResponse != nil {
             let orderIdStr: String! = String(describing: addOnsListResponse?.id ?? 0)
 
             let urlStr = Base.addOnList.rawValue + "/" + orderIdStr
-            let parameters:[String:Any] = ["name": nameTextField.text!]
+            let parameters:[String:Any] = ["name": nameTextField.text!,"calories":calories]
             self.presenter?.GETPOST(api: urlStr, params:parameters, methodType: .PATCH, modelClass: ListAddOns.self, token: true)
         }else
         {
             
             
              let shopID  = UserDefaults.standard.value(forKey: "shopId") as! Int
-            let parameters:[String:Any] = ["name": nameTextField.text!,"shop_id":shopID]
+            let parameters:[String:Any] = ["name": nameTextField.text!,"shop_id":shopID,"calories":calories]
             self.presenter?.GETPOST(api: Base.addOnList.rawValue, params:parameters, methodType: HttpType.POST, modelClass: AddAddonsModel.self, token: true)
             
             //self.addAddOns(params: parameters)
@@ -116,10 +122,14 @@ extension CreateAddonsViewController {
         setTextFieldDelegate()
         setFont()
         setTextFieldPadding()
+        
         self.hideKeyboardWhenTappedAround()
         if addOnsListResponse != nil {
             nameTextField.text = addOnsListResponse?.name
+            textfiledCalories.text = addOnsListResponse?.calories
         }
+ 
+        
         saveButton.layer.borderWidth = 1
         saveButton.layer.cornerRadius = 16
 
@@ -127,14 +137,21 @@ extension CreateAddonsViewController {
     private func setTextFieldPadding(){
         nameTextField.setLeftPaddingPoints(10)
         nameTextField.setRightPaddingPoints(10)
+        textfiledCalories.setLeftPaddingPoints(10)
+        textfiledCalories.setRightPaddingPoints(10)
+
     }
     private func setFont(){
         nameLabel.font = UIFont.bold(size: 15)
+        labelCalories.font = UIFont.bold(size: 15)
+        textfiledCalories.font = UIFont.regular(size: 14)
         nameTextField.font = UIFont.regular(size: 14)
         saveButton.titleLabel?.font = UIFont.bold(size: 14)
     }
     private func setShadow(){
         self.addShadowTextField(textField: self.nameTextField)
+        self.addShadowTextField(textField: self.textfiledCalories)
+
     }
     private func setTextFieldDelegate(){
         nameTextField.delegate = self

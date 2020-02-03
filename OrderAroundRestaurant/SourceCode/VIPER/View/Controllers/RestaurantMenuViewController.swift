@@ -75,8 +75,16 @@ extension RestaurantMenuViewController {
         restaurantImageView.layer.cornerRadius = 5
     }
     private func setValueSideMenu(){
-        self.menuTitleArr = [APPLocalize.localizestring.history.localize(),"Bank Details",APPLocalize.localizestring.editRestaurant.localize(),APPLocalize.localizestring.editTiming.localize(),APPLocalize.localizestring.Deliveries.localize(),APPLocalize.localizestring.changePassword.localize(),APPLocalize.localizestring.logout.localize(),APPLocalize.localizestring.deleteAccount.localize()]
-        self.menuImgArr = ["timer","bank","edit","edit-time","delivery-truck","padlock","logout","trash"]
+        self.menuTitleArr = [APPLocalize.localizestring.history.localize(),
+                             "Bank Details",
+                             APPLocalize.localizestring.editRestaurant.localize(),
+                             APPLocalize.localizestring.editTiming.localize(),
+                             APPLocalize.localizestring.Deliveries.localize(),
+                             APPLocalize.localizestring.changePassword.localize(),
+                             "Food Safety",
+                             APPLocalize.localizestring.logout.localize(),
+                             APPLocalize.localizestring.deleteAccount.localize()]
+        self.menuImgArr = ["timer","bank","edit","edit-time","delivery-truck","padlock","salver","logout","trash"]
     }
     private func registerTableView(){
         let sideMenunib = UINib(nibName: XIB.Names.SideMenuTableViewCell, bundle: nil)
@@ -132,12 +140,20 @@ extension RestaurantMenuViewController: UITableViewDelegate,UITableViewDataSourc
         }else if indexPath.row == 5{
             let changePwdController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ChangePwdViewController) as! ChangePwdViewController
             self.navigationController?.pushViewController(changePwdController, animated: true)
-        }else if indexPath.row == 6{
+        }else if indexPath.row == 6 {
+            
+            
+            let foodSafetyVC = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.FoodSafetyViewController) as! FoodSafetyViewController
+            self.navigationController?.pushViewController(foodSafetyVC, animated: true)
+       
+            
+        }
+        
+        else if indexPath.row == 7{
             let alertController = UIAlertController(title: Constant.string.appName, message: APPLocalize.localizestring.logout.localize(), preferredStyle: .alert)
             let yesAction = UIAlertAction(title: APPLocalize.localizestring.yes.localize(), style: .default) { (action) in
                 self.showActivityIndicator()
                 self.presenter?.GETPOST(api: Base.logout.rawValue, params: [:], methodType: .GET, modelClass: LogoutModel.self, token: true)
-              
             }
             alertController.addAction(yesAction)
             let noAction = UIAlertAction(title: APPLocalize.localizestring.no.localize(), style: .default) { (action) in
@@ -145,7 +161,7 @@ extension RestaurantMenuViewController: UITableViewDelegate,UITableViewDataSourc
             }
             alertController.addAction(noAction)
             self.present(alertController, animated: true, completion: nil)
-        }else if indexPath.row == 7 {
+        }else if indexPath.row == 8 {
             let alertController = UIAlertController(title: Constant.string.appName, message: APPLocalize.localizestring.deleteAccount.localize(), preferredStyle: .alert)
             let yesAction = UIAlertAction(title: APPLocalize.localizestring.yes.localize(), style: .default) { (action) in
                 let parameters:[String:Any] = ["method": "Delete"]
@@ -161,6 +177,7 @@ extension RestaurantMenuViewController: UITableViewDelegate,UITableViewDataSourc
             alertController.addAction(noAction)
             self.present(alertController, animated: true, completion: nil)
         }
+        
     }
     
 }

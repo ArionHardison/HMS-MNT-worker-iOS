@@ -134,6 +134,9 @@
 		08C43F8C237D3C7C00583886 /* UserDetiailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C43F8B237D3C7B00583886 /* UserDetiailsViewController.swift */; };
 		08D65704237D61350043A7CE /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D65703237D61350043A7CE /* HoshiTextField.swift */; };
 		08D65706237D62170043A7CE /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D65705237D62160043A7CE /* TextFieldEffects.swift */; };
+		125B965623D710F300923CE3 /* FoodSafetyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125B965523D710F300923CE3 /* FoodSafetyViewController.swift */; };
+		125B965823D7183700923CE3 /* PDFLoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125B965723D7183700923CE3 /* PDFLoaderViewController.swift */; };
+		125B965A23D71EAF00923CE3 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125B965923D71EAF00923CE3 /* WebKit.framework */; };
 		1BD6C97884E76DCBF540DD4D /* Pods_OrderAroundRestaurant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFC8BDAA3EBD2DD537EC2CA /* Pods_OrderAroundRestaurant.framework */; };
 		24F903232274724200EC0FA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24F903222274724200EC0FA2 /* GoogleService-Info.plist */; };
 		24FC05B422734385003243D9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B322734385003243D9 /* Global.swift */; };
@@ -297,6 +300,9 @@
 		08C43F8B237D3C7B00583886 /* UserDetiailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetiailsViewController.swift; sourceTree = "<group>"; };
 		08D65703237D61350043A7CE /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
 		08D65705237D62160043A7CE /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
+		125B965523D710F300923CE3 /* FoodSafetyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSafetyViewController.swift; sourceTree = "<group>"; };
+		125B965723D7183700923CE3 /* PDFLoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLoaderViewController.swift; sourceTree = "<group>"; };
+		125B965923D71EAF00923CE3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		24F903222274724200EC0FA2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		24FC05B322734385003243D9 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		24FC05B5227343E3003243D9 /* LocaliseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaliseManager.swift; sourceTree = "<group>"; };
@@ -322,6 +328,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				125B965A23D71EAF00923CE3 /* WebKit.framework in Frameworks */,
 				1BD6C97884E76DCBF540DD4D /* Pods_OrderAroundRestaurant.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -557,6 +564,8 @@
 				B4DBB6E8225CA46600CB31F8 /* OrderTrackingViewController.swift */,
 				089A738723703C1300DD89B1 /* TakeAwayOrdersViewController.swift */,
 				08B6BD19237C22D300F3C25A /* ImageGalleryViewController.swift */,
+				125B965523D710F300923CE3 /* FoodSafetyViewController.swift */,
+				125B965723D7183700923CE3 /* PDFLoaderViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -832,6 +841,7 @@
 		895EF82E92E15E58D1446280 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				125B965923D71EAF00923CE3 /* WebKit.framework */,
 				ADFC8BDAA3EBD2DD537EC2CA /* Pods_OrderAroundRestaurant.framework */,
 				EA45E69BE11C915040938385 /* Pods_OrderAroundRestaurantTests.framework */,
 				49B90A2AD7EE3688EC6AFB2E /* Pods_OrderAroundRestaurantUITests.framework */,
@@ -1216,6 +1226,7 @@
 				08A20C2A223A52C90081256F /* AddAddonsEntity.swift in Sources */,
 				08ACEA06223922BA0050591D /* RemoveProductEntity.swift in Sources */,
 				08B6BD1A237C22D400F3C25A /* ImageGalleryViewController.swift in Sources */,
+				125B965823D7183700923CE3 /* PDFLoaderViewController.swift in Sources */,
 				08A14DED222FE1CF00F35B1E /* CategoryListViewController.swift in Sources */,
 				0852342F2226668500446B47 /* DishesViewController.swift in Sources */,
 				0891E215223103E700409038 /* ViewControllerExtension.swift in Sources */,
@@ -1240,6 +1251,7 @@
 				08A3B6B3222546BB0010058B /* SideMenuTableViewCell.swift in Sources */,
 				087D0BC7222403FC00E58BDE /* AppDelegate.swift in Sources */,
 				0891E2222231581100409038 /* TextField.swift in Sources */,
+				125B965623D710F300923CE3 /* FoodSafetyViewController.swift in Sources */,
 				0891E2042230EBE200409038 /* AddProductViewController.swift in Sources */,
 				087D0C0E2224110200E58BDE /* Constants.swift in Sources */,
 				0876C561223F86300035E2C5 /* FilterDeliveryViewController.swift in Sources */,
@@ -1427,6 +1439,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = JU248DMV5X;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
@@ -1449,6 +1462,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 9;
 				DEVELOPMENT_TEAM = JU248DMV5X;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

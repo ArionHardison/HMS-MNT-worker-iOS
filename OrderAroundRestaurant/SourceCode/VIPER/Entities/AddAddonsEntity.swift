@@ -13,6 +13,7 @@ struct AddAddonsModel : Mappable {
     var name : String?
     var shop_id : Int?
     var id: Int?
+    var calories : String?
     init?(map: Map) {
         
     }
@@ -22,6 +23,7 @@ struct AddAddonsModel : Mappable {
         name <- map["name"]
         shop_id <- map["shop_id"]
         id <- map["id"]
+        calories <- map["calories"]
 
     }
     

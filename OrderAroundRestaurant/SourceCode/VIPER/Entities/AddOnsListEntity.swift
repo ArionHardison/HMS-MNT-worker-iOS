@@ -19,6 +19,8 @@ public class ListAddOns : Mappable {
     internal var name :String?
     internal var shop_id :Int?
     internal var deleted_at :String?
+    internal var calories :String?
+
     
     required public init?(map: Map) {
         mapping(map: map)
@@ -29,6 +31,7 @@ public class ListAddOns : Mappable {
         name <- map[KEY_name]
         shop_id <- map[KEY_shop_id]
         deleted_at <- map[KEY_deleted_at]
+        calories <- map["calories"]
         
     }
         

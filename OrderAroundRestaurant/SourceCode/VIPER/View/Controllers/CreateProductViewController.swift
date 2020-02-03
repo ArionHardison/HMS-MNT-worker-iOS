@@ -42,6 +42,7 @@ class CreateProductViewController: BaseViewController {
     var ingradient = String()
     var cuisineURL = String()
     var feturedURL = String()
+    var calories = String()
 
 
     override func viewDidLoad() {
@@ -136,6 +137,7 @@ class CreateProductViewController: BaseViewController {
                                            "cuisine_id":cusineId,
                                            "category":categoryId,
                                            "ingredients":ingradient,
+                                           "calories":calories,
                                             "image_gallery_id" : imageID,
                                            "_method":"PATCH"]
             for i in 0..<addOnsId.count {
@@ -185,6 +187,7 @@ class CreateProductViewController: BaseViewController {
                                        "cuisine_id":cusineId,
                                        "image_gallery_id" : imageID,
                                        "category":categoryId,
+                                        "calories":calories,
                                       ]
         for i in 0..<addOnsId.count {
             let AddonsStr = "addons[\(i)]"

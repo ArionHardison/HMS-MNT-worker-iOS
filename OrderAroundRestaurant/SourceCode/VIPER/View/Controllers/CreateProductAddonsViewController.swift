@@ -54,13 +54,16 @@ class CreateProductAddonsViewController: BaseViewController {
     
     @IBOutlet weak var textViewInradients: UITextView!
     
+    @IBOutlet weak var textfieldCalories: UITextField!
     
+    @IBOutlet weak var labelCalories: UILabel!
     @IBOutlet weak var imagesGallery: UICollectionView!
     var cusineListArr = [CusineListModel]()
     
     @IBOutlet weak var yesButton: UIButton!
     @IBOutlet weak var noButton: UIButton!
     
+    @IBOutlet weak var caloriestxtView: UITextView!
     var categoryListArr = [CategoryListModel]()
     var productModel: Products?
     var imageList = [ImageList]()
@@ -252,6 +255,14 @@ class CreateProductAddonsViewController: BaseViewController {
             showToast(msg: ErrorMessage.list.enterStatus)
             return
         }
+        
+        guard let calories = textfieldCalories.text , !calories.isEmpty else {
+            
+            showToast(msg: ErrorMessage.list.enterCalories)
+            return
+        }
+        
+        
                 
         /*guard isImageUpload(isupdate: isUploadImage) else{
             showToast(msg: ErrorMessage.list.enterUploadImg)
@@ -303,8 +314,8 @@ class CreateProductAddonsViewController: BaseViewController {
         createProductController.productdata = productdata
         createProductController.imageID = self.selectedImageID
         createProductController.featuredImageID = self.featuredImageID
-        
-        
+        createProductController.calories = calories
+
         if cuisineURL != "" {
              createProductController.cuisineURL = cuisineURL
         }
@@ -491,6 +502,9 @@ extension CreateProductAddonsViewController{
         labelIngradients.font = UIFont.bold(size: 15)
         labelExistingLabel.font = UIFont.bold(size: 15)
         labelImageUpload.font = UIFont.bold(size: 15)
+        labelCalories.font = UIFont.bold(size: 15)
+        textfieldCalories.font = UIFont.bold(size: 15)
+    
     }
     
     private func setTableViewContentInset()
@@ -552,9 +566,10 @@ extension CreateProductAddonsViewController: PresenterOutputProtocol {
         else if String(describing: modelClass) == model.type.GetProductEntity {
             self.productdata = dataDict as? GetProductEntity
             nameTextField.text = productdata?.name
-            textViewInradients.text = productdata?.ingradients
+            textViewInradients.text = productdata?.ingredients
             descriptionTextView.text = productdata?.description
             productCusineValueLabel.text = productdata?.shop?.cuisines?.first?.name
+            textfieldCalories.text = productdata?.calories
             productCusineId = productdata?.shop?.cuisines?.first?.id ?? 0
             if productdata?.status == "enabled" {
                 statusValueLabel.text = "Enable"
@@ -562,6 +577,26 @@ extension CreateProductAddonsViewController: PresenterOutputProtocol {
                 statusValueLabel.text = "Disable"
             }
             productOrederTextField.text = productdata?.position ?? "0"
+            
+            
+            if let productImg = self.productdata?.images?.first?.url {
+                
+                existingImage.sd_setImage(with: URL(string:productImg), placeholderImage: UIImage(named: "user-placeholder"))
+            }
+            
+            
+            
+            if let featuredImg = self.productdata?.images?[1].url {
+                
+                featureImageUploadImageView.sd_setImage(with: URL(string:featuredImg), placeholderImage: UIImage(named: "user-placeholder"))
+            }
+            
+            
+            
+//            existingImage.sd_setImage(with: URL(string:(self.productdata?.images?.first!.url)!), placeholderImage: UIImage(named: "user-placeholder"))
+//            featureImageUploadImageView.sd_setImage(with: URL(string: self.productdata?.images?[1].url)!), placeholderImage: UIImage(named: "user-placeholder"))
+
+  
             
             categoryValueLabel.text = productdata?.categories?.first?.name
             categoryId = productdata?.categories?.first?.id ?? 0

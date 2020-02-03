@@ -44,8 +44,7 @@ struct ProfileModel : Mappable {
     var halal : Int?
     var free_delivery : Int?
     var image_banner_id : String?
-    
-    
+    var training_module : [FoodSafetyModel]?
     init?(map: Map) {
         
     }
@@ -85,6 +84,7 @@ struct ProfileModel : Mappable {
         halal <- map["halal"]
         free_delivery <- map["free_delivery"]
         image_banner_id <- map["image_banner_id"]
+        training_module <- map["training_module"]
         
     }
     
@@ -194,4 +194,22 @@ struct Timings : Mappable {
 }
 
 
+struct FoodSafetyModel : Mappable {
+    
 
+    var name : String?
+    var url : String?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        
+        name <- map["name"]
+        url <- map["url"]
+        
+    }
+    
+}

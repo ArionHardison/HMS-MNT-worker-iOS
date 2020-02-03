@@ -51,7 +51,6 @@ class UserDetiailsViewController: BaseViewController {
     }
     
 
-    
     private func initialLoads(){
         
         if !isFromHome {
@@ -140,22 +139,31 @@ class UserDetiailsViewController: BaseViewController {
             
         }
         
-        guard let acNumber = self.textfieldAccountNumber.text, acNumber.count < 12 else {
+        guard let acNumber = self.textfieldAccountNumber.text, !acNumber.isEmpty else {
             
            // UIApplication.shared.keyWindow?.makeToast(ErrorMessage.list.enteracNumber)
-            showToast(msg: "Invalid Account Number")
+            showToast(msg: "Please Enter Account Number")
 
             return
             
         }
         
-        guard let routingNumber = self.textfiledRoutingNumber.text, routingNumber.count < 9 else {
+        guard let routingNumber = self.textfiledRoutingNumber.text, !routingNumber.isEmpty else {
             
             //UIApplication.shared.keyWindow?.makeToast(ErrorMessage.list.enterrouting)
-            showToast(msg: "Invalid Routing Number")
+            showToast(msg: "Please Enter Routing Number")
 
             return
             
+        }
+        
+        if acNumber.count < 12 {
+            
+            showToast(msg: "Please Enter Valid Account Number")
+
+        }
+        if routingNumber.count < 9 {
+            showToast(msg: "Please Enter Valid Routing Number")
         }
   
         let parameters:[String:Any] = ["bank_name":bankName,"holder_name":name,"account_number":acNumber,"routing_number":routingNumber]
@@ -216,7 +224,8 @@ extension UserDetiailsViewController : PresenterOutputProtocol {
     
     func showError(error: CustomError) {
         
-        
+        HideActivityIndicator()
+
         print(error)
         let alert = showAlert(message: error.localizedDescription)
         DispatchQueue.main.async {

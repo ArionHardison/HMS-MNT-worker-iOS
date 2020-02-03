@@ -184,6 +184,7 @@ struct ErrorMessage {
     let enterCountry = "Please Enter Country"
     let enterPostalCode = "Please Enter Postal Code"
     let enterName = "Please Enter Name"
+    
     let enterMobile = "Please Enter Mobile Number"
     let enterEmail = "Please Enter Email address"
     let enterValidEmail = "Please Enter valid Email."
@@ -218,7 +219,8 @@ struct ErrorMessage {
     let enterOldPassword = "Enter Old Password"
     
     let enterValidCurrentPassword = "Current Password is incorrect."
- 
+    let enterCalories = "Please Enter Calories"
+
 
     
  /*   let serverError = "サーバーに到達できませんでした。\n 再試行"
@@ -315,6 +317,8 @@ struct model {
     let GetProductEntity = "GetProductEntity"
     let DeleteEntity = "DeleteEntity"
     let ImagesGallery = "ImagesGallery"
+    let FoodSafetyModel = "FoodSafetyModel"
+
 }
 
 

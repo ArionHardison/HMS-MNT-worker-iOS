@@ -30,7 +30,9 @@ struct GetProductEntity : Mappable {
     var categories : [Categories]?
     var shop : ProductShop?
     var addons : [String]?
-    var ingradients : String?
+    var ingredients : String?
+    
+    var calories : String?
     
     init?(map: Map) {
         
@@ -58,7 +60,8 @@ struct GetProductEntity : Mappable {
         categories <- map["categories"]
         shop <- map["shop"]
         addons <- map["addons"]
-        ingradients <- map["ingradients"]
+        ingredients <- map["ingredients"]
+        calories <- map["calories"]
     }
     
 }
@@ -92,6 +95,7 @@ struct ProductShop : Mappable {
     var updated_at : String?
     var deleted_at : String?
     var cuisines : [Cuisines]?
+    var images : [ImagesArray]?
     
     init?(map: Map) {
         
@@ -126,7 +130,22 @@ struct ProductShop : Mappable {
         updated_at <- map["updated_at"]
         deleted_at <- map["deleted_at"]
         cuisines <- map["cuisines"]
+        images <- map["images"]
     }
     
 }
 
+struct ImagesArray : Mappable {
+    
+    var url : String?
+    var image_gallery_id : Int?
+    var featuredimage_gallery_id : Int?
+    
+    init?(map: Map) {
+        
+    }
+    mutating func mapping(map: Map) {
+        url <- map["url"]
+    }
+    
+}

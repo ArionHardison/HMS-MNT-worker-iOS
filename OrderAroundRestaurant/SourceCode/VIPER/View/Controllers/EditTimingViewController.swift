@@ -406,7 +406,11 @@ extension EditTimingViewController {
     }
     
     private func setTitle() {
-        saveBtn.setTitle(APPLocalize.localizestring.register.localize(), for: .normal)
+        
+        
+        
+        saveBtn.setTitle(UserDataDefaults.main.access_token != nil  ?  "UPDATE" : APPLocalize.localizestring.register.localize(), for: .normal)
+        regiterButton.isHidden = UserDataDefaults.main.access_token != nil
         dayLabel.text = APPLocalize.localizestring.everyday.localize()
     }
     
