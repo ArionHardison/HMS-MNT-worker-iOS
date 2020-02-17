@@ -185,8 +185,12 @@ extension ChangePwdViewController {
             showToast(msg: ErrorMessage.list.enterCurrentPassword)
             return
         }
+        guard currentPwd.isValidPassword() else{
+            showToast(msg: ErrorMessage.list.specialPasswordMsg.localize())
+            return
+        }
         guard isValidPassword(password: currentPwd) else{
-            showToast(msg: ErrorMessage.list.passwordlength)
+            showToast(msg: ErrorMessage.list.specialPasswordMsg.localize())
             
             return
         }
@@ -194,24 +198,25 @@ extension ChangePwdViewController {
             showToast(msg: ErrorMessage.list.enterNewPassword)
             return
         }
-        guard isValidPassword(password: newpassword) else{
-            showToast(msg: ErrorMessage.list.passwordlength)
-            
+        guard newpassword.count >= 6 else{
+            showToast(msg: ErrorMessage.list.passwordlength.localize())
+            return
+        }
+        guard newpassword.isValidPassword() else{
+            showToast(msg: ErrorMessage.list.specialPasswordMsg.localize())
             return
         }
         guard let confirmpassword = confirmPwdTextField.text, !confirmpassword.isEmpty else{
             showToast(msg: ErrorMessage.list.enterConfirmPassword)
             return
         }
-        guard isValidPassword(password: confirmpassword) else{
-            showToast(msg: ErrorMessage.list.passwordlength)
-            
+        guard confirmpassword.isValidPassword() else{
+            showToast(msg: ErrorMessage.list.specialPasswordMsg.localize())
             return
         }
         
         guard ismatchPassword(newPwd: newpassword, confirmPwd: confirmpassword) else{
             showToast(msg: ErrorMessage.list.newPasswordDonotMatch)
-            
             return
         }
         

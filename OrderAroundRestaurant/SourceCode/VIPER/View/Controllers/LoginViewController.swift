@@ -76,13 +76,17 @@ class LoginViewController: BaseViewController {
             showToast(msg: "Please Enter Email Address")
             return
         }
+        guard isValid(email: email) else{
+            showToast(msg: ErrorMessage.list.enterValidEmail)
+
+            return
+        }
         guard let password = passwordTextField.text, !password.isEmpty else{
             showToast(msg: "Please Enter Password")
             return
         }
-        guard isValid(email: email) else{
-            showToast(msg: ErrorMessage.list.enterValidEmail)
-
+        guard password.count >= 6 else{
+            showToast(msg: ErrorMessage.list.passwordlength.localize())
             return
         }
         

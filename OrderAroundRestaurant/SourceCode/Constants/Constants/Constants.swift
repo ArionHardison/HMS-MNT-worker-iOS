@@ -207,6 +207,7 @@ struct ErrorMessage {
     
     let passwordlength = "Password Must have Atleast 6 Characters."
     let enterNewPassword = "Please Enter New Password."
+    let specialPasswordMsg = "Password should contain atleast one number and one special character"
 
     let enterCurrentPassword = "Enter Current Password."
     let enterConfirmPassword = "Enter Confirm Password."

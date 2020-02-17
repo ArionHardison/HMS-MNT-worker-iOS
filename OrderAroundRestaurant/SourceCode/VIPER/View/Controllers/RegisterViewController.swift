@@ -333,9 +333,14 @@ class RegisterViewController: BaseViewController {
             showToast(msg: "Please Enter Password")
             return
         }
-        guard isValidPassword(password: password)else{
-            showToast(msg: ErrorMessage.list.passwordlength)
-            
+        
+        guard password.count >= 6 else{
+            showToast(msg: ErrorMessage.list.passwordlength.localize())
+            return
+        }
+        
+        guard password.isValidPassword()  else{
+            showToast(msg: ErrorMessage.list.specialPasswordMsg.localize())
             return
         }
         
@@ -343,14 +348,19 @@ class RegisterViewController: BaseViewController {
             showToast(msg: "Please Enter Confirm Password")
             return
         }
-        guard isValidPassword(password: confirmpassword)else{
-            showToast(msg: ErrorMessage.list.passwordlength)
+        
+        guard confirmpassword.count >= 6 else{
+            showToast(msg: ErrorMessage.list.passwordlength.localize())
+            return
+        }
+        
+        guard confirmpassword.isValidPassword() else{
+            showToast(msg: ErrorMessage.list.specialPasswordMsg.localize())
             
             return
         }
         guard ismatchPassword(newPwd: password, confirmPwd: confirmpassword)else{
             showToast(msg: ErrorMessage.list.newPasswordDonotMatch)
-            
             return
         }
         guard let status = statusValueLabel.text, !status.isEmpty else{
