@@ -75,6 +75,7 @@ struct XIB {
     let ItemListTableViewCell = "ItemListTableViewCell"
     let GalleryCollectionViewCell = "GalleryCollectionViewCell"
     let FoodSafetyCell = "FoodSafetyCell"
+    let ReasonsListView = "ReasonsListView"
     
     
 

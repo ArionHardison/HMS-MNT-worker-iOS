@@ -113,7 +113,7 @@ class EditRegisterViewController: BaseViewController {
     var banneURL = String()
     var shopURL = String()
     private var photos = [UnsplashPhoto]()
-
+   var placesHelper : GooglePlacesHelper?
  
     @IBOutlet weak var cusinesCollectionHeight: NSLayoutConstraint!
     
@@ -124,6 +124,10 @@ class EditRegisterViewController: BaseViewController {
         setInitialLoads()
         imagesGalleryCV.register(UINib(nibName: XIB.Names.GalleryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.GalleryCollectionViewCell)
         bannerCV.register(UINib(nibName: XIB.Names.GalleryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.GalleryCollectionViewCell)
+        
+        if self.placesHelper == nil {
+               self.placesHelper = GooglePlacesHelper()
+        }
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -258,7 +262,7 @@ class EditRegisterViewController: BaseViewController {
         self.navigationController?.pushViewController(selectCusineController, animated: true)
     }
     @IBAction func onAddressAction(_ sender: Any) {
-        let autocompleteController = GMSAutocompleteViewController()
+    /*    let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
         
         // Specify the place data types to return.
@@ -272,7 +276,10 @@ class EditRegisterViewController: BaseViewController {
         autocompleteController.autocompleteFilter = filter
         
         // Display the autocomplete view controller.
-        present(autocompleteController, animated: true, completion: nil)
+        present(autocompleteController, animated: true, completion: nil)*/
+        
+        
+        presentSearchLocationVC()
     }
     @IBAction func deliveryOptions(sender:UIButton)
         
@@ -420,12 +427,12 @@ class EditRegisterViewController: BaseViewController {
                                       "offer_min_amount":minAmountTextField.text!,
                                        "estimated_delivery_time":maximumDeliveryTextField.text!,
                                        "description":descriptionTextField.text!,
-                                       "address":addressValueLabel.text!,
-                                       "maps_address":landmarkTextField.text!,
+                                       "address":landmarkTextField.text!,
+                                       "maps_address":addressValueLabel.text!,
                                        "offer_percent":offerPercentTextField.text!,
                                        "latitude":latStr,
                                        "longitude":longStr,
-                                       "image_gallery_id":self.selectedImageID,
+                                       //"image_gallery_id":self.selectedImageID,
                                        "i_offer[0]": isTakeAway ? 1 : 0,
                                        "i_offer[1]": isDelivery ? 2 : 0,
                                        "halal"  : isHalal ? 1 : 0,
@@ -445,11 +452,11 @@ class EditRegisterViewController: BaseViewController {
         }
         parameters["cuisine_id"] = cusineArray
         
-        if bannerImgID != 0  {
-            
-            parameters["image_banner_id"]  = bannerImgID
-            
-        }
+//        if bannerImgID != 0  {
+//
+//            parameters["image_banner_id"]  = bannerImgID
+//
+//        }
         
         
         if shopURL != "" {
@@ -668,6 +675,16 @@ extension EditRegisterViewController {
         
         
     }
+    
+    func presentSearchLocationVC()
+    {
+               placesHelper?.getGoogleAutoComplete { (place) in
+                self.addressValueLabel.text = "\(place.formattedAddress ?? "")"
+                self.latStr = String(format: "%.8f", place.coordinate.latitude)
+                self.longStr = String(format: "%.8f", place.coordinate.longitude)
+                   
+               }
+           }
 }
 //MARK: VIPER Extension:
 extension EditRegisterViewController: PresenterOutputProtocol {
@@ -694,7 +711,7 @@ extension EditRegisterViewController: PresenterOutputProtocol {
             phoneNumberTextField.text = data?.phone
             statusValueLabel.text = data?.status
             shopURL = (data?.avatar)!
-            banneURL = (data?.default_banner)!
+            banneURL = (data?.default_banner) ?? ""
             
             if canOpenURL(string: data?.avatar){
                 imgCuisine.sd_setImage(with: URL(string: data?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
@@ -953,8 +970,7 @@ extension EditRegisterViewController : UICollectionViewDelegate,UICollectionView
             
         }
         
-
-        
+      
         return UICollectionViewCell()
         
         
@@ -998,13 +1014,35 @@ extension EditRegisterViewController : UICollectionViewDelegate,UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
-        self.selectedIndex = -1
-        self.selectedImageID = self.imageList[indexPath.row].id!
-        self.imagesGalleryCV.reloadData()
+//        self.selectedIndex = indexPath.row
+//        self.selectedImageID = self.imageList[indexPath.row].id!
+//        print(self.imageList[indexPath.row].id!)
+//        self.imagesGalleryCV.reloadData()
+        
+        
+        if collectionView == bannerCV
+        {
+            
+            
+            self.selectedIndex = indexPath.row
+            
+            
+        }
+        else
+        {
+            
+            self.bannerIndex = indexPath.row
+            
+            
+        }
+        
+
+        
         
     }
     
     @objc func testClick(sender: UIButton) {
+        
         if sender.tag == self.imageList.count
         {
             
@@ -1020,6 +1058,16 @@ extension EditRegisterViewController : UICollectionViewDelegate,UICollectionView
         }
         else
         {
+            
+            
+            
+            if let image = self.imageList[sender.tag].image {
+                
+                 shopURL = image
+                 imgCuisine.sd_setImage(with: URL(string:shopURL), placeholderImage: UIImage(named: "user-placeholder"))
+            }
+            
+            
             isImageSelected = !isImageSelected
             self.selectedIndex = isImageSelected ? sender.tag : -1
             self.selectedImageID = isImageSelected ? self.imageList[self.selectedIndex].id! : 0
@@ -1048,9 +1096,16 @@ extension EditRegisterViewController : UICollectionViewDelegate,UICollectionView
         }
         else
         {
+            
+           
             isBanner = !isBanner
             self.bannerIndex = isBanner ? sender.tag : -1
             self.bannerImgID = isBanner ? self.imageList[self.bannerIndex].id! : 0
+            banneURL =  self.imageList[sender.tag].image!
+            imgBanner.sd_setImage(with: URL(string:banneURL), placeholderImage: UIImage(named: "user-placeholder"))
+            
+    
+            
             self.bannerCV.reloadData()
             
         }

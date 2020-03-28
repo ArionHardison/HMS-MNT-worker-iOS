@@ -67,8 +67,25 @@ class CreateProductAddonsViewController: BaseViewController {
     var categoryListArr = [CategoryListModel]()
     var productModel: Products?
     var imageList = [ImageList]()
-
     var productdata: GetProductEntity?
+    
+    @IBOutlet weak var labelVeg: UILabel!
+    
+    @IBOutlet weak var labelFoodType: UILabel!
+    
+    @IBOutlet weak var buttonVeg: UIButton!
+    
+    
+    @IBOutlet weak var buttonNonVeg: UIButton!
+    
+    @IBOutlet weak var labelNonVeg: UILabel!
+    
+    var isVeg = false
+    var isNonVeg = false
+    
+    
+    
+    
 
     var isNo = false
     var isYes = false
@@ -114,6 +131,8 @@ class CreateProductAddonsViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         enableKeyboardHandling()
         self.navigationController?.isNavigationBarHidden = false
+        
+       
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -189,6 +208,54 @@ class CreateProductAddonsViewController: BaseViewController {
     }
     
     
+    @IBAction func vegSelectionAction(sender:UIButton){
+        
+        
+        if sender.tag == 1
+        {
+            isVeg = !isVeg
+           // self.buttonVeg.setImage(isVeg ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
+            //self.buttonNonVeg.setImage(#imageLiteral(resourceName: "radiooff"), for: .normal)
+            isNonVeg = false
+            
+            
+                      let image = UIImage(named: "radioon")?.withRenderingMode(.alwaysTemplate)
+                       buttonVeg.setImage(image, for: .normal)
+                       buttonVeg.tintColor = UIColor.primary
+                      
+                       let image1 = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
+                       buttonNonVeg.setImage(image1, for: .normal)
+                       buttonNonVeg.tintColor = UIColor.primary
+            
+            
+            
+            
+        }else if sender.tag == 2
+        {
+            
+            
+            isNonVeg = !isNonVeg
+          //  self.buttonNonVeg.setImage(isNonVeg ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
+           // self.buttonVeg.setImage(#imageLiteral(resourceName: "radiooff"), for: .normal)
+            isVeg = false
+            
+            
+            let image = UIImage(named: "radioon")?.withRenderingMode(.alwaysTemplate)
+            buttonNonVeg.setImage(image, for: .normal)
+            buttonNonVeg.tintColor = UIColor.primary
+           
+            let image1 = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
+            buttonVeg.setImage(image1, for: .normal)
+            buttonVeg.tintColor = UIColor.primary
+            
+        }
+
+        
+    }
+    
+    
+    
+    
     @IBAction func onProductCusineAction(_ sender: Any) {
         let statusController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.StatusViewController) as! StatusViewController
         var cusineStr = [String]()
@@ -220,6 +287,8 @@ class CreateProductAddonsViewController: BaseViewController {
     }
     //MARK: Validate
     func Validate(){
+        
+        
         view.endEditing(true)
         guard let name = nameTextField.text, !name.isEmpty else{
             showToast(msg: ErrorMessage.list.enterName)
@@ -234,9 +303,7 @@ class CreateProductAddonsViewController: BaseViewController {
             showToast(msg: ErrorMessage.list.enterIngradients)
             return
         }
-        
-        
-        
+
         guard let productCusine = productCusineValueLabel.text, !productCusine.isEmpty else{
             showToast(msg: ErrorMessage.list.enterProductCusine)
             return
@@ -293,6 +360,15 @@ class CreateProductAddonsViewController: BaseViewController {
 //            featureUploadimgeData = dataImg
 //        }
         
+        
+        
+        if productOrder == "0"{
+            
+            self.view.makeToast("Please Enter Product Order")
+        }
+        
+        
+        
         var statusVal = ""
         if statusValueLabel.text == "Enable" {
             statusVal = "enabled"
@@ -308,21 +384,33 @@ class CreateProductAddonsViewController: BaseViewController {
        // createProductController.featureImageUploadData = featureUploadimgeData
         createProductController.status = statusVal
         createProductController.cusineId = String(productCusineId)
-        createProductController.productOrder = productOrederTextField.text ?? ""
+        createProductController.productOrder = Int(productOrder)!
         createProductController.featureStr = featureStr
         createProductController.ingradient = ingradients
         createProductController.productdata = productdata
-        createProductController.imageID = self.selectedImageID
-        createProductController.featuredImageID = self.featuredImageID
+//        createProductController.imageID = self.selectedImageID
+//        createProductController.featuredImageID = self.featuredImageID
         createProductController.calories = calories
+        
+        
+        if isVeg == true {
+            
+             createProductController.veg = true
+            
+        }else if isNonVeg == true {
+            createProductController.veg = false
+        }
+        
+        
+        
 
         if cuisineURL != "" {
+            
              createProductController.cuisineURL = cuisineURL
         }
         if featuredURL != "" {
             
             createProductController.feturedURL = featuredURL
-
         
         }
         
@@ -387,6 +475,7 @@ extension CreateProductAddonsViewController{
     
     
     private func setInitialLoads(){
+        
         setTableViewContentInset()
         setTitle()
         setFont()
@@ -407,6 +496,14 @@ extension CreateProductAddonsViewController{
           
 
         }
+        
+        buttonNonVeg.addTarget(self, action: #selector(vegSelectionAction(sender:)), for: .touchUpInside)
+        buttonVeg.addTarget(self, action: #selector(vegSelectionAction(sender:)), for: .touchUpInside)
+        let image = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
+        buttonNonVeg.setImage(image, for: .normal)
+        buttonNonVeg.tintColor = UIColor.primary
+        buttonVeg.tintColor = UIColor.primary
+        buttonVeg.setImage(image, for: .normal)
 
     }
     
@@ -424,6 +521,11 @@ extension CreateProductAddonsViewController{
         yesButton.tintColor = UIColor.primary
         noButton.setImage(image, for: .normal)
         noButton.tintColor = UIColor.primary
+       
+        
+        
+        
+        
     }
     
     private func setCusineList(){
@@ -504,7 +606,10 @@ extension CreateProductAddonsViewController{
         labelImageUpload.font = UIFont.bold(size: 15)
         labelCalories.font = UIFont.bold(size: 15)
         textfieldCalories.font = UIFont.bold(size: 15)
-    
+        labelFoodType.font = UIFont.bold(size: 15)
+        labelVeg.font = UIFont.regular(size: 15)
+        labelNonVeg.font = UIFont.regular(size: 15)
+       
     }
     
     private func setTableViewContentInset()
@@ -571,32 +676,70 @@ extension CreateProductAddonsViewController: PresenterOutputProtocol {
             productCusineValueLabel.text = productdata?.shop?.cuisines?.first?.name
             textfieldCalories.text = productdata?.calories
             productCusineId = productdata?.shop?.cuisines?.first?.id ?? 0
+            
+            
+            let url = self.productdata?.featured_images?.first?.url
+            
+            featureImageUploadImageView.sd_setImage(with: URL(string: url!), placeholderImage: UIImage(named: "user-placeholder"))
+            
+            self.featuredURL = url ?? ""
+            
+            if self.productdata?.food_type == "veg"
+            {
+                
+                buttonNonVeg.setImage(#imageLiteral(resourceName: "radiooff"), for: .normal)
+                buttonVeg.setImage(#imageLiteral(resourceName: "radioon"), for: .normal)
+                isVeg = true
+                isNonVeg = false
+                
+                
+                let image = UIImage(named: "radioon")?.withRenderingMode(.alwaysTemplate)
+                buttonVeg.setImage(image, for: .normal)
+                buttonVeg.tintColor = UIColor.primary
+                
+                let img = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
+                buttonNonVeg.setImage(img, for: .normal)
+                buttonNonVeg.tintColor = UIColor.primary
+                
+                
+                
+            }
+            else
+            {
+               // buttonVeg.setImage(#imageLiteral(resourceName: "radiooff"), for: .normal)
+                //buttonNonVeg.setImage(#imageLiteral(resourceName: "radioon"), for: .normal)
+                isVeg = false
+                isNonVeg = true
+                
+                let image = UIImage(named: "radioon")?.withRenderingMode(.alwaysTemplate)
+                               buttonNonVeg.setImage(image, for: .normal)
+                               buttonNonVeg.tintColor = UIColor.primary
+                               
+                               let img = UIImage(named: "radiooff")?.withRenderingMode(.alwaysTemplate)
+                               buttonVeg.setImage(img, for: .normal)
+                               buttonVeg.tintColor = UIColor.primary
+            }
+      
             if productdata?.status == "enabled" {
                 statusValueLabel.text = "Enable"
             }else{
                 statusValueLabel.text = "Disable"
             }
-            productOrederTextField.text = productdata?.position ?? "0"
+            productOrederTextField.text = "\(productdata?.position ?? 1)"
             
-            
-            if let productImg = self.productdata?.images?.first?.url {
+            if let productImg = self.productdata?.images?.last?.url {
                 
                 existingImage.sd_setImage(with: URL(string:productImg), placeholderImage: UIImage(named: "user-placeholder"))
             }
             
-            
-            
-            if let featuredImg = self.productdata?.images?[1].url {
-                
+            if let featuredImg = self.productdata?.featured_images?.first?.url {
+
                 featureImageUploadImageView.sd_setImage(with: URL(string:featuredImg), placeholderImage: UIImage(named: "user-placeholder"))
             }
-            
-            
             
 //            existingImage.sd_setImage(with: URL(string:(self.productdata?.images?.first!.url)!), placeholderImage: UIImage(named: "user-placeholder"))
 //            featureImageUploadImageView.sd_setImage(with: URL(string: self.productdata?.images?[1].url)!), placeholderImage: UIImage(named: "user-placeholder"))
 
-  
             
             categoryValueLabel.text = productdata?.categories?.first?.name
             categoryId = productdata?.categories?.first?.id ?? 0
@@ -606,7 +749,7 @@ extension CreateProductAddonsViewController: PresenterOutputProtocol {
             }else{
                 isUploadImage = true
             }
-            existingImage.sd_setImage(with: URL(string: uploadImageView), placeholderImage: UIImage(named: "what's-special"))
+           // existingImage.sd_setImage(with: URL(string: uploadImageView), placeholderImage: UIImage(named: "what's-special"))
             let featureIdStr: String! = String(describing: productModel?.featured ?? 0)
 
             featureStr = featureIdStr
@@ -765,7 +908,7 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
                 
                 cell.cuisineImage.sd_setImage(with: URL(string:self.imageList[indexPath.row].image ?? ""), placeholderImage:#imageLiteral(resourceName: "Add"))
                 
-                if featuredIndex == indexPath.row {
+                if self.featuredIndex == indexPath.row {
                     
                     cell.selectedImage.image = #imageLiteral(resourceName: "check-mark-2")
                     
@@ -828,6 +971,7 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
             self.selectedIndex = -1
          
             self.selectedImageID = self.imageList[indexPath.row].id!
+            self.cuisineURL =  self.imageList[indexPath.row].image!
             
             self.imagesGallery.reloadData()
             
@@ -863,7 +1007,11 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
         {
             isImageSelected = !isImageSelected
             self.selectedIndex = isImageSelected ? sender.tag : -1
-            self.selectedImageID = isImageSelected ? self.imageList[self.selectedIndex].id! : 0
+//            self.selectedImageID = isImageSelected ? self.imageList[self.selectedIndex].id! : 0
+            self.selectedImageID = isImageSelected ? self.imageList[sender.tag].id! : 0
+
+            cuisineURL = self.imageList[sender.tag].image!
+            existingImage.sd_setImage(with: URL(string: cuisineURL), placeholderImage: UIImage(named: "user-placeholder"))
             self.imagesGallery.reloadData()
             
         }
@@ -888,9 +1036,14 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
         }
         else
         {
+            
+            
             isFeturedSelected = !isFeturedSelected
             self.featuredIndex = isFeturedSelected ? sender.tag : -1
-            self.featuredImageID = isFeturedSelected ? self.imageList[self.featuredIndex].id! : 0
+//            self.featuredImageID = isFeturedSelected ? self.imageList[self.featuredIndex].id! : 0
+            self.featuredImageID = isFeturedSelected ? self.imageList[sender.tag].id! : 0
+            self.featuredURL = self.imageList[sender.tag].image!
+            featureImageUploadImageView.sd_setImage(with: URL(string: self.featuredURL), placeholderImage: UIImage(named: "user-placeholder"))
             self.featuredGalleryCV.reloadData()
             
         }

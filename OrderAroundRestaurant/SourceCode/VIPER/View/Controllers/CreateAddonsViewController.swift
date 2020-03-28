@@ -65,15 +65,16 @@ class CreateAddonsViewController: BaseViewController {
         }
         
         showActivityIndicator()
-        if addOnsListResponse != nil {
+        if addOnsListResponse != nil
+        {
             let orderIdStr: String! = String(describing: addOnsListResponse?.id ?? 0)
 
             let urlStr = Base.addOnList.rawValue + "/" + orderIdStr
             let parameters:[String:Any] = ["name": nameTextField.text!,"calories":calories]
             self.presenter?.GETPOST(api: urlStr, params:parameters, methodType: .PATCH, modelClass: ListAddOns.self, token: true)
+            
         }else
         {
-            
             
              let shopID  = UserDefaults.standard.value(forKey: "shopId") as! Int
             let parameters:[String:Any] = ["name": nameTextField.text!,"shop_id":shopID,"calories":calories]

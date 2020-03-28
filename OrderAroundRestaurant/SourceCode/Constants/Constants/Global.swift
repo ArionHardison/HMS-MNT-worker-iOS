@@ -11,6 +11,7 @@ import Foundation
 
 var currentBundle : Bundle!
 var selectedLanguage : Language = .japanese
+fileprivate var blurEffectViewGlobal : UIVisualEffectView?
 
 func setLocalization(language : Language){
     
@@ -25,3 +26,37 @@ func setLocalization(language : Language){
     
 }
 
+extension UIView {
+
+    func addBlurview(with style : UIBlurEffect.Style = .dark, on completion : @escaping (()->Void)) {
+           
+           let blurEffect = UIBlurEffect(style: style)
+           let blurEffectView = UIVisualEffectView(effect: blurEffect)
+          // blurEffectView.center = CGPoint(x: self.bounds.width/2, y: self.bounds.height/2)
+           blurEffectView.frame = self.bounds
+          // blurEffectView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+           blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+           self.addSubview(blurEffectView)
+           
+           let transition = CATransition()
+           transition.duration = 1
+        transition.type = CATransitionType.fade
+           //transition.subtype = kCATransitionFade
+           blurEffectView.layer.add(transition, forKey: kCATransition)
+           blurEffectViewGlobal = blurEffectView
+           DispatchQueue.main.asyncAfter(deadline: .now()) {
+               completion()
+           }
+       }
+       
+       func removeBlurView() {
+           
+           let transition = CATransition()
+           transition.duration = 0.3
+            transition.type = CATransitionType.fade
+           blurEffectViewGlobal?.layer.add(transition, forKey: kCATransition)
+           DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
+               blurEffectViewGlobal?.removeFromSuperview()
+           }
+       }
+}

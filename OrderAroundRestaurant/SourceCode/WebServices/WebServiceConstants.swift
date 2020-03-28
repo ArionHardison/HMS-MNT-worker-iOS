@@ -47,6 +47,7 @@ enum Base : String{
     case getTimeUpdate = "/api/shop/time"
     case getDelete = "/api/shop/remove/"
     case getImagesGallery = "/image-gallery"
+    case reasonsList = "/api/shop/reasons"
     
     
     init(fromRawValue: String){

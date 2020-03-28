@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>772235683656-6c097u1r7o04241q9tdoju5n1emi7q1i.apps.googleusercontent.com</string>
+	<string>1062254733354-qubjl25vnhrgg6vhi1ke0i15v4fci7hu.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.772235683656-6c097u1r7o04241q9tdoju5n1emi7q1i</string>
+	<string>com.googleusercontent.apps.1062254733354-qubjl25vnhrgg6vhi1ke0i15v4fci7hu</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>772235683656-4csigiq9cvq26g12bea118nfr5bsvv06.apps.googleusercontent.com</string>
+	<string>1062254733354-1f13lh186rs85l1q776pa2bgu4ofhicg.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAivOHqZWJd3kxGBqSc41xBYJ6DvgiTRYU</string>
+	<string>AIzaSyBMWRPvgbKb2ffzW7E2yHTUoDN631Dq2-4</string>
 	<key>GCM_SENDER_ID</key>
-	<string>772235683656</string>
+	<string>1062254733354</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.Foddie.Resturant</string>
+	<string>com.oyala.Resturant</string>
 	<key>PROJECT_ID</key>
-	<string>food-delivery-232504</string>
+	<string>oyola-245705</string>
 	<key>STORAGE_BUCKET</key>
-	<string>food-delivery-232504.appspot.com</string>
+	<string>oyola-245705.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,8 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:772235683656:ios:0f90427b7b4dd6ad</string>
+	<string>1:1062254733354:ios:fac99e3adf05cb8ab73b53</string>
 	<key>DATABASE_URL</key>
-	<string>https://food-delivery-232504.firebaseio.com</string>
+	<string>https://oyola-245705.firebaseio.com</string>
 </dict>
 </plist>

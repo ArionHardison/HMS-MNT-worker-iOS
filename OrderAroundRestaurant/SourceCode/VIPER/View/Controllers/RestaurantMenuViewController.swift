@@ -81,7 +81,7 @@ extension RestaurantMenuViewController {
                              APPLocalize.localizestring.editTiming.localize(),
                              APPLocalize.localizestring.Deliveries.localize(),
                              APPLocalize.localizestring.changePassword.localize(),
-                             "Food Safety",
+                             "Notice Board",
                              APPLocalize.localizestring.logout.localize(),
                              APPLocalize.localizestring.deleteAccount.localize()]
         self.menuImgArr = ["timer","bank","edit","edit-time","delivery-truck","padlock","salver","logout","trash"]

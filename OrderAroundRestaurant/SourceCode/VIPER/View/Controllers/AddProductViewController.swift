@@ -112,16 +112,19 @@ extension AddProductViewController: UITableViewDelegate,UITableViewDataSource{
         return  productArr.count
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        
+        
         let createProductController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.CreateProductAddonsViewController) as! CreateProductAddonsViewController
         let dict = self.categoryListArr[indexPath.section]
         let productArr = dict.products?[indexPath.row]
         createProductController.productModel = productArr
         createProductController.categoryListArr = categoryListArr
         self.navigationController?.pushViewController(createProductController, animated: true)
+        
+        
     }
-    
-  
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.AddCategoryTableViewCell, for: indexPath) as! AddCategoryTableViewCell

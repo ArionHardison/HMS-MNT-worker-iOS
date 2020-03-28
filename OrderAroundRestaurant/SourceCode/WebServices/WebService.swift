@@ -35,10 +35,17 @@ extension Webservice : WebServiceProtocol {
        
         
         if(token){
+            
+            
+            
+            
             let accessToken = UserDataDefaults.main.access_token ?? ""
                 //= UserDefaults.standard.value(forKey: Keys.list.access_token) as! String
             headers.updateValue("\(WebConstants.string.bearer) \(accessToken)", forKey: WebConstants.string.Authorization)
             headers.updateValue(WebConstants.string.application_json, forKey: "Content-Type")
+            
+            
+            
         }
         
         let httpMethod = HTTPMethod(rawValue: type.rawValue) //GET or POST

@@ -45,10 +45,14 @@ class UpcomingDetailViewController: BaseViewController {
     @IBOutlet weak var overView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    var reasonsView : ReasonsListView?
+    
     var OrderId = 0
     var CartOrderArr:[Cart] = []
     var OrderModel: Order?
     var fromwhere = ""
+    var cancelReasons : CancelReasons?
+    var reasonID = Int()
     
     
     override func viewDidLoad() {
@@ -125,7 +129,7 @@ class UpcomingDetailViewController: BaseViewController {
         
      
         
-            self.acceptOrderApi(statusStr: "RECEIVED")
+        self.acceptOrderApi(statusStr: "RECEIVED",id: 0)
        
 
     }
@@ -145,20 +149,76 @@ class UpcomingDetailViewController: BaseViewController {
     }
     */
     @IBAction func onCancelButtonAction(_ sender: Any) {
-        var alertController = UIAlertController(title: "", message: "Are you sure want to cancel your order", preferredStyle: .alert)
+    /*    var alertController = UIAlertController(title: "", message: "Are you sure want to cancel your order", preferredStyle: .alert)
         
         var no = UIAlertAction(title: "NO", style: .default, handler: nil)
         
         var ok = UIAlertAction(title: "YES", style: .default, handler: { action in
             
 //            self.acceptCancelOrderMethod("CANCELLED")
-            self.acceptOrderApi(statusStr: "CANCELLED")
+           // self.acceptOrderApi(statusStr: "CANCELLED")
             
         })
         alertController.addAction(ok)
         alertController.addAction(no)
-        present(alertController, animated: true)
+        present(alertController, animated: true)*/
+        
+        
+        
+        
+        
+        loadReasonsView()
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
+
+    func loadReasonsView(){
+        
+        
+        if self.reasonsView == nil, let ReasonsView = Bundle.main.loadNibNamed(XIB.Names.ReasonsListView, owner: self, options: [:])?.first as? ReasonsListView {
+                  self.reasonsView = ReasonsView
+                  self.reasonsView?.clipsToBounds = true
+                  self.reasonsView?.center = self.view.center
+                  self.reasonsView?.list = cancelReasons?.reason_list
+            
+                self.view.addBlurview {
+                self.view.addSubview(ReasonsView)
+
+            }
+                  
+          }
+        
+        
+        self.reasonsView?.noAction = {
+        
+            self.removeReasonsView()
+           
+        }
+         
+        self.reasonsView?.cancelAction = { reason ,id in
+            self.reasonID = id!
+            self.acceptOrderApi(statusStr: "CANCELLED", id: id!)
+        }
+        
+   
+        
+    }
+    
+    
+    func removeReasonsView(){
+        
+         self.reasonsView?.removeFromSuperview()
+        self.reasonsView = nil
+        self.view.removeBlurView()
+    }
+    
     
     @IBAction func onacceptButtonAction(_ sender: Any) {
         
@@ -179,7 +239,6 @@ class UpcomingDetailViewController: BaseViewController {
             }
             else
             {
-                
                 self.updateTakeAwayOrderStatus(status: "COMPLETED")
                 
             }
@@ -188,12 +247,19 @@ class UpcomingDetailViewController: BaseViewController {
         
     }
     
-    private func acceptOrderApi(statusStr: String){
+    private func acceptOrderApi(statusStr: String,id:Int){
         showActivityIndicator()
         let urlStr = "\(Base.getOrder.rawValue)/" + String(OrderId)
-        let parameters:[String:Any] = ["status": statusStr,
+        var parameters:[String:Any] = ["status": statusStr,
                                        "order_ready_time":orderTimeTextField.text!,
                                        "_method":"PATCH"]
+        
+        if id != 0 {
+            
+            parameters = ["status": statusStr,
+            "_method":"PATCH","cancel_reason_id":id]
+        }
+        
         self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
     }
     
@@ -266,6 +332,8 @@ extension UpcomingDetailViewController{
        // acceptButton.layer.borderWidth = 1
         disputeButton.layer.cornerRadius = 16
         disputeButton.layer.borderWidth = 1
+        
+        self.presenter?.GETPOST(api: Base.reasonsList.rawValue, params: [:], methodType: .GET, modelClass:CancelReasons.self, token: true)
         
      
     }
@@ -440,16 +508,18 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
         addonsNameArr.removeAll()
         
         if(Data.cart_addons != nil) {
-//            for i in 0..<(Data.cart_addons!.count)
-//        {
-//            let Result = Data.cart_addons![i]
-//
-//
-//          //  let str = "\(Result.addon_product?.addon?.name! ?? "")"
-//          //  addonsNameArr.append(str)
-//
-//        }
-        
+            for i in 0..<(Data.cart_addons!.count)
+        {
+            
+            let addOn = Data.cart_addons![i]
+            
+            if  let str = addOn.addon_product?.addon?.name {
+                addonsNameArr.append(str)
+
+            }
+
+        }
+     
         if Data.cart_addons!.count == 0 {
             cell.subTitleLabel.isHidden = true
         }else{
@@ -484,7 +554,7 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
             updateOrderItemTableHeight()
         }else if String(describing: modelClass) == model.type.AcceptModel {
           
-
+               removeReasonsView()
             if fromwhere == "HOME" {
                // self.navigationController?.popViewController(animated: true)
                 
@@ -511,6 +581,15 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
      
                 
             }
+            
+            
+            
+            
+        }else if String(describing: modelClass) ==  model.type.CancelReasons {
+            
+            
+             let data = dataDict as? CancelReasons
+             self.cancelReasons = data
             
             
             

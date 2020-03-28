@@ -86,10 +86,13 @@ class CreateCategoryViewController: BaseViewController {
         self.present(categoryStatusController, animated: true, completion: nil)
     }
     @IBAction func onsaveButtonAction(_ sender: Any) {
+        
         Validate()
+        
     }
     //MARK: Validate
     func Validate(){
+        
         view.endEditing(true)
         guard let categoryName = categoryNameTextField.text, !categoryName.isEmpty else{
             showToast(msg: ErrorMessage.list.enterName)

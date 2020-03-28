@@ -16,7 +16,7 @@ import Firebase
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let place_key = "AIzaSyDNmSE7xEYTKxPOXp1rkda67va-HTr_Mes"//"AIzaSyBpk9s5L2o4iVB8bUdIIVEkBj7fW2NeQtI"
+    let place_key = "AIzaSyBMWRPvgbKb2ffzW7E2yHTUoDN631Dq2-4"//"AIzaSyDNmSE7xEYTKxPOXp1rkda67va-HTr_Mes"//"AIzaSyBpk9s5L2o4iVB8bUdIIVEkBj7fW2NeQtI"
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setLocalization(language: .english)
         device_ID = (UIDevice.current.identifierForVendor?.uuidString)!
@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Constant.string.deviceType = UIDevice.current.screenType.rawValue
         print("screenType:",Constant.string.deviceType)
         FirebaseApp.configure()
+        Fabric.sharedSDK().debug = true
         window?.rootViewController = Router.createModule()
         window?.makeKeyAndVisible()
         GMSPlacesClient.provideAPIKey(place_key)
@@ -93,5 +94,24 @@ extension AppDelegate {
         print("Error in Notification  \(error.localizedDescription)")
     }
     
+    
+}
+extension UIApplication {
+    
+    class func topViewController(base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        
+        if let nav = base as? UINavigationController {
+            return topViewController(base: nav.visibleViewController)
+        }
+        if let tab = base as? UITabBarController {
+            if let selected = tab.selectedViewController {
+                return topViewController(base: selected)
+            }
+        }
+        if let presented = base?.presentedViewController {
+            return topViewController(base: presented)
+        }
+        return base
+    }
     
 }

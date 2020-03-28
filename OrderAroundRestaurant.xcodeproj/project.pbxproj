@@ -134,11 +134,17 @@
 		08C43F8C237D3C7C00583886 /* UserDetiailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C43F8B237D3C7B00583886 /* UserDetiailsViewController.swift */; };
 		08D65704237D61350043A7CE /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D65703237D61350043A7CE /* HoshiTextField.swift */; };
 		08D65706237D62170043A7CE /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D65705237D62160043A7CE /* TextFieldEffects.swift */; };
+		12235D2C241F795600FF4A1B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12235D2B241F795600FF4A1B /* GoogleService-Info.plist */; };
 		125B965623D710F300923CE3 /* FoodSafetyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125B965523D710F300923CE3 /* FoodSafetyViewController.swift */; };
 		125B965823D7183700923CE3 /* PDFLoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125B965723D7183700923CE3 /* PDFLoaderViewController.swift */; };
 		125B965A23D71EAF00923CE3 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125B965923D71EAF00923CE3 /* WebKit.framework */; };
+		125D85A0242E314200E87359 /* GooglePlacesHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125D859F242E314200E87359 /* GooglePlacesHelper.swift */; };
+		1274D564241B908400000CFE /* CancelReasons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1274D563241B908400000CFE /* CancelReasons.swift */; };
+		1274D566241B92E500000CFE /* ReasonsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1274D565241B92E500000CFE /* ReasonsListView.swift */; };
+		1274D568241B92FD00000CFE /* ReasonsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1274D567241B92FD00000CFE /* ReasonsListView.xib */; };
+		1274D56B241B97B300000CFE /* ReasonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1274D569241B97B300000CFE /* ReasonsCell.swift */; };
+		1274D56C241B97B300000CFE /* ReasonsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1274D56A241B97B300000CFE /* ReasonsCell.xib */; };
 		1BD6C97884E76DCBF540DD4D /* Pods_OrderAroundRestaurant.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ADFC8BDAA3EBD2DD537EC2CA /* Pods_OrderAroundRestaurant.framework */; };
-		24F903232274724200EC0FA2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 24F903222274724200EC0FA2 /* GoogleService-Info.plist */; };
 		24FC05B422734385003243D9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B322734385003243D9 /* Global.swift */; };
 		24FC05B6227343E3003243D9 /* LocaliseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B5227343E3003243D9 /* LocaliseManager.swift */; };
 		24FC05B822734548003243D9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B722734548003243D9 /* String.swift */; };
@@ -300,10 +306,16 @@
 		08C43F8B237D3C7B00583886 /* UserDetiailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetiailsViewController.swift; sourceTree = "<group>"; };
 		08D65703237D61350043A7CE /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
 		08D65705237D62160043A7CE /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
+		12235D2B241F795600FF4A1B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		125B965523D710F300923CE3 /* FoodSafetyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSafetyViewController.swift; sourceTree = "<group>"; };
 		125B965723D7183700923CE3 /* PDFLoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLoaderViewController.swift; sourceTree = "<group>"; };
 		125B965923D71EAF00923CE3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
-		24F903222274724200EC0FA2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		125D859F242E314200E87359 /* GooglePlacesHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesHelper.swift; sourceTree = "<group>"; };
+		1274D563241B908400000CFE /* CancelReasons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReasons.swift; sourceTree = "<group>"; };
+		1274D565241B92E500000CFE /* ReasonsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonsListView.swift; sourceTree = "<group>"; };
+		1274D567241B92FD00000CFE /* ReasonsListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReasonsListView.xib; sourceTree = "<group>"; };
+		1274D569241B97B300000CFE /* ReasonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReasonsCell.swift; path = OrderAroundRestaurant/SourceCode/VIPER/View/Cell/ReasonsCell.swift; sourceTree = SOURCE_ROOT; };
+		1274D56A241B97B300000CFE /* ReasonsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReasonsCell.xib; path = OrderAroundRestaurant/SourceCode/VIPER/View/Cell/ReasonsCell.xib; sourceTree = SOURCE_ROOT; };
 		24FC05B322734385003243D9 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		24FC05B5227343E3003243D9 /* LocaliseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaliseManager.swift; sourceTree = "<group>"; };
 		24FC05B722734548003243D9 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
@@ -377,7 +389,8 @@
 		087D0BC5222403FC00E58BDE /* OrderAroundRestaurant */ = {
 			isa = PBXGroup;
 			children = (
-				24F903222274724200EC0FA2 /* GoogleService-Info.plist */,
+				125D859F242E314200E87359 /* GooglePlacesHelper.swift */,
+				12235D2B241F795600FF4A1B /* GoogleService-Info.plist */,
 				B4BC6BCD2254BE83007427BD /* OrderAroundRestaurant.entitlements */,
 				087D0BFE2224087F00E58BDE /* SourceCode */,
 				087D0BF4222404F300E58BDE /* Resources */,
@@ -454,6 +467,10 @@
 			children = (
 				087D0C02222408C400E58BDE /* TableViewCell */,
 				087D0C01222408B000E58BDE /* CollectionViewCell */,
+				1274D565241B92E500000CFE /* ReasonsListView.swift */,
+				1274D567241B92FD00000CFE /* ReasonsListView.xib */,
+				1274D569241B97B300000CFE /* ReasonsCell.swift */,
+				1274D56A241B97B300000CFE /* ReasonsCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -614,6 +631,7 @@
 				088A50CA2242A3160028DA68 /* AcceptEntity.swift */,
 				087F52E9224649050090369C /* EditRegisterEntity.swift */,
 				088F9C982247C97E00900EE5 /* GetProductEntity.swift */,
+				1274D563241B908400000CFE /* CancelReasons.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -992,6 +1010,7 @@
 				08A44AC622379F3300228233 /* SelectCusineTableViewCell.xib in Resources */,
 				08A3B6A522253D0F0010058B /* Nunito-SemiBold.ttf in Resources */,
 				08A44ACD2237B14000228233 /* countryCodes.json in Resources */,
+				12235D2C241F795600FF4A1B /* GoogleService-Info.plist in Resources */,
 				08A14DE9222FD77B00F35B1E /* AddOnsListTableViewCell.xib in Resources */,
 				08A3B6C6222583EB0010058B /* dishesTableViewCell.xib in Resources */,
 				08A44AD52237B2CE00228233 /* CountryCodeTableViewCell.xib in Resources */,
@@ -1002,12 +1021,13 @@
 				B4086EDD2271F159008C5BC0 /* Localizable.strings in Resources */,
 				08A3B6C022255C8C0010058B /* EditTimingTableViewCell.xib in Resources */,
 				08A14DF3222FE37E00F35B1E /* AddCategoryTableViewCell.xib in Resources */,
-				24F903232274724200EC0FA2 /* GoogleService-Info.plist in Resources */,
+				1274D568241B92FD00000CFE /* ReasonsListView.xib in Resources */,
 				08A3B6B4222546BB0010058B /* SideMenuTableViewCell.xib in Resources */,
 				087D0C092224093400E58BDE /* LaunchScreen.storyboard in Resources */,
 				08A3B6A922253D1A0010058B /* Nunito-ExtraLight.ttf in Resources */,
 				08A44ACC2237B14000228233 /* CountryPicker.bundle in Resources */,
 				08A3B6A322253D0A0010058B /* Nunito-ExtraBold.ttf in Resources */,
+				1274D56C241B97B300000CFE /* ReasonsCell.xib in Resources */,
 				08A3B6A222253D080010058B /* Nunito-Bold.ttf in Resources */,
 				08AD75272226912F002A0419 /* DeliveriesTableViewCell.xib in Resources */,
 				08A3B6A822253D180010058B /* Nunito-Light.ttf in Resources */,
@@ -1217,6 +1237,7 @@
 				08ACEA042239012A0050591D /* ProductEntity.swift in Sources */,
 				08AB876A22363DE900740520 /* UpComingRequestViewController.swift in Sources */,
 				08AD19EC223B8DB90009F5F6 /* CustomLabelsXAxisValueFormatter.swift in Sources */,
+				125D85A0242E314200E87359 /* GooglePlacesHelper.swift in Sources */,
 				087D0C0C222410EB00E58BDE /* Alert.swift in Sources */,
 				08A14DEB222FE0D400F35B1E /* CreateAddonsViewController.swift in Sources */,
 				08A14DE5222FD74800F35B1E /* AddonsListViewController.swift in Sources */,
@@ -1249,6 +1270,7 @@
 				08A14DE8222FD77B00F35B1E /* AddOnsListTableViewCell.swift in Sources */,
 				08A20C26223A433D0081256F /* RemoveCategoryEntity.swift in Sources */,
 				08A3B6B3222546BB0010058B /* SideMenuTableViewCell.swift in Sources */,
+				1274D566241B92E500000CFE /* ReasonsListView.swift in Sources */,
 				087D0BC7222403FC00E58BDE /* AppDelegate.swift in Sources */,
 				0891E2222231581100409038 /* TextField.swift in Sources */,
 				125B965623D710F300923CE3 /* FoodSafetyViewController.swift in Sources */,
@@ -1263,10 +1285,12 @@
 				0876C55F223F74B30035E2C5 /* OrderEntity.swift in Sources */,
 				08A3B6C5222583EB0010058B /* dishesTableViewCell.swift in Sources */,
 				08A44AC022378CE800228233 /* OrderHistoryEntity.swift in Sources */,
+				1274D564241B908400000CFE /* CancelReasons.swift in Sources */,
 				0817913E2237EBE5002165E1 /* StatusViewController.swift in Sources */,
 				0891E20C2231018000409038 /* Interactor.swift in Sources */,
 				08A20C2C223A63600081256F /* CategoryStatusViewController.swift in Sources */,
 				0876C55D223F70A80035E2C5 /* DeliveryEntity.swift in Sources */,
+				1274D56B241B97B300000CFE /* ReasonsCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1439,7 +1463,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 14;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = JU248DMV5X;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
@@ -1462,7 +1486,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = JU248DMV5X;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

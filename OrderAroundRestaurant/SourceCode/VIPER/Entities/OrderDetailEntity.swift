@@ -35,7 +35,7 @@ struct Cart : Mappable {
     var note : String?
     var savedforlater : Int?
     var product : Product?
-    var cart_addons : [String]?
+    var cart_addons : [CartAddons]?
     
     init?(map: Map) {
         
@@ -127,3 +127,57 @@ struct Order : Mappable {
     }
     
 }
+
+
+struct CartAddons : Mappable {
+   
+   
+    var addon_product : AddOnsObject?
+    
+    
+    mutating func mapping(map: Map) {
+        
+        addon_product <- map["addon_product"]
+           
+       }
+       
+       init?(map: Map) {
+        
+    }
+ 
+}
+
+
+struct AddOnsObject : Mappable {
+    
+    var addon : AddOns?
+
+    init?(map: Map) {
+        
+    }
+    
+   mutating func mapping(map: Map) {
+        
+      addon <- map["addon"]
+    }
+    
+  
+}
+
+
+struct AddOns : Mappable {
+    
+    var name : String?
+
+     init?(map: Map) {
+         
+     }
+     
+    mutating func mapping(map: Map) {
+         
+       name <- map["name"]
+     }
+    
+    
+}
+

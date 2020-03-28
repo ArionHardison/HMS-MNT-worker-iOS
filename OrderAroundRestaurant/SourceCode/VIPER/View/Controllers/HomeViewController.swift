@@ -18,8 +18,8 @@ class HomeViewController: BaseViewController {
     
     @IBOutlet weak var labelUpComingRequests: UILabel!
     
-    
     @IBOutlet weak var upcomingLabelHeight: NSLayoutConstraint!
+    @IBOutlet weak var ratingView: CosmosView!
     
     
     
@@ -101,6 +101,7 @@ extension HomeViewController{
         restaurantNameLabel.text = profile.name
         restaurantLocation.text = profile.address
         bannerImageView.sd_setImage(with: URL(string: profile.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+        ratingView.rating = Double(profile.rating ?? 0)
 
     }
     private func setRegister(){

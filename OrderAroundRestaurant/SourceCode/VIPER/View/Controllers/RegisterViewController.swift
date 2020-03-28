@@ -125,6 +125,14 @@ class RegisterViewController: BaseViewController {
     @IBOutlet weak var btnBannerChane: UIButton!
     @IBOutlet weak var bannerImgUnsplash: UIImageView!
     
+ 
+   
+    
+    var placesHelper : GooglePlacesHelper?
+    
+    
+    
+    
     
     
     @IBOutlet weak var btnBannerRemove: UIButton!
@@ -139,7 +147,9 @@ class RegisterViewController: BaseViewController {
         
         unsplashViewHeight.constant = 0
         bannerViewHeight.constant = 0
-
+        if self.placesHelper == nil {
+                   self.placesHelper = GooglePlacesHelper()
+            }
         
         self.buttonSignIn.addTarget(self, action: #selector(signInAction(sender:)), for: .touchUpInside)
     }
@@ -274,7 +284,7 @@ class RegisterViewController: BaseViewController {
         self.navigationController?.pushViewController(selectCusineController, animated: true)
     }
     @IBAction func onAddressAction(_ sender: Any) {
-        let autocompleteController = GMSAutocompleteViewController()
+      /*  let autocompleteController = GMSAutocompleteViewController()
         autocompleteController.delegate = self
         
         // Specify the place data types to return.
@@ -282,16 +292,34 @@ class RegisterViewController: BaseViewController {
             UInt(GMSPlaceField.placeID.rawValue))!
         autocompleteController.placeFields = fields
         
+    
+        
         // Specify a filter.
         let filter = GMSAutocompleteFilter()
         filter.type = .address
         autocompleteController.autocompleteFilter = filter
         
         // Display the autocomplete view controller.
-        present(autocompleteController, animated: true, completion: nil)
+        present(autocompleteController, animated: true, completion: nil)*/
+        
+        
+        presentSearchLocationVC()
+        
+        
     }
  
     
+    func presentSearchLocationVC() {
+            placesHelper?.getGoogleAutoComplete { (place) in
+       
+                self.addressValueLabel.text = place.formattedAddress ?? ""
+                self.latitude = String(place.coordinate.latitude)
+                self.longitude = String(place.coordinate.longitude)
+                
+            }
+        }
+        
+
     
     @IBAction func onRegisterButtonAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
@@ -424,14 +452,17 @@ class RegisterViewController: BaseViewController {
             
             showToast(msg: "Please Selecet Shop Image")
             
+            return
+            
       
         }else if bannerImgURL == "" {
             
              showToast(msg: "Please Selecet Banner Image")
             
+            return
+            
         }
          
-    
         var uploadimgeData:Data!
         
         /*if  let dataImg = imageUploadImageView.image?.jpegData(compressionQuality: 0.5) {
@@ -923,8 +954,9 @@ extension RegisterViewController : UICollectionViewDelegate,UICollectionViewData
           //  let allowsMultipleSelection = SelectionType.single.rawValue
            
             self.shopImage = 1
-            
             loadUnSplash()
+            
+            
         }
 
         else
@@ -932,7 +964,14 @@ extension RegisterViewController : UICollectionViewDelegate,UICollectionViewData
             isImageSelected = !isImageSelected
             self.selectedIndex = isImageSelected ? sender.tag : -1
             self.selectedImageID = isImageSelected ? self.imageList[self.selectedIndex].id! : 0
+            
+            if let url = self.imageList[sender.tag].image
+            {
+                self.shopImgURL = url
+            }
             self.imagesGalleryCV.reloadData()
+            
+            
             
         }
     }
@@ -957,6 +996,10 @@ extension RegisterViewController : UICollectionViewDelegate,UICollectionViewData
             isBanner = !isBanner
             self.bannerIndex = isBanner ? sender.tag : -1
             self.bannerImgID = isBanner ? self.imageList[self.bannerIndex].id! : 0
+            if let url = self.imageList[sender.tag].image {
+                 self.bannerImgURL = url
+            }
+            
             self.bannerGalleryCV.reloadData()
             
         }

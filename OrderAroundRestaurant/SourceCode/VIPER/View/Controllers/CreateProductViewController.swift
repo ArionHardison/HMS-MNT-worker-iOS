@@ -32,7 +32,7 @@ class CreateProductViewController: BaseViewController {
     var cusineId = ""
     var categoryId = 0
     var status = ""
-    var productOrder = ""
+    var productOrder = 1
     var addOnsId = [String]()
     var addOnsPrice = [String]()
     var featureStr = ""
@@ -43,6 +43,7 @@ class CreateProductViewController: BaseViewController {
     var cuisineURL = String()
     var feturedURL = String()
     var calories = String()
+    var veg = false
 
 
     override func viewDidLoad() {
@@ -113,10 +114,10 @@ class CreateProductViewController: BaseViewController {
             return
         }
         
-        guard let selectAddons = selectAddonsValueLabel.text, !selectAddons.isEmpty else{
+     /*   guard let selectAddons = selectAddonsValueLabel.text, !selectAddons.isEmpty else{
             showToast(msg: ErrorMessage.list.enterAddons)
             return
-        }
+        }*/
         
         let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
         
@@ -125,7 +126,7 @@ class CreateProductViewController: BaseViewController {
         if productdata != nil {
             var parameters:[String:Any] = ["name": nameVal,
                                            "description":descriptionVal,
-                                           "avatar[0]":imageUploadData,
+                                           //"avatar[0]":imageUploadData,
                                            "price":priceTextField.text!,
                                            "product_position":productOrder,
                                            "shop":shopId,
@@ -138,20 +139,27 @@ class CreateProductViewController: BaseViewController {
                                            "category":categoryId,
                                            "ingredients":ingradient,
                                            "calories":calories,
-                                            "image_gallery_id" : imageID,
+                                           "food_type": veg ? "veg" : "non-veg",
+                                            //"image_gallery_id" : imageID,
                                            "_method":"PATCH"]
             for i in 0..<addOnsId.count {
+                
                 let AddonsStr = "addons[\(i)]"
-                let AddonpriceStr =  "addons_price[\(i)]"
+                let AddonpriceStr =  "addons_price[\(addOnsId[i])]"
                 parameters[AddonsStr] = addOnsId[i]
                 parameters[AddonpriceStr] = addOnsPrice[i]
+                
+                
             }
+            
+            
+            
             let productIdStr: String! = String(describing: productdata?.id ?? 0)
-            if featuredImageID != 0 {
-                
-                parameters["featuredimage_gallery_id"] = featuredImageID
-                
-            }
+//            if featuredImageID != 0 {
+//
+//                parameters["featuredimage_gallery_id"] = featuredImageID
+//
+//            }
             
             
             if cuisineURL != "" {
@@ -161,19 +169,16 @@ class CreateProductViewController: BaseViewController {
             if feturedURL != "" {
                 
                 parameters["featuredimage_gallery_img"] = feturedURL
-
-                
-                
+  
             }
-
-            
+           
             let urlStr = Base.productList.rawValue + "/" + productIdStr
             self.presenter?.IMAGEPOST(api: urlStr, params: parameters, methodType: HttpType.POST, imgData:nil, imgName: "image", modelClass: CategoryListModel.self, token: true)
         }else{
         
         var parameters:[String:Any] = ["name": nameVal,
                                        "description":descriptionVal,
-                                       "avatar[0]":imageUploadData,
+                                       //"avatar[0]":imageUploadData,
                                        //"featured_image":featureImageUploadData,
                                        "price":priceTextField.text!,
                                        "product_position":productOrder,
@@ -185,17 +190,43 @@ class CreateProductViewController: BaseViewController {
                                        "status":status,
                                        "ingredients":ingradient,
                                        "cuisine_id":cusineId,
-                                       "image_gallery_id" : imageID,
+                                        "food_type": veg ? "veg" : "non-veg",
+                                       //"image_gallery_id" : imageID,
                                        "category":categoryId,
                                         "calories":calories,
                                       ]
+            
+            
+            var idArray = [String]()
+            var priceArray =
+            
         for i in 0..<addOnsId.count {
             let AddonsStr = "addons[\(i)]"
             let AddonpriceStr =  "addons_price[\(i)]"
             parameters[AddonsStr] = addOnsId[i]
             parameters[AddonpriceStr] = addOnsPrice[i]
+            
+            idArray.append(addOnsId[i])
         }
             
+            
+            
+            
+            
+            for i in 0..<addOnsId.count {
+                let cusineStr = "cuisine_id[\(i)]"
+              //  parameters[cusineStr] = cusineId[i]
+                
+                let id = Int(cusineId[i])
+                cusineArray.append(id!)
+
+            }
+            parameters["cuisine_id"] = cusineArray
+            
+            
+            
+            
+         
             if featuredImageID != 0 {
                 
               parameters["featuredimage_gallery_id"] = featuredImageID
@@ -397,8 +428,7 @@ extension CreateProductViewController: SelectAddonsViewControllerDelegate{
             addOnsPrice = AddonPriceArr as! [String]
             //addOnsPrice.
     }
-    
-   
+
         
         selectAddonsValueLabel.text = addonsStr.joined(separator: ", ")
     }

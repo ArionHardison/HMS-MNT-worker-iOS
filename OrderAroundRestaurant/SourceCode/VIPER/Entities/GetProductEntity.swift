@@ -14,7 +14,7 @@ struct GetProductEntity : Mappable {
     var shop_id : Int?
     var name : String?
     var description : String?
-    var position : String?
+    var position : Int?
     var food_type : String?
     var avalability : Int?
     var max_quantity : Int?
@@ -31,6 +31,7 @@ struct GetProductEntity : Mappable {
     var shop : ProductShop?
     var addons : [String]?
     var ingredients : String?
+    var featured_images : [Images]?
     
     var calories : String?
     
@@ -62,6 +63,7 @@ struct GetProductEntity : Mappable {
         addons <- map["addons"]
         ingredients <- map["ingredients"]
         calories <- map["calories"]
+        featured_images <- map["featured_images"]
     }
     
 }

@@ -319,6 +319,8 @@ struct model {
     let DeleteEntity = "DeleteEntity"
     let ImagesGallery = "ImagesGallery"
     let FoodSafetyModel = "FoodSafetyModel"
+    let CancelReasons  = "CancelReasons"
+    
 
 }
 

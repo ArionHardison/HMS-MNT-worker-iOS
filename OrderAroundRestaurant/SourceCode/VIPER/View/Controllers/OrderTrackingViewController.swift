@@ -54,7 +54,6 @@ class OrderTrackingViewController: BaseViewController {
     @IBOutlet weak var overView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
-    
     var OrderId = 0
     var CartOrderArr:[Cart] = []
     var OrderModel: Order?
@@ -204,6 +203,12 @@ extension OrderTrackingViewController{
           orderPickedupDescrLabl.textColor =  UIColor.lightGray
           orderDeliveredDescrLabel.textColor =  UIColor.lightGray
         
+        orderPlaceLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        orderConfirmedLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+         orderProcessLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+         orderPickedupLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+         orderfDeliveredLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        
     }
     
     private func fetchOrderDetails(data: Order) {
@@ -211,21 +216,28 @@ extension OrderTrackingViewController{
         if(data.status == "ORDERED") {
             orderPlaceLabel.font = UIFont.bold(size: 15)
             orderPlaceDescrLabel.font = UIFont.bold(size: 13)
+            orderPlaceLabel.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
         }else if (data.status == "RECEIVED") {
             orderConfirmedLabel.font = UIFont.bold(size: 15)
             orderProcessDescrLabel.font = UIFont.bold(size: 13)
+            orderConfirmedLabel.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
             
         }else if(data.status == "ASSIGNED") {
             
             orderProcessLabel.font = UIFont.bold(size: 15)
             orderConfirmDescrLabel.font = UIFont.bold(size: 13)
+              orderProcessLabel.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
+            
+            
             
         }else if(data.status == "PICKEDUP") {
             orderPickedupLabel.font = UIFont.bold(size: 15)
             orderPickedupDescrLabl.font = UIFont.bold(size: 13)
+              orderPickedupLabel.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
         }else if(data.status == "ARRIVED") {
             orderfDeliveredLabel.font = UIFont.bold(size: 15)
             orderDeliveredDescrLabel.font = UIFont.bold(size: 13)
+            orderfDeliveredLabel.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
         }
         
         emptyLabel.text = data.note ?? ""
