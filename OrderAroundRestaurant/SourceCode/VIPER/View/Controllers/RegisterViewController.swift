@@ -499,6 +499,7 @@ class RegisterViewController: BaseViewController {
         editTimingController.latitude = latitude
         editTimingController.longitude = longitude
         editTimingController.cusineId = cusineId
+        editTimingController.status = status
         /*editTimingController.imageUploadData = uploadimgeData
         editTimingController.featureImageUploadData = featureUploadimgeData*/
         editTimingController.isYes = isyes
@@ -601,7 +602,7 @@ extension RegisterViewController {
         maximumDeliveryLabel.text = APPLocalize.localizestring.maxdelivery.localize()
         addressLabel.text = APPLocalize.localizestring.address.localize()
         landmarkLabel.text = APPLocalize.localizestring.landmark.localize()
-        offerLabel.text = APPLocalize.localizestring.landmark.localize()
+        offerLabel.text = "I offer"
         registerButton.setTitle(APPLocalize.localizestring.alreadyRegister.localize(), for: .normal)
     }
     
@@ -701,6 +702,7 @@ extension RegisterViewController {
         labelHalal.font = UIFont.bold(size: 14)
         deliveryLabel.font = UIFont.bold(size: 14)
         takeAwayLabel.font = UIFont.bold(size: 14)
+        offerLabel.font = UIFont.bold(size: 14)
     }
     
     

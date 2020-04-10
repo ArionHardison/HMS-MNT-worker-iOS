@@ -133,7 +133,6 @@ class CreateProductViewController: BaseViewController {
                                            "featured":featureStr,
                                            "featured_position":"1",
                                            "discount":discountTextField.text!,
-                                           "discount_type":discountTypeValueLabel.text!,
                                            "status":status,
                                            "cuisine_id":cusineId,
                                            "category":categoryId,
@@ -142,17 +141,40 @@ class CreateProductViewController: BaseViewController {
                                            "food_type": veg ? "veg" : "non-veg",
                                             //"image_gallery_id" : imageID,
                                            "_method":"PATCH"]
+            
+            var idArray = [String]()
+            var priceArray = [String]()
+            var finalArray = [String:String]()
+            
             for i in 0..<addOnsId.count {
                 
-                let AddonsStr = "addons[\(i)]"
-                let AddonpriceStr =  "addons_price[\(addOnsId[i])]"
-                parameters[AddonsStr] = addOnsId[i]
-                parameters[AddonpriceStr] = addOnsPrice[i]
+               // let AddonsStr = "addons[\(i)]"
+               // let AddonpriceStr =  "addons_price[\(addOnsId[i])]"
+               // parameters[AddonsStr] = addOnsId[i]
+               // parameters[AddonpriceStr] = addOnsPrice[i]
+                
+                idArray.append(addOnsId[i])
+                priceArray.append(addOnsPrice[i])
+                
+                finalArray[addOnsId[i]] = addOnsPrice[i]
                 
                 
             }
             
             
+            if discountTypeValueLabel.text == "Percentage" {
+                
+                
+                 parameters["discount_type"] = "percentage"
+                
+            }else if discountTypeValueLabel.text == "Amount"{
+                
+                 parameters["discount_type"] = "amount"
+            }
+  
+           parameters["addons"] = idArray
+            
+            parameters["addons_price"] = finalArray
             
             let productIdStr: String! = String(describing: productdata?.id ?? 0)
 //            if featuredImageID != 0 {
@@ -186,7 +208,7 @@ class CreateProductViewController: BaseViewController {
                                        "featured":featureStr,
                                        "featured_position":"1",
                                        "discount":discountTextField.text!,
-                                       "discount_type":discountTypeValueLabel.text!,
+                                      // "discount_type":discountTypeValueLabel.text!,
                                        "status":status,
                                        "ingredients":ingradient,
                                        "cuisine_id":cusineId,
@@ -197,36 +219,43 @@ class CreateProductViewController: BaseViewController {
                                       ]
             
             
+            if discountTypeValueLabel.text == "Percentage" {
+                
+                 parameters["discount_type"] = "percentage"
+                
+            }else if discountTypeValueLabel.text == "Amount"{
+                
+                 parameters["discount_type"] = "amount"
+            }
+            
             var idArray = [String]()
-            var priceArray =
+            var priceArray = [String]()
             
         for i in 0..<addOnsId.count {
             let AddonsStr = "addons[\(i)]"
             let AddonpriceStr =  "addons_price[\(i)]"
-            parameters[AddonsStr] = addOnsId[i]
-            parameters[AddonpriceStr] = addOnsPrice[i]
+            //parameters[AddonsStr] = addOnsId[i]
+            //parameters[AddonpriceStr] = addOnsPrice[i]
             
             idArray.append(addOnsId[i])
+            priceArray.append(addOnsPrice[i])
         }
             
             
             
             
             
-            for i in 0..<addOnsId.count {
-                let cusineStr = "cuisine_id[\(i)]"
-              //  parameters[cusineStr] = cusineId[i]
-                
-                let id = Int(cusineId[i])
-                cusineArray.append(id!)
-
-            }
-            parameters["cuisine_id"] = cusineArray
-            
-            
-            
-            
-         
+//            for i in 0..<addOnsId.count {
+//                let cusineStr = "cuisine_id[\(i)]"
+//              //  parameters[cusineStr] = cusineId[i]
+//
+//                let id = Int(cusineId[i])
+//                cusineArray.append(id!)
+//
+//            }
+            parameters["addons"] = idArray
+            parameters["addons_price"] = priceArray
+      
             if featuredImageID != 0 {
                 
               parameters["featuredimage_gallery_id"] = featuredImageID

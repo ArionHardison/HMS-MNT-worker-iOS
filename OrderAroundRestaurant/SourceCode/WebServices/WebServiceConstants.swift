@@ -33,6 +33,7 @@ enum Base : String{
    
     case login = "/oauth/token"
     case register = "/api/shop/register"
+    case forgotPassword = "api/shop/forgot/password"
     case logout = "/api/shop/logout"
     case changePassword = "/api/shop/password"
     case cusineList = "/api/shop/cuisines"
@@ -48,6 +49,7 @@ enum Base : String{
     case getDelete = "/api/shop/remove/"
     case getImagesGallery = "/image-gallery"
     case reasonsList = "/api/shop/reasons"
+    case resetPassword = "api/shop/reset/password"
     
     
     init(fromRawValue: String){

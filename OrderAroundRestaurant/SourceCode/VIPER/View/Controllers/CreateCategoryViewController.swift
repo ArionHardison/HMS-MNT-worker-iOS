@@ -144,11 +144,11 @@ class CreateCategoryViewController: BaseViewController {
                                            "position":categoryOrderTextField.text!,
                                            "_method":"PATCH"]
             
-            if selectedImageID != 0 {
-                
-                parameters["image_gallery_id"] = selectedImageID
-                
-            }
+//            if selectedImageID != 0 {
+//
+//                parameters["image_gallery_id"] = selectedImageID
+//
+//            }
             if categoryURL != "" {
                 
                 
@@ -332,6 +332,7 @@ extension CreateCategoryViewController: PresenterOutputProtocol {
                     for item in images.image_gallery!
                     {
                         self.imageList.append(item)
+                       
                     }
                     
                 }
@@ -439,7 +440,7 @@ extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionVi
         
         cell.test.tag = indexPath.row
         cell.test.addTarget(self, action: #selector(testClick), for: .touchUpInside)
-        
+        cell.cuisineImage.layer.cornerRadius = 5
         if indexPath.row == self.imageList.count
             
         {
@@ -504,8 +505,10 @@ extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
-        self.selectedIndex = -1
-        self.selectedImageID = self.imageList[indexPath.row].id!
+         self.selectedIndex = -1
+        self.selectedIndex = indexPath.row
+        self.categoryURL = self.imageList[indexPath.row].image!
+        categoryImageView.sd_setImage(with: URL(string: self.categoryURL), placeholderImage: UIImage(named: "user-placeholder"))
         self.imageGalleryCV.reloadData()
         
     }
@@ -528,9 +531,12 @@ extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionVi
         }
         else
         {
-            isImageSelected = !isImageSelected
-            self.selectedIndex = isImageSelected ? sender.tag : -1
-            self.selectedImageID = isImageSelected ? self.imageList[self.selectedIndex].id! : 0
+           // isImageSelected = !isImageSelected
+            //self.selectedIndex = isImageSelected ? sender.tag : -1
+             self.selectedIndex = sender.tag
+           // self.selectedImageID = isImageSelected ? self.imageList[self.selectedIndex].id! : 0
+            self.categoryURL = self.imageList[sender.tag].image!
+            categoryImageView.sd_setImage(with: URL(string: self.categoryURL), placeholderImage: UIImage(named: "user-placeholder"))
             self.imageGalleryCV.reloadData()
             
         }

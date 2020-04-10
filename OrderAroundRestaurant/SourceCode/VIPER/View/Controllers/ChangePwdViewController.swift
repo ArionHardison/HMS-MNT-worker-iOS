@@ -26,18 +26,39 @@ class ChangePwdViewController: BaseViewController {
     @IBOutlet weak var newPwdButton: UIButton!
     @IBOutlet weak var saveButton: UIButton!
     
+    @IBOutlet weak var buttonLogin: UIButton!
+    
+    @IBOutlet weak var labelAccount: UILabel!
+    
+    @IBOutlet weak var imageHeight: NSLayoutConstraint!
+    
+    @IBOutlet weak var heighContrian: NSLayoutConstraint!
+    var otpResponse : OTPResponseModel?
+
+    var isFromForrgotPwd = false
+    var shopID = Int()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setInitialLoad()
+        
     }
     
     //MARK:- viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         enableKeyboardHandling()
+     
+        if !isFromForrgotPwd {
         self.navigationController?.isNavigationBarHidden = false
+            imageHeight.constant = 0
+            labelAccount.isHidden = true
+            buttonLogin.isHidden = true
+        }else{
+            heighContrian.constant = 195
+        }
     }
     override func viewWillDisappear(_ animated: Bool) {
         disableKeyboardHandling()
@@ -53,6 +74,17 @@ class ChangePwdViewController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    
+    
+    @IBAction func loginAction(_ sender: Any) {
+        
+        
+        self.navigationController?.popToRootViewController(animated: true)
+                            
+        
+    }
+
     
     @IBAction func onsaveButtonAction(_ sender: Any) {
          self.Validate()
@@ -116,6 +148,15 @@ extension ChangePwdViewController {
         setTextFieldDelegate()
         saveButton.layer.cornerRadius = 16
         saveButton.layer.borderWidth = 1
+        
+        
+        if isFromForrgotPwd {
+            self.currentPwdView.isHidden = true
+            self.currentPwdTextField.isHidden = true
+            self.currentPasswordLabel.isHidden = true
+            self.currentPwdShowBtn.isHidden = true
+        }
+        
         
     }
     
@@ -181,19 +222,26 @@ extension ChangePwdViewController {
     //MARK: Validate
     func Validate(){
         view.endEditing(true)
+        
+        if !isFromForrgotPwd{
+        
         guard let currentPwd = currentPwdTextField.text, !currentPwd.isEmpty else{
             showToast(msg: ErrorMessage.list.enterCurrentPassword)
             return
         }
-        guard currentPwd.isValidPassword() else{
-            showToast(msg: ErrorMessage.list.specialPasswordMsg.localize())
-            return
-        }
-        guard isValidPassword(password: currentPwd) else{
-            showToast(msg: ErrorMessage.list.specialPasswordMsg.localize())
             
-            return
+            guard isValidPassword(password: currentPwd) else{
+                      showToast(msg: ErrorMessage.list.specialPasswordMsg.localize())
+                      
+                      return
         }
+        
+    }
+       /* guard currentPwd.isValidPassword() else{
+            showToast(msg: ErrorMessage.list.specialPasswordMsg.localize())
+            return
+        }*/
+      
         guard let newpassword = newPwdTextField.text, !newpassword.isEmpty else{
             showToast(msg: ErrorMessage.list.enterNewPassword)
             return
@@ -221,11 +269,27 @@ extension ChangePwdViewController {
         }
         
         showActivityIndicator()
+        
+        
+        if !isFromForrgotPwd {
+        
         let parameters:[String:Any] = ["password_old": currentPwdTextField.text!,
                                        "password":newPwdTextField.text!,
                                        "password_confirmation":confirmPwdTextField.text!]
         
         self.presenter?.GETPOST(api: Base.changePassword.rawValue, params:parameters, methodType: HttpType.POST, modelClass: ChangePwdModel.self, token: true)
+            
+        }else{
+        
+            
+            let parameters:[String:Any] = ["password":newPwdTextField.text!,
+                                          "password_confirmation":confirmPwdTextField.text!,
+                                          "id":shopID]
+         //   let urlStr = Base.resetPassword.rawValue + "/" + "\(shopID)"
+           self.presenter?.GETPOST(api: Base.resetPassword.rawValue, params:parameters, methodType: HttpType.POST, modelClass: OTPResponseModel.self, token: true)
+            
+            
+        }
 
     }
 }
@@ -234,13 +298,36 @@ extension ChangePwdViewController {
 extension ChangePwdViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         
-        if String(describing: modelClass) == model.type.ChangePwdModel {
+        if String(describing: modelClass) == model.type.OTPResponseModel {
+            self.otpResponse = dataDict as? OTPResponseModel
+                      
+            DispatchQueue.main.async {
+                self.HideActivityIndicator()
+                
+                if !self.isFromForrgotPwd {
+                
+                    self.showToast(msg: "Password changed successfully")
+                    self.navigationController?.popViewController(animated: true)
+                }else{
+                    
+                    self.showToast(msg:self.otpResponse?.message ?? "")
+                    self.navigationController?.popToRootViewController(animated: true)
+                    
+                }
+            }
+        }else if  String(describing: modelClass) == model.type.ChangePwdModel {
+            
             
             DispatchQueue.main.async {
                 self.HideActivityIndicator()
-                self.showToast(msg: "Password changed successfully")
+                
+                
+                   self.showToast(msg: "Password changed successfully")
                 self.navigationController?.popViewController(animated: true)
+              
             }
+            
+            
         }
         
     }

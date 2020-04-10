@@ -64,6 +64,7 @@ class EditTimingViewController: BaseViewController {
     var shopURL = String()
     var bannerURL = String()
     
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -122,7 +123,6 @@ class EditTimingViewController: BaseViewController {
                         dict = mutable
                     }
                 }
-                
                 var param = [
                 "name": nameStr,
                 "email": emailStr,
@@ -137,6 +137,8 @@ class EditTimingViewController: BaseViewController {
                 "latitude":latitude,
                 "longitude":longitude,
                 "pure_veg":isYes,
+                "device_token":deviceToken,
+                "device_type" : "ios",
                 "estimated_delivery_time":maxDelivery,
                 /*"day[0]":"ALL",*/
                 "hours_opening":["ALL":openTime],
@@ -230,6 +232,8 @@ class EditTimingViewController: BaseViewController {
                     "latitude":latitude,
                     "longitude":longitude,
                     "pure_veg":isYes,
+                    "device_token":deviceToken,
+                     "device_type" : "ios",
                      "image_banner_id": self.bannerID,
                     "estimated_delivery_time":maxDelivery,
                     /*"day[SUN]":"SUN",*/
@@ -303,7 +307,6 @@ class EditTimingViewController: BaseViewController {
             var openTime = ""
             
             
-            
             for i in 0..<AllDateArray.count {
                 let Result = self.AllDateArray[i] as! NSDictionary
 
@@ -315,14 +318,14 @@ class EditTimingViewController: BaseViewController {
                 }
             }
             
-            let param = [ 
+            var param = [
 //                "time":"1",
-                "day":["ALL":"ALL"],
+                //"day":["ALL":"ALL"],
                 //"shop_id": UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int,
                 "hours_opening":["ALL":openTime],
                 "hours_closing":["ALL":closeTime]
                 ] as [String : Any]
-            
+            param["day"] = ["ALL"]
             let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
             let urlStr = Base.getTimeUpdate.rawValue + "/" + String(shopId)
             showActivityIndicator()

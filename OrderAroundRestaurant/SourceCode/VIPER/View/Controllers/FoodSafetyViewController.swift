@@ -24,8 +24,8 @@ class FoodSafetyViewController: UIViewController {
   
     self.presenter?.GETPOST(api: Base.getprofile.rawValue, params:[:], methodType: HttpType.GET, modelClass: ProfileModel.self, token: true)
     self.navigationController?.isNavigationBarHidden = false
-    self.navigationItem.title = "Food Safety Documents"
-   self.navigationController?.navigationBar.barTintColor =  #colorLiteral(red: 0.107285209, green: 0.7528312802, blue: 0.1392871737, alpha: 1)
+    self.navigationItem.title = "Notice Board"
+        self.navigationController?.navigationBar.barTintColor =  #colorLiteral(red: 0.1128797308, green: 0.5814471841, blue: 0.1146573946, alpha: 1)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 
     self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "back-white").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.backButtonClick))

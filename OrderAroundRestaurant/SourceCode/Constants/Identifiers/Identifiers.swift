@@ -51,6 +51,9 @@ struct Storyboard {
     let UserDetiailsViewController  = "UserDetiailsViewController"
     let FoodSafetyViewController = "FoodSafetyViewController"
     let PDFLoaderViewController = "PDFLoaderViewController"
+    let ForgotPasswordViewController = "ForgotPasswordViewController"
+    let VerificationViewController = "VerificationViewController"
+    
     
     
     

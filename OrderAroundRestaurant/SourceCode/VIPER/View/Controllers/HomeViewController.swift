@@ -23,6 +23,11 @@ class HomeViewController: BaseViewController {
     
     
     
+   
+
+    
+    
+    
     private var profileDataResponse: ProfileModel?
     var upcomingRequestArr = [Orders]()
     var timerGetRequest: Timer?
@@ -66,7 +71,6 @@ class HomeViewController: BaseViewController {
 }
 extension HomeViewController{
     private func setInitialLoad(){
-        
         showActivityIndicator()
         setRegister()
         setFont()
@@ -99,7 +103,7 @@ extension HomeViewController{
     }
     private func setValues(profile: ProfileModel){
         restaurantNameLabel.text = profile.name
-        restaurantLocation.text = profile.address
+        restaurantLocation.text = profile.maps_address
         bannerImageView.sd_setImage(with: URL(string: profile.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
         ratingView.rating = Double(profile.rating ?? 0)
 

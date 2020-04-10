@@ -18,7 +18,9 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var emailAddressTextField: UITextField!
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var emailAddressLabel: UILabel!
-   
+    @IBOutlet weak var backButton: UIButton!
+    
+    @IBOutlet weak var buttonForgotPwd: UIButton!
     
     private var logindata: LoginModel?
     //MARK:- viewDidLoad
@@ -96,10 +98,27 @@ class LoginViewController: BaseViewController {
                                        "grant_type":WebConstants.string.password,
                                        "client_id":client_ID,
                                        "client_secret":client_Secret,
+                                       "device_token":deviceToken,
+                                        "device_type" : "ios",
                                         "guard":WebConstants.string.shops]
         
         self.presenter?.GETPOST(api: Base.login.rawValue, params:parameters, methodType: HttpType.POST, modelClass: LoginModel.self, token: false)
     }
+    
+    
+    @IBAction func forgotPwdAction(_ sender: Any) {
+        
+        
+        
+        let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ForgotPasswordViewController) as! ForgotPasswordViewController
+              self.navigationController?.pushViewController(registerController, animated: true)
+        
+        
+    }
+    
+    
+    
+    
 }
 /******************************************************************/
 //MARK:- Method Extension:
@@ -157,6 +176,7 @@ extension LoginViewController {
         emailAddressTextField.font = UIFont.regular(size: 14)
         passwordTextField.font = UIFont.regular(size: 14)
         RegisterButton.titleLabel?.font = UIFont.bold(size: 14)
+        buttonForgotPwd.titleLabel?.font = UIFont.bold(size: 14)
         loginButton.titleLabel?.font = UIFont.bold(size: 14)
         passwordLabel.font = UIFont.bold(size: 15)
         emailAddressLabel.font = UIFont.bold(size: 15)

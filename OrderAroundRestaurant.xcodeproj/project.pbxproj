@@ -135,6 +135,9 @@
 		08D65704237D61350043A7CE /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D65703237D61350043A7CE /* HoshiTextField.swift */; };
 		08D65706237D62170043A7CE /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D65705237D62160043A7CE /* TextFieldEffects.swift */; };
 		12235D2C241F795600FF4A1B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12235D2B241F795600FF4A1B /* GoogleService-Info.plist */; };
+		124EE8A4243E27ED0080E87B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124EE8A3243E27ED0080E87B /* ForgotPasswordViewController.swift */; };
+		1251978B243EEA6000291159 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1251978A243EEA6000291159 /* VerificationViewController.swift */; };
+		1251978D243EEC0C00291159 /* SingleTonClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1251978C243EEC0C00291159 /* SingleTonClass.swift */; };
 		125B965623D710F300923CE3 /* FoodSafetyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125B965523D710F300923CE3 /* FoodSafetyViewController.swift */; };
 		125B965823D7183700923CE3 /* PDFLoaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 125B965723D7183700923CE3 /* PDFLoaderViewController.swift */; };
 		125B965A23D71EAF00923CE3 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 125B965923D71EAF00923CE3 /* WebKit.framework */; };
@@ -307,6 +310,9 @@
 		08D65703237D61350043A7CE /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
 		08D65705237D62160043A7CE /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
 		12235D2B241F795600FF4A1B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		124EE8A3243E27ED0080E87B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
+		1251978A243EEA6000291159 /* VerificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
+		1251978C243EEC0C00291159 /* SingleTonClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleTonClass.swift; sourceTree = "<group>"; };
 		125B965523D710F300923CE3 /* FoodSafetyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSafetyViewController.swift; sourceTree = "<group>"; };
 		125B965723D7183700923CE3 /* PDFLoaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFLoaderViewController.swift; sourceTree = "<group>"; };
 		125B965923D71EAF00923CE3 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
@@ -562,6 +568,7 @@
 				08A14DDA222FB47E00F35B1E /* OnGoingOrderViewController.swift */,
 				08A14DDC222FB4B300F35B1E /* PastOrderViewController.swift */,
 				08A14DDE222FB4C900F35B1E /* CancelOrderViewController.swift */,
+				1251978A243EEA6000291159 /* VerificationViewController.swift */,
 				08A14DE4222FD74800F35B1E /* AddonsListViewController.swift */,
 				08A14DEA222FE0D400F35B1E /* CreateAddonsViewController.swift */,
 				08A14DEC222FE1CF00F35B1E /* CategoryListViewController.swift */,
@@ -583,6 +590,7 @@
 				08B6BD19237C22D300F3C25A /* ImageGalleryViewController.swift */,
 				125B965523D710F300923CE3 /* FoodSafetyViewController.swift */,
 				125B965723D7183700923CE3 /* PDFLoaderViewController.swift */,
+				124EE8A3243E27ED0080E87B /* ForgotPasswordViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -792,6 +800,7 @@
 		08A3B6AC2225440F0010058B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1251978C243EEC0C00291159 /* SingleTonClass.swift */,
 				08A3B6AD2225441C0010058B /* View.swift */,
 			);
 			path = View;
@@ -1206,9 +1215,11 @@
 				08A3B6B922254C3B0010058B /* RestaurantMenuViewController.swift in Sources */,
 				087D0C342224346000E58BDE /* Image.swift in Sources */,
 				08AD751D2226728F002A0419 /* UpcomingRequestTableViewCell.swift in Sources */,
+				1251978D243EEC0C00291159 /* SingleTonClass.swift in Sources */,
 				0891E2062230EC1500409038 /* CreateProductViewController.swift in Sources */,
 				08AB876E223678AA00740520 /* SelectAddonsViewController.swift in Sources */,
 				08ACEA082239240D0050591D /* WebService.swift in Sources */,
+				1251978B243EEA6000291159 /* VerificationViewController.swift in Sources */,
 				08AD752022267569002A0419 /* HomeViewController.swift in Sources */,
 				08759A11224009BD0030C19D /* RegisterEntity.swift in Sources */,
 				087D0C322224344D00E58BDE /* Font.swift in Sources */,
@@ -1244,6 +1255,7 @@
 				08AD19EE223B94900009F5F6 /* RevenueEntity.swift in Sources */,
 				08A14DF2222FE37E00F35B1E /* AddCategoryTableViewCell.swift in Sources */,
 				08A44AC222379E6200228233 /* SelectCusineViewController.swift in Sources */,
+				124EE8A4243E27ED0080E87B /* ForgotPasswordViewController.swift in Sources */,
 				08A20C2A223A52C90081256F /* AddAddonsEntity.swift in Sources */,
 				08ACEA06223922BA0050591D /* RemoveProductEntity.swift in Sources */,
 				08B6BD1A237C22D400F3C25A /* ImageGalleryViewController.swift in Sources */,
@@ -1463,7 +1475,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 16;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = JU248DMV5X;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
@@ -1486,7 +1498,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 16;
 				DEVELOPMENT_TEAM = JU248DMV5X;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

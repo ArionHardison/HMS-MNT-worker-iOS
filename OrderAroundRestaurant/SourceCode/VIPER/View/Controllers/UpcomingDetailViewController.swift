@@ -163,18 +163,12 @@ class UpcomingDetailViewController: BaseViewController {
         alertController.addAction(no)
         present(alertController, animated: true)*/
         
-        
-        
-        
+       
         
         loadReasonsView()
         
         
-        
-        
-        
-        
-        
+  
         
         
     }
@@ -432,8 +426,7 @@ extension UpcomingDetailViewController{
         
         let subTotalStr: String! = String(describing: data.invoice?.gross ?? 0)
         subTotalValueLabel.text = currency + String(format: " %.02f", Double(subTotalStr) ?? 0.0)
-        let TotalStr: String! = String(describing: data.invoice?.net ?? 0)
-
+        let TotalStr: String! = String(describing: data.invoice?.payable ?? 0)
         totalValueLabel.text = currency + String(format: " %.02f", Double(TotalStr) ?? 0.0)
         
         let discountStr: String! = String(describing: data.invoice?.discount ?? 0)

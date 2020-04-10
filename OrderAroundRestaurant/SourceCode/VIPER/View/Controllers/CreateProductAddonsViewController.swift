@@ -92,6 +92,7 @@ class CreateProductAddonsViewController: BaseViewController {
     var categoryId = 0
     var productCusineId = 0
     var featureStr = ""
+    var productImage = ""
     var ingradient = String()
     var selectedIndex = -1
     var featuredIndex = -1
@@ -439,6 +440,7 @@ extension CreateProductAddonsViewController : UnsplashPhotoPickerDelegate {
             existingImage.sd_setImage(with: URL(string: cuisineURL), placeholderImage: UIImage(named: "user-placeholder"))
             cuisine = 0
             
+            
         }
         if fetured == 1 {
             
@@ -730,6 +732,7 @@ extension CreateProductAddonsViewController: PresenterOutputProtocol {
             if let productImg = self.productdata?.images?.last?.url {
                 
                 existingImage.sd_setImage(with: URL(string:productImg), placeholderImage: UIImage(named: "user-placeholder"))
+                cuisineURL = productImg
             }
             
             if let featuredImg = self.productdata?.featured_images?.first?.url {

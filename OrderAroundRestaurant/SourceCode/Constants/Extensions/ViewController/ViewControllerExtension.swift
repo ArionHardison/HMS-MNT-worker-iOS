@@ -38,6 +38,28 @@ class BaseViewController: UIViewController,NVActivityIndicatorViewable {
         self.view.makeToast(msg, duration: 3.0, position: .center)
         
     }
+    
+    @IBAction func backButtonClick() {
+           
+           self.popOrDismiss(animation: true)
+           
+       }
+    
+    func popOrDismiss(animation : Bool){
+        
+        DispatchQueue.main.async {
+            
+            if self.navigationController != nil {
+                
+                self.navigationController?.popViewController(animated: animation)
+            } else {
+                
+                self.dismiss(animated: animation, completion: nil)
+            }
+            
+        }
+        
+    }
 }
 extension UIViewController {
     

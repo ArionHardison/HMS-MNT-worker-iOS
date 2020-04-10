@@ -135,7 +135,7 @@ extension AddProductViewController: UITableViewDelegate,UITableViewDataSource{
         cell.deleteButton.addTarget(self, action: #selector(self.deleteBtnAction(sender:)), for: .touchUpInside)
         cell.deleteButton.tag = indexPath.row
         if productDict?.images?.count ?? 0 > 0 {
-            cell.categoryImageView.sd_setImage(with: URL(string: productDict?.images?.first?.url ?? ""), placeholderImage: UIImage(named: "what's-special"))
+            cell.categoryImageView.sd_setImage(with: URL(string: productDict?.images?.last?.url ?? ""), placeholderImage: UIImage(named: "what's-special"))
         }else{
            cell.categoryImageView?.image = UIImage(named: "what's-special")
         }

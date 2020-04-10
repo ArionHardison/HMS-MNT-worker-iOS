@@ -430,6 +430,7 @@ class EditRegisterViewController: BaseViewController {
                                        "address":landmarkTextField.text!,
                                        "maps_address":addressValueLabel.text!,
                                        "offer_percent":offerPercentTextField.text!,
+                                       
                                        "latitude":latStr,
                                        "longitude":longStr,
                                        //"image_gallery_id":self.selectedImageID,

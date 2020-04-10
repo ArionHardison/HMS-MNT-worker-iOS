@@ -35,4 +35,38 @@ extension UIView {
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
+    
+    func dismissKeyBoardonTap(){
+          
+          self.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.endEditingForce)))
+          
+      }
+      
+     @IBAction func endEditingForce(){
+          
+          self.endEditing(true)
+          
+      }
+    
+    //MARK:- Add Shadow with bezier path
+       
+       func addShadow(color : UIColor = .gray, opacity : Float = 0.5, offset : CGSize = CGSize(width: 0.5, height: 0.5), radius : CGFloat = 0.5, rasterize : Bool = true, maskToBounds : Bool = false){
+           
+           layer.masksToBounds = maskToBounds
+           self.custom(layer: self.layer, opacity: opacity, offset: offset, color: color, radius: radius)
+         //layer.shadowPath = UIBezierPath(rect: self.frame).cgPath
+           layer.shouldRasterize = rasterize
+           
+       }
+    
+    private func custom(layer customLayer : CALayer, opacity : Float, offset : CGSize, color : UIColor, radius : CGFloat){
+           
+           customLayer.shadowColor = color.cgColor
+           customLayer.shadowOpacity = opacity
+           customLayer.shadowOffset = offset
+           customLayer.shadowRadius = radius
+           
+           
+       }
+     
 }

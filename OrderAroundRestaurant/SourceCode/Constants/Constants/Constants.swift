@@ -320,6 +320,8 @@ struct model {
     let ImagesGallery = "ImagesGallery"
     let FoodSafetyModel = "FoodSafetyModel"
     let CancelReasons  = "CancelReasons"
+    let OTPResponseModel = "OTPResponseModel"
+    
     
 
 }
@@ -366,7 +368,7 @@ struct Constant {
 
     var deviceType = "no deviceType"
     var noDeviceID = "no device id"
-    var noDeviceToken = "123456"
+    var noDeviceToken = "nodevice"
     var countryNumber = "+61"
     var countryCode = "AU"
     var deleteCategory = "Are you sure want to delete Category?"

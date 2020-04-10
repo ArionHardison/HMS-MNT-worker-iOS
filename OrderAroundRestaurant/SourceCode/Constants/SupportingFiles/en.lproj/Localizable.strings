@@ -100,7 +100,7 @@
 "localize.cuisine" = "Cuisine";
 "localize.phonenumber" = "Phone Number";
 "localize.shopbannerImage" = "Shop banner image";
-"localize.isthisveg" = "Is this a pure veg kitchen?";
+"localize.isthisveg" = "Is this a vegetarian kitchen?";
 "localize.minAmount" = "Min Amount";
 "localize.offerinper" = "Offer in Percentage";
 "localize.maxdelivery" = "Maximum Delivery Time (Mins)";
