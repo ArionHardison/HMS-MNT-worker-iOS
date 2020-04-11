@@ -53,6 +53,7 @@ class UpcomingDetailViewController: BaseViewController {
     var fromwhere = ""
     var cancelReasons : CancelReasons?
     var reasonID = Int()
+    var OTP : String?
     
     
     override func viewDidLoad() {
@@ -264,7 +265,16 @@ class UpcomingDetailViewController: BaseViewController {
         let urlStr = "\(Base.getOrder.rawValue)/" + String(OrderId)
         let parameters:[String:Any] = ["status": status!,
                                        "_method":"PATCH"]
-        self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
+        if(status == "COMPLETED"){
+            
+            let vc = OTPController()
+                   vc.otpString = OTP ?? ""
+                   vc.otpDelegate = self
+                   self.present(vc, animated: true, completion: nil)
+        }else{
+            self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
+        }
+        
         
         
     }
@@ -426,8 +436,15 @@ extension UpcomingDetailViewController{
         
         let subTotalStr: String! = String(describing: data.invoice?.gross ?? 0)
         subTotalValueLabel.text = currency + String(format: " %.02f", Double(subTotalStr) ?? 0.0)
-        let TotalStr: String! = String(describing: data.invoice?.payable ?? 0)
-        totalValueLabel.text = currency + String(format: " %.02f", Double(TotalStr) ?? 0.0)
+        if(data.invoice?.payment_mode == "wallet"){
+            let TotalStr: String! = String(describing: data.invoice?.net ?? 0)
+            totalValueLabel.text = currency + String(format: " %.02f", Double(TotalStr) ?? 0.0)
+            
+        }else{
+            let TotalStr: String! = String(describing: data.invoice?.payable ?? 0)
+            totalValueLabel.text = currency + String(format: " %.02f", Double(TotalStr) ?? 0.0)
+        }
+        
         
         let discountStr: String! = String(describing: data.invoice?.discount ?? 0)
         discountValueLabel.text = "-" + currency + String(format: " %.02f", Double(discountStr) ?? 0.0)
@@ -604,3 +621,21 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
     
 }
 /******************************************************************/
+extension UpcomingDetailViewController : OTPDelegate {
+    func submitOTP(otpString: String) {
+        let vc = OTPController()
+        vc.removeFromParent()
+          showActivityIndicator()
+              let urlStr = "\(Base.getOrder.rawValue)/" + String(OrderId)
+              let parameters:[String:Any] = ["status": "COMPLETED",
+                                             "_method":"PATCH"]
+         self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
+        
+    }
+    
+    func resendOTP() {
+        
+    }
+    
+    
+}

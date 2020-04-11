@@ -136,6 +136,7 @@ extension TakeAwayOrdersViewController : UITableViewDelegate,UITableViewDataSour
             let upcomingDetailController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.UpcomingDetailViewController) as! UpcomingDetailViewController
             upcomingDetailController.OrderId = dict.id ?? 0
             upcomingDetailController.fromwhere = "TAKEAWAY"
+            upcomingDetailController.OTP = "\(profileDataResponse?.otp ?? 0)"
             self.navigationController?.pushViewController(upcomingDetailController, animated: true)
         }
     }

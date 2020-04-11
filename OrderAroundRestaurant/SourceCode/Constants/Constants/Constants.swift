@@ -143,6 +143,8 @@ struct APPLocalize {
     var ongoingOrders = "localize.ongoingOrder"
     var pastOrders = "localize.pastOrder"
     var cancelOrder = "localize.cancelOrder"
+    var otpMessage = "Submit OTP"
+    var resendOTP = "Resend OTP"
 
 //
 //    var deviceType = "デバイスタイプなし"
