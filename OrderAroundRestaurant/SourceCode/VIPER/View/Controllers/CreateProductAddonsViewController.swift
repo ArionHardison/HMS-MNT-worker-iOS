@@ -639,6 +639,8 @@ extension CreateProductAddonsViewController: UITextFieldDelegate {
 //MARK: VIPER Extension:
 extension CreateProductAddonsViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+       print("data>>>>>>>>>",dataDict)
+        
         if String(describing: modelClass) == model.type.CusineListModel {
             HideActivityIndicator()
             self.cusineListArr = dataArray as! [CusineListModel]
