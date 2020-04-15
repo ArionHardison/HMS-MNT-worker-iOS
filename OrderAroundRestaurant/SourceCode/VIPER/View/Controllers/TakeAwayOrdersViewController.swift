@@ -19,6 +19,7 @@ class TakeAwayOrdersViewController: BaseViewController {
     private var profileDataResponse: ProfileModel?
     var upcomingRequestArr = [Orders]()
     var timerGetRequest: Timer?
+    var otpString:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -136,7 +137,7 @@ extension TakeAwayOrdersViewController : UITableViewDelegate,UITableViewDataSour
             let upcomingDetailController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.UpcomingDetailViewController) as! UpcomingDetailViewController
             upcomingDetailController.OrderId = dict.id ?? 0
             upcomingDetailController.fromwhere = "TAKEAWAY"
-            upcomingDetailController.OTP = "\(profileDataResponse?.otp ?? 0)"
+            upcomingDetailController.OTP =  "\(dict.order_otp ?? 0)"
             self.navigationController?.pushViewController(upcomingDetailController, animated: true)
         }
     }
@@ -153,6 +154,7 @@ extension TakeAwayOrdersViewController : PresenterOutputProtocol {
             
             profiledata = self.profileDataResponse
             
+            otpString = "\(profileDataResponse?.otp ?? 0)"
             //setValues(profile: self.profileDataResponse!)
             setOrderHistoryApi()
             

@@ -270,7 +270,9 @@ class UpcomingDetailViewController: BaseViewController {
             let vc = OTPController()
                    vc.otpString = OTP ?? ""
                    vc.otpDelegate = self
-                   self.present(vc, animated: true, completion: nil)
+            self.HideActivityIndicator()
+            self.navigationController?.pushViewController(vc, animated: true)
+                  // self.present(vc, animated: true, completion: nil)
         }else{
             self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
         }
@@ -343,7 +345,7 @@ extension UpcomingDetailViewController{
     }
     
     private func setOrderHistoryApi(){
-        showActivityIndicator()
+        //showActivityIndicator()
         let urlStr = "\(Base.getOrder.rawValue)/" + String(OrderId)
         self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderDetailModel.self, token: true)
     }
@@ -623,13 +625,12 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
 /******************************************************************/
 extension UpcomingDetailViewController : OTPDelegate {
     func submitOTP(otpString: String) {
-        let vc = OTPController()
-        vc.removeFromParent()
-          showActivityIndicator()
+          //showActivityIndicator()
               let urlStr = "\(Base.getOrder.rawValue)/" + String(OrderId)
               let parameters:[String:Any] = ["status": "COMPLETED",
                                              "_method":"PATCH"]
          self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
+
         
     }
     

@@ -223,6 +223,7 @@ extension OTPController {
             }
         }
         otpDelegate?.submitOTP(otpString: typedOTP)
+        self.navigationController?.popViewController(animated: true)
         
         
     }
