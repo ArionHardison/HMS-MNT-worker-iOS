@@ -61,7 +61,8 @@ extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
         
         let dict = self.onGoingOrderArr[indexPath.row]
         cell.paymentLabel.text = dict.invoice?.payment_mode
-        cell.orderTimeValueLabel.text = dict.delivery_date
+        cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at
+        cell.deliverTimeValueLabel.text = dict.delivery_date
         cell.locationLabel.text = dict.address?.city
         cell.userNameLabel.text = dict.user?.name
         cell.orderTimeLabel.text = "Order Time"

@@ -122,3 +122,5 @@
 "localize.to" = "to";
 "localize.filter" = "Filter";
 "localize.alreadyRegister" = "Already Registered? Login";
+"localize.deliveryTime" = "Delivery Time";
+"localize.scheduleDate" = "Schedule Date";

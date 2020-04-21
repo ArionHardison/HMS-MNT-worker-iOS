@@ -45,6 +45,10 @@ class UpcomingDetailViewController: BaseViewController {
     @IBOutlet weak var overView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var scheduleView: UIView!
+    @IBOutlet weak var scheduleDateLabel: UILabel!
+    @IBOutlet weak var scheduleDateValueLabel: UILabel!
+    
     var reasonsView : ReasonsListView?
     
     var OrderId = 0
@@ -140,29 +144,9 @@ class UpcomingDetailViewController: BaseViewController {
         self.view.endEditing(true)
     }
     
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
     @IBAction func onCancelButtonAction(_ sender: Any) {
-    /*    var alertController = UIAlertController(title: "", message: "Are you sure want to cancel your order", preferredStyle: .alert)
-        
-        var no = UIAlertAction(title: "NO", style: .default, handler: nil)
-        
-        var ok = UIAlertAction(title: "YES", style: .default, handler: { action in
-            
-//            self.acceptCancelOrderMethod("CANCELLED")
-           // self.acceptOrderApi(statusStr: "CANCELLED")
-            
-        })
-        alertController.addAction(ok)
-        alertController.addAction(no)
-        present(alertController, animated: true)*/
+ 
         
        
         
@@ -560,6 +544,15 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
             HideActivityIndicator()
             let data = dataDict as? OrderDetailModel
             fetchOrderDetails(data: (data?.order)!)
+            if data?.order?.schedule_status == 1 {
+                scheduleDateLabel.text = APPLocalize.localizestring.scheduleDate.localize()
+                scheduleDateValueLabel.textColor = .green
+                scheduleDateValueLabel.text = data?.order?.delivery_date // delivery_date
+            }else
+            {
+                scheduleView.isHidden = true
+                
+            }
             self.CartOrderArr = data?.cart ?? []
             OrderModel = data?.order
             orderTableView.reloadData()
@@ -568,7 +561,9 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
           
                removeReasonsView()
             if fromwhere == "HOME" {
+                self.scheduleView.isHidden = true
                // self.navigationController?.popViewController(animated: true)
+                
                 
                 
                 let historyViewController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.HistoryViewController) as! HistoryViewController
@@ -577,6 +572,7 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
                 
                 
             }else{
+                self.scheduleView.isHidden = true
                   HideActivityIndicator()
                  let data = dataDict as? AcceptModel
                 if data?.status == "READY" {
@@ -584,6 +580,7 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
                acceptButton.setTitle("DELIVER", for: .normal)
                     
                 }else if data?.status == "PICKUP_USER" {
+                    
                     
                 }else{
                     

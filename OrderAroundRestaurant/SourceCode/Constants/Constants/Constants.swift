@@ -53,6 +53,7 @@ struct APPLocalize {
     var editrestaurant = "localize.editrestaurant"
     var edittiming = "localize.edittiming"
     var Deliveries = "localize.Deliveries"
+    var deliveryDate = "localize.deliveryTime"
     var changePassword = "localize.changePassword"
     var logout = "localize.logout"
     var deleteAccount = "localize.deleteAccount"
@@ -123,6 +124,7 @@ struct APPLocalize {
     var address = "localize.address"
     var landmark = "localize.landmark"
     var offerLabel = "localize.offerLabel"
+    var scheduleDate = "localize.scheduleDate"
     
     
     var currentPassword = "localize.currentPassword"

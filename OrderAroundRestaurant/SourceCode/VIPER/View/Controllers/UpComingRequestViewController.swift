@@ -27,6 +27,9 @@ class UpComingRequestViewController: UIViewController {
     @IBOutlet weak var totalValueLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
     @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var scheduleDateLabel: UILabel!
+    @IBOutlet weak var scheduleDateValueLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialLoad()

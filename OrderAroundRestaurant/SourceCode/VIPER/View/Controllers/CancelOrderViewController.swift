@@ -61,7 +61,8 @@ extension CancelOrderViewController: UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
         let dict = self.cancelOrderArr[indexPath.row]
         cell.paymentLabel.text = dict.invoice?.payment_mode
-        cell.orderTimeValueLabel.text = dict.delivery_date
+           cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at
+             cell.deliverTimeValueLabel.text = dict.delivery_date
         cell.locationLabel.text = dict.address?.city
         cell.userNameLabel.text = dict.user?.name
         cell.orderTimeLabel.text = "Order Time"

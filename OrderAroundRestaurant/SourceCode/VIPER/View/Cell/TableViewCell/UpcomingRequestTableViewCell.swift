@@ -19,8 +19,9 @@ class UpcomingRequestTableViewCell: UITableViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
-    
     @IBOutlet weak var waitingLabel: UILabel!
+    @IBOutlet weak var deliveryTimeLabel: UILabel!
+    @IBOutlet weak var deliverTimeValueLabel: UILabel!
     
     
     override func awakeFromNib() {
@@ -32,12 +33,16 @@ class UpcomingRequestTableViewCell: UITableViewCell {
     
     private func setFont(){
         waitingLabel.text = APPLocalize.localizestring.waiting.localize()
+        deliveryTimeLabel.text = APPLocalize.localizestring.deliveryDate.localize()
         paymentLabel.font = UIFont.regular(size: 14)
         orderTimeLabel.font = UIFont.regular(size: 14)
         orderTimeValueLabel.font = UIFont.regular(size: 14)
+        deliveryTimeLabel.font = UIFont.regular(size: 14)
+        deliverTimeValueLabel.font = UIFont.regular(size: 14)
         locationLabel.font = UIFont.regular(size: 14)
         userNameLabel.font = UIFont.regular(size: 14)
         statusLabel.font = UIFont.regular(size: 14)
+        deliverTimeValueLabel.textColor = UIColor.green
     }
     
     override func layoutSubviews() {
