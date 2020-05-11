@@ -62,7 +62,11 @@ extension PastOrderViewController: UITableViewDelegate,UITableViewDataSource{
         let dict = self.completedOrderArr[indexPath.row]
     
      
+       if(dict.invoice?.payment_mode == "stripe"){
+            cell.paymentLabel.text = "Card"
+        }else{
         cell.paymentLabel.text = dict.invoice?.payment_mode
+        }
         cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at
         cell.deliverTimeValueLabel.text = dict.delivery_date
         cell.locationLabel.text = dict.address?.city

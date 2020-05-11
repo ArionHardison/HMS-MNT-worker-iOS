@@ -5096,17 +5096,17 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3jo-Fg-HXO">
-                                                                <rect key="frame" x="0.0" y="58" width="219" height="24"/>
+                                                                <rect key="frame" x="0.0" y="58" width="219" height="32"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Location" translatesAutoresizingMaskIntoConstraints="NO" id="5wd-zx-gfB">
-                                                                        <rect key="frame" x="0.0" y="2" width="20" height="20"/>
+                                                                        <rect key="frame" x="0.0" y="6" width="20" height="20"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="20" id="9Kn-ay-sp8"/>
                                                                             <constraint firstAttribute="height" constant="20" id="tem-hI-LHo"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0aD-Z6-iO7">
-                                                                        <rect key="frame" x="25" y="12" width="184" height="0.0"/>
+                                                                        <rect key="frame" x="25" y="16" width="184" height="0.0"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -5121,8 +5121,8 @@
                                                                     <constraint firstItem="5wd-zx-gfB" firstAttribute="leading" secondItem="3jo-Fg-HXO" secondAttribute="leading" id="yQy-ov-0eg"/>
                                                                 </constraints>
                                                             </view>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qP3-hl-124">
-                                                                <rect key="frame" x="0.0" y="90" width="219" height="0.0"/>
+                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qP3-hl-124">
+                                                                <rect key="frame" x="0.0" y="94" width="219" height="0.0"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>

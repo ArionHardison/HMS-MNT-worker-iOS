@@ -87,7 +87,7 @@ class OrderTrackingViewController: BaseViewController {
             
             let cartaddons = Result.cart_addons?.count
             
-            if(cartaddons != nil)
+            if(cartaddons != 0)
             {
                 if cartaddons! > 0 {
                     itemsArr.append("withaddonsItems")
@@ -286,15 +286,15 @@ extension OrderTrackingViewController: UITableViewDelegate,UITableViewDataSource
         addonsNameArr.removeAll()
         
         if(Data.cart_addons != nil) {
-            //            for i in 0..<(Data.cart_addons!.count)
-            //        {
-            //            let Result = Data.cart_addons![i]
-            //
-            //
-            //          //  let str = "\(Result.addon_product?.addon?.name! ?? "")"
-            //          //  addonsNameArr.append(str)
-            //
-            //        }
+                        for i in 0..<(Data.cart_addons!.count)
+                    {
+                        let Result = Data.cart_addons![i]
+            
+            
+                        let str = "\(Result.addon_product?.addon?.name! ?? "")"
+                        addonsNameArr.append(str)
+            
+                    }
             
             if Data.cart_addons!.count == 0 {
                 cell.subTitleLabel.isHidden = true

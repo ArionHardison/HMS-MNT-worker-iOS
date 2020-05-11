@@ -100,7 +100,7 @@ class LoginViewController: BaseViewController {
                                        "client_secret":client_Secret,
                                        "device_token":deviceToken,
                                         "device_type" : "ios",
-                                        "guard":WebConstants.string.shops]
+                                        "guard":"shops"]
         
         self.presenter?.GETPOST(api: Base.login.rawValue, params:parameters, methodType: HttpType.POST, modelClass: LoginModel.self, token: false)
     }
