@@ -90,6 +90,8 @@ class UpcomingDetailViewController: BaseViewController {
     
     //  update TableView Height
     private func updateOrderItemTableHeight(){
+        
+
         var counts: [String: Int] = [:]
         var itemsArr = [String]()
         for i in 0..<(CartOrderArr.count)
@@ -330,7 +332,10 @@ extension UpcomingDetailViewController{
     
     private func setOrderHistoryApi(){
         //showActivityIndicator()
+        print("orderId>>",OrderId)
+        
         let urlStr = "\(Base.getOrder.rawValue)/" + String(OrderId)
+        print("url>>>>",urlStr)
         self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderDetailModel.self, token: true)
     }
     
@@ -492,16 +497,22 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
        
         let Data = self.CartOrderArr[indexPath.row]
         let productName = Data.product?.name
-        let quantityStr = "\(Data.quantity ?? 0)"
-        cell.titleLabel.text = productName! + " x " + quantityStr
+        let quantity1 = "\(Data.quantity ?? 0)"
+        let quantityStr = Double(Data.quantity ?? 0)
+        cell.titleLabel.text = productName! + " x " + quantity1
         let currency = Data.product?.prices?.currency ?? "$"
         let priceStr: String! = String(describing: Data.product?.prices?.price ?? 0)
 
-        cell.descriptionLabel.text = currency + String(format: " %.02f", Double(priceStr) ?? 0.0)
+//        cell.descriptionLabel.text = currency + String(format: " %.02f", Double(priceStr) ?? 0.0)
         
         
         var addonsNameArr = [String]()
         addonsNameArr.removeAll()
+        
+        var addonPriceArray = String()
+        addonPriceArray.removeAll()
+        
+        var addOnPrice:Double = 0
         
         if(Data.cart_addons != nil) {
             for i in 0..<(Data.cart_addons!.count)
@@ -511,10 +522,40 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
             
             if  let str = addOn.addon_product?.addon?.name {
                 addonsNameArr.append(str)
+                
+                
+                if let price = addOn.addon_product?.price{
+                    var addOnPrice:Double = 0
+                }
+                
+                  addOnPrice = addOnPrice + (addOn.addon_product?.price ?? 0) * Double(addOn.quantity ?? 0)
+                print("addonPrices>>>>>",addOnPrice)
+                
+                print("addonPriceArray>>",addonPriceArray)
+                print("pice>>>",addOn.addon_product?.price)
+                
 
             }
+            
+            
+            
+            
+          //  if let price = addOn.addon_product?.addon?
+            
+            
+            
+              print("pice1>>>",addOn.addon_product?.price)
 
         }
+            
+            let value =  Double(Data.product?.prices?.orignal_price ?? 0) * quantityStr
+            
+            print("value>>>>",value)
+                      let AddonPriceValue = value + addOnPrice
+            print("price>>",value + addOnPrice)
+            cell.descriptionLabel.text = currency + String(format: " %.02f", Double(AddonPriceValue))
+            
+                        
      
         if Data.cart_addons!.count == 0 {
             cell.subTitleLabel.isHidden = true
@@ -522,6 +563,27 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
             cell.subTitleLabel.isHidden = false
             let addonsstr = addonsNameArr.joined(separator: ", ")
             cell.subTitleLabel.text = addonsstr
+            
+      //  cell.descriptionLabel.text = currency + String(format: " %.02f", Double(priceStr) ?? 0.0)
+               
+            
+//             let priceStr: String! = String(describing: Data.product?.prices?.price ?? 0)
+//             let priceStrAddon: String! = String(describing: addOnPrice )
+            
+          
+           
+            
+          //  cell.descriptionLabel.text = currency + String(format: " %.02f", Double(AddonPriceValue) )
+            
+            
+            
+          //  print()
+            
+            
+            
+            
+          //  print("vale>>",addonPriceArray + addOnPrice)
+            //print("prce>",priceStr)
         }
         }
         return cell
@@ -537,12 +599,14 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
 //MARK: VIPER Extension:
 extension UpcomingDetailViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-        
+       
         
         
         if String(describing: modelClass) == model.type.OrderDetailModel {
             HideActivityIndicator()
             let data = dataDict as? OrderDetailModel
+            
+             print("data>>>>>>",data)
             fetchOrderDetails(data: (data?.order)!)
             if data?.order?.schedule_status == 1 {
                 scheduleDateLabel.text = APPLocalize.localizestring.scheduleDate.localize()

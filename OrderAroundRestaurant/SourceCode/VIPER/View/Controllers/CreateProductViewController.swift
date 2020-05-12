@@ -109,10 +109,10 @@ class CreateProductViewController: BaseViewController {
             return
         }
         
-        guard let discount = discountTextField.text, !discount.isEmpty else{
-            showToast(msg: ErrorMessage.list.enterDiscount)
-            return
-        }
+//        guard let discount = discountTextField.text, !discount.isEmpty else{
+//            showToast(msg: ErrorMessage.list.enterDiscount)
+//            return
+//        }
         
      /*   guard let selectAddons = selectAddonsValueLabel.text, !selectAddons.isEmpty else{
             showToast(msg: ErrorMessage.list.enterAddons)

@@ -22,12 +22,6 @@ class HomeViewController: BaseViewController {
     @IBOutlet weak var ratingView: CosmosView!
     
     
-    
-   
-
-    
-    
-    
     private var profileDataResponse: ProfileModel?
     var upcomingRequestArr = [Orders]()
     var timerGetRequest: Timer?
@@ -86,6 +80,7 @@ extension HomeViewController{
     @objc private func setOrderHistoryApi(){
         
         let urlStr = "\(Base.getOrder.rawValue)?t=ordered"
+        print("url>>>",urlStr)
         self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
     }
     
@@ -147,6 +142,13 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource{
                 cell.paymentLabel.text = "Card"
             }else{
             cell.paymentLabel.text = dict.invoice?.payment_mode
+            }
+            
+            if dict.schedule_status == 0{
+                cell.scheduleValue.isHidden = true
+               //  cell.scheduleValue.text = "Schedule"
+            }else{
+                 cell.scheduleValue.text = "Schedule"
             }
             cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at
             cell.deliverTimeValueLabel.text = dict.delivery_date

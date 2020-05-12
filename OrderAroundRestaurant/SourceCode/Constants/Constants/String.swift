@@ -27,6 +27,16 @@ extension String {
     }
     
     
+    //Set Amount
+          
+        func showAmount(amount:Double) -> String {
+              
+               let currency = UserDefaults.standard.value(forKey: Keys.list.currency) as! String
+            //  let currency = String.removeNil(User.main.currency)
+              return currency + String(format: "%.2f",amount)
+      //        return "\(String.removeNil(User.main.currency)) \(amount)"
+          }
+    
     func localize()->String{
         
         return NSLocalizedString(self, bundle: currentBundle, comment: "")

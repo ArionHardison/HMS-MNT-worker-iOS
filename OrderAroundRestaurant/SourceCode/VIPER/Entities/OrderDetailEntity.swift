@@ -130,6 +130,7 @@ struct Order : Mappable {
 
 
 struct CartAddons : Mappable {
+    var quantity : Double?
    
    
     var addon_product : AddOnsObject?
@@ -138,6 +139,7 @@ struct CartAddons : Mappable {
     mutating func mapping(map: Map) {
         
         addon_product <- map["addon_product"]
+          quantity <- map["quantity"]
            
        }
        
@@ -149,6 +151,7 @@ struct CartAddons : Mappable {
 
 
 struct AddOnsObject : Mappable {
+    var price : Double?
     
     var addon : AddOns?
 
@@ -159,6 +162,7 @@ struct AddOnsObject : Mappable {
    mutating func mapping(map: Map) {
         
       addon <- map["addon"]
+     price <- map["price"]
     }
     
   
@@ -168,6 +172,7 @@ struct AddOnsObject : Mappable {
 struct AddOns : Mappable {
     
     var name : String?
+    var price : Double?
 
      init?(map: Map) {
          
@@ -176,6 +181,7 @@ struct AddOns : Mappable {
     mutating func mapping(map: Map) {
          
        name <- map["name"]
+        price <- map["price"]
      }
     
     

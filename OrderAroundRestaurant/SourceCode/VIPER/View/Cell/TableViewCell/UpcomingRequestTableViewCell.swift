@@ -23,6 +23,8 @@ class UpcomingRequestTableViewCell: UITableViewCell {
     @IBOutlet weak var deliveryTimeLabel: UILabel!
     @IBOutlet weak var deliverTimeValueLabel: UILabel!
     
+    @IBOutlet weak var scheduleValue: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,6 +42,8 @@ class UpcomingRequestTableViewCell: UITableViewCell {
         deliveryTimeLabel.font = UIFont.regular(size: 14)
         deliverTimeValueLabel.font = UIFont.regular(size: 14)
         locationLabel.font = UIFont.regular(size: 14)
+        scheduleValue.font = UIFont.regular(size: 14)
+        scheduleValue.textColor = UIColor.green
         userNameLabel.font = UIFont.regular(size: 14)
         statusLabel.font = UIFont.regular(size: 14)
         deliverTimeValueLabel.textColor = UIColor.green
