@@ -147,7 +147,7 @@ struct APPLocalize {
     var cancelOrder = "localize.cancelOrder"
     var otpMessage = "Submit OTP"
     var resendOTP = "Resend OTP"
-
+    var scheduled = "Scheduled"
 //
 //    var deviceType = "デバイスタイプなし"
 //    var noDeviceID = "デバイスIDなし"
@@ -325,6 +325,7 @@ struct model {
     let FoodSafetyModel = "FoodSafetyModel"
     let CancelReasons  = "CancelReasons"
     let OTPResponseModel = "OTPResponseModel"
+    
     
     
 

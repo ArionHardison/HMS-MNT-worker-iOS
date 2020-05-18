@@ -67,6 +67,12 @@ extension PastOrderViewController: UITableViewDelegate,UITableViewDataSource{
         }else{
         cell.paymentLabel.text = dict.invoice?.payment_mode
         }
+        if dict.schedule_status == 0{
+                       cell.scheduleValue.isHidden = true
+                      //  cell.scheduleValue.text = "Schedule"
+                   }else{
+                       cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
+                   }
         cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at
         cell.deliverTimeValueLabel.text = dict.delivery_date
         cell.locationLabel.text = dict.address?.city

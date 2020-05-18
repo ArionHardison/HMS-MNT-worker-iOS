@@ -148,7 +148,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource{
                 cell.scheduleValue.isHidden = true
                //  cell.scheduleValue.text = "Schedule"
             }else{
-                 cell.scheduleValue.text = "Schedule"
+                cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
             }
             cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at
             cell.deliverTimeValueLabel.text = dict.delivery_date
