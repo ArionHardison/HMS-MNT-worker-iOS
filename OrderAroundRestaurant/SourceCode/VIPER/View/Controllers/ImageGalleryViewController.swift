@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UnsplashPhotoPicker
 
 class ImageGalleryViewController: UIViewController {
     
@@ -20,6 +21,9 @@ class ImageGalleryViewController: UIViewController {
     var selectedIndex = -1
     var isImageSelected = false
     var isImageSendToAdmin :((Bool)->Void)?
+    var delegate : ImageGalleryDelegate?
+     private var photos = [UnsplashPhoto]()
+    @IBOutlet weak var loadUnsplash: UIButton!
     
     
     override func viewDidLoad() {
@@ -27,6 +31,9 @@ class ImageGalleryViewController: UIViewController {
       setNavigationController()
       imagesGalleryCV.register(UINib(nibName: XIB.Names.GalleryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.GalleryCollectionViewCell)
         self.buttonUploadImage.addTarget(self, action: #selector(uploadAction(sender:)), for: .touchUpInside)
+        self.loadUnsplash.setTitle("load more", for: .normal)
+        self.loadUnsplash.setTitleColor(.lightGray, for: .normal)
+        self.loadUnsplash.addTarget(self, action: #selector(loadunsplashAction(sender:)), for: .touchUpInside)
     }
     override func viewWillAppear(_ animated: Bool) {
        // enableKeyboardHandling()
@@ -58,7 +65,7 @@ extension  ImageGalleryViewController : UICollectionViewDelegate,UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return  self.imageArray.count > 0 ?  self.imageArray.count + 1 : 0
+        return  self.imageArray.count > 0 ?  self.imageArray.count : 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,15 +73,15 @@ extension  ImageGalleryViewController : UICollectionViewDelegate,UICollectionVie
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: XIB.Names.GalleryCollectionViewCell, for: indexPath) as! GalleryCollectionViewCell
         cell.test.tag = indexPath.row
         cell.test.addTarget(self, action: #selector(testClick), for: .touchUpInside)
-        if indexPath.row == self.imageArray.count
-            
-        {
-            
-            cell.cuisineImage.image = #imageLiteral(resourceName: "Add")
-            
-        }
-        else
-        {
+//        if indexPath.row == self.imageArray.count
+//
+//        {
+//
+//            cell.cuisineImage.image = #imageLiteral(resourceName: "Add")
+//
+//        }
+//        else
+//        {
             
             cell.cuisineImage.sd_setImage(with: URL(string:self.imageArray[indexPath.row].image ?? ""), placeholderImage:#imageLiteral(resourceName: "Add"))
             
@@ -87,9 +94,9 @@ extension  ImageGalleryViewController : UICollectionViewDelegate,UICollectionVie
                 cell.selectedImage.image = nil
                 
             }
-            // bannerImageView.sd_setImage(with: URL(string: profile.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
-            
-        }
+        
+
+
         return cell
        
         
@@ -98,7 +105,9 @@ extension  ImageGalleryViewController : UICollectionViewDelegate,UICollectionVie
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         
-        
+        if indexPath.row == self.imageArray.count{
+           
+        }
         
         
     }
@@ -111,20 +120,21 @@ extension  ImageGalleryViewController : UICollectionViewDelegate,UICollectionVie
     
     @objc func testClick(sender: UIButton) {
         
-        if sender.tag == self.imageArray.count
-        {
-           
-            
-        }
-        else
-        {
+     
             isImageSelected = !isImageSelected
             self.selectedIndex = isImageSelected ? sender.tag : -1
             self.imagesGalleryCV.reloadData()
+        self.delegate?.sendImage(sendImage: imageArray[sender.tag].image ?? "")
+        self.navigationController?.popViewController(animated: true)
             
-        }
+            
+        
     }
     
+    @IBAction func loadunsplashAction(sender:UIButton)
+    {
+        self.loadUnSplash()
+    }
     @IBAction func uploadAction(sender:UIButton){
         
         
@@ -160,4 +170,39 @@ extension  ImageGalleryViewController : UICollectionViewDelegate,UICollectionVie
         }
     }
 
+    func loadUnSplash(){
+        
+        let configuration = UnsplashPhotoPickerConfiguration(
+            accessKey:"0813811a510708005bed659afd6c652e6ef32ad72df534d37598dcd05f46af35",
+            secretKey:"42dc66500397d66972dea4952edb76699cf6f9c8824dba27df1354bc1bfdaa50",
+            query: "",
+            allowsMultipleSelection: false
+        )
+        let unsplashPhotoPicker = UnsplashPhotoPicker(configuration: configuration)
+        unsplashPhotoPicker.photoPickerDelegate = self
+        present(unsplashPhotoPicker, animated: true, completion: nil)
+        
+    }
+}
+
+extension ImageGalleryViewController : UnsplashPhotoPickerDelegate {
+    
+    func unsplashPhotoPicker(_ photoPicker: UnsplashPhotoPicker, didSelectPhotos photos: [UnsplashPhoto]) {
+        self.photos = photos
+        let url = self.photos.first?.urls[.regular]!.absoluteString ?? ""
+        self.delegate?.sendImage(sendImage: url)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func unsplashPhotoPickerDidCancel(_ photoPicker: UnsplashPhotoPicker) {
+        
+        
+    }
+    
+    
+    
+}
+
+protocol ImageGalleryDelegate : class {
+    func sendImage(sendImage:String)
 }

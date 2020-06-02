@@ -152,6 +152,8 @@
 		24FC05B6227343E3003243D9 /* LocaliseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B5227343E3003243D9 /* LocaliseManager.swift */; };
 		24FC05B822734548003243D9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B722734548003243D9 /* String.swift */; };
 		42263AE623592704DF50816F /* Pods_OrderAroundRestaurantUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49B90A2AD7EE3688EC6AFB2E /* Pods_OrderAroundRestaurantUITests.framework */; };
+		850F3DC3247BCB00003DF2C3 /* EmailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850F3DC1247BCB00003DF2C3 /* EmailCollectionViewCell.swift */; };
+		850F3DC4247BCB00003DF2C3 /* EmailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850F3DC2247BCB00003DF2C3 /* EmailCollectionViewCell.xib */; };
 		85EBF5C02440C51F0031DB32 /* OTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EBF5BF2440C51F0031DB32 /* OTPController.swift */; };
 		B30085D993ED1BEB02A85F42 /* Pods_OrderAroundRestaurantTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA45E69BE11C915040938385 /* Pods_OrderAroundRestaurantTests.framework */; };
 		B4086EDD2271F159008C5BC0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4086EDF2271F159008C5BC0 /* Localizable.strings */; };
@@ -328,6 +330,8 @@
 		24FC05B722734548003243D9 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		49B90A2AD7EE3688EC6AFB2E /* Pods_OrderAroundRestaurantUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OrderAroundRestaurantUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		720967599EA4387BC1D693F4 /* Pods-OrderAroundRestaurant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurant.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurant/Pods-OrderAroundRestaurant.release.xcconfig"; sourceTree = "<group>"; };
+		850F3DC1247BCB00003DF2C3 /* EmailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCollectionViewCell.swift; sourceTree = "<group>"; };
+		850F3DC2247BCB00003DF2C3 /* EmailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailCollectionViewCell.xib; sourceTree = "<group>"; };
 		85EBF5BF2440C51F0031DB32 /* OTPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPController.swift; sourceTree = "<group>"; };
 		915B0DF90E6F700F351463E9 /* Pods-OrderAroundRestaurantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantUITests.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantUITests/Pods-OrderAroundRestaurantUITests.release.xcconfig"; sourceTree = "<group>"; };
 		96562278739C1FFA52E020AA /* Pods-OrderAroundRestaurantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantUITests.debug.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantUITests/Pods-OrderAroundRestaurantUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -476,6 +480,8 @@
 				087D0C02222408C400E58BDE /* TableViewCell */,
 				087D0C01222408B000E58BDE /* CollectionViewCell */,
 				1274D565241B92E500000CFE /* ReasonsListView.swift */,
+				850F3DC1247BCB00003DF2C3 /* EmailCollectionViewCell.swift */,
+				850F3DC2247BCB00003DF2C3 /* EmailCollectionViewCell.xib */,
 				1274D567241B92FD00000CFE /* ReasonsListView.xib */,
 				1274D569241B97B300000CFE /* ReasonsCell.swift */,
 				1274D56A241B97B300000CFE /* ReasonsCell.xib */,
@@ -1021,6 +1027,7 @@
 				08A613172242225600219465 /* ItemListTableViewCell.xib in Resources */,
 				08A44AC622379F3300228233 /* SelectCusineTableViewCell.xib in Resources */,
 				08A3B6A522253D0F0010058B /* Nunito-SemiBold.ttf in Resources */,
+				850F3DC4247BCB00003DF2C3 /* EmailCollectionViewCell.xib in Resources */,
 				08A44ACD2237B14000228233 /* countryCodes.json in Resources */,
 				12235D2C241F795600FF4A1B /* GoogleService-Info.plist in Resources */,
 				08A14DE9222FD77B00F35B1E /* AddOnsListTableViewCell.xib in Resources */,
@@ -1219,6 +1226,7 @@
 				087D0C342224346000E58BDE /* Image.swift in Sources */,
 				08AD751D2226728F002A0419 /* UpcomingRequestTableViewCell.swift in Sources */,
 				1251978D243EEC0C00291159 /* SingleTonClass.swift in Sources */,
+				850F3DC3247BCB00003DF2C3 /* EmailCollectionViewCell.swift in Sources */,
 				0891E2062230EC1500409038 /* CreateProductViewController.swift in Sources */,
 				08AB876E223678AA00740520 /* SelectAddonsViewController.swift in Sources */,
 				08ACEA082239240D0050591D /* WebService.swift in Sources */,
@@ -1479,7 +1487,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 26;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = JU248DMV5X;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
@@ -1502,7 +1510,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 24;
+				CURRENT_PROJECT_VERSION = 26;
 				DEVELOPMENT_TEAM = JU248DMV5X;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

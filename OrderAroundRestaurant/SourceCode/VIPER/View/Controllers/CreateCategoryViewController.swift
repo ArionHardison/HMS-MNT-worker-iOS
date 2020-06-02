@@ -8,6 +8,7 @@
 
 import UIKit
 import ObjectMapper
+import MessageUI
 
 import UnsplashPhotoPicker
 
@@ -50,6 +51,8 @@ class CreateCategoryViewController: BaseViewController {
         // Do any additional setup after loading the view.
         setInitialLoad()
          imageGalleryCV.register(UINib(nibName: XIB.Names.GalleryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.GalleryCollectionViewCell)
+        imageGalleryCV.register(UINib(nibName: XIB.Names.EmailCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.EmailCollectionViewCell)
+        
     }
     
     //MARK:- viewWillAppear
@@ -425,7 +428,7 @@ protocol CreateCategoryViewControllerDelegate: class {
     func callCategoryApi(issuccess: Bool)
 }
 
-extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout, MFMailComposeViewControllerDelegate {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -436,6 +439,27 @@ extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        if(indexPath.row == imageList.count){
+             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:XIB.Names.EmailCollectionViewCell, for: indexPath)  as! EmailCollectionViewCell
+            cell.addToEmail.setTitle("Add via mail", for: .normal)
+            cell.addToEmail.setTitleColor(.primary, for: .normal)
+            cell.onClickEmail = {
+                var emailTitle = "Add Photos"
+                 var messageBody = "Add Photo"
+                 var toRecipents = ["admin@oyola.co"]
+                 var mc: MFMailComposeViewController = MFMailComposeViewController()
+                 mc.mailComposeDelegate = self
+                 mc.setSubject(emailTitle)
+                 mc.setMessageBody(messageBody, isHTML: false)
+                 mc.setToRecipients(toRecipents)
+
+                self.present(mc, animated: true, completion: nil)
+                 }
+                
+            
+            return cell
+            
+        }else{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:XIB.Names.GalleryCollectionViewCell, for: indexPath)  as! GalleryCollectionViewCell
         
         cell.test.tag = indexPath.row
@@ -467,6 +491,13 @@ extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionVi
         }
         return cell
         
+    }
+    }
+    
+    
+    private func mailComposeController(controller:MFMailComposeViewController, didFinishWithResult result:MFMailComposeResult, error:NSError) {
+
+
     }
     
     /* func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -517,14 +548,15 @@ extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionVi
         if sender.tag == self.imageList.count
         {
             
-           /* let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+            let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
             registerController.imageArray = self.imageList
+            registerController.delegate = self
             registerController.selectedIndex = self.selectedIndex
             self.navigationController?.pushViewController(registerController, animated: true)
-            */
+            
             
             self.category = 1
-            self.loadUnSplash()
+//            self.loadUnSplash()
             
             
             
@@ -541,4 +573,18 @@ extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionVi
             
         }
     }
+}
+
+extension CreateCategoryViewController : ImageGalleryDelegate {
+    func sendImage(sendImage: String) {
+             if category == 1 {
+               categoryURL =  sendImage
+               //bannerViewHeight.constant = 150
+               categoryImageView.sd_setImage(with: URL(string: categoryURL), placeholderImage: UIImage(named: "user-placeholder"))
+               
+               
+           }
+    }
+    
+    
 }

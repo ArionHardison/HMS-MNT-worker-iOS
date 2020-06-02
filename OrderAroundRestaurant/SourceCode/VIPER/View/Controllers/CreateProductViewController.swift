@@ -89,7 +89,7 @@ class CreateProductViewController: BaseViewController {
     @IBAction func onDiscountSection(_ sender: Any) {
         let statusController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.StatusViewController) as! StatusViewController
         statusController.isCategory = false
-        statusController.datePickerValues = ["Percentage","Amount"]
+        statusController.datePickerValues = ["percentage","Amount"]
         statusController.delegate = self
         self.present(statusController, animated: true, completion: nil)
     }
@@ -132,7 +132,7 @@ class CreateProductViewController: BaseViewController {
                                            "shop":shopId,
                                            "featured":featureStr,
                                            "featured_position":"1",
-                                           "discount":discountTextField.text!,
+                                           "discount":discountTextField.text ?? "0 ",
                                            "status":status,
                                            "cuisine_id":cusineId,
                                            "category":categoryId,
@@ -162,7 +162,7 @@ class CreateProductViewController: BaseViewController {
             }
             
             
-            if discountTypeValueLabel.text == "Percentage" {
+            if discountTypeValueLabel.text == "percentage" {
                 
                 
                  parameters["discount_type"] = "percentage"
@@ -219,7 +219,7 @@ class CreateProductViewController: BaseViewController {
                                       ]
             
             
-            if discountTypeValueLabel.text == "Percentage" {
+            if discountTypeValueLabel.text == "percentage" {
                 
                  parameters["discount_type"] = "percentage"
                 
@@ -271,6 +271,7 @@ class CreateProductViewController: BaseViewController {
                 
                 
             }
+            print(parameters)
         self.presenter?.IMAGEPOST(api: Base.productList.rawValue, params: parameters, methodType: HttpType.POST, imgData:nil, imgName: "image", modelClass: CategoryListModel.self, token: true)
         }
     }
@@ -395,7 +396,7 @@ extension CreateProductViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         
         if String(describing: modelClass) == model.type.LoginModel {
-            
+            print(dataDict)
             DispatchQueue.main.async {
                 self.HideActivityIndicator()
                 
@@ -414,6 +415,7 @@ extension CreateProductViewController: PresenterOutputProtocol {
 
         }else if String(describing: modelClass) == model.type.GetProductEntity
         {
+            print(dataDict)
             let controllers = self.navigationController?.viewControllers
             for vc in controllers! {
                 if vc is AddProductViewController {

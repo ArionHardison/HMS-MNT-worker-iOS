@@ -1047,14 +1047,15 @@ extension EditRegisterViewController : UICollectionViewDelegate,UICollectionView
         if sender.tag == self.imageList.count
         {
             
-          /*  let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+            let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
             registerController.imageArray = self.imageList
             registerController.selectedIndex = self.selectedIndex
-            self.navigationController?.pushViewController(registerController, animated: true)*/
+            registerController.delegate = self
+            self.navigationController?.pushViewController(registerController, animated: true)
             
             
             shop = 1
-            loadUnSplash()
+//            loadUnSplash()
             
         }
         else
@@ -1084,14 +1085,15 @@ extension EditRegisterViewController : UICollectionViewDelegate,UICollectionView
         if sender.tag == self.imageList.count
         {
             
-         /*   let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+           let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
             registerController.imageArray = self.imageList
             registerController.selectedIndex = self.selectedIndex
-            self.navigationController?.pushViewController(registerController, animated: true)*/
+            registerController.delegate = self
+            self.navigationController?.pushViewController(registerController, animated: true)
             
             
             banner = 1
-            loadUnSplash()
+//            loadUnSplash()
             
             
         }
@@ -1192,6 +1194,28 @@ extension EditRegisterViewController: GMSAutocompleteViewControllerDelegate {
 extension EditRegisterViewController: StatusViewControllerDelegate {
     func setValueShowStatusLabel(statusValue: String) {
         self.statusValueLabel.text = statusValue
+    }
+    
+    
+}
+
+
+extension EditRegisterViewController : ImageGalleryDelegate{
+    func sendImage(sendImage: String) {
+        if banner == 1 {
+                   banneURL =  sendImage
+                   //bannerViewHeight.constant = 150
+                  imgBanner.sd_setImage(with: URL(string: banneURL), placeholderImage: UIImage(named: "user-placeholder"))
+                   
+                   
+               }
+               else if shop == 1 {
+                   
+                   shopURL = sendImage
+                   //unsplashViewHeight.constant = 150
+                   imgCuisine.sd_setImage(with: URL(string: shopURL), placeholderImage: UIImage(named: "user-placeholder"))
+                   
+               }
     }
     
     

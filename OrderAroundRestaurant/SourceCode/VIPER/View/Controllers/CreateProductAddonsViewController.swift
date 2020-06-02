@@ -956,6 +956,46 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         print(">>>>>>>>>>DID SELECT>>>>>>>>>")
+        if(collectionView == featuredGalleryCV){
+            if(indexPath.row == imageList.count - 1){
+                let alert = UIAlertController(title: "Desired Image Not There?", message: "Mail Us in:support@oyola.co", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action:UIAlertAction!) in
+                    let email = "support@oyola.co"
+                    if let url = URL(string: "mailto:\(email)") {
+                      if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(url)
+                      } else {
+                        UIApplication.shared.openURL(url)
+                      }
+                    }
+                    
+                   
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        }else{
+            if(indexPath.row == imageList.count - 1){
+                let alert = UIAlertController(title: "Desired Image Not There?", message: "Mail Us in:support@oyola.co", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action:UIAlertAction!) in
+                    let email = "support@oyola.co"
+                    if let url = URL(string: "mailto:\(email)") {
+                      if #available(iOS 10.0, *) {
+                        UIApplication.shared.open(url)
+                      } else {
+                        UIApplication.shared.openURL(url)
+                      }
+                    }
+                    
+                   
+                }))
+                alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+        }
+        
         
         
     }
@@ -999,13 +1039,14 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
         if sender.tag == self.imageList.count
         {
             
-         /*   let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+           let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
             registerController.imageArray = self.imageList
             registerController.selectedIndex = self.selectedIndex
-            self.navigationController?.pushViewController(registerController, animated: true)*/
+            registerController.delegate = self
+            self.navigationController?.pushViewController(registerController, animated: true)
             
             self.cuisine = 1
-            loadUnSplash()
+//            loadUnSplash()
             
         }
         else
@@ -1028,14 +1069,15 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
         if sender.tag == self.imageList.count
         {
             
-          /*  let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+         let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
             registerController.imageArray = self.imageList
             registerController.selectedIndex = self.selectedIndex
-            self.navigationController?.pushViewController(registerController, animated: true)*/
+            registerController.delegate = self
+            self.navigationController?.pushViewController(registerController, animated: true)
             
             
             self.fetured = 1
-            loadUnSplash()
+//            loadUnSplash()
             
             
         }
@@ -1053,5 +1095,29 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
             
         }
     }
+    
+}
+
+extension CreateProductAddonsViewController:ImageGalleryDelegate{
+    func sendImage(sendImage: String) {
+            if cuisine == 1 {
+            cuisineURL = sendImage
+            //bannerViewHeight.constant = 150
+            existingImage.sd_setImage(with: URL(string: cuisineURL), placeholderImage: UIImage(named: "user-placeholder"))
+            cuisine = 0
+            
+            
+        }
+        if fetured == 1 {
+            
+            featuredURL = sendImage
+            //unsplashViewHeight.constant = 150
+            featureImageUploadImageView.sd_setImage(with: URL(string: featuredURL), placeholderImage: UIImage(named: "user-placeholder"))
+            
+            fetured = 0
+            
+        }
+    }
+    
     
 }

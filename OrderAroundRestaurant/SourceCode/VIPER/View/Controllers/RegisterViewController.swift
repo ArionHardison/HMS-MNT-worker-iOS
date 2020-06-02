@@ -570,7 +570,7 @@ extension RegisterViewController {
         
         checkImageSending()
         
-      //self.imagesGalleryCV.allowsMultipleSelection = true
+      self.imagesGalleryCV.allowsMultipleSelection = true
     }
     
     private func checkImageSending(){
@@ -948,15 +948,16 @@ extension RegisterViewController : UICollectionViewDelegate,UICollectionViewData
         if sender.tag == self.imageList.count
         {
             
-           /* let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+           let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
             registerController.imageArray = self.imageList
             registerController.selectedIndex = self.selectedIndex
-            self.navigationController?.pushViewController(registerController, animated: true)*/
+            registerController.delegate = self
+            self.navigationController?.pushViewController(registerController, animated: true)
             
-          //  let allowsMultipleSelection = SelectionType.single.rawValue
+            let allowsMultipleSelection = SelectionType.single.rawValue
            
             self.shopImage = 1
-            loadUnSplash()
+//            loadUnSplash()
             
             
         }
@@ -984,13 +985,14 @@ extension RegisterViewController : UICollectionViewDelegate,UICollectionViewData
         if sender.tag == self.imageList.count
         {
             
-          /*  let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+        let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
             registerController.imageArray = self.imageList
             registerController.selectedIndex = self.selectedIndex
-            self.navigationController?.pushViewController(registerController, animated: true)*/
+            registerController.delegate = self
+            self.navigationController?.pushViewController(registerController, animated: true)
             
             self.banner = 1
-            loadUnSplash()
+            //loadUnSplash()
             
         }
         else
@@ -1088,4 +1090,25 @@ extension RegisterViewController : PresenterOutputProtocol {
         
     }
 
+}
+
+extension RegisterViewController : ImageGalleryDelegate {
+    func sendImage(sendImage: String) {
+        if banner == 1 {
+            bannerImgURL =  sendImage
+            bannerViewHeight.constant = 150
+            bannerImgUnsplash.sd_setImage(with: URL(string: bannerImgURL), placeholderImage: UIImage(named: "user-placeholder"))
+
+            
+        }
+        else if shopImage == 1 {
+            
+            shopImgURL = sendImage
+            unsplashViewHeight.constant = 150
+            shopUnsplashImage.sd_setImage(with: URL(string: shopImgURL), placeholderImage: UIImage(named: "user-placeholder"))
+            
+        }
+    }
+    
+    
 }
