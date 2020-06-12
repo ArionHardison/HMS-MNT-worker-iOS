@@ -13,6 +13,9 @@ class ItemListTableViewCell: UITableViewCell {
     @IBOutlet weak var subTitleLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var addOnsPriceLabel: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -30,10 +33,13 @@ class ItemListTableViewCell: UITableViewCell {
         titleLabel.font = UIFont.bold(size: 15)
         descriptionLabel.font = UIFont.bold(size: 15)
         subTitleLabel.font = UIFont.regular(size: 14)
+        addOnsPriceLabel.font = UIFont.bold(size: 14)
     }
    
     func setColor(){
-       titleLabel.textColor =  UIColor.lightGray
-        descriptionLabel.textColor = UIColor.lightGray
+       titleLabel.textColor =  UIColor.darkGray
+        descriptionLabel.textColor = UIColor.darkGray
+        subTitleLabel.textColor = UIColor.darkGray
+        addOnsPriceLabel.textColor = UIColor.darkGray
     }
 }

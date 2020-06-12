@@ -327,7 +327,7 @@ class EditTimingViewController: BaseViewController {
                 ] as [String : Any]
             param["day"] = ["ALL"]
             let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
-            let urlStr = Base.getTimeUpdate.rawValue + "/" + String(shopId)
+            let urlStr = Base.getprofile.rawValue + "/" + String(shopId)
             showActivityIndicator()
             IsSaveBool = true
             self.presenter?.GETPOST(api: urlStr, params:param, methodType: HttpType.POST, modelClass: ProfileModel.self, token: true)
@@ -382,7 +382,7 @@ class EditTimingViewController: BaseViewController {
             print("Params---->>>",param)
             
                 let shopId = UserDefaults.standard.value(forKey: Keys.list.shopId) as! Int
-                let urlStr = Base.getTimeUpdate.rawValue + "/" + String(shopId)
+                let urlStr = Base.getprofile.rawValue + "/" + String(shopId)
                 showActivityIndicator()
                 self.presenter?.GETPOST(api: urlStr, params:param , methodType: HttpType.POST, modelClass: ProfileModel.self, token: true)
             

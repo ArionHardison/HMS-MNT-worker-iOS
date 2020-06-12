@@ -49,6 +49,7 @@ class UpcomingDetailViewController: BaseViewController {
     @IBOutlet weak var scheduleDateLabel: UILabel!
     @IBOutlet weak var scheduleDateValueLabel: UILabel!
     
+    @IBOutlet weak var notesLabel: UILabel!
     var reasonsView : ReasonsListView?
     
     var OrderId = 0
@@ -419,6 +420,7 @@ extension UpcomingDetailViewController{
         locationLabel.text = data.address?.map_address
         paymentModeLabel.text = data.invoice?.payment_mode
         emptyLabel.text = data.note ?? ""
+        print(data)
         
         let currency = UserDefaults.standard.value(forKey: Keys.list.currency) as! String
 
@@ -498,7 +500,7 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
         let Data = self.CartOrderArr[indexPath.row]
         let productName = Data.product?.name
         let quantity1 = "\(Data.quantity ?? 0)"
-        let quantityStr = Double(Data.quantity ?? 0)
+       
         cell.titleLabel.text = productName! + " x " + quantity1
         let currency = Data.product?.prices?.currency ?? "$"
         let priceStr: String! = String(describing: Data.product?.prices?.price ?? 0)
@@ -513,6 +515,10 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
         addonPriceArray.removeAll()
         
         var addOnPrice:Double = 0
+        var quantiyAvailable:Double = 0
+        
+        
+        
         
         if(Data.cart_addons != nil) {
             for i in 0..<(Data.cart_addons!.count)
@@ -520,13 +526,15 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
             
             let addOn = Data.cart_addons![i]
             
+            
             if  let str = addOn.addon_product?.addon?.name {
                 addonsNameArr.append(str)
-                
+               
                 
                 if let price = addOn.addon_product?.price{
-                    var addOnPrice:Double = 0
+                    //
                 }
+                
                 
                   addOnPrice = addOnPrice + (addOn.addon_product?.price ?? 0) * Double(addOn.quantity ?? 0)
                 print("addonPrices>>>>>",addOnPrice)
@@ -547,13 +555,17 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
               print("pice1>>>",addOn.addon_product?.price)
 
         }
-            
-            let value =  Double(Data.product?.prices?.orignal_price ?? 0) * quantityStr
+            let quantityStr = Double(Data.quantity ?? 0)
+            let originalPrice = Double(Data.product?.prices?.orignal_price ?? 0)
+            let value =   originalPrice * quantityStr
+            let addonPrice = addOnPrice
             
             print("value>>>>",value)
-                      let AddonPriceValue = value + addOnPrice
+                      let AddonPriceValue = value
             print("price>>",value + addOnPrice)
             cell.descriptionLabel.text = currency + String(format: " %.02f", Double(AddonPriceValue))
+            cell.addOnsPriceLabel.text = currency + String(format: " %.02f", Double(addonPrice))
+
             
                         
      
@@ -610,6 +622,7 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
             fetchOrderDetails(data: (data?.order)!)
             if data?.order?.schedule_status == 1 {
                 scheduleDateLabel.text = APPLocalize.localizestring.scheduleDate.localize()
+               
                 scheduleDateValueLabel.textColor = .green
                 scheduleDateValueLabel.text = data?.order?.delivery_date // delivery_date
             }else
@@ -619,16 +632,17 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
             }
             self.CartOrderArr = data?.cart ?? []
             OrderModel = data?.order
+            self.notesLabel.text = data?.order?.note
             orderTableView.reloadData()
             updateOrderItemTableHeight()
         }else if String(describing: modelClass) == model.type.AcceptModel {
-          
+            let data = dataDict as? AcceptModel
                removeReasonsView()
             if fromwhere == "HOME" {
                 self.scheduleView.isHidden = true
                // self.navigationController?.popViewController(animated: true)
-                
-                
+               
+                self.notesLabel.text = data?.note
                 
                 let historyViewController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.HistoryViewController) as! HistoryViewController
                 historyViewController.fromUpComingDetails = true
@@ -638,7 +652,7 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
             }else{
                 self.scheduleView.isHidden = true
                   HideActivityIndicator()
-                 let data = dataDict as? AcceptModel
+               
                 if data?.status == "READY" {
                     
                acceptButton.setTitle("DELIVER", for: .normal)

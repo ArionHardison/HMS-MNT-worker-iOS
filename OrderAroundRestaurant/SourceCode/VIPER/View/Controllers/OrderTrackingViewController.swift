@@ -261,6 +261,8 @@ extension OrderTrackingViewController{
         
         let cgstStr: String! = String(describing: data.invoice?.tax ?? 0)
         cgstValueLabel.text = currency + String(format: " %.02f", Double(cgstStr) ?? 0.0)
+        let notes : String! = data.note ?? ""
+         
     
     }
 }
@@ -278,8 +280,10 @@ extension OrderTrackingViewController: UITableViewDelegate,UITableViewDataSource
         cell.titleLabel.text = productName! + " x " + quantityStr
         let currency = Data.product?.prices?.currency ?? "$"
         let priceStr: String! = String(describing: Data.product?.prices?.price ?? 0)
-        
-        cell.descriptionLabel.text = currency + String(format: " %.02f", Double(priceStr) ?? 0.0)
+        let quantity = Data.quantity ?? 0
+        let price = Data.product?.prices?.orignal_price ?? 0
+        let totalPrice:Int = (quantity * price)
+        cell.descriptionLabel.text = currency + "\(totalPrice)"
         
         
         var addonsNameArr = [String]()
@@ -301,6 +305,7 @@ extension OrderTrackingViewController: UITableViewDelegate,UITableViewDataSource
             }else{
                 cell.subTitleLabel.isHidden = false
                 let addonsstr = addonsNameArr.joined(separator: ", ")
+                
                 cell.subTitleLabel.text = addonsstr
             }
         }

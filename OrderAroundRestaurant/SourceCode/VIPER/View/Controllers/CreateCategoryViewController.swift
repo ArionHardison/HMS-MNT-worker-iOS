@@ -439,27 +439,27 @@ extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if(indexPath.row == imageList.count){
-             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:XIB.Names.EmailCollectionViewCell, for: indexPath)  as! EmailCollectionViewCell
-            cell.addToEmail.setTitle("Add via mail", for: .normal)
-            cell.addToEmail.setTitleColor(.primary, for: .normal)
-            cell.onClickEmail = {
-                var emailTitle = "Add Photos"
-                 var messageBody = "Add Photo"
-                 var toRecipents = ["admin@oyola.co"]
-                 var mc: MFMailComposeViewController = MFMailComposeViewController()
-                 mc.mailComposeDelegate = self
-                 mc.setSubject(emailTitle)
-                 mc.setMessageBody(messageBody, isHTML: false)
-                 mc.setToRecipients(toRecipents)
-
-                self.present(mc, animated: true, completion: nil)
-                 }
-                
-            
-            return cell
-            
-        }else{
+//        if(indexPath.row == imageList.count){
+//             let cell = collectionView.dequeueReusableCell(withReuseIdentifier:XIB.Names.EmailCollectionViewCell, for: indexPath)  as! EmailCollectionViewCell
+//            cell.addToEmail.setTitle("Add via mail", for: .normal)
+//            cell.addToEmail.setTitleColor(.primary, for: .normal)
+//            cell.onClickEmail = {
+//                var emailTitle = "Add Photos"
+//                 var messageBody = "Add Photo"
+//                 var toRecipents = ["admin@oyola.co"]
+//                 var mc: MFMailComposeViewController = MFMailComposeViewController()
+//                 mc.mailComposeDelegate = self
+//                 mc.setSubject(emailTitle)
+//                 mc.setMessageBody(messageBody, isHTML: false)
+//                 mc.setToRecipients(toRecipents)
+//
+//                self.present(mc, animated: true, completion: nil)
+//                 }
+//
+//
+//            return cell
+//
+//        }else{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier:XIB.Names.GalleryCollectionViewCell, for: indexPath)  as! GalleryCollectionViewCell
         
         cell.test.tag = indexPath.row
@@ -491,7 +491,7 @@ extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionVi
         }
         return cell
         
-    }
+    
     }
     
     
@@ -536,43 +536,23 @@ extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         
-         self.selectedIndex = -1
-        self.selectedIndex = indexPath.row
-        self.categoryURL = self.imageList[indexPath.row].image!
-        categoryImageView.sd_setImage(with: URL(string: self.categoryURL), placeholderImage: UIImage(named: "user-placeholder"))
-        self.imageGalleryCV.reloadData()
+       
         
     }
     
     @objc func testClick(sender: UIButton) {
-        if sender.tag == self.imageList.count
-        {
-            
-            let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
-            registerController.imageArray = self.imageList
-            registerController.delegate = self
-            registerController.selectedIndex = self.selectedIndex
-            self.navigationController?.pushViewController(registerController, animated: true)
-            
-            
-            self.category = 1
-//            self.loadUnSplash()
-            
-            
-            
-        }
-        else
-        {
-           // isImageSelected = !isImageSelected
-            //self.selectedIndex = isImageSelected ? sender.tag : -1
-             self.selectedIndex = sender.tag
-           // self.selectedImageID = isImageSelected ? self.imageList[self.selectedIndex].id! : 0
-            self.categoryURL = self.imageList[sender.tag].image!
-            categoryImageView.sd_setImage(with: URL(string: self.categoryURL), placeholderImage: UIImage(named: "user-placeholder"))
-            self.imageGalleryCV.reloadData()
-            
-        }
-    }
+                
+                let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ImageGalleryViewController) as! ImageGalleryViewController
+                registerController.imageArray = self.imageList
+                registerController.selectedIndex = self.selectedIndex
+                registerController.delegate = self
+                self.navigationController?.pushViewController(registerController, animated: true)
+                
+                
+               
+    //            loadUnSplash()
+                
+            }
 }
 
 extension CreateCategoryViewController : ImageGalleryDelegate {

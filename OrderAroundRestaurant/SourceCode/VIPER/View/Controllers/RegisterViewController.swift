@@ -436,10 +436,10 @@ class RegisterViewController: BaseViewController {
             showToast(msg: "Please Select address")
             return
         }
-        guard let landmark = landmarkTextField.text, !landmark.isEmpty else{
-            showToast(msg: "Please Enter Landmark")
-            return
-        }
+//        guard let landmark = landmarkTextField.text, !landmark.isEmpty else{
+//            showToast(msg: "Please Enter Landmark")
+//            return
+//        }
         
         if isDelivery == false && isTakeAway == false {
             
@@ -495,7 +495,7 @@ class RegisterViewController: BaseViewController {
         editTimingController.offerPercent = offerPercent
         editTimingController.maxDelivery = maxDelivery
         editTimingController.address = address
-        editTimingController.landmark = landmark
+//        editTimingController.landmark = landmarkTextField.text ?? ""
         editTimingController.latitude = latitude
         editTimingController.longitude = longitude
         editTimingController.cusineId = cusineId

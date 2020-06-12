@@ -104,11 +104,11 @@ class CreateProductViewController: BaseViewController {
             showToast(msg: ErrorMessage.list.enterPrice)
             return
         }
-        guard let discountType = discountTypeValueLabel.text, !discountType.isEmpty else{
-            showToast(msg: ErrorMessage.list.enterDiscountType)
-            return
-        }
-        
+//        guard let discountType = discountTypeValueLabel.text, !discountType.isEmpty else{
+//            showToast(msg: ErrorMessage.list.enterDiscountType)
+//            return
+//        }
+//        
 //        guard let discount = discountTextField.text, !discount.isEmpty else{
 //            showToast(msg: ErrorMessage.list.enterDiscount)
 //            return
@@ -146,6 +146,7 @@ class CreateProductViewController: BaseViewController {
             var priceArray = [String]()
             var finalArray = [String:String]()
             
+            
             for i in 0..<addOnsId.count {
                 
                // let AddonsStr = "addons[\(i)]"
@@ -161,7 +162,7 @@ class CreateProductViewController: BaseViewController {
                 
             }
             
-            
+     
             if discountTypeValueLabel.text == "percentage" {
                 
                 

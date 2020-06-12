@@ -392,10 +392,10 @@ class EditRegisterViewController: BaseViewController {
             showToast(msg: "Please Select address")
             return
         }
-        guard let landmark = landmarkTextField.text, !landmark.isEmpty else{
-            showToast(msg: "Please Enter Landmark")
-            return
-        }
+//        guard let landmark = landmarkTextField.text, !landmark.isEmpty else{
+//            showToast(msg: "Please Enter Landmark")
+//            return
+//        }
         
         var isPureVeg = 0
         
@@ -427,7 +427,6 @@ class EditRegisterViewController: BaseViewController {
                                       "offer_min_amount":minAmountTextField.text!,
                                        "estimated_delivery_time":maximumDeliveryTextField.text!,
                                        "description":descriptionTextField.text!,
-                                       "address":landmarkTextField.text!,
                                        "maps_address":addressValueLabel.text!,
                                        "offer_percent":offerPercentTextField.text!,
                                        
@@ -438,7 +437,7 @@ class EditRegisterViewController: BaseViewController {
                                        "i_offer[1]": isDelivery ? 2 : 0,
                                        "halal"  : isHalal ? 1 : 0,
                                        "free_delivery" : isFreeDelivery ? 1 : 0,
-                                       "method":"PATCH"]
+                                       "method":"PATCH"] //   "address":landmarkTextField.text ?? "asdasdasdasd",
         
         
          var cusineArray = [Int]()

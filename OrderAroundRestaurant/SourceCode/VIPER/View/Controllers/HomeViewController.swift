@@ -152,7 +152,7 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource{
             }
             cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at
             cell.deliverTimeValueLabel.text = dict.delivery_date
-            cell.locationLabel.text = dict.address?.city
+            cell.locationLabel.text = dict.address?.map_address
             cell.userNameLabel.text = dict.user?.name
             cell.orderTimeLabel.text = "Order Time"
             cell.userImageView.sd_setImage(with: URL(string: dict.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
