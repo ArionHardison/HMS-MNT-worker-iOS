@@ -70,6 +70,13 @@ extension Webservice : WebServiceProtocol {
                                     return
                                 }
                                 self.interactor?.responseSuccess(className: modelClass, responseDict: responseJSON, responseArray: [])
+                                
+                                if let theJSONData = try? JSONSerialization.data(withJSONObject: response.result.value!, options: []) {
+                                    let theJSONText = String(data: theJSONData, encoding: .ascii)
+                                    print("JSON Resoponse: \(theJSONText!)")
+                                }
+                                
+                                
                             }else{ //Array:
                                 if let json = response.result.value as? [[String:Any]] {
                                     self.interactor?.responseSuccess(className: modelClass, responseDict: [:], responseArray: json)

@@ -109,8 +109,8 @@ extension HistoryViewController {
             .menuItemWidth(UIScreen.main.bounds.width/3),
             .selectedMenuItemLabelColor(UIColor.primary),
             .unselectedMenuItemLabelColor(UIColor.lightGray),
-            .enableHorizontalBounce(false)
-        ]
+            .enableHorizontalBounce(false)]
+        
         let setrame = CGRect.init(x: 0.0, y: 10, width: self.view.frame.width, height: self.view.frame.height)
         
         self.pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame:setrame

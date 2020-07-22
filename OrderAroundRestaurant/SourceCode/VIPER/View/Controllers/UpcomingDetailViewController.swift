@@ -50,6 +50,12 @@ class UpcomingDetailViewController: BaseViewController {
     @IBOutlet weak var scheduleDateValueLabel: UILabel!
     
     @IBOutlet weak var notesLabel: UILabel!
+    
+    @IBOutlet var promoCodeTitle: UILabel!
+    @IBOutlet var promoCodeDetailLbl: UILabel!
+    @IBOutlet var promoCodeStackView: UIStackView!
+    
+    
     var reasonsView : ReasonsListView?
     
     var OrderId = 0
@@ -371,6 +377,7 @@ extension UpcomingDetailViewController{
         deliveryChargeLabel.text = APPLocalize.localizestring.deliverycharge.localize()
         CgstLabel.text = APPLocalize.localizestring.tax.localize()
         sgstLablel.text = APPLocalize.localizestring.payable.localize()
+        promoCodeTitle.text = APPLocalize.localizestring.promo.localize()
     }
     private func setFont(){
         shopImageView.setRounded()
@@ -396,6 +403,8 @@ extension UpcomingDetailViewController{
         enterOrderPreparationTime.font = UIFont.regular(size:14)
         acceptTimeButton.titleLabel?.font = UIFont.regular(size:14)
         cancelButton.titleLabel?.font = UIFont.regular(size:14)
+        promoCodeTitle.font = UIFont.regular(size: 14)
+        promoCodeDetailLbl.font = UIFont.regular(size: 14)
 
     }
     private func fetchOrderDetails(data: Order) {
@@ -448,6 +457,10 @@ extension UpcomingDetailViewController{
         let cgstStr: String! = String(describing: data.invoice?.tax ?? 0)
         cgstValueLabel.text = currency + String(format: " %.02f", Double(cgstStr) ?? 0.0)
         
+        promoCodeStackView.isHidden = data.invoice?.promocode_amount ?? 0 > 0 ? false : true
+        
+        let promoStr: String! = String(describing: data.invoice?.promocode_amount ?? 0)
+        promoCodeDetailLbl.text = "-" + currency + String(format: " %.02f", Double(promoStr) ?? 0.0)
         
         if (data.status == "ORDERED") || (data.status == "PICKUP_USER") || (data.status == "READY")  {
            // acceptButton.isHidden = false
@@ -571,8 +584,10 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
      
         if Data.cart_addons!.count == 0 {
             cell.subTitleLabel.isHidden = true
+            cell.addOnsPriceLabel.isHidden = true
         }else{
             cell.subTitleLabel.isHidden = false
+            cell.addOnsPriceLabel.isHidden = false
             let addonsstr = addonsNameArr.joined(separator: ", ")
             cell.subTitleLabel.text = addonsstr
             

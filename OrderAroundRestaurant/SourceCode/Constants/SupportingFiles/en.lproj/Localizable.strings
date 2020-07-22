@@ -95,6 +95,7 @@
 "localize.tax" = "Tax";
 "localize.payable" = "Payable";
 "localize.total" = "Total";
+"localize.promo" = "Promo Code";
 
 "localize.emailAddr" = "Email Address";
 "localize.cuisine" = "Cuisine";

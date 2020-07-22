@@ -93,14 +93,15 @@ class LoginViewController: BaseViewController {
         }
         
         showActivityIndicator()
-        let parameters:[String:Any] = ["username": emailAddressTextField.text!,
-                                       "password":passwordTextField.text!,
+        let parameters:[String:Any] = ["username": emailAddressTextField.text ?? "",
+                                       "password":passwordTextField.text ?? "",
                                        "grant_type":WebConstants.string.password,
                                        "client_id":client_ID,
                                        "client_secret":client_Secret,
                                        "device_token":deviceToken,
                                         "device_type" : "ios",
-                                        "guard":"shops"]
+                                        "guard":"shops",
+                                        "device_id": device_ID]
         
         self.presenter?.GETPOST(api: Base.login.rawValue, params:parameters, methodType: HttpType.POST, modelClass: LoginModel.self, token: false)
     }

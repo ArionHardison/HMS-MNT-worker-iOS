@@ -285,27 +285,29 @@ extension OrderTrackingViewController: UITableViewDelegate,UITableViewDataSource
         let totalPrice:Int = (quantity * price)
         cell.descriptionLabel.text = currency + "\(totalPrice)"
         
-        
         var addonsNameArr = [String]()
         addonsNameArr.removeAll()
         
         if(Data.cart_addons != nil) {
-                        for i in 0..<(Data.cart_addons!.count)
-                    {
-                        let Result = Data.cart_addons![i]
-            
-            
-                        let str = "\(Result.addon_product?.addon?.name! ?? "")"
-                        addonsNameArr.append(str)
-            
-                    }
+            for i in 0..<(Data.cart_addons!.count)
+            {
+                let Result = Data.cart_addons![i]
+                
+                
+                let str = "\(Result.addon_product?.addon?.name! ?? "")"
+                addonsNameArr.append(str)
+                
+                let addonPrice = Result.addon_product?.addon?.price ?? 0.00
+                cell.addOnsPriceLabel.text = currency + "\(addonPrice)"
+            }
             
             if Data.cart_addons!.count == 0 {
                 cell.subTitleLabel.isHidden = true
+                cell.addOnsPriceLabel.isHidden = true
             }else{
                 cell.subTitleLabel.isHidden = false
+                cell.addOnsPriceLabel.isHidden = false
                 let addonsstr = addonsNameArr.joined(separator: ", ")
-                
                 cell.subTitleLabel.text = addonsstr
             }
         }

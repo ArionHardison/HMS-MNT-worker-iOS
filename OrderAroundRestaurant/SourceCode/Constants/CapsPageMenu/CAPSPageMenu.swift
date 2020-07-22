@@ -443,8 +443,8 @@ open class CAPSPageMenu: UIViewController, UIScrollViewDelegate, UIGestureRecogn
                 myString.append(attachmentStr)
                 let myString1 = NSMutableAttributedString(string: controller.title!)
                 myString.append(myString1)
-                menuItemView.titleLabel!.attributedText = myString
-                
+                //menuItemView.titleLabel!.attributedText = myString
+                menuItemView.titleLabel?.text = controller.title ?? ""
             } else {
                 menuItemView.titleLabel!.text = "Menu \(Int(index) + 1)"
             }

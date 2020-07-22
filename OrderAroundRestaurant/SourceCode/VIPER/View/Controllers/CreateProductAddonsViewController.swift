@@ -281,6 +281,9 @@ class CreateProductAddonsViewController: BaseViewController {
 
     }
     @IBAction func onClickUploadImage(_ sender: Any) {
+        
+        
+        
         self.showImage { (selectedImage) in
             self.isUploadImage = true
             self.imageUploadImageView.image = selectedImage

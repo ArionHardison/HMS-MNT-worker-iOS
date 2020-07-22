@@ -17,7 +17,7 @@ class DishesViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         setInitialLoad()
-       
+        setNavigationController()
     }
     
 
@@ -34,12 +34,22 @@ class DishesViewController: UIViewController {
     
     //MARK:- viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
-        self.title = APPLocalize.localizestring.Dishes.localize()
+        //self.title = APPLocalize.localizestring.Dishes.localize()
         self.navigationController?.isNavigationBarHidden = false
-          setNavigationController()
+          //setNavigationController()
     }
-    override func viewWillDisappear(_ animated: Bool) {
-           self.navigationController?.isNavigationBarHidden = true
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//           self.navigationController?.isNavigationBarHidden = true
+//    }
+    
+    private func setNavigationController(){
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.primary
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.title = APPLocalize.localizestring.Dishes.localize()
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
     }
 
 }
@@ -50,22 +60,16 @@ extension DishesViewController{
       
 
     }
-    private func setNavigationController(){
+    
+   /* private func setNavigationController(){
+        
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.primary
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.title = APPLocalize.localizestring.Dishes.localize()
         self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
-
-//        let btnBack = UIButton(type: .custom)
-//        btnBack.setTitle("Revenue", for: .normal)
-//        btnBack.titleLabel?.textColor = UIColor.white
-//        btnBack.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-//        btnBack.isUserInteractionEnabled = false
-//        let item = UIBarButtonItem(customView: btnBack)
-//        self.navigationItem.setLeftBarButtonItems([item], animated: true)
-        
-    }
+    }*/
+    
     private func setRegister(){
         let dishTableViewnib = UINib(nibName: XIB.Names.dishesTableViewCell, bundle: nil)
         dishTableView.register(dishTableViewnib, forCellReuseIdentifier: XIB.Names.dishesTableViewCell)

@@ -31,7 +31,7 @@ enum StatusCode : Int {
 
 enum Base : String{
    
-    case login = "/oauth/token"
+    case login = "api/shop/oauth/token" //"/oauth/token"
     case register = "/api/shop/register"
     case forgotPassword = "api/shop/forgot/password"
     case logout = "/api/shop/logout"
