@@ -46,7 +46,7 @@ class UpcomingRequestTableViewCell: UITableViewCell {
         scheduleValue.textColor = UIColor.green
         userNameLabel.font = UIFont.regular(size: 14)
         statusLabel.font = UIFont.regular(size: 14)
-        deliverTimeValueLabel.textColor = UIColor.green
+        deliverTimeValueLabel.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
     }
     
     override func layoutSubviews() {

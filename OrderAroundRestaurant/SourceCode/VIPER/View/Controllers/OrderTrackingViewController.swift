@@ -54,6 +54,10 @@ class OrderTrackingViewController: BaseViewController {
     @IBOutlet weak var overView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet var promoCodeStackView: UIStackView!
+    @IBOutlet var promoCodeTitleLbl: UILabel!
+    @IBOutlet var promoCodeValueLbl: UILabel!
+    
     var OrderId = 0
     var CartOrderArr:[Cart] = []
     var OrderModel: Order?
@@ -184,6 +188,8 @@ extension OrderTrackingViewController{
         emptyLabel.font = UIFont.regular(size: 14)
         noteLabel.font = UIFont.regular(size: 14)
         OrderListLabel.font = UIFont.regular(size: 14)
+        promoCodeTitleLbl.font = UIFont.regular(size: 14)
+        promoCodeValueLbl.font = UIFont.regular(size: 14)
         
         orderPlaceLabel.font = UIFont.regular(size: 15)
         orderPlaceDescrLabel.font = UIFont.regular(size: 13)
@@ -208,6 +214,8 @@ extension OrderTrackingViewController{
          orderProcessLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
          orderPickedupLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
          orderfDeliveredLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        promoCodeTitleLbl.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
+        promoCodeValueLbl.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
         
     }
     
@@ -263,7 +271,10 @@ extension OrderTrackingViewController{
         cgstValueLabel.text = currency + String(format: " %.02f", Double(cgstStr) ?? 0.0)
         let notes : String! = data.note ?? ""
          
-    
+        let promoStr: String! = String(describing: data.invoice?.promocode_amount ?? 0)
+        promoCodeValueLbl.text = "-" + currency + String(format: " %.02f", Double(promoStr) ?? 0.0)
+     
+        promoCodeStackView.isHidden = data.invoice?.promocode_amount ?? 0 > 0 ? false : true
     }
 }
 extension OrderTrackingViewController: UITableViewDelegate,UITableViewDataSource{

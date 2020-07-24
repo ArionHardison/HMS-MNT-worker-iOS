@@ -405,6 +405,8 @@ extension UpcomingDetailViewController{
         cancelButton.titleLabel?.font = UIFont.regular(size:14)
         promoCodeTitle.font = UIFont.regular(size: 14)
         promoCodeDetailLbl.font = UIFont.regular(size: 14)
+        promoCodeTitle.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
+        promoCodeDetailLbl.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
 
     }
     private func fetchOrderDetails(data: Order) {
