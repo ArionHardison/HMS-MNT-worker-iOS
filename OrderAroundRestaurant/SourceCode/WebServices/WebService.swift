@@ -56,6 +56,11 @@ extension Webservice : WebServiceProtocol {
             if httpMethod == .get {
                 request(url, method: .get, parameters: nil,encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                     
+                    if let theJSONData = try? JSONSerialization.data(withJSONObject: response.result.value!, options: []) {
+                        let theJSONText = String(data: theJSONData, encoding: .ascii)
+                        print("JSON Resoponse: \(theJSONText!)")
+                    }
+                    
                     switch response.result {
                     case .failure:
                         print("ERROR---\(response.error?.localizedDescription ?? "API ERROR")")
@@ -71,12 +76,6 @@ extension Webservice : WebServiceProtocol {
                                 }
                                 self.interactor?.responseSuccess(className: modelClass, responseDict: responseJSON, responseArray: [])
                                 
-                                if let theJSONData = try? JSONSerialization.data(withJSONObject: response.result.value!, options: []) {
-                                    let theJSONText = String(data: theJSONData, encoding: .ascii)
-                                    print("JSON Resoponse: \(theJSONText!)")
-                                }
-                                
-                                
                             }else{ //Array:
                                 if let json = response.result.value as? [[String:Any]] {
                                     self.interactor?.responseSuccess(className: modelClass, responseDict: [:], responseArray: json)
@@ -90,7 +89,15 @@ extension Webservice : WebServiceProtocol {
                 }
             }else if httpMethod == .delete {
                 request(url, method: .delete, parameters: nil,encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                    
+                    if let theJSONData = try? JSONSerialization.data(withJSONObject: response.result.value!, options: []) {
+                        let theJSONText = String(data: theJSONData, encoding: .ascii)
+                        print("JSON Resoponse: \(theJSONText!)")
+                    }
+                    
+                    
                     switch response.result {
+                    
                     case .failure:
                         print("ERROR---\(response.error?.localizedDescription ?? "API ERROR")")
                         self.handleError(responseError: response, modelClass: modelClass)  //Handling Error Cases:
@@ -118,7 +125,10 @@ extension Webservice : WebServiceProtocol {
             else  if httpMethod == .post {
                 request(url, method: .post, parameters: params,encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                     
-                    
+                    if let theJSONData = try? JSONSerialization.data(withJSONObject: response.result.value!, options: []) {
+                        let theJSONText = String(data: theJSONData, encoding: .ascii)
+                        print("JSON Resoponse: \(theJSONText!)")
+                    }
                     
                     switch response.result {
          
@@ -148,6 +158,14 @@ extension Webservice : WebServiceProtocol {
                 }
             } else  if httpMethod == .patch {
                 request(url, method: .patch, parameters: params,encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
+                    
+                    if let theJSONData = try? JSONSerialization.data(withJSONObject: response.result.value!, options: []) {
+                        let theJSONText = String(data: theJSONData, encoding: .ascii)
+                        print("JSON Resoponse: \(theJSONText!)")
+                    }
+                    
+                    
+                    
                     switch response.result {
                     case .failure:
                         print("ERROR---\(response.error?.localizedDescription ?? "API ERROR")")

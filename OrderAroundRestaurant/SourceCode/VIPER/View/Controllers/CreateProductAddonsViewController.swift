@@ -284,10 +284,10 @@ class CreateProductAddonsViewController: BaseViewController {
         
         
         
-        self.showImage { (selectedImage) in
+        /*self.showImage { (selectedImage) in
             self.isUploadImage = true
             self.imageUploadImageView.image = selectedImage
-        }
+        }*/
     }
     //MARK: Validate
     func Validate(){
@@ -423,10 +423,10 @@ class CreateProductAddonsViewController: BaseViewController {
     }
     
     @IBAction func onClickFeatureUploadImage(_ sender: Any) {
-        self.showImage { (selectedImage) in
+        /*self.showImage { (selectedImage) in
             self.isFeatureUploadImage = true
             self.featureImageUploadImageView.image = selectedImage
-        }
+        }*/
 
     }
 }

@@ -59,6 +59,7 @@ class UserDetiailsViewController: BaseViewController {
         }
         self.buttonUpdate.layer.cornerRadius = 10
         setFont()
+        hideKeyboardWhenTappedAround()
     }
     
     private func setFont()
@@ -76,6 +77,8 @@ class UserDetiailsViewController: BaseViewController {
         self.textfiledRoutingNumber.font = UIFont.semibold()
 
     }
+    
+    
  
     @objc private func getProfile(){
         
@@ -157,14 +160,17 @@ class UserDetiailsViewController: BaseViewController {
             
         }
         
-        if acNumber.count < 12 {
+        /*guard acNumber.count < 12 else{
             
             showToast(msg: "Please Enter Valid Account Number")
-
-        }
-        if routingNumber.count < 9 {
+            return
+        }*/
+        
+        guard routingNumber.count < 9 else{
             showToast(msg: "Please Enter Valid Routing Number")
+            return
         }
+
   
         let parameters:[String:Any] = ["bank_name":bankName,"holder_name":name,"account_number":acNumber,"routing_number":routingNumber]
         let shopID = "\(UserDefaults.standard.value(forKey:  Keys.list.shopId) ?? 0)"

@@ -381,7 +381,7 @@ extension UpcomingDetailViewController{
     }
     private func setFont(){
         shopImageView.setRounded()
-        totalValueLabel.font = UIFont.regular(size: 14)
+        totalValueLabel.font = UIFont.bold(size: 15)
         totalLabel.font = UIFont.bold(size: 15)
         deliveryChargeValueLabel.font = UIFont.regular(size: 14)
         deliveryChargeLabel.font = UIFont.regular(size: 14)
@@ -394,12 +394,12 @@ extension UpcomingDetailViewController{
         subTotalValueLabel.font = UIFont.regular(size: 14)
         subTotalLabel.font = UIFont.regular(size: 14)
         emptyLabel.font = UIFont.regular(size: 14)
-        noteLabel.font = UIFont.regular(size: 14)
-        OrderListLabel.font = UIFont.regular(size: 14)
+        noteLabel.font = UIFont.bold(size: 15)
+        OrderListLabel.font = UIFont.bold(size: 15)
         paymentModeLabel.font = UIFont.regular(size: 14)
         userNameLabel.font = UIFont.regular(size: 14)
         locationLabel.font = UIFont.regular(size: 14)
-        orderDeliveryTimeLabel.font = UIFont.regular(size: 15)
+        orderDeliveryTimeLabel.font = UIFont.regular(size: 14)
         enterOrderPreparationTime.font = UIFont.regular(size:14)
         acceptTimeButton.titleLabel?.font = UIFont.regular(size:14)
         cancelButton.titleLabel?.font = UIFont.regular(size:14)
@@ -430,7 +430,8 @@ extension UpcomingDetailViewController{
         userNameLabel.text = data.user?.name
         locationLabel.text = data.address?.map_address
         paymentModeLabel.text = data.invoice?.payment_mode
-        emptyLabel.text = data.note ?? ""
+        noteLabel.text =  "Notes"
+        emptyLabel.text = data.note ?? "empty"
         print(data)
         
         let currency = UserDefaults.standard.value(forKey: Keys.list.currency) as! String
@@ -516,9 +517,10 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
         let productName = Data.product?.name
         let quantity1 = "\(Data.quantity ?? 0)"
        
-        cell.titleLabel.text = productName! + " x " + quantity1
         let currency = Data.product?.prices?.currency ?? "$"
         let priceStr: String! = String(describing: Data.product?.prices?.price ?? 0)
+        let priceDouble: Double = Double(priceStr) ?? 0.0
+        cell.titleLabel.text = "\(productName ?? "")(\(quantity1)x\(currency)\(String(format: "%.02f", priceDouble)))" //productName! + " x " + quantity1
 
 //        cell.descriptionLabel.text = currency + String(format: " %.02f", Double(priceStr) ?? 0.0)
         
@@ -576,7 +578,7 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
             let addonPrice = addOnPrice
             
             print("value>>>>",value)
-                      let AddonPriceValue = value
+            let AddonPriceValue = value
             print("price>>",value + addOnPrice)
             cell.descriptionLabel.text = currency + String(format: " %.02f", Double(AddonPriceValue))
             cell.addOnsPriceLabel.text = currency + String(format: " %.02f", Double(addonPrice))
@@ -590,8 +592,13 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
         }else{
             cell.subTitleLabel.isHidden = false
             cell.addOnsPriceLabel.isHidden = false
-            let addonsstr = addonsNameArr.joined(separator: ", ")
-            cell.subTitleLabel.text = addonsstr
+            
+            if addonsNameArr.count > 0{
+                let addonsstr = addonsNameArr.joined(separator: ", ")
+                cell.subTitleLabel.text = addonsstr
+            }else{
+                cell.subTitleLabel.text = "(\(Data.quantity ?? 0)x\(currency)\(String(format: " %.02f", Double(addonPrice))))"
+            }
             
       //  cell.descriptionLabel.text = currency + String(format: " %.02f", Double(priceStr) ?? 0.0)
                

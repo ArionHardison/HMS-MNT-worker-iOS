@@ -61,9 +61,11 @@ extension RestaurantMenuViewController {
         
         
         restaurantNameLabel.text = profiledata?.name
-        restaurantTypeLabel.text = profiledata?.description
-        restaurantImageView.sd_setImage(with: URL(string: profiledata?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
-        restaurantLocationButton.setTitle(profiledata?.address, for: .normal)
+        restaurantTypeLabel.text = profiledata?.cuisines?.first?.name ?? ""
+        //restaurantImageView.sd_setImage(with: URL(string: profiledata?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
+        restaurantImageView.sd_setImage(with: URL(string: profiledata?.avatar ?? ""), placeholderImage:  UIImage(named: "user-placeholder"), options: .refreshCached, completed: nil)
+        
+        restaurantLocationButton.setTitle(profiledata?.maps_address ?? "", for: .normal)
         restaurantLocationButton.titleLabel?.numberOfLines = 0
         
         
@@ -96,7 +98,7 @@ extension RestaurantMenuViewController {
     private func setFont(){
         restaurantNameLabel.font = UIFont.bold(size: 14)
         restaurantTypeLabel.font = UIFont.regular(size: 14)
-        restaurantLocationButton.titleLabel?.font = UIFont.regular(size: 14)
+        restaurantLocationButton.titleLabel?.font = UIFont.regular(size: 12)
     }
 }
 extension RestaurantMenuViewController: UITableViewDelegate,UITableViewDataSource{

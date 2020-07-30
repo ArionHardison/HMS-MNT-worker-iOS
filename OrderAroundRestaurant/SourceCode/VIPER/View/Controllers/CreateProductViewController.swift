@@ -208,7 +208,7 @@ class CreateProductViewController: BaseViewController {
                                        "shop":shopId,
                                        "featured":featureStr,
                                        "featured_position":"1",
-                                       "discount":discountTextField.text!,
+                                       "discount":discountTextField.text?.count ?? 0 > 0 ? discountTextField.text ?? "0" : 0,
                                       // "discount_type":discountTypeValueLabel.text!,
                                        "status":status,
                                        "ingredients":ingradient,

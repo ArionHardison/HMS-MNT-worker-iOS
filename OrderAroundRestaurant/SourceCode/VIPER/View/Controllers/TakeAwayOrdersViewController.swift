@@ -111,8 +111,8 @@ extension TakeAwayOrdersViewController : UITableViewDelegate,UITableViewDataSour
                        }else{
                            cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
                        }
-            cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at
-            cell.deliverTimeValueLabel.text = dict.delivery_date
+            cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at?.convertedDateTime(dateString: dict.ordertiming?[0].created_at ?? "")
+            cell.deliverTimeValueLabel.text = (dict.delivery_date ?? "").convertedDateTime(dateString: dict.delivery_date ?? "")
             cell.locationLabel.text = dict.address?.map_address
             cell.userNameLabel.text = dict.user?.name
             cell.orderTimeLabel.text = "Order Time"
@@ -121,8 +121,6 @@ extension TakeAwayOrdersViewController : UITableViewDelegate,UITableViewDataSour
             cell.statusLabel.text = dict.status
             
             if (dict.status == "takeaway") {
-                
-                
                 if (dict.dispute == "CREATED") {
                     
                     cell.statusLabel.text = "Dispute Created"
@@ -132,6 +130,9 @@ extension TakeAwayOrdersViewController : UITableViewDelegate,UITableViewDataSour
                     cell.statusLabel.textColor = UIColor.green
                     
                 }
+            }else if dict.status == "PICKUP_USER"{
+                cell.statusLabel.text = "ORDER TYPE: PICKUP"
+                cell.statusLabel.textColor = UIColor.red
             }
             return cell
             

@@ -117,7 +117,8 @@ class OrderTrackingViewController: BaseViewController {
         
         let itemCountHeight = CGFloat(itemCount * 40)
         let cartaddOns = CGFloat(cartaddonCount * 80)
-        self.orderHeight.constant = itemCountHeight + cartaddOns
+        orderTableView.layoutIfNeeded()
+        self.orderHeight.constant = orderTableView.contentSize.height + 20 //itemCountHeight + cartaddOns
         scrollView.contentSize = CGSize(width: self.overView.frame.size.width, height:  overView.frame.size.height)
         
     }

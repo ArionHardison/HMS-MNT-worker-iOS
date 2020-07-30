@@ -123,6 +123,32 @@ extension String
     {
         return self.trimmingCharacters(in: NSCharacterSet.whitespaces)
     }
+    
+    
+    func toDateFromString(format: String) -> Date? {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.locale = Locale.current
+        return dateFormatter.date(from:self)
+    }
+    
+    func convertedDateTime(dateString: String) -> String {
+        
+        let date = self.toDateFromString(format: "yyyy-mm-dd HH:mm:ss")
+        return date?.toString(withFormat: "dd/mm/yyyy hh:mm a") ?? ""
+    }
+}
+
+extension Date{
+    
+    func toString(withFormat: String) -> String {
+        
+        let formatter = DateFormatter()
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = withFormat
+        return formatter.string(from: self)
+    }
 }
 
 extension UIImageView {
