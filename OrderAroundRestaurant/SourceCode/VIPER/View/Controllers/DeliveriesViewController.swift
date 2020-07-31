@@ -146,7 +146,7 @@ extension DeliveriesViewController: PresenterOutputProtocol {
         }else if String(describing: modelClass) == model.type.OrderModel {
             HideActivityIndicator()
             let data = dataDict as! OrderModel
-            self.DeliveryListArr = data.orders ?? []
+            self.DeliveryListArr = (data.orders ?? []).reversed()
             deliveriesTableView.reloadData()
             setTransportList()
         }
@@ -166,7 +166,11 @@ extension DeliveriesViewController: PresenterOutputProtocol {
 /******************************************************************/
 extension DeliveriesViewController: FilterDeliveryViewControllerDelegate {
     func setValueFilter(statusStr: String, deliveryPersonId: String, fromDate: String, toDate: String) {
-        let urlStr = "\(Base.getOrder.rawValue)?list=true&status=\(statusStr)&dp=\(deliveryPersonId)&start_date=\(startDateStr)&end_date=\(endDateStr)"
+        
+        let fromConDate = fromDate.toDateFromString(format: "dd/MM/yyyy")?.toString(withFormat: "yyyy-MM-dd")
+        let toConDate = toDate.toDateFromString(format: "dd/MM/yyyy")?.toString(withFormat: "yyyy-MM-dd")
+        
+        let urlStr = "\(Base.getOrder.rawValue)?list=true&status=\(statusStr)&dp=\(deliveryPersonId)&start_date=\(fromConDate ?? "")&end_date=\(toConDate ?? "")"
         showActivityIndicator()
         self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
     }

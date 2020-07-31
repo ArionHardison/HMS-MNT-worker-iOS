@@ -144,6 +144,15 @@ class FilterDeliveryViewController: BaseViewController {
                     deliveryBoyIdStr = deliveryIdStr
                 }
             }
+            
+            if allImageView.image == UIImage(named: "radioon"){
+                statusStr = "ALL"
+            }else if completedImageView.image == UIImage(named: "radioon") && cancelImageView.image == UIImage(named: "radiooff"){
+                statusStr = "COMPLETED"
+            }else{
+                statusStr = "CANCELLED"
+            }
+            
             delegate?.setValueFilter(statusStr: statusStr, deliveryPersonId: deliveryBoyIdStr, fromDate: fromValueLabel.text ?? "", toDate: toValueLabel.text ?? "")
             self.dismiss(animated: true, completion: nil)
         }

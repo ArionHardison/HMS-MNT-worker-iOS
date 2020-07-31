@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		00043D0F24D3ED0500DDD370 /* CommonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00043D0E24D3ED0500DDD370 /* CommonExtension.swift */; };
 		0817913E2237EBE5002165E1 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0817913D2237EBE5002165E1 /* StatusViewController.swift */; };
 		0852342F2226668500446B47 /* DishesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0852342E2226668500446B47 /* DishesViewController.swift */; };
 		08759A11224009BD0030C19D /* RegisterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08759A10224009BD0030C19D /* RegisterEntity.swift */; };
@@ -179,6 +180,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00043D0E24D3ED0500DDD370 /* CommonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtension.swift; sourceTree = "<group>"; };
 		0817913D2237EBE5002165E1 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		0852342E2226668500446B47 /* DishesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesViewController.swift; sourceTree = "<group>"; };
 		08759A10224009BD0030C19D /* RegisterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntity.swift; sourceTree = "<group>"; };
@@ -717,6 +719,7 @@
 				087D0C27222428F800E58BDE /* Image */,
 				087D0C26222428EE00E58BDE /* Font */,
 				087D0C25222428E600E58BDE /* Color */,
+				00043D0E24D3ED0500DDD370 /* CommonExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1287,6 +1290,7 @@
 				08A3B6B722254A330010058B /* Button.swift in Sources */,
 				087D0C2C22242A8B00E58BDE /* LoginViewController.swift in Sources */,
 				08B6BD17237C12A200F3C25A /* GalleryCollectionViewCell.swift in Sources */,
+				00043D0F24D3ED0500DDD370 /* CommonExtension.swift in Sources */,
 				08A44AD12237B1A300228233 /* CountryEntity.swift in Sources */,
 				0891E20E223101E500409038 /* Presenter.swift in Sources */,
 				08AD75262226912F002A0419 /* DeliveriesTableViewCell.swift in Sources */,

@@ -209,17 +209,17 @@ extension RevenueViewController: PresenterOutputProtocol {
         HideActivityIndicator()
         if String(describing: modelClass) == model.type.RevenueModel {
             let data = dataDict  as? RevenueModel
-            let totalRevenueStr: String! = String(describing: data?.totalRevenue ?? 0)
-let currency = UserDefaults.standard.value(forKey: Keys.list.currency) as! String
-            totalRevenueValueLabel.text = "\(currency) \(totalRevenueStr ?? "")"
+            let currency = UserDefaults.standard.value(forKey: Keys.list.currency) as! String
+            let totalRevenueStr = Double(data?.totalRevenue ?? 0).twoDecimalPoint
+            totalRevenueValueLabel.text = "\(currency) \(totalRevenueStr)"
             let orderReceivedStr: String! = String(describing: data?.orderReceivedToday ?? 0)
             orderReceivedValueLabel.text = orderReceivedStr
             let orderDeliveryStr: String! = String(describing: data?.orderDeliveredToday ?? 0)
             orderDeliveryValueLabel.text = orderDeliveryStr
-            let totalEarningStr: String! = String(describing: data?.orderIncomeToday ?? 0)
-            totalEarningValueLabel.text = totalEarningStr
-            let monthlyEarningStr: String! = String(describing: data?.orderIncomeMonthly ?? 0)
-            monthlyEarningValueLabel.text = monthlyEarningStr
+            let totalEarningStr = Double(data?.orderIncomeToday ?? 0).twoDecimalPoint
+            totalEarningValueLabel.text = "\(currency) \(totalEarningStr)"
+            let monthlyEarningStr = Double(data?.orderIncomeMonthly ?? 0).twoDecimalPoint
+            monthlyEarningValueLabel.text = "\(currency) \(monthlyEarningStr)"
             
             
             for Dic in data?.complete_cancel ?? []{

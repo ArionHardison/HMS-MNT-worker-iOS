@@ -8,11 +8,21 @@
 
 import UIKit
 import ObjectMapper
+
 class OnGoingOrderViewController: BaseViewController {
 
+    struct OnGoingOrderArrayModel{
+        
+        var title: String = ""
+        var orderArray: [Orders] = []
+    }
+    
+    
     @IBOutlet weak var onGoingTableView: UITableView!
     
     var onGoingOrderArr:[Orders] = []
+    var ogArray: [OnGoingOrderArrayModel] = []
+    var headerHeight: CGFloat = 55
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,15 +62,35 @@ extension OnGoingOrderViewController{
     
 }
 extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        
+        return ogArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return headerHeight
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        return tableView.headerView(height: headerHeight, text: ogArray[section].title)
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return onGoingOrderArr.count
+        //return onGoingOrderArr.count
+        return ogArray[section].orderArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
         
-        let dict = self.onGoingOrderArr[indexPath.row]
-       if(dict.invoice?.payment_mode == "stripe"){
+    
+        //let dict = self.onGoingOrderArr[indexPath.row]
+       
+        let dict = self.ogArray[indexPath.section].orderArray[indexPath.row]
+        if(dict.invoice?.payment_mode == "stripe"){
             cell.paymentLabel.text = "Card"
         }else{
         cell.paymentLabel.text = dict.invoice?.payment_mode
@@ -71,8 +101,8 @@ extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
                    }else{
                        cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
                    }
-        cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at
-        cell.deliverTimeValueLabel.text = dict.delivery_date
+        cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at?.convertedDateTime()
+        cell.deliverTimeValueLabel.text = dict.delivery_date?.convertedDateTime()
         cell.locationLabel.text = dict.address?.map_address
         cell.userNameLabel.text = dict.user?.name
         cell.orderTimeLabel.text = "Order Time"
@@ -96,7 +126,8 @@ extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let orderDetailController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.OrderTrackingViewController) as! OrderTrackingViewController
-        let dict = self.onGoingOrderArr[indexPath.row]
+        //let dict = self.onGoingOrderArr[indexPath.row]
+        let dict = self.ogArray[indexPath.section].orderArray[indexPath.row]
         orderDetailController.OrderId = dict.id ?? 0
         self.navigationController?.pushViewController(orderDetailController, animated: true)
     }
@@ -110,6 +141,17 @@ extension OnGoingOrderViewController: PresenterOutputProtocol {
             HideActivityIndicator()
             let data = dataDict as? OrderModel
             self.onGoingOrderArr = data?.orders ?? []
+            
+            let scheduleArray = self.onGoingOrderArr.filter{$0.schedule_status == 1}
+            let ongoingArray = self.onGoingOrderArr.filter{$0.schedule_status != 0}
+            var scheduleObj = OnGoingOrderArrayModel()
+            scheduleObj.title = "SCHEDULE"
+            scheduleObj.orderArray = scheduleArray
+            var ongoingObj = OnGoingOrderArrayModel()
+            ongoingObj.title = "ONGOING"
+            ongoingObj.orderArray = ongoingArray
+            ogArray.append(scheduleObj)
+            ogArray.append(ongoingObj)
             onGoingTableView.reloadData()
 
             

@@ -249,7 +249,7 @@ extension OrderTrackingViewController{
             orderfDeliveredLabel.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
         }
         
-        emptyLabel.text = data.note ?? ""
+        emptyLabel.text = (data.note?.count ?? 0) > 0 ? (data.note ?? "empty") : "empty"
         
         let currency = UserDefaults.standard.value(forKey: Keys.list.currency) as! String
         

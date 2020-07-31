@@ -68,5 +68,20 @@ extension UIView {
            
            
        }
+    
+    
+    func headerView(height:CGFloat,text:String) -> UIView {
+        let headerView = UIView()
+        headerView.frame = CGRect(x: 0, y: 10, width: self.frame.width, height: height)
+        headerView.backgroundColor = .white
+        let headerLbl = UILabel()
+        headerLbl.frame = CGRect(x: 20, y: 15, width: self.frame.width - (2 * 20), height: 30)
+        headerLbl.text = text
+        headerLbl.font = UIFont.bold(size: 14)
+        headerLbl.textColor = .lightGray
+        headerLbl.textAlignment = .left
+        headerView.addSubview(headerLbl)
+        return headerView
+    }
      
 }

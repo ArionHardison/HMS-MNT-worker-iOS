@@ -60,15 +60,15 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Location" translatesAutoresizingMaskIntoConstraints="NO" id="oNl-Gz-pdB">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Location" translatesAutoresizingMaskIntoConstraints="NO" id="oNl-Gz-pdB">
                                 <rect key="frame" x="72" y="91" width="15" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="15" id="Lta-Hp-BHq"/>
                                     <constraint firstAttribute="height" constant="15" id="TuV-EE-Pdj"/>
                                 </constraints>
                             </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bHf-P7-pl9">
-                                <rect key="frame" x="92" y="91" width="167.5" height="19"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bHf-P7-pl9">
+                                <rect key="frame" x="92" y="91" width="150" height="19"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -137,7 +137,7 @@
                             <constraint firstItem="oNl-Gz-pdB" firstAttribute="leading" secondItem="v6n-gD-5ZK" secondAttribute="leading" id="Qo2-sb-M15"/>
                             <constraint firstItem="JfE-u8-Zgp" firstAttribute="height" secondItem="89J-dZ-10j" secondAttribute="height" id="VU1-vf-65Z"/>
                             <constraint firstItem="bHf-P7-pl9" firstAttribute="top" secondItem="v6n-gD-5ZK" secondAttribute="bottom" constant="35" id="W7X-RO-Oi4"/>
-                            <constraint firstItem="bHf-P7-pl9" firstAttribute="width" secondItem="mgk-Oo-Ana" secondAttribute="width" multiplier="0.5" id="WLc-YI-fBD"/>
+                            <constraint firstItem="bHf-P7-pl9" firstAttribute="width" secondItem="mgk-Oo-Ana" secondAttribute="width" multiplier="0.5" constant="-17.5" id="WLc-YI-fBD"/>
                             <constraint firstItem="JfE-u8-Zgp" firstAttribute="leading" secondItem="89J-dZ-10j" secondAttribute="leading" id="Wez-AA-tVj"/>
                             <constraint firstItem="Miu-ZB-KQo" firstAttribute="top" secondItem="17I-Ls-kZS" secondAttribute="bottom" constant="8" id="XNL-K1-U4x"/>
                             <constraint firstItem="M36-XI-QAg" firstAttribute="top" secondItem="5aC-gs-4mb" secondAttribute="bottom" constant="8" id="XW3-8J-ktI"/>

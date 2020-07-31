@@ -111,9 +111,11 @@ extension TakeAwayOrdersViewController : UITableViewDelegate,UITableViewDataSour
                        }else{
                            cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
                        }
-            cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at?.convertedDateTime(dateString: dict.ordertiming?[0].created_at ?? "")
-            cell.deliverTimeValueLabel.text = (dict.delivery_date ?? "").convertedDateTime(dateString: dict.delivery_date ?? "")
+            cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at?.convertedDateTime()
+            cell.deliverTimeValueLabel.text = (dict.delivery_date ?? "").convertedDateTime()
             cell.locationLabel.text = dict.address?.map_address
+            cell.locationLabel.isHidden = true
+            cell.locationImgView.isHidden = true
             cell.userNameLabel.text = dict.user?.name
             cell.orderTimeLabel.text = "Order Time"
             cell.userImageView.sd_setImage(with: URL(string: dict.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))

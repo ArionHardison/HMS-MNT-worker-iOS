@@ -133,7 +133,7 @@ extension String
         return dateFormatter.date(from:self)
     }
     
-    func convertedDateTime(dateString: String) -> String {
+    func convertedDateTime() -> String {
         
         let date = self.toDateFromString(format: "yyyy-mm-dd HH:mm:ss")
         return date?.toString(withFormat: "dd/mm/yyyy hh:mm a") ?? ""

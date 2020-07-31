@@ -56,9 +56,9 @@ extension Webservice : WebServiceProtocol {
             if httpMethod == .get {
                 request(url, method: .get, parameters: nil,encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                     
-                    if let theJSONData = try? JSONSerialization.data(withJSONObject: response.result.value!, options: []) {
+                    if let theJSONData = try? JSONSerialization.data(withJSONObject: response.result.value! , options: []) {
                         let theJSONText = String(data: theJSONData, encoding: .ascii)
-                        print("JSON Resoponse: \(theJSONText!)")
+                        print("JSON Resoponse: \(theJSONText ?? "")")
                     }
                     
                     switch response.result {

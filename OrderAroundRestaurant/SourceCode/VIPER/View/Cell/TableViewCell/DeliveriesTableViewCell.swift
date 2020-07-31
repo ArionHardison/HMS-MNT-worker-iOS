@@ -49,13 +49,13 @@ class DeliveriesTableViewCell: UITableViewCell {
         priceLabel.text = ""
         userNameLabel.text = data.user?.name
         let netTotalStr: String! = String(describing: data.invoice?.net ?? 0)
-        priceLabel.text = "$" + netTotalStr
+        priceLabel.text = "$" + String(format: " %.02f", Double(netTotalStr) ?? 0.0)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss" //Your date format
         //according to date format your date string
         let date = dateFormatter.date(from: data.delivery_date ?? "")
         print(date)
-        dateFormatter.dateFormat = "yyyy-MM-dd" //Your New Date format as per requirement change it own
+        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm a" //Your New Date format as per requirement change it own
         let newDate = dateFormatter.string(from: date!) //pass Date here
         print(newDate) //New formatted Date string
         dateLabel.text = newDate
@@ -75,9 +75,10 @@ class DeliveriesTableViewCell: UITableViewCell {
         orderStatusLabel.layer.masksToBounds = true
     }
     private func changeTintColor(){
-        calendarImageView.setImageColor(color: UIColor.primary)
-        deliveryImageView.setImageColor(color: UIColor.primary)
-        
+        calendarImageView.setImageColor(color: UIColor.init(red: 252.0/255, green: 166.0/255.0, blue: 83.0/255.0, alpha: 1.0))//252,166,83
+        deliveryImageView.setImageColor(color:  UIColor.init(red: 252.0/255, green: 166.0/255.0, blue: 83.0/255.0, alpha: 1.0))
+        //orderStatusLabel.backgroundColor = .primary
+        //priceLabel.textColor = .primary
     }
     
 
