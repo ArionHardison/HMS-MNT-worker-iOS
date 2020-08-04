@@ -1903,10 +1903,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NWx-WO-9Va">
-                                <rect key="frame" x="0.0" y="471" width="414" height="265"/>
+                                <rect key="frame" x="0.0" y="472" width="414" height="264"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f2S-m4-BCf">
-                                        <rect key="frame" x="357" y="8" width="37" height="31"/>
+                                        <rect key="frame" x="358" y="8" width="36" height="30"/>
                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="15"/>
                                         <state key="normal" title="Done">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1916,10 +1916,10 @@
                                         </connections>
                                     </button>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="95w-0H-nrR">
-                                        <rect key="frame" x="0.0" y="49" width="414" height="216"/>
+                                        <rect key="frame" x="0.0" y="48" width="414" height="216"/>
                                     </pickerView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0a4-eP-baz">
-                                        <rect key="frame" x="0.0" y="225" width="414" height="40"/>
+                                        <rect key="frame" x="0.0" y="224" width="414" height="40"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="DbN-pF-aNx"/>
@@ -4032,13 +4032,13 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0d-FU-gdO">
-                                <rect key="frame" x="0.0" y="471" width="414" height="265"/>
+                                <rect key="frame" x="0.0" y="472" width="414" height="264"/>
                                 <subviews>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CB5-ae-egg">
-                                        <rect key="frame" x="0.0" y="49" width="414" height="216"/>
+                                        <rect key="frame" x="0.0" y="48" width="414" height="216"/>
                                     </pickerView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lri-3P-bhC">
-                                        <rect key="frame" x="357" y="10" width="37" height="31"/>
+                                        <rect key="frame" x="358" y="10" width="36" height="30"/>
                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="15"/>
                                         <state key="normal" title="Done">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4389,7 +4389,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRA-Dd-Svz">
-                                        <rect key="frame" x="10" y="125" width="394" height="0.0"/>
+                                        <rect key="frame" x="10" y="50" width="394" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -4454,16 +4454,18 @@
                                     <constraint firstItem="g9c-p2-XYr" firstAttribute="top" secondItem="77N-H4-MYy" secondAttribute="top" id="aVx-Xo-l9h"/>
                                     <constraint firstAttribute="trailing" secondItem="SGk-Y9-DBy" secondAttribute="trailing" constant="10" id="aZc-YT-s2o"/>
                                     <constraint firstItem="hRA-Dd-Svz" firstAttribute="leading" secondItem="77N-H4-MYy" secondAttribute="leading" constant="10" id="btu-Hk-OUt"/>
-                                    <constraint firstItem="hRA-Dd-Svz" firstAttribute="centerY" secondItem="g9c-p2-XYr" secondAttribute="centerY" id="cjY-hC-YA6"/>
+                                    <constraint firstAttribute="trailing" secondItem="hRA-Dd-Svz" secondAttribute="trailing" constant="10" id="d5l-DR-XTE"/>
+                                    <constraint firstItem="hRA-Dd-Svz" firstAttribute="leading" secondItem="77N-H4-MYy" secondAttribute="leading" constant="10" id="eRn-Q1-0rh"/>
                                     <constraint firstAttribute="bottom" secondItem="Lhn-le-wIG" secondAttribute="bottom" id="fQD-bg-u1F"/>
                                     <constraint firstItem="SGk-Y9-DBy" firstAttribute="top" secondItem="77N-H4-MYy" secondAttribute="top" constant="80" id="gCT-gn-7cx"/>
                                     <constraint firstItem="Lhn-le-wIG" firstAttribute="leading" secondItem="77N-H4-MYy" secondAttribute="leading" id="ikd-Cs-wli"/>
                                     <constraint firstItem="Lhn-le-wIG" firstAttribute="top" secondItem="J8Z-Ea-LZ4" secondAttribute="bottom" constant="5" id="jhW-2Q-G29"/>
-                                    <constraint firstItem="hRA-Dd-Svz" firstAttribute="centerX" secondItem="g9c-p2-XYr" secondAttribute="centerX" id="njM-p7-YIg"/>
                                     <constraint firstAttribute="trailing" secondItem="hRA-Dd-Svz" secondAttribute="trailing" constant="10" id="o0k-Xc-gep"/>
                                     <constraint firstItem="htl-om-Omo" firstAttribute="top" secondItem="g9c-p2-XYr" secondAttribute="top" id="ptb-iK-hOK"/>
+                                    <constraint firstItem="SGk-Y9-DBy" firstAttribute="top" secondItem="hRA-Dd-Svz" secondAttribute="bottom" id="tS1-TT-2Z9"/>
                                     <constraint firstItem="htl-om-Omo" firstAttribute="trailing" secondItem="g9c-p2-XYr" secondAttribute="trailing" id="vpw-n4-cxj"/>
                                     <constraint firstAttribute="trailing" secondItem="g9c-p2-XYr" secondAttribute="trailing" id="xE2-Fd-b1l"/>
+                                    <constraint firstItem="hRA-Dd-Svz" firstAttribute="top" secondItem="77N-H4-MYy" secondAttribute="top" constant="50" id="yzG-KP-fhv"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -4517,10 +4519,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UK1-C0-lt4">
-                                <rect key="frame" x="0.0" y="439" width="414" height="263"/>
+                                <rect key="frame" x="0.0" y="440" width="414" height="262"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJ7-h2-JRw">
-                                        <rect key="frame" x="362" y="8" width="37" height="31"/>
+                                        <rect key="frame" x="363" y="8" width="36" height="30"/>
                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="15"/>
                                         <state key="normal" title="Done">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4530,7 +4532,7 @@
                                         </connections>
                                     </button>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="XMi-cg-zJI">
-                                        <rect key="frame" x="0.0" y="47" width="414" height="216"/>
+                                        <rect key="frame" x="0.0" y="46" width="414" height="216"/>
                                     </datePicker>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4739,7 +4741,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Everyday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6n-W3-52u">
-                                        <rect key="frame" x="20" y="45.333333333333336" width="315" height="20.333333333333336"/>
+                                        <rect key="frame" x="20" y="46.333333333333336" width="315" height="18.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                         <color key="textColor" red="0.14901960780000001" green="0.57647058819999997" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
