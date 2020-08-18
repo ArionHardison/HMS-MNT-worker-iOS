@@ -22,7 +22,7 @@ target 'OrderAroundRestaurant' do
   pod 'Firebase/Core'
   pod 'TextFieldEffects'
   pod 'UnsplashPhotoPicker', '~> 1.1'
-  
+  pod 'EasyTipView', '~> 2.0.4'
 
 
   target 'OrderAroundRestaurantTests' do

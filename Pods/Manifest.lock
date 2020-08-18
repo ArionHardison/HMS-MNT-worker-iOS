@@ -8,6 +8,7 @@ PODS:
   - Charts/Core (3.2.2)
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
+  - EasyTipView (2.0.4)
   - Fabric (1.9.0)
   - Firebase/Core (6.0.0):
     - Firebase/CoreOnly
@@ -82,6 +83,7 @@ DEPENDENCIES:
   - AlamofireObjectMapper
   - Charts (~> 3.2.0)
   - Crashlytics (~> 3.12.0)
+  - EasyTipView (~> 2.0.4)
   - Fabric (~> 1.9.0)
   - Firebase/Core
   - GoogleMaps
@@ -98,6 +100,7 @@ SPEC REPOS:
     - AlamofireObjectMapper
     - Charts
     - Crashlytics
+    - EasyTipView
     - Fabric
     - Firebase
     - FirebaseAnalytics
@@ -120,6 +123,7 @@ SPEC CHECKSUMS:
   AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
   Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
+  EasyTipView: 4f8beae0a82db2ca4a9b5fd658785fc5f61d296b
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   Firebase: fa80b9d987ca014a1ba9357496ef2a0178b28b12
   FirebaseAnalytics: 1743c5f4de3687d0745709dfdc4b1dea1484f44c
@@ -137,6 +141,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   UnsplashPhotoPicker: 9bbce3281825f0f61b98a53df84875e33723cd1d
 
-PODFILE CHECKSUM: 546897ab8523c5f89477392c066758e0f4cd064c
+PODFILE CHECKSUM: 2c6f6a0987b3093f0e083c27ab05d11285c02b80
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.0

@@ -9,6 +9,7 @@
 import UIKit
 import ObjectMapper
 
+
 class UpcomingDetailViewController: BaseViewController {
 
     @IBOutlet weak var cancelTimeButton: UIButton!
@@ -307,10 +308,6 @@ class UpcomingDetailViewController: BaseViewController {
 extension UpcomingDetailViewController{
     private func setInitialLoad(){
         
-        
-        
-        
-        
        // acceptButton.isHidden = true
         //cancelButton.isHidden = true
         
@@ -581,6 +578,13 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
                 cell.subTitleLabel.isHidden = false
                 cell.addOnsPriceLabel.isHidden = false
             }
+            cell.infoBtn.isHidden = (Data.note ?? "") == "" ? true : false
+            cell.titleLblLeading.constant = (Data.note ?? "") == "" ? 15 : 32
+            if Data.note ?? "" != ""{
+                cell.updateInfoTextCell(text: Data.note ?? "", forView: self.scrollView)
+            }
+            cell.infoBtn.addTarget(self, action: #selector(infoAction(sender:)), for: .touchUpInside)
+            cell.infoBtn.tag = indexPath.row
         }
         return cell
     }
@@ -588,9 +592,16 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
         return UITableView.automaticDimension
     }
  
-    
-    
+    @objc func infoAction(sender: UIButton){
+        let buttonTag = sender.tag
+        
+        
+        
+    }
 }
+
+
+
 /******************************************************************/
 //MARK: VIPER Extension:
 extension UpcomingDetailViewController: PresenterOutputProtocol {
