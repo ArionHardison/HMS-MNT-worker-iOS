@@ -279,9 +279,9 @@ struct Invoice : Mappable {
     var wallet_amount : Int?
     var promocode_id : Int?
     var promocode_amount : Int?
-    var payable : Int?
+    var payable : Double?
     var tax : Double?
-    var net : Int?
+    var net : Double?
     var total_pay : Int?
     var tender_pay : Int?
     var ripple_price : String?

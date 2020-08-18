@@ -9,13 +9,14 @@
 import UIKit
 import ObjectMapper
 
+struct OnGoingOrderArrayModel{
+    
+    var title: String = ""
+    var orderArray: [Orders] = []
+}
+
 class OnGoingOrderViewController: BaseViewController {
 
-    struct OnGoingOrderArrayModel{
-        
-        var title: String = ""
-        var orderArray: [Orders] = []
-    }
     
     
     @IBOutlet weak var onGoingTableView: UITableView!
@@ -54,8 +55,10 @@ extension OnGoingOrderViewController{
     }
 
     private func setRegister(){
-        let upcomingRequestViewnib = UINib(nibName: XIB.Names.UpcomingRequestTableViewCell, bundle: nil)
-        onGoingTableView.register(upcomingRequestViewnib, forCellReuseIdentifier: XIB.Names.UpcomingRequestTableViewCell)
+        //let upcomingRequestViewnib = UINib(nibName: XIB.Names.UpcomingRequestTableViewCell, bundle: nil)
+        //onGoingTableView.register(upcomingRequestViewnib, forCellReuseIdentifier: XIB.Names.UpcomingRequestTableViewCell)
+        let historyCellNid = UINib(nibName: XIB.Names.HistoryTableViewCell, bundle: nil)
+        onGoingTableView.register(historyCellNid, forCellReuseIdentifier: XIB.Names.HistoryTableViewCell)
         onGoingTableView.delegate = self
         onGoingTableView.dataSource = self
     }
@@ -84,7 +87,8 @@ extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
+        
+       /*let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
         
     
         //let dict = self.onGoingOrderArr[indexPath.row]
@@ -96,11 +100,12 @@ extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
         cell.paymentLabel.text = dict.invoice?.payment_mode
         }
         if dict.schedule_status == 0{
-                       cell.scheduleValue.isHidden = true
-                      //  cell.scheduleValue.text = "Schedule"
-                   }else{
-                       cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
-                   }
+            cell.scheduleValue.isHidden = true
+            //  cell.scheduleValue.text = "Schedule"
+        }else{
+            cell.scheduleValue.isHidden = false
+            cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
+        }
         cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at?.convertedDateTime()
         cell.deliverTimeValueLabel.text = dict.delivery_date?.convertedDateTime()
         cell.locationLabel.text = dict.address?.map_address
@@ -120,7 +125,13 @@ extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
                 
             }
         }
-        return cell
+        return cell*/
+        
+        let historyCell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.HistoryTableViewCell) as! HistoryTableViewCell
+        DispatchQueue.main.async {
+            historyCell.updateCell(orderObj: self.ogArray[indexPath.section].orderArray[indexPath.row])
+        }
+        return historyCell
     }
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -129,6 +140,7 @@ extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
         //let dict = self.onGoingOrderArr[indexPath.row]
         let dict = self.ogArray[indexPath.section].orderArray[indexPath.row]
         orderDetailController.OrderId = dict.id ?? 0
+        orderDetailController.isPickupFromResturant = dict.pickup_from_restaurants ?? 0
         self.navigationController?.pushViewController(orderDetailController, animated: true)
     }
    
@@ -143,12 +155,12 @@ extension OnGoingOrderViewController: PresenterOutputProtocol {
             self.onGoingOrderArr = data?.orders ?? []
             
             let scheduleArray = self.onGoingOrderArr.filter{$0.schedule_status == 1}
-            let ongoingArray = self.onGoingOrderArr.filter{$0.schedule_status != 0}
+            let ongoingArray = self.onGoingOrderArr.filter{$0.schedule_status != 1}
             var scheduleObj = OnGoingOrderArrayModel()
-            scheduleObj.title = "SCHEDULE"
+            scheduleObj.title = "SCHEDULE ORDERS"
             scheduleObj.orderArray = scheduleArray
             var ongoingObj = OnGoingOrderArrayModel()
-            ongoingObj.title = "ONGOING"
+            ongoingObj.title = "ONGOING ORDERS"
             ongoingObj.orderArray = ongoingArray
             ogArray.append(scheduleObj)
             ogArray.append(ongoingObj)

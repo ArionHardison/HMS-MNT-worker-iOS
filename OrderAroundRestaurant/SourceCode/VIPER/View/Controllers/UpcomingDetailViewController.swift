@@ -22,6 +22,8 @@ class UpcomingDetailViewController: BaseViewController {
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var disputeButton: UIButton!
+    
+    @IBOutlet var locationView: UIView!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var totalValueLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
@@ -44,9 +46,8 @@ class UpcomingDetailViewController: BaseViewController {
     @IBOutlet weak var shopImageView: UIImageView!
     @IBOutlet weak var overView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
-    
     @IBOutlet weak var scheduleView: UIView!
-    @IBOutlet weak var scheduleDateLabel: UILabel!
+    //@IBOutlet weak var scheduleDateLabel: UILabel!
     @IBOutlet weak var scheduleDateValueLabel: UILabel!
     
     @IBOutlet weak var notesLabel: UILabel!
@@ -54,6 +55,11 @@ class UpcomingDetailViewController: BaseViewController {
     @IBOutlet var promoCodeTitle: UILabel!
     @IBOutlet var promoCodeDetailLbl: UILabel!
     @IBOutlet var promoCodeStackView: UIStackView!
+    
+    @IBOutlet var orderTypeLbl: UILabel!
+    @IBOutlet var scheduleTimeLbl: UILabel!
+    @IBOutlet var orderTableHeaderHeight: NSLayoutConstraint!
+    
     
     
     var reasonsView : ReasonsListView?
@@ -133,8 +139,8 @@ class UpcomingDetailViewController: BaseViewController {
         
         let itemCountHeight = CGFloat(itemCount * 40)
         let cartaddOns = CGFloat(cartaddonCount * 80)
-        self.orderHeight.constant = itemCountHeight + cartaddOns
-        scrollView.contentSize = CGSize(width: self.overView.frame.size.width, height:  overView.frame.size.height+self.orderHeight.constant-128)
+        self.orderHeight.constant = orderTableView.contentSize.height //itemCountHeight + cartaddOns
+        scrollView.contentSize = CGSize(width: self.overView.frame.size.width, height:  (overView.frame.size.height)+(self.orderHeight.constant-128) + 40 + 80)
         
     }
     
@@ -157,14 +163,11 @@ class UpcomingDetailViewController: BaseViewController {
     @IBAction func onCancelButtonAction(_ sender: Any) {
  
         
-       
-        
-        loadReasonsView()
-        
-        
-  
-        
-        
+        if cancelButton.titleLabel?.text == "DISPUTE CREATED"{
+            return
+        }else{
+            loadReasonsView()
+        }
     }
 
     func loadReasonsView(){
@@ -407,8 +410,11 @@ extension UpcomingDetailViewController{
         promoCodeDetailLbl.font = UIFont.regular(size: 14)
         promoCodeTitle.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
         promoCodeDetailLbl.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
-
+        orderTypeLbl.font = UIFont.regular(size: 14)
+        orderTypeLbl.textColor = .red
+        scheduleTimeLbl.font = UIFont.regular(size: 14)
     }
+    
     private func fetchOrderDetails(data: Order) {
         
         overView.isHidden = false
@@ -429,7 +435,13 @@ extension UpcomingDetailViewController{
        shopImageView.sd_setImage(with: URL(string: data.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
         userNameLabel.text = data.user?.name
         locationLabel.text = data.address?.map_address
-        paymentModeLabel.text = data.invoice?.payment_mode
+        //paymentModeLabel.text = data.invoice?.payment_mode
+        if(data.invoice?.payment_mode == "stripe"){
+            paymentModeLabel.text = "Payment Mode : Card"
+        }else{
+            paymentModeLabel.text = "Payment Mode : \(data.invoice?.payment_mode ?? "")"
+        }
+        
         noteLabel.text =  "Notes"
         emptyLabel.text = data.note ?? "empty"
         print(data)
@@ -492,9 +504,10 @@ extension UpcomingDetailViewController{
                // cancelButton.isHidden = fromwhere == "HOME" ? true : false
                 
                 
-                disputeButton.isHidden = false
-                disputeButton.titleLabel?.text = "DISPUTE CREATED"
-                disputeButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+                //disputeButton.isHidden = false
+                //disputeButton.titleLabel?.text = "DISPUTE CREATED"
+                //disputeButton.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+                cancelButton.setTitle("DISPUTE CREATED", for: .normal)
             }
         } else {
             acceptButton.isHidden = true
@@ -518,109 +531,56 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
         let quantity1 = "\(Data.quantity ?? 0)"
        
         let currency = Data.product?.prices?.currency ?? "$"
-        let priceStr: String! = String(describing: Data.product?.prices?.price ?? 0)
+        let priceStr: String! = String(describing: Data.product?.prices?.orignal_price ?? 0)
         let priceDouble: Double = Double(priceStr) ?? 0.0
-        cell.titleLabel.text = "\(productName ?? "")(\(quantity1)x\(currency)\(String(format: "%.02f", priceDouble)))" //productName! + " x " + quantity1
-
-//        cell.descriptionLabel.text = currency + String(format: " %.02f", Double(priceStr) ?? 0.0)
-        
-        
+        cell.titleLabel.text = "\(productName ?? "")(\(quantity1)x\(currency)\(String(format: "%.02f", priceDouble)))"
         var addonsNameArr = [String]()
         addonsNameArr.removeAll()
         
-        var addonPriceArray = String()
-        addonPriceArray.removeAll()
+         var addonPriceArr = [String]()
+        addonPriceArr.removeAll()
         
         var addOnPrice:Double = 0
         var quantiyAvailable:Double = 0
         
-        
-        
-        
         if(Data.cart_addons != nil) {
-            for i in 0..<(Data.cart_addons!.count)
-        {
-            
-            let addOn = Data.cart_addons![i]
-            
-            
-            if  let str = addOn.addon_product?.addon?.name {
-                addonsNameArr.append(str)
-               
-                
-                if let price = addOn.addon_product?.price{
-                    //
+            for i in 0..<(Data.cart_addons!.count){
+                let addOn = Data.cart_addons![i]
+                if  let str = addOn.addon_product?.addon?.name {
+                    //addonsNameArr.append(str)
+                    if let price = addOn.addon_product?.price{
+                        //
+                    }
+                    addOnPrice = addOnPrice + (addOn.addon_product?.price ?? 0) * Double(addOn.quantity ?? 0)
+                    
+                    let Result = Data.cart_addons![i]
+                    let totalQty = Int(Data.quantity ?? 0) * Int(Result.quantity ?? 0.00)
+                    let str = "\(Result.addon_product?.addon?.name ?? "")(\(totalQty) x \(Double(Result.addon_product?.price ?? 0.00).twoDecimalPoint))"
+                    let price = Double((totalQty)) * Double(Result.addon_product?.price ?? 0.00)
+                    let priceStr = "$\(price.twoDecimalPoint)"
+                    addonsNameArr.append(str)
+                    addonPriceArr.append(priceStr)
+                    
                 }
                 
-                
-                  addOnPrice = addOnPrice + (addOn.addon_product?.price ?? 0) * Double(addOn.quantity ?? 0)
-                print("addonPrices>>>>>",addOnPrice)
-                
-                print("addonPriceArray>>",addonPriceArray)
-                print("pice>>>",addOn.addon_product?.price)
-                
-
             }
-            
-            
-            
-            
-          //  if let price = addOn.addon_product?.addon?
-            
-            
-            
-              print("pice1>>>",addOn.addon_product?.price)
-
-        }
             let quantityStr = Double(Data.quantity ?? 0)
             let originalPrice = Double(Data.product?.prices?.orignal_price ?? 0)
             let value =   originalPrice * quantityStr
-            let addonPrice = addOnPrice
+            cell.descriptionLabel.text = currency + String(format: " %.02f", Double(value))
+            let addonsstr = addonsNameArr.joined(separator: "\n")
+            cell.subTitleLabel.text = addonsstr
+            let addOnPriceStr = addonPriceArr.joined(separator: "\n")
+            cell.addOnsPriceLabel.text = addOnPriceStr
             
-            print("value>>>>",value)
-            let AddonPriceValue = value
-            print("price>>",value + addOnPrice)
-            cell.descriptionLabel.text = currency + String(format: " %.02f", Double(AddonPriceValue))
-            cell.addOnsPriceLabel.text = currency + String(format: " %.02f", Double(addonPrice))
-
             
-                        
-     
-        if Data.cart_addons!.count == 0 {
-            cell.subTitleLabel.isHidden = true
-            cell.addOnsPriceLabel.isHidden = true
-        }else{
-            cell.subTitleLabel.isHidden = false
-            cell.addOnsPriceLabel.isHidden = false
-            
-            if addonsNameArr.count > 0{
-                let addonsstr = addonsNameArr.joined(separator: ", ")
-                cell.subTitleLabel.text = addonsstr
+            if Data.cart_addons!.count == 0 {
+                cell.subTitleLabel.isHidden = true
+                cell.addOnsPriceLabel.isHidden = true
             }else{
-                cell.subTitleLabel.text = "(\(Data.quantity ?? 0)x\(currency)\(String(format: " %.02f", Double(addonPrice))))"
+                cell.subTitleLabel.isHidden = false
+                cell.addOnsPriceLabel.isHidden = false
             }
-            
-      //  cell.descriptionLabel.text = currency + String(format: " %.02f", Double(priceStr) ?? 0.0)
-               
-            
-//             let priceStr: String! = String(describing: Data.product?.prices?.price ?? 0)
-//             let priceStrAddon: String! = String(describing: addOnPrice )
-            
-          
-           
-            
-          //  cell.descriptionLabel.text = currency + String(format: " %.02f", Double(AddonPriceValue) )
-            
-            
-            
-          //  print()
-            
-            
-            
-            
-          //  print("vale>>",addonPriceArray + addOnPrice)
-            //print("prce>",priceStr)
-        }
         }
         return cell
     }
@@ -644,29 +604,41 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
             
              print("data>>>>>>",data)
             fetchOrderDetails(data: (data?.order)!)
-            if data?.order?.schedule_status == 1 {
-                scheduleDateLabel.text = APPLocalize.localizestring.scheduleDate.localize()
-               
-                scheduleDateValueLabel.textColor = .green
-                scheduleDateValueLabel.text = data?.order?.delivery_date // delivery_date
-            }else
-            {
-                scheduleView.isHidden = true
-                
+            
+            if data?.order?.pickup_from_restaurants ?? 0 == 1{
+                locationView.isHidden = true
+                orderTypeLbl.text = "Order Type : PICKUP"
+            }else{
+                locationView.isHidden = false
+                orderTypeLbl.text = "Order Type : DELIVERY"
             }
+            
+            
+            
+            if data?.order?.schedule_status == 1 {
+                //scheduleView.isHidden = false
+                //scheduleDateLabel.text = APPLocalize.localizestring.scheduleDate.localize()
+                scheduleTimeLbl.textColor = .primary
+                scheduleTimeLbl.text = "Schedule Time : \(data?.order?.delivery_date?.convertedDateTime() ?? "")"  // delivery_date
+            }else{
+                //scheduleView.isHidden = true
+                scheduleTimeLbl.isHidden = true
+            }
+            
             self.CartOrderArr = data?.cart ?? []
             OrderModel = data?.order
-            self.notesLabel.text = data?.order?.note
+            //self.notesLabel.text = data?.order?.note
             orderTableView.reloadData()
+            orderTableView.layoutIfNeeded()
             updateOrderItemTableHeight()
         }else if String(describing: modelClass) == model.type.AcceptModel {
             let data = dataDict as? AcceptModel
                removeReasonsView()
             if fromwhere == "HOME" {
-                self.scheduleView.isHidden = true
+                //self.scheduleView.isHidden = true
                // self.navigationController?.popViewController(animated: true)
                
-                self.notesLabel.text = data?.note
+                //self.notesLabel.text = data?.note
                 
                 let historyViewController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.HistoryViewController) as! HistoryViewController
                 historyViewController.fromUpComingDetails = true
@@ -674,7 +646,7 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
                 
                 
             }else{
-                self.scheduleView.isHidden = true
+                //self.scheduleView.isHidden = true
                   HideActivityIndicator()
                
                 if data?.status == "READY" {

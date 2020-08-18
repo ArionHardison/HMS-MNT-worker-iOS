@@ -391,10 +391,10 @@ class RegisterViewController: BaseViewController {
             showToast(msg: ErrorMessage.list.newPasswordDonotMatch)
             return
         }
-        guard let status = statusValueLabel.text, !status.isEmpty else{
+        /*guard let status = statusValueLabel.text, !status.isEmpty else{
             showToast(msg: ErrorMessage.list.enterStatus)
             return
-        }
+        }*/
         
        /* guard isImageUpload(isupdate: isImageUpload) else{
             showToast(msg: ErrorMessage.list.enterUploadImg)
@@ -443,21 +443,21 @@ class RegisterViewController: BaseViewController {
         
         if isDelivery == false && isTakeAway == false {
             
-            showToast(msg: "Please Selecet Delivery Options")
+            showToast(msg: "Please select Delivery Options")
             
         }
         
         
         if shopImgURL == "" {
             
-            showToast(msg: "Please Selecet Shop Image")
+            showToast(msg: "Please select image for your Kitchen")
             
             return
             
       
         }else if bannerImgURL == "" {
             
-             showToast(msg: "Please Selecet Banner Image")
+             showToast(msg: "Please select Banner Image")
             
             return
             
@@ -499,7 +499,7 @@ class RegisterViewController: BaseViewController {
         editTimingController.latitude = latitude
         editTimingController.longitude = longitude
         editTimingController.cusineId = cusineId
-        editTimingController.status = status
+        editTimingController.status = "Onboarding" //status
         /*editTimingController.imageUploadData = uploadimgeData
         editTimingController.featureImageUploadData = featureUploadimgeData*/
         editTimingController.isYes = isyes

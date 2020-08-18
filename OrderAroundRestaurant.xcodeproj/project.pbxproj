@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		00043D0F24D3ED0500DDD370 /* CommonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00043D0E24D3ED0500DDD370 /* CommonExtension.swift */; };
+		0055D4F824E7B04200714704 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0055D4F624E7B04200714704 /* HistoryTableViewCell.swift */; };
+		0055D4F924E7B04200714704 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0055D4F724E7B04200714704 /* HistoryTableViewCell.xib */; };
 		0817913E2237EBE5002165E1 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0817913D2237EBE5002165E1 /* StatusViewController.swift */; };
 		0852342F2226668500446B47 /* DishesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0852342E2226668500446B47 /* DishesViewController.swift */; };
 		08759A11224009BD0030C19D /* RegisterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08759A10224009BD0030C19D /* RegisterEntity.swift */; };
@@ -181,6 +183,8 @@
 
 /* Begin PBXFileReference section */
 		00043D0E24D3ED0500DDD370 /* CommonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtension.swift; sourceTree = "<group>"; };
+		0055D4F624E7B04200714704 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
+		0055D4F724E7B04200714704 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
 		0817913D2237EBE5002165E1 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		0852342E2226668500446B47 /* DishesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesViewController.swift; sourceTree = "<group>"; };
 		08759A10224009BD0030C19D /* RegisterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntity.swift; sourceTree = "<group>"; };
@@ -525,6 +529,8 @@
 				08A44AC422379F3300228233 /* SelectCusineTableViewCell.xib */,
 				08A44AD22237B2CE00228233 /* CountryCodeTableViewCell.swift */,
 				08A44AD32237B2CE00228233 /* CountryCodeTableViewCell.xib */,
+				0055D4F624E7B04200714704 /* HistoryTableViewCell.swift */,
+				0055D4F724E7B04200714704 /* HistoryTableViewCell.xib */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -1042,6 +1048,7 @@
 				08A3B6A622253D120010058B /* Nunito-Regular.ttf in Resources */,
 				B4086EDD2271F159008C5BC0 /* Localizable.strings in Resources */,
 				08A3B6C022255C8C0010058B /* EditTimingTableViewCell.xib in Resources */,
+				0055D4F924E7B04200714704 /* HistoryTableViewCell.xib in Resources */,
 				08A14DF3222FE37E00F35B1E /* AddCategoryTableViewCell.xib in Resources */,
 				1274D568241B92FD00000CFE /* ReasonsListView.xib in Resources */,
 				08A3B6B4222546BB0010058B /* SideMenuTableViewCell.xib in Resources */,
@@ -1276,6 +1283,7 @@
 				08B6BD1A237C22D400F3C25A /* ImageGalleryViewController.swift in Sources */,
 				125B965823D7183700923CE3 /* PDFLoaderViewController.swift in Sources */,
 				08A14DED222FE1CF00F35B1E /* CategoryListViewController.swift in Sources */,
+				0055D4F824E7B04200714704 /* HistoryTableViewCell.swift in Sources */,
 				0852342F2226668500446B47 /* DishesViewController.swift in Sources */,
 				0891E215223103E700409038 /* ViewControllerExtension.swift in Sources */,
 				08A3B6BC22254FE10010058B /* Identifiers.swift in Sources */,
@@ -1491,7 +1499,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = JU248DMV5X;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
@@ -1515,7 +1523,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 33.2;
 				DEVELOPMENT_TEAM = JU248DMV5X;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

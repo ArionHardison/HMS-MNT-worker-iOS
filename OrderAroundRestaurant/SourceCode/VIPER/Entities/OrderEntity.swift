@@ -56,6 +56,7 @@ struct Orders : Mappable {
     var ordertiming : [Ordertiming]?
     var disputes : [String]?
     var reviewrating : Reviewrating?
+    var pickup_from_restaurants: Int?
     
     init?(map: Map) {
         
@@ -92,6 +93,7 @@ struct Orders : Mappable {
         ordertiming <- map["ordertiming"]
         disputes <- map["disputes"]
         reviewrating <- map["reviewrating"]
+        pickup_from_restaurants <- map["pickup_from_restaurants"]
     }
     
 }

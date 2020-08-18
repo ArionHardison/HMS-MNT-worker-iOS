@@ -135,8 +135,8 @@ extension String
     
     func convertedDateTime() -> String {
         
-        let date = self.toDateFromString(format: "yyyy-mm-dd HH:mm:ss")
-        return date?.toString(withFormat: "dd/mm/yyyy hh:mm a") ?? ""
+        let date = self.toDateFromString(format: "yyyy-MM-dd HH:mm:ss")
+        return date?.toString(withFormat: "dd/MM/yyyy hh:mm a") ?? ""
     }
 }
 

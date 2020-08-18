@@ -165,12 +165,12 @@ extension DeliveriesViewController: PresenterOutputProtocol {
 }
 /******************************************************************/
 extension DeliveriesViewController: FilterDeliveryViewControllerDelegate {
-    func setValueFilter(statusStr: String, deliveryPersonId: String, fromDate: String, toDate: String) {
+    func setValueFilter(statusStr: String, deliveryPersonId: String, fromDate: String, toDate: String, orderType: String) {
         
         let fromConDate = fromDate.toDateFromString(format: "dd/MM/yyyy")?.toString(withFormat: "yyyy-MM-dd")
         let toConDate = toDate.toDateFromString(format: "dd/MM/yyyy")?.toString(withFormat: "yyyy-MM-dd")
         
-        let urlStr = "\(Base.getOrder.rawValue)?list=true&status=\(statusStr)&dp=\(deliveryPersonId)&start_date=\(fromConDate ?? "")&end_date=\(toConDate ?? "")"
+        let urlStr = "\(Base.getOrder.rawValue)?list=true&status=\(statusStr)&dp=\(deliveryPersonId)&start_date=\(fromConDate ?? "")&end_date=\(toConDate ?? "")&order_type=\(orderType)"
         showActivityIndicator()
         self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
     }

@@ -20,6 +20,10 @@ extension UIColor {
     static var secondary : UIColor {
         return UIColor(red: 38/255, green: 148/255, blue: 38/255, alpha: 1) //(64, 187, 55)
     }
+    // app red
+    static var red : UIColor {
+        return UIColor(red: 180/255, green: 17/255, blue: 0/255, alpha: 1)
+    }
     
     static var lightWhite : UIColor {
         return UIColor(red: 38/255, green: 148/255, blue: 38/255, alpha: 1)//(red: 251/255, green: 251/255, blue: 251/255, alpha: 1)

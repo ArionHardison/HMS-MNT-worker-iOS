@@ -39,8 +39,10 @@ extension PastOrderViewController{
         setOrderHistoryApi()
     }
     private func setRegister(){
-        let upcomingRequestViewnib = UINib(nibName: XIB.Names.UpcomingRequestTableViewCell, bundle: nil)
-        pastTableView.register(upcomingRequestViewnib, forCellReuseIdentifier: XIB.Names.UpcomingRequestTableViewCell)
+        //let upcomingRequestViewnib = UINib(nibName: XIB.Names.UpcomingRequestTableViewCell, bundle: nil)
+        //pastTableView.register(upcomingRequestViewnib, forCellReuseIdentifier: XIB.Names.UpcomingRequestTableViewCell)
+        let upcomingRequestViewnib = UINib(nibName: XIB.Names.HistoryTableViewCell, bundle: nil)
+        pastTableView.register(upcomingRequestViewnib, forCellReuseIdentifier: XIB.Names.HistoryTableViewCell)
         pastTableView.delegate = self
         pastTableView.dataSource = self
         pastTableView.reloadData()
@@ -58,7 +60,7 @@ extension PastOrderViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
+       /* let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
         let dict = self.completedOrderArr[indexPath.row]
     
      
@@ -68,11 +70,12 @@ extension PastOrderViewController: UITableViewDelegate,UITableViewDataSource{
         cell.paymentLabel.text = dict.invoice?.payment_mode
         }
         if dict.schedule_status == 0{
-                       cell.scheduleValue.isHidden = true
-                      //  cell.scheduleValue.text = "Schedule"
-                   }else{
-                       cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
-                   }
+            cell.scheduleValue.isHidden = true
+            //  cell.scheduleValue.text = "Schedule"
+        }else{
+            cell.scheduleValue.isHidden = false
+            cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
+        }
         cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at
         cell.deliverTimeValueLabel.text = dict.delivery_date
         cell.locationLabel.text = dict.address?.map_address
@@ -80,7 +83,12 @@ extension PastOrderViewController: UITableViewDelegate,UITableViewDataSource{
         cell.orderTimeLabel.text = "Order Time"
         cell.userImageView.sd_setImage(with: URL(string: dict.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
         
-        return cell
+        return cell*/
+        
+        let historyCell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.HistoryTableViewCell) as! HistoryTableViewCell
+        historyCell.updateCell(orderObj: self.completedOrderArr[indexPath.row])
+        return historyCell
+        
     }
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return 108
@@ -91,6 +99,7 @@ extension PastOrderViewController: UITableViewDelegate,UITableViewDataSource{
         let orderDetailController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.OrderTrackingViewController) as! OrderTrackingViewController
           let dict = self.completedOrderArr[indexPath.row]
         orderDetailController.OrderId = dict.id ?? 0
+        orderDetailController.isPickupFromResturant = dict.pickup_from_restaurants ?? 0
         self.navigationController?.pushViewController(orderDetailController, animated: true)
     }
     

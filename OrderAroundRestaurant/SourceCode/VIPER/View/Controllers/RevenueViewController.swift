@@ -32,7 +32,7 @@ class RevenueViewController: BaseViewController, ChartViewDelegate {
         super.viewDidLoad()
        //self.navigationController?.isNavigationBarHidden = true
         // Do any additional setup after loading the view.
-        setInitialLoad()
+        
         
     }
     
@@ -52,6 +52,8 @@ class RevenueViewController: BaseViewController, ChartViewDelegate {
     //MARK:- viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
+        
+        setInitialLoad()
     }
 
 }
@@ -63,8 +65,8 @@ extension RevenueViewController{
     }
     private func setFont(){
         totalRevenueValueLabel.text = APPLocalize.localizestring.totalRevenue.localize()
-        orderReceivedLabel.text = APPLocalize.localizestring.orderReceived.localize()
-        orderDeliveryLabel.text = APPLocalize.localizestring.orderDelivered.localize()
+        orderReceivedLabel.text = "Order Received Today" //APPLocalize.localizestring.orderReceived.localize()
+        orderDeliveryLabel.text = "Order Delivered Today" //APPLocalize.localizestring.orderDelivered.localize()
         totalEarningLabel.text = APPLocalize.localizestring.todayEarnings.localize()
         monthlyEarningLabel.text = APPLocalize.localizestring.monthlyEarnings.localize()
         totalEarningValueLabel.font = UIFont.regular(size: 14)
@@ -77,6 +79,7 @@ extension RevenueViewController{
         orderReceivedLabel.font = UIFont.bold(size: 14)
         totalRevenueValueLabel.font = UIFont.regular(size: 15)
         totalRenvenueLabel.font = UIFont.bold(size: 14)
+        totalRevenueValueLabel.textColor = UIColor.primary
     }
     private func getRevenueApi(){
         showActivityIndicator()
@@ -126,13 +129,14 @@ extension RevenueViewController {
         let yaxis = barChartView.leftAxis
         yaxis.spaceTop = 0.35
         yaxis.axisMinimum = 0
-        yaxis.drawGridLinesEnabled = false
+        yaxis.drawGridLinesEnabled = true
         yaxis.labelTextColor = UIColor.lightGray
         yaxis.axisLineColor = UIColor.lightGray
-        let formatter1 = CustomLabelsXAxisValueFormatter()//custom value formatter
+        yaxis.granularityEnabled = true
+        //let formatter1 = CustomLabelsXAxisValueFormatter()//custom value formatter
         
-        formatter1.labels = self.yaxisValue
-        yaxis.valueFormatter = formatter1
+        //formatter1.labels = self.yaxisValue
+        //yaxis.valueFormatter = formatter1
         barChartView.rightAxis.enabled = false
         
         // X - Axis Setup
@@ -148,7 +152,7 @@ extension RevenueViewController {
         xaxis.axisLineColor = UIColor.lightGray
         xaxis.granularityEnabled = true
         xaxis.enabled = true
-        
+        xaxis.labelCount = xaxisValue.count
         barChartView.delegate = self
         barChartView.noDataText = "You need to provide data for the chart."
         barChartView.noDataTextColor = UIColor.lightGray
@@ -175,28 +179,26 @@ extension RevenueViewController {
         let chartDataSet1 = BarChartDataSet(values: dataEntries1, label: APPLocalize.localizestring.orderCancelled.localize())
         
         let dataSets: [BarChartDataSet] = [chartDataSet,chartDataSet1]
-        chartDataSet.colors = [UIColor(red: 247/255, green: 152/255, blue: 29/255, alpha: 1)]
-       // (red: 38/255, green: 148/255, blue: 38/255, alpha: 1)
-        
-        chartDataSet1.colors = [UIColor(red: 136/255, green: 180/255, blue: 80/255, alpha: 1)]
+        chartDataSet.colors = [UIColor.secondary]
+        chartDataSet1.colors = [UIColor.red]
         
         let chartData = BarChartData(dataSets: dataSets)
         
-        let groupSpace = 0.4
+        let groupSpace = 0.5
         let barSpace = 0.03
         let barWidth = 0.2
         
         chartData.barWidth = barWidth
         
-        barChartView.xAxis.axisMinimum = 0.0
-        barChartView.xAxis.axisMaximum = 0.0 + chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace) * Double(self.xaxisValue.count)
+        //barChartView.xAxis.axisMinimum = 0.0
+        //barChartView.xAxis.axisMaximum = 0.0 + chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace) * Double(self.xaxisValue.count)
         
         chartData.groupBars(fromX: 0.0, groupSpace: groupSpace, barSpace: barSpace)
         
-        barChartView.xAxis.granularity = barChartView.xAxis.axisMaximum / Double(self.xaxisValue.count)
+       // barChartView.xAxis.granularity = barChartView.xAxis.axisMaximum / Double(self.xaxisValue.count)
         barChartView.data = chartData
         barChartView.notifyDataSetChanged()
-        barChartView.setVisibleXRangeMaximum(4)
+        //barChartView.setVisibleXRangeMaximum(4)
         barChartView.animate(yAxisDuration: 1.0, easingOption: .linear)
         chartData.setValueTextColor(UIColor.white)
     }

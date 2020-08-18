@@ -20,6 +20,7 @@ class TakeAwayOrdersViewController: BaseViewController {
     var upcomingRequestArr = [Orders]()
     var timerGetRequest: Timer?
     var otpString:String = ""
+    var upComingArray: [OnGoingOrderArrayModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,14 +78,44 @@ class TakeAwayOrdersViewController: BaseViewController {
 }
 
 extension TakeAwayOrdersViewController : UITableViewDelegate,UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if upcomingRequestArr.count > 0{
+            return upComingArray.count
+        }else{
+            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        return 55
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if upcomingRequestArr.count > 0{
+            return tableView.headerView(height: 55, text: upComingArray[section].title)
+        }else{
+            return UIView()
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = 0
+        
+        if upcomingRequestArr.count > 0{
+            return upComingArray[section].orderArray.count
+        }else{
+            return 1
+        }
+        
+        /*var count = 0
         if upcomingRequestArr.count == 0 {
             count = 1
         }else{
             count = upcomingRequestArr.count
         }
-        return count
+        return count*/
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -99,18 +130,20 @@ extension TakeAwayOrdersViewController : UITableViewDelegate,UITableViewDataSour
             let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
             cell.waitingView.isHidden = true
             cell.overView.isHidden = false
-            let dict = self.upcomingRequestArr[indexPath.row]
+            //let dict = self.upcomingRequestArr[indexPath.row]
+            let dict = self.upComingArray[indexPath.section].orderArray[indexPath.row]
            if(dict.invoice?.payment_mode == "stripe"){
                 cell.paymentLabel.text = "Card"
             }else{
             cell.paymentLabel.text = dict.invoice?.payment_mode
             }
-            if dict.schedule_status == 0{
-                           cell.scheduleValue.isHidden = true
-                          //  cell.scheduleValue.text = "Schedule"
-                       }else{
-                           cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
-                       }
+            /*if dict.schedule_status == 0{
+                cell.scheduleValue.isHidden = true
+                //  cell.scheduleValue.text = "Schedule"
+            }else{
+                cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
+                cell.scheduleValue.isHidden = false
+            }*/
             cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at?.convertedDateTime()
             cell.deliverTimeValueLabel.text = (dict.delivery_date ?? "").convertedDateTime()
             cell.locationLabel.text = dict.address?.map_address
@@ -122,7 +155,7 @@ extension TakeAwayOrdersViewController : UITableViewDelegate,UITableViewDataSour
             
             cell.statusLabel.text = dict.status
             
-            if (dict.status == "takeaway") {
+           /* if (dict.status == "takeaway") {
                 if (dict.dispute == "CREATED") {
                     
                     cell.statusLabel.text = "Dispute Created"
@@ -135,6 +168,35 @@ extension TakeAwayOrdersViewController : UITableViewDelegate,UITableViewDataSour
             }else if dict.status == "PICKUP_USER"{
                 cell.statusLabel.text = "ORDER TYPE: PICKUP"
                 cell.statusLabel.textColor = UIColor.red
+            }*/
+            
+            if (dict.status == "ORDERED") && (dict.dispute == "NODISPUTE") {
+                cell.statusLabel.text = "Incoming"
+                cell.statusLabel.textColor = UIColor.primary
+            }else if (dict.status == "RECEIVED"){
+                cell.statusLabel.text = "Processing"
+                cell.statusLabel.textColor = UIColor.primary
+            }else{
+                cell.statusLabel.text = "Dispute Created"
+                cell.statusLabel.textColor = UIColor.red
+            }
+            
+            cell.scheduleValue.textColor = .systemRed
+            
+            if dict.pickup_from_restaurants == 0{
+                cell.scheduleValue.text = "Order Type : DELIVERY"
+            }else if dict.pickup_from_restaurants == 1{
+                cell.scheduleValue.text = "Order Type : PICKUP"
+            }else{
+                cell.scheduleValue.text = "Order Type : DELIVERY"
+            }
+            
+            if dict.schedule_status == 1{
+                cell.deliveryTimeLabel.isHidden = false
+                cell.deliverTimeValueLabel.isHidden = false
+            }else{
+                cell.deliveryTimeLabel.isHidden = true
+                cell.deliverTimeValueLabel.isHidden = true
             }
             return cell
             
@@ -146,8 +208,8 @@ extension TakeAwayOrdersViewController : UITableViewDelegate,UITableViewDataSour
         
         if(self.upcomingRequestArr.count > 0)
         {
-            let dict = self.upcomingRequestArr[indexPath.row]
-            
+            //let dict = self.upcomingRequestArr[indexPath.row]
+            let dict = self.upComingArray[indexPath.section].orderArray[indexPath.row]
             let upcomingDetailController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.UpcomingDetailViewController) as! UpcomingDetailViewController
             upcomingDetailController.OrderId = dict.id ?? 0
             upcomingDetailController.fromwhere = "TAKEAWAY"
@@ -177,6 +239,17 @@ extension TakeAwayOrdersViewController : PresenterOutputProtocol {
             HideActivityIndicator()
             let data = dataDict as! OrderModel
             self.upcomingRequestArr = data.orders ?? []
+            upComingArray.removeAll()
+            let scheduleArray = data.orders?.filter{$0.schedule_status == 1}
+            let ongoingArray = data.orders?.filter{$0.schedule_status != 1}
+            var scheduleObj = OnGoingOrderArrayModel()
+            scheduleObj.title = "SCHEDULE ORDERS"
+            scheduleObj.orderArray = scheduleArray ?? []
+            var ongoingObj = OnGoingOrderArrayModel()
+            ongoingObj.title = "ONGOING ORDERS"
+            ongoingObj.orderArray = ongoingArray ?? []
+            upComingArray.append(scheduleObj)
+            upComingArray.append(ongoingObj)
             takeAwayTableview.reloadData()
         }
         

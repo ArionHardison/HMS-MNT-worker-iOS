@@ -36,7 +36,7 @@ class UpcomingRequestTableViewCell: UITableViewCell {
     
     private func setFont(){
         waitingLabel.text = APPLocalize.localizestring.waiting.localize()
-        deliveryTimeLabel.text = APPLocalize.localizestring.deliveryDate.localize()
+        deliveryTimeLabel.text = "Schedule Time" //APPLocalize.localizestring.deliveryDate.localize()
         paymentLabel.font = UIFont.regular(size: 14)
         orderTimeLabel.font = UIFont.regular(size: 14)
         orderTimeValueLabel.font = UIFont.regular(size: 14)

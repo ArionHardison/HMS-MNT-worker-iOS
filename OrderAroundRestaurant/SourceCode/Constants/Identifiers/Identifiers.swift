@@ -80,6 +80,7 @@ struct XIB {
     let FoodSafetyCell = "FoodSafetyCell"
     let ReasonsListView = "ReasonsListView"
     let EmailCollectionViewCell = "EmailCollectionViewCell"
+    let HistoryTableViewCell = "HistoryTableViewCell"
     
     
 

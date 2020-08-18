@@ -31,13 +31,18 @@ class FilterDeliveryViewController: BaseViewController {
     @IBOutlet weak var fromView: UIView!
     @IBOutlet weak var filterButton: UIButton!
     
+    @IBOutlet var orderTypeLbl: UILabel!
+    @IBOutlet var selectedOrderTypeLbl: UILabel!
+     @IBOutlet weak var orderTypeView: UIView!
+    
     var TransportListArr = [DeliveryModel]()
     weak var delegate: FilterDeliveryViewControllerDelegate?
     var statusStr = ""
     var deliveryBoyIdStr = ""
     var startDateStr = ""
     var endDateStr = ""
-
+    let orderTypeArray = ["Delivery", "Takeaway"]
+    var orderTypeStr = ""
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -107,6 +112,13 @@ class FilterDeliveryViewController: BaseViewController {
         cancelImageView.setImageColor(color: UIColor.primary)
     }
     @IBAction func onSelectDeliveryPersonAction(_ sender: Any) {
+        
+        guard self.orderTypeStr == self.orderTypeArray[0] || self.orderTypeStr == "" else {
+            
+            showToast(msg: "Please modify order type or refresh filter")
+            return
+        }
+        
         let statusController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.StatusViewController) as! StatusViewController
         var nameStr = [String]()
         nameStr.removeAll()
@@ -120,17 +132,33 @@ class FilterDeliveryViewController: BaseViewController {
     }
     @IBAction func refreshButtonAction(_ sender: Any) {
         setImageTintColor()
-        selectDeliveryPersonValueLabel.text = "Select Delivery Person"
+        selectDeliveryPersonValueLabel.text = APPLocalize.localizestring.selectdeliveryperson.localize()
         toValueLabel.text = "To"
         fromValueLabel.text = "From"
+        orderTypeStr = ""
+        selectedOrderTypeLbl.text = "Select Order Type"
     }
+    
+    @IBAction func orderTypeAction(_ sender: Any) {
+        
+        let statusController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.StatusViewController) as! StatusViewController
+        statusController.isCategory = false
+        statusController.datePickerValues = orderTypeArray
+        statusController.delegate = self
+        self.present(statusController, animated: true, completion: nil)
+    }
+    
     
     @IBAction func onFilterAction(_ sender: Any) {
         
-        if selectDeliveryPersonValueLabel.text == "Select Delivery Person" {
-            showToast(msg: "Please Select Delivery Person")
-
-        }else if fromValueLabel.text == "From" {
+//        if selectDeliveryPersonValueLabel.text == "Select Delivery Person" {
+//
+//            if self.orderTypeStr != "Takeaway"{
+//                showToast(msg: "Please Select Delivery Person")
+//            }
+//
+//        }else
+            if fromValueLabel.text == "From" {
             showToast(msg: "Please Select From Date")
 
         }else if toValueLabel.text == "To" {
@@ -149,11 +177,13 @@ class FilterDeliveryViewController: BaseViewController {
                 statusStr = "ALL"
             }else if completedImageView.image == UIImage(named: "radioon") && cancelImageView.image == UIImage(named: "radiooff"){
                 statusStr = "COMPLETED"
-            }else{
+            }else if completedImageView.image == UIImage(named: "radiooff") && cancelImageView.image == UIImage(named: "radioon"){
                 statusStr = "CANCELLED"
+            }else{
+                statusStr = "All"
             }
             
-            delegate?.setValueFilter(statusStr: statusStr, deliveryPersonId: deliveryBoyIdStr, fromDate: fromValueLabel.text ?? "", toDate: toValueLabel.text ?? "")
+            delegate?.setValueFilter(statusStr: statusStr, deliveryPersonId: deliveryBoyIdStr, fromDate: fromValueLabel.text ?? "", toDate: toValueLabel.text ?? "", orderType: self.orderTypeStr.lowercased())
             self.dismiss(animated: true, completion: nil)
         }
         
@@ -195,6 +225,8 @@ extension FilterDeliveryViewController {
         fromValueLabel.font = UIFont.regular(size: 14)
         toValueLabel.font = UIFont.regular(size: 14)
         filterButton.titleLabel?.font = UIFont.bold(size: 15)
+        orderTypeLbl.font = UIFont.bold(size: 15)
+        selectedOrderTypeLbl.font = UIFont.regular(size: 14)
     }
     private func setImageTintColor(){
         allImageView.image = UIImage(named: "radiooff")
@@ -213,7 +245,18 @@ extension FilterDeliveryViewController {
 
 extension FilterDeliveryViewController: StatusViewControllerDelegate {
     func setValueShowStatusLabel(statusValue: String) {
-        self.selectDeliveryPersonValueLabel.text = statusValue
+        
+        if orderTypeArray.contains(statusValue){
+            if selectDeliveryPersonValueLabel.text == APPLocalize.localizestring.selectdeliveryperson.localize(){
+                
+                self.selectedOrderTypeLbl.text = statusValue
+                self.orderTypeStr = statusValue
+            }else{
+                showToast(msg: "Please modify order type or refresh filter")
+            }
+        }else{
+            self.selectDeliveryPersonValueLabel.text = statusValue
+        }
     }
     
     
@@ -235,5 +278,5 @@ extension FilterDeliveryViewController: TimePickerValueViewControllerDelegate {
 }
 // MARK: - Protocol for set Value for DateWise Label
 protocol FilterDeliveryViewControllerDelegate: class {
-    func setValueFilter(statusStr: String,deliveryPersonId: String,fromDate: String,toDate: String)
+    func setValueFilter(statusStr: String,deliveryPersonId: String,fromDate: String,toDate: String, orderType: String)
 }

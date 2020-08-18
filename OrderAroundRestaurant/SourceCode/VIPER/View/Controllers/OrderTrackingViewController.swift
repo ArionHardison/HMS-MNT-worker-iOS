@@ -61,6 +61,9 @@ class OrderTrackingViewController: BaseViewController {
     var OrderId = 0
     var CartOrderArr:[Cart] = []
     var OrderModel: Order?
+    var isPickupFromResturant = 0
+    //0 delivery
+    //1 pickup
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,7 +120,6 @@ class OrderTrackingViewController: BaseViewController {
         
         let itemCountHeight = CGFloat(itemCount * 40)
         let cartaddOns = CGFloat(cartaddonCount * 80)
-        orderTableView.layoutIfNeeded()
         self.orderHeight.constant = orderTableView.contentSize.height + 20 //itemCountHeight + cartaddOns
         scrollView.contentSize = CGSize(width: self.overView.frame.size.width, height:  overView.frame.size.height)
         
@@ -161,6 +163,20 @@ extension OrderTrackingViewController{
     }
   
     private func setTitle(){
+        
+        if isPickupFromResturant == 0{//Delivery
+            
+            orderPickedupLabel.text =  "Ready for Delivery"
+            orderPickedupDescrLabl.text = "Customer order is ready for Delivery"
+            orderfDeliveredLabel.text =  "Delivered"
+            orderDeliveredDescrLabel.text = "Order delivered successfully"
+        }else{//Pickup
+            orderPickedupLabel.text = "Ready for Pickup"
+            orderPickedupDescrLabl.text = "Order is ready for pickup by Customer"
+            orderfDeliveredLabel.text = "Completed"
+            orderDeliveredDescrLabel.text = "Order has been successfully completed"
+        }
+        
         subTotalLabel.text = APPLocalize.localizestring.subTotal.localize()
         deliveryChargeLabel.text = APPLocalize.localizestring.deliverycharge.localize()
         CgstLabel.text = APPLocalize.localizestring.tax.localize()
@@ -171,9 +187,11 @@ extension OrderTrackingViewController{
         orderTableView.register(editTimenib, forCellReuseIdentifier: XIB.Names.ItemListTableViewCell)
         orderTableView.delegate = self
         orderTableView.dataSource = self
+        orderTableView.estimatedRowHeight = 40
+        orderTableView.rowHeight = UITableView.automaticDimension
     }
     private func setFont(){
-      
+        
         totalValueLabel.font = UIFont.regular(size: 14)
         totalLabel.font = UIFont.bold(size: 15)
         deliveryChargeValueLabel.font = UIFont.regular(size: 14)
@@ -202,19 +220,19 @@ extension OrderTrackingViewController{
         orderPickedupDescrLabl.font = UIFont.regular(size: 13)
         orderfDeliveredLabel.font = UIFont.regular(size: 15)
         orderDeliveredDescrLabel.font = UIFont.regular(size: 13)
-
         
-          orderPlaceDescrLabel.textColor =  UIColor.lightGray
-          orderConfirmDescrLabel.textColor =  UIColor.lightGray
-          orderProcessDescrLabel.textColor =  UIColor.lightGray
-          orderPickedupDescrLabl.textColor =  UIColor.lightGray
-          orderDeliveredDescrLabel.textColor =  UIColor.lightGray
+        
+        orderPlaceDescrLabel.textColor =  UIColor.lightGray
+        orderConfirmDescrLabel.textColor =  UIColor.lightGray
+        orderProcessDescrLabel.textColor =  UIColor.lightGray
+        orderPickedupDescrLabl.textColor =  UIColor.lightGray
+        orderDeliveredDescrLabel.textColor =  UIColor.lightGray
         
         orderPlaceLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         orderConfirmedLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-         orderProcessLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-         orderPickedupLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-         orderfDeliveredLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        orderProcessLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        orderPickedupLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        orderfDeliveredLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         promoCodeTitleLbl.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
         promoCodeValueLbl.textColor = #colorLiteral(red: 0.1127879247, green: 0.5814689994, blue: 0.1068621799, alpha: 1)
         
@@ -287,30 +305,32 @@ extension OrderTrackingViewController: UITableViewDelegate,UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.ItemListTableViewCell, for: indexPath) as! ItemListTableViewCell
         
         let Data = self.CartOrderArr[indexPath.row]
+        let price = Data.product?.prices?.orignal_price ?? 0
         let productName = Data.product?.name
         let quantityStr = "\(Data.quantity ?? 0)"
-        cell.titleLabel.text = productName! + " x " + quantityStr
+        cell.titleLabel.text = "\(productName ?? "")(\(quantityStr) x \(Double(price).twoDecimalPoint))" //productName! + " x " + quantityStr
         let currency = Data.product?.prices?.currency ?? "$"
-        let priceStr: String! = String(describing: Data.product?.prices?.price ?? 0)
         let quantity = Data.quantity ?? 0
-        let price = Data.product?.prices?.orignal_price ?? 0
         let totalPrice:Int = (quantity * price)
-        cell.descriptionLabel.text = currency + "\(totalPrice)"
+        cell.descriptionLabel.text = currency + "\(Double(totalPrice).twoDecimalPoint)"
         
         var addonsNameArr = [String]()
         addonsNameArr.removeAll()
+        var addonPriceArr = [String]()
+        addonPriceArr.removeAll()
         
         if(Data.cart_addons != nil) {
             for i in 0..<(Data.cart_addons!.count)
             {
                 let Result = Data.cart_addons![i]
+                let totalQty = Int(Data.quantity ?? 0) * Int(Result.quantity ?? 0.00)
+                let str = "\(Result.addon_product?.addon?.name ?? "")(\(totalQty) x \(Double(Result.addon_product?.price ?? 0.00).twoDecimalPoint))"
                 
-                
-                let str = "\(Result.addon_product?.addon?.name! ?? "")"
+                let price = Double((totalQty)) * Double(Result.addon_product?.price ?? 0.00)
+                let priceStr = "$\(price.twoDecimalPoint)"
                 addonsNameArr.append(str)
+                addonPriceArr.append(priceStr)
                 
-                let addonPrice = Result.addon_product?.addon?.price ?? 0.00
-                cell.addOnsPriceLabel.text = currency + "\(addonPrice)"
             }
             
             if Data.cart_addons!.count == 0 {
@@ -319,8 +339,10 @@ extension OrderTrackingViewController: UITableViewDelegate,UITableViewDataSource
             }else{
                 cell.subTitleLabel.isHidden = false
                 cell.addOnsPriceLabel.isHidden = false
-                let addonsstr = addonsNameArr.joined(separator: ", ")
+                let addonsstr = addonsNameArr.joined(separator: "\n")
                 cell.subTitleLabel.text = addonsstr
+                let addOnPriceStr = addonPriceArr.joined(separator: "\n")
+                cell.addOnsPriceLabel.text = addOnPriceStr
             }
         }
         return cell
@@ -347,6 +369,7 @@ extension OrderTrackingViewController: PresenterOutputProtocol {
             self.CartOrderArr = data?.cart ?? []
             OrderModel = data?.order
             orderTableView.reloadData()
+            orderTableView.layoutIfNeeded()
             updateOrderItemTableHeight()
         }else if String(describing: modelClass) == model.type.AcceptModel {
             self.navigationController?.popViewController(animated: true)

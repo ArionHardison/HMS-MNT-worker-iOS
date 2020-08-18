@@ -44,8 +44,11 @@ extension CancelOrderViewController{
         self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
     }
     private func setRegister(){
-        let upcomingRequestViewnib = UINib(nibName: XIB.Names.UpcomingRequestTableViewCell, bundle: nil)
-        cancelTableView.register(upcomingRequestViewnib, forCellReuseIdentifier: XIB.Names.UpcomingRequestTableViewCell)
+        //let upcomingRequestViewnib = UINib(nibName: XIB.Names.UpcomingRequestTableViewCell, bundle: nil)
+        //cancelTableView.register(upcomingRequestViewnib, forCellReuseIdentifier: XIB.Names.UpcomingRequestTableViewCell)
+        
+        let upcomingRequestViewnib = UINib(nibName: XIB.Names.HistoryTableViewCell, bundle: nil)
+        cancelTableView.register(upcomingRequestViewnib, forCellReuseIdentifier: XIB.Names.HistoryTableViewCell)
         cancelTableView.delegate = self
         cancelTableView.dataSource = self
         cancelTableView.reloadData()
@@ -58,7 +61,7 @@ extension CancelOrderViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
+        /*let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
         let dict = self.cancelOrderArr[indexPath.row]
         if(dict.invoice?.payment_mode == "stripe"){
             cell.paymentLabel.text = "Card"
@@ -66,11 +69,12 @@ extension CancelOrderViewController: UITableViewDelegate,UITableViewDataSource{
         cell.paymentLabel.text = dict.invoice?.payment_mode
         }
         if dict.schedule_status == 0{
-                       cell.scheduleValue.isHidden = true
-                      //  cell.scheduleValue.text = "Schedule"
-                   }else{
-                       cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
-                   }
+            cell.scheduleValue.isHidden = true
+            //  cell.scheduleValue.text = "Schedule"
+        }else{
+            cell.scheduleValue.isHidden = false
+            cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
+        }
            cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at
              cell.deliverTimeValueLabel.text = dict.delivery_date
         cell.locationLabel.text = dict.address?.map_address
@@ -78,7 +82,11 @@ extension CancelOrderViewController: UITableViewDelegate,UITableViewDataSource{
         cell.orderTimeLabel.text = "Order Time"
         cell.userImageView.sd_setImage(with: URL(string: dict.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
         
-        return cell
+        return cell*/
+        
+        let historyCell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.HistoryTableViewCell) as! HistoryTableViewCell
+        historyCell.updateCell(orderObj: self.cancelOrderArr[indexPath.row])
+        return historyCell
     }
 //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 //        return 108
@@ -88,6 +96,7 @@ extension CancelOrderViewController: UITableViewDelegate,UITableViewDataSource{
         let orderDetailController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.OrderTrackingViewController) as! OrderTrackingViewController
         let dict = self.cancelOrderArr[indexPath.row]
         orderDetailController.OrderId = dict.id ?? 0
+        orderDetailController.isPickupFromResturant = dict.pickup_from_restaurants ?? 0
         self.navigationController?.pushViewController(orderDetailController, animated: true)
     }
 }
