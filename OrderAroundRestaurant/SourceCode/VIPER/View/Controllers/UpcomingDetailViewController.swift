@@ -331,7 +331,7 @@ extension UpcomingDetailViewController{
        // acceptButton.layer.borderWidth = 1
         disputeButton.layer.cornerRadius = 16
         disputeButton.layer.borderWidth = 1
-        
+        self.showActivityIndicator()
         self.presenter?.GETPOST(api: Base.reasonsList.rawValue, params: [:], methodType: .GET, modelClass:CancelReasons.self, token: true)
         
      
@@ -606,11 +606,9 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
 //MARK: VIPER Extension:
 extension UpcomingDetailViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-       
-        
-        
+    
+        HideActivityIndicator()
         if String(describing: modelClass) == model.type.OrderDetailModel {
-            HideActivityIndicator()
             let data = dataDict as? OrderDetailModel
             
              print("data>>>>>>",data)
@@ -658,7 +656,6 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
                 
             }else{
                 //self.scheduleView.isHidden = true
-                  HideActivityIndicator()
                
                 if data?.status == "READY" {
                     

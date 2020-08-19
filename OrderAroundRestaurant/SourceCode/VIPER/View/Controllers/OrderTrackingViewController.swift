@@ -306,9 +306,9 @@ extension OrderTrackingViewController: UITableViewDelegate,UITableViewDataSource
         
         let Data = self.CartOrderArr[indexPath.row]
         let price = Data.product?.prices?.orignal_price ?? 0
-        let productName = Data.product?.name
+        let productName = Data.product?.name ?? ""
         let quantityStr = "\(Data.quantity ?? 0)"
-        cell.titleLabel.text = "\(productName ?? "")(\(quantityStr) x \(Double(price).twoDecimalPoint))" //productName! + " x " + quantityStr
+        cell.titleLabel.text = "\(productName)(\(quantityStr) x \(Double(price).twoDecimalPoint))" //productName! + " x " + quantityStr
         let currency = Data.product?.prices?.currency ?? "$"
         let quantity = Data.quantity ?? 0
         let totalPrice:Int = (quantity * price)
@@ -343,6 +343,12 @@ extension OrderTrackingViewController: UITableViewDelegate,UITableViewDataSource
                 cell.subTitleLabel.text = addonsstr
                 let addOnPriceStr = addonPriceArr.joined(separator: "\n")
                 cell.addOnsPriceLabel.text = addOnPriceStr
+            }
+            
+            cell.infoBtn.isHidden = (Data.note ?? "") == "" ? true : false
+            cell.titleLblLeading.constant = (Data.note ?? "") == "" ? 15 : 32
+            if Data.note ?? "" != ""{
+                cell.updateInfoTextCell(text: Data.note ?? "", forView: self.scrollView)
             }
         }
         return cell
