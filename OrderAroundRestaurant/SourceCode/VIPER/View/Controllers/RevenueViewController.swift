@@ -116,10 +116,10 @@ extension RevenueViewController {
         //legend
         let legend = barChartView.legend
         legend.enabled = true
-        legend.horizontalAlignment = .right
-        legend.verticalAlignment = .top
-        legend.orientation = .vertical
-        legend.drawInside = true
+        legend.horizontalAlignment = .left
+        legend.verticalAlignment = .bottom
+        legend.orientation = .horizontal
+        legend.drawInside = false
         legend.yOffset = 10.0;
         legend.xOffset = 10.0;
         legend.yEntrySpace = 0.0;
@@ -200,6 +200,7 @@ extension RevenueViewController {
         barChartView.notifyDataSetChanged()
         //barChartView.setVisibleXRangeMaximum(4)
         barChartView.animate(yAxisDuration: 1.0, easingOption: .linear)
+
         chartData.setValueTextColor(UIColor.white)
     }
     

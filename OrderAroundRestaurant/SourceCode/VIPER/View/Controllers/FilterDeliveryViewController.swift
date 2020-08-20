@@ -93,6 +93,7 @@ class FilterDeliveryViewController: BaseViewController {
         allImageView.setImageColor(color: UIColor.primary)
         completedImageView.setImageColor(color: UIColor.primary)
         cancelImageView.setImageColor(color: UIColor.primary)
+        statusStr = "CANCELLED"
     }
     @IBAction func onCompletedAction(_ sender: Any) {
         
@@ -102,6 +103,7 @@ class FilterDeliveryViewController: BaseViewController {
         allImageView.setImageColor(color: UIColor.primary)
         completedImageView.setImageColor(color: UIColor.primary)
         cancelImageView.setImageColor(color: UIColor.primary)
+        statusStr = "COMPLETED"
     }
     @IBAction func onAllButtonAction(_ sender: Any) {
         allImageView.image = UIImage(named: "radioon")
@@ -110,6 +112,7 @@ class FilterDeliveryViewController: BaseViewController {
         allImageView.setImageColor(color: UIColor.primary)
         completedImageView.setImageColor(color: UIColor.primary)
         cancelImageView.setImageColor(color: UIColor.primary)
+        statusStr = "ALL"
     }
     @IBAction func onSelectDeliveryPersonAction(_ sender: Any) {
         
@@ -173,17 +176,9 @@ class FilterDeliveryViewController: BaseViewController {
                 }
             }
             
-            if allImageView.image == UIImage(named: "radioon"){
-                statusStr = "ALL"
-            }else if completedImageView.image == UIImage(named: "radioon") && cancelImageView.image == UIImage(named: "radiooff"){
-                statusStr = "COMPLETED"
-            }else if completedImageView.image == UIImage(named: "radiooff") && cancelImageView.image == UIImage(named: "radioon"){
-                statusStr = "CANCELLED"
-            }else{
-                statusStr = "All"
-            }
             
-            delegate?.setValueFilter(statusStr: statusStr, deliveryPersonId: deliveryBoyIdStr, fromDate: fromValueLabel.text ?? "", toDate: toValueLabel.text ?? "", orderType: self.orderTypeStr.lowercased())
+            
+                delegate?.setValueFilter(statusStr: statusStr.uppercased(), deliveryPersonId: deliveryBoyIdStr, fromDate: fromValueLabel.text ?? "", toDate: toValueLabel.text ?? "", orderType: self.orderTypeStr.lowercased())
             self.dismiss(animated: true, completion: nil)
         }
         

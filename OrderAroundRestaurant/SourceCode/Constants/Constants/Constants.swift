@@ -195,7 +195,7 @@ struct ErrorMessage {
     let enterValidEmail = "Please Enter valid Email."
     let enterPassword = "Please Enter Password"
     let enterDescription = "Please Enter Description"
-    let enterIngradients = "Please Enter Ingradients"
+    let enterIngradients = "Please Enter Ingredients"
 
     let enterStatus = "Please Select Status"
     let enterCaetgoryOrder = "Please Enter Category Order"
@@ -203,7 +203,7 @@ struct ErrorMessage {
     let enterFeatureUploadImg = "Please Upload Feature Image"
     let enterproductOrder = "Please Enter Product Order"
     let enterFeatureProduct = "Please Choose Feature Product"
-    let enterProductCusine = "Please Select Product Cusine"
+    let enterProductCusine = "Please Select Product Cuisine"
     let enterAddons = "Please Select Addons"
     let enterPrice = "Please Enter Price"
     let enterDiscount = "Please Enter Discount"
