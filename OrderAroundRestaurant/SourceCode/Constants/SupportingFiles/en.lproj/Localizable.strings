@@ -65,6 +65,7 @@
 "localize.price" = "Price";
 "localize.discountType" = "Discount Type";
 "localize.discount" = "Discount";
+"localize.kitchenDiscount" = "Kitchen Discount";
 "localize.selectAddons" = "Select Addons";
 "localize.categoryOrder" = "Category Order";
 "localize.save" = "Save";

@@ -97,6 +97,7 @@ struct APPLocalize {
     var price = "localize.price"
     var discountType = "localize.discountType"
     var discount = "localize.discount"
+    var kitchenDiscount = "localize.kitchenDiscount"
     var selectAddons = "localize.selectAddons"
     var categoryOrder = "localize.categoryOrder"
     var save = "localize.save"

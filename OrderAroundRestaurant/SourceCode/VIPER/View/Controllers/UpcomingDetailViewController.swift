@@ -61,6 +61,7 @@ class UpcomingDetailViewController: BaseViewController {
     @IBOutlet var scheduleTimeLbl: UILabel!
     @IBOutlet var orderTableHeaderHeight: NSLayoutConstraint!
     
+    @IBOutlet var stackViewBottom: NSLayoutConstraint!
     
     
     var reasonsView : ReasonsListView?
@@ -425,7 +426,7 @@ extension UpcomingDetailViewController{
             acceptButton.setTitle("Order Ready", for: .normal)
         }
         CgstLabel.text = APPLocalize.localizestring.tax.localize()
-        discountLabel.text = APPLocalize.localizestring.discount.localize()
+        discountLabel.text = APPLocalize.localizestring.kitchenDiscount.localize()
         sgstLablel.text  = APPLocalize.localizestring.payable.localize()
         totalLabel.text = APPLocalize.localizestring.total.localize()
         
@@ -617,9 +618,11 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
             if data?.order?.pickup_from_restaurants ?? 0 == 1{
                 locationView.isHidden = true
                 orderTypeLbl.text = "Order Type : PICKUP"
+                stackViewBottom.isActive = false
             }else{
                 locationView.isHidden = false
                 orderTypeLbl.text = "Order Type : DELIVERY"
+                stackViewBottom.isActive = true
             }
             
             

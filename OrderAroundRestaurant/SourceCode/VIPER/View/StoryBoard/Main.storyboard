@@ -5791,6 +5791,7 @@
                         <outlet property="sgstLablel" destination="jCM-0L-PVr" id="1F9-pr-0QT"/>
                         <outlet property="sgstValueLabel" destination="Y2F-rk-hdx" id="cvt-D6-M07"/>
                         <outlet property="shopImageView" destination="8jx-dh-c4i" id="QDu-Oc-0uz"/>
+                        <outlet property="stackViewBottom" destination="rTd-hQ-zZD" id="Wja-f7-G1s"/>
                         <outlet property="subTotalLabel" destination="ZL0-TG-VQV" id="9y4-ta-88M"/>
                         <outlet property="subTotalValueLabel" destination="iXC-OY-r6I" id="nYq-PK-z6p"/>
                         <outlet property="subView" destination="FSg-1P-vf9" id="hBA-Vn-F8i"/>
