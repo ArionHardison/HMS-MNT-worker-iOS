@@ -10,6 +10,7 @@
 		00043D0F24D3ED0500DDD370 /* CommonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00043D0E24D3ED0500DDD370 /* CommonExtension.swift */; };
 		0055D4F824E7B04200714704 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0055D4F624E7B04200714704 /* HistoryTableViewCell.swift */; };
 		0055D4F924E7B04200714704 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0055D4F724E7B04200714704 /* HistoryTableViewCell.xib */; };
+		00D4C19424F9109A0025A861 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D4C19324F9109A0025A861 /* Utility.swift */; };
 		0817913E2237EBE5002165E1 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0817913D2237EBE5002165E1 /* StatusViewController.swift */; };
 		0852342F2226668500446B47 /* DishesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0852342E2226668500446B47 /* DishesViewController.swift */; };
 		08759A11224009BD0030C19D /* RegisterEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08759A10224009BD0030C19D /* RegisterEntity.swift */; };
@@ -185,6 +186,7 @@
 		00043D0E24D3ED0500DDD370 /* CommonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtension.swift; sourceTree = "<group>"; };
 		0055D4F624E7B04200714704 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		0055D4F724E7B04200714704 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		00D4C19324F9109A0025A861 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		0817913D2237EBE5002165E1 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		0852342E2226668500446B47 /* DishesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesViewController.swift; sourceTree = "<group>"; };
 		08759A10224009BD0030C19D /* RegisterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntity.swift; sourceTree = "<group>"; };
@@ -382,6 +384,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00D4C19224F910710025A861 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				00D4C19324F9109A0025A861 /* Utility.swift */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
 		087D0BBA222403FC00E58BDE = {
 			isa = PBXGroup;
 			children = (
@@ -547,6 +557,7 @@
 		087D0C0A22240DCB00E58BDE /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				00D4C19224F910710025A861 /* Utility */,
 				B4086ED82271F0DD008C5BC0 /* SupportingFiles */,
 				08AD19EA223B8DA60009F5F6 /* Chart */,
 				08ACEA0E22393DA50050591D /* UserDefaults */,
@@ -1293,6 +1304,7 @@
 				08A44AD42237B2CE00228233 /* CountryCodeTableViewCell.swift in Sources */,
 				088F9C992247C97E00900EE5 /* GetProductEntity.swift in Sources */,
 				24FC05B422734385003243D9 /* Global.swift in Sources */,
+				00D4C19424F9109A0025A861 /* Utility.swift in Sources */,
 				087D0C192224241500E58BDE /* WebServiceConstants.swift in Sources */,
 				08A14DC0222FA01F00F35B1E /* HistoryViewController.swift in Sources */,
 				08A3B6B722254A330010058B /* Button.swift in Sources */,
@@ -1499,7 +1511,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33.3;
+				CURRENT_PROJECT_VERSION = 33.5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = JU248DMV5X;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
@@ -1523,7 +1535,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33.3;
+				CURRENT_PROJECT_VERSION = 33.5;
 				DEVELOPMENT_TEAM = JU248DMV5X;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

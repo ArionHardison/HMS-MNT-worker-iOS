@@ -112,6 +112,7 @@ struct APPLocalize {
     var deliverycharge = "localize.deliverycharge"
     var tax = "localize.tax"
     var payable = "localize.payable"
+    var paid = "localize.paid"
     var total = "localize.total"
     var promo = "localize.promo"
     

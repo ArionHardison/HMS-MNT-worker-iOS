@@ -73,6 +73,7 @@ class UpcomingDetailViewController: BaseViewController {
     var cancelReasons : CancelReasons?
     var reasonID = Int()
     var OTP : String?
+    var fromNotification: Bool = false
     
     
     override func viewDidLoad() {
@@ -377,7 +378,7 @@ extension UpcomingDetailViewController{
     private func setTitle(){
         deliveryChargeLabel.text = APPLocalize.localizestring.deliverycharge.localize()
         CgstLabel.text = APPLocalize.localizestring.tax.localize()
-        sgstLablel.text = APPLocalize.localizestring.payable.localize()
+        sgstLablel.text = APPLocalize.localizestring.paid.localize()
         promoCodeTitle.text = APPLocalize.localizestring.promo.localize()
     }
     private func setFont(){
@@ -427,7 +428,7 @@ extension UpcomingDetailViewController{
         }
         CgstLabel.text = APPLocalize.localizestring.tax.localize()
         discountLabel.text = APPLocalize.localizestring.kitchenDiscount.localize()
-        sgstLablel.text  = APPLocalize.localizestring.payable.localize()
+        sgstLablel.text  = APPLocalize.localizestring.paid.localize()
         totalLabel.text = APPLocalize.localizestring.total.localize()
         
        shopImageView.sd_setImage(with: URL(string: data.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
@@ -446,34 +447,34 @@ extension UpcomingDetailViewController{
         
         let currency = UserDefaults.standard.value(forKey: Keys.list.currency) as! String
 
-        let deliveryChargeStr: String! = String(describing: data.invoice?.delivery_charge ?? 0)
-        deliveryChargeValueLabel.text = currency + String(format: " %.02f", Double(deliveryChargeStr) ?? 0.0)
+        let deliveryChargeStr: String! = String(describing: (data.invoice?.delivery_charge ?? 0).twoDecimalPoint)
+        deliveryChargeValueLabel.text = currency + deliveryChargeStr //String(format: " %.02f", Double(deliveryChargeStr) ?? 0.0)
         
-        let subTotalStr: String! = String(describing: data.invoice?.gross ?? 0)
-        subTotalValueLabel.text = currency + String(format: " %.02f", Double(subTotalStr) ?? 0.0)
+        let subTotalStr: String! = String(describing: (data.invoice?.gross ?? 0.00).twoDecimalPoint)
+        subTotalValueLabel.text = currency + subTotalStr //String(format: " %.02f", Double(subTotalStr) ?? 0.0)
         if(data.invoice?.payment_mode == "wallet"){
-            let TotalStr: String! = String(describing: data.invoice?.net ?? 0)
-            totalValueLabel.text = currency + String(format: " %.02f", Double(TotalStr) ?? 0.0)
+            let TotalStr: String! = String(describing: (data.invoice?.net ?? 0.00).twoDecimalPoint)
+            totalValueLabel.text = currency + TotalStr//String(format: " %.02f", Double(TotalStr) ?? 0.0)
             
         }else{
-            let TotalStr: String! = String(describing: data.invoice?.payable ?? 0)
-            totalValueLabel.text = currency + String(format: " %.02f", Double(TotalStr) ?? 0.0)
+            let TotalStr: String! = String(describing: (data.invoice?.payable ?? 0.00).twoDecimalPoint)
+            totalValueLabel.text = currency + TotalStr//String(format: " %.02f", Double(TotalStr) ?? 0.0)
         }
         
         
-        let discountStr: String! = String(describing: data.invoice?.discount ?? 0)
-        discountValueLabel.text = "-" + currency + String(format: " %.02f", Double(discountStr) ?? 0.0)
+        let discountStr: String! = String(describing: (data.invoice?.discount ?? 0.00).twoDecimalPoint)
+        discountValueLabel.text = "-" + currency + discountStr//String(format: " %.02f", Double(discountStr) ?? 0.0)
         
-        let sgstStr: String! = String(describing: data.invoice?.payable ?? 0)
-        sgstValueLabel.text = currency + String(format: " %.02f", Double(sgstStr) ?? 0.0)
+        let sgstStr: String! = String(describing: (data.invoice?.payable ?? 0.00).twoDecimalPoint)
+        sgstValueLabel.text = currency + sgstStr //String(format: " %.02f", Double(sgstStr) ?? 0.0)
         
-        let cgstStr: String! = String(describing: data.invoice?.tax ?? 0)
-        cgstValueLabel.text = currency + String(format: " %.02f", Double(cgstStr) ?? 0.0)
+        let cgstStr: String! = String(describing: (data.invoice?.tax ?? 0.00).twoDecimalPoint)
+        cgstValueLabel.text = currency + cgstStr//String(format: " %.02f", Double(cgstStr) ?? 0.0)
         
         promoCodeStackView.isHidden = data.invoice?.promocode_amount ?? 0 > 0 ? false : true
         
-        let promoStr: String! = String(describing: data.invoice?.promocode_amount ?? 0)
-        promoCodeDetailLbl.text = "-" + currency + String(format: " %.02f", Double(promoStr) ?? 0.0)
+        let promoStr: String! = String(describing: (data.invoice?.promocode_amount ?? 0.00).twoDecimalPoint)
+        promoCodeDetailLbl.text = "-" + currency + promoStr //String(format: " %.02f", Double(promoStr) ?? 0.0)
         
         if (data.status == "ORDERED") || (data.status == "PICKUP_USER") || (data.status == "READY")  {
            // acceptButton.isHidden = false
@@ -531,7 +532,7 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
         let currency = Data.product?.prices?.currency ?? "$"
         let priceStr: String! = String(describing: Data.product?.prices?.orignal_price ?? 0)
         let priceDouble: Double = Double(priceStr) ?? 0.0
-        cell.titleLabel.text = "\(productName ?? "")(\(quantity1)x\(currency)\(String(format: "%.02f", priceDouble)))"
+        cell.titleLabel.text = "\(productName ?? "")(\(quantity1)x\(currency)\(priceDouble.twoDecimalPoint))"
         var addonsNameArr = [String]()
         addonsNameArr.removeAll()
         
@@ -563,9 +564,9 @@ extension UpcomingDetailViewController: UITableViewDelegate,UITableViewDataSourc
                 
             }
             let quantityStr = Double(Data.quantity ?? 0)
-            let originalPrice = Double(Data.product?.prices?.orignal_price ?? 0)
+            let originalPrice = Double((Data.product?.prices?.orignal_price ?? 0.00))
             let value =   originalPrice * quantityStr
-            cell.descriptionLabel.text = currency + String(format: " %.02f", Double(value))
+            cell.descriptionLabel.text = currency + value.twoDecimalPoint //String(format: " %.02f", Double(value))
             let addonsstr = addonsNameArr.joined(separator: "\n")
             cell.subTitleLabel.text = addonsstr
             let addOnPriceStr = addonPriceArr.joined(separator: "\n")
@@ -612,9 +613,17 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
         if String(describing: modelClass) == model.type.OrderDetailModel {
             let data = dataDict as? OrderDetailModel
             
-             print("data>>>>>>",data)
-            fetchOrderDetails(data: (data?.order)!)
+            // print("data>>>>>>",data)
+           /* if fromNotification{
+                if data?.order?.pickup_from_restaurants ?? 0 == 1{
+                    fromwhere = "TAKEAWAY"
+                }else{
+                    fromwhere = "HOME"
+                }
+            }*/
             
+            fetchOrderDetails(data: (data?.order)!)
+            self.OTP = "\(data?.order?.order_otp ?? 0)"
             if data?.order?.pickup_from_restaurants ?? 0 == 1{
                 locationView.isHidden = true
                 orderTypeLbl.text = "Order Type : PICKUP"
@@ -710,7 +719,7 @@ extension UpcomingDetailViewController : OTPDelegate {
           //showActivityIndicator()
               let urlStr = "\(Base.getOrder.rawValue)/" + String(OrderId)
               let parameters:[String:Any] = ["status": "COMPLETED",
-                                             "_method":"PATCH"]
+                                             "_method":"PATCH", "otp": otpString]
          self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
 
         

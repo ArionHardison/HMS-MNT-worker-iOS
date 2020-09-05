@@ -83,7 +83,7 @@ extension AppDelegate {
                      didReceiveRemoteNotification notification: [AnyHashable : Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         print("Notification  :  ", notification)
-        
+        self.handleNotification(userInfo: (notification as? [String: Any])!)
         completionHandler(.newData)
         
     }
@@ -92,6 +92,37 @@ extension AppDelegate {
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         
         print("Error in Notification  \(error.localizedDescription)")
+    }
+    
+    func handleNotification(userInfo: [String:Any]) {
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            if let mainNav = appDelegate.window?.rootViewController as? UINavigationController{
+                
+                print(userInfo)
+                
+                guard let payLoad = userInfo["extraPayLoad"] as? [String: Any] else {return}
+                guard let custom = payLoad["custom"] as? [String: Any] else {return}
+                //guard let disputeStatus = custom["dispute_status"] as? String else {return}
+                guard let orderId = custom["order_id"] as? Int else {return}
+                //guard let page = custom["page"] as? String else {return}
+                guard let status = custom["status"] as? String else {return}
+                
+                
+                if status == "ORDERED"{
+                    guard let appDelegate = UIApplication.shared.delegate as? AppDelegate, let rootViewController = appDelegate.window?.rootViewController else {return }
+                    let topController  = Utility.instance.topViewControllerWithRootViewController(rootViewController: rootViewController)
+                    
+                    if !(topController is UpcomingDetailViewController){
+                        
+                        let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.UpcomingDetailViewController) as! UpcomingDetailViewController
+                        vc.OrderId = orderId
+                        vc.fromwhere = "HOME"
+                        mainNav.pushViewController(vc, animated: true)
+                    }
+                }
+            }
+        }
     }
     
     

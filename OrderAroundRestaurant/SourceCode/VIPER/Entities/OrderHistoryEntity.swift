@@ -272,17 +272,17 @@ struct Invoice : Mappable {
     var id : Int?
     var order_id : Int?
     var quantity : Int?
-    var paid : Int?
-    var gross : Int?
-    var discount : Int?
-    var delivery_charge : Int?
-    var wallet_amount : Int?
+    var paid : Double?
+    var gross : Double?
+    var discount : Double?
+    var delivery_charge : Double?
+    var wallet_amount : Double?
     var promocode_id : Int?
-    var promocode_amount : Int?
+    var promocode_amount : Double?
     var payable : Double?
     var tax : Double?
     var net : Double?
-    var total_pay : Int?
+    var total_pay : Double?
     var tender_pay : Int?
     var ripple_price : String?
     var destinationTag : String?
@@ -380,8 +380,8 @@ struct Ordertiming : Mappable {
 
 struct Prices : Mappable {
     var id : Int?
-    var price : Int?
-    var orignal_price : Int?
+    var price : Double?
+    var orignal_price : Double?
     var currency : String?
     var discount : Int?
     var discount_type : String?

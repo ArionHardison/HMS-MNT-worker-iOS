@@ -39,14 +39,14 @@ class ItemListTableViewCell: UITableViewCell {
     func setFont(){
         titleLabel.font = UIFont.regular(size: 14)
         descriptionLabel.font = UIFont.regular(size: 14)
-        subTitleLabel.font = UIFont.regular(size: 14)
-        addOnsPriceLabel.font = UIFont.regular(size: 14)
+        subTitleLabel.font = UIFont.regular(size: 12)
+        addOnsPriceLabel.font = UIFont.regular(size: 12)
     }
    
     func setColor(){
         titleLabel.textColor =  UIColor.darkGray
         descriptionLabel.textColor = UIColor.darkGray
-        subTitleLabel.textColor = UIColor.darkGray
+        subTitleLabel.textColor = UIColor.gray
         addOnsPriceLabel.textColor = UIColor.darkGray
     }
     

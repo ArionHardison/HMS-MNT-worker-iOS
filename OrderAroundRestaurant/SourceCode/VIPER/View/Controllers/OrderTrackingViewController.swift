@@ -180,7 +180,7 @@ extension OrderTrackingViewController{
         subTotalLabel.text = APPLocalize.localizestring.subTotal.localize()
         deliveryChargeLabel.text = APPLocalize.localizestring.deliverycharge.localize()
         CgstLabel.text = APPLocalize.localizestring.tax.localize()
-        sgstLablel.text = APPLocalize.localizestring.payable.localize()
+        sgstLablel.text = APPLocalize.localizestring.paid.localize()
     }
     private func setRegister(){
         let editTimenib = UINib(nibName: XIB.Names.ItemListTableViewCell, bundle: nil)
@@ -305,13 +305,13 @@ extension OrderTrackingViewController: UITableViewDelegate,UITableViewDataSource
         let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.ItemListTableViewCell, for: indexPath) as! ItemListTableViewCell
         
         let Data = self.CartOrderArr[indexPath.row]
-        let price = Data.product?.prices?.orignal_price ?? 0
+        let price = Data.product?.prices?.orignal_price ?? 0.00
         let productName = Data.product?.name ?? ""
         let quantityStr = "\(Data.quantity ?? 0)"
         cell.titleLabel.text = "\(productName)(\(quantityStr) x \(Double(price).twoDecimalPoint))" //productName! + " x " + quantityStr
         let currency = Data.product?.prices?.currency ?? "$"
         let quantity = Data.quantity ?? 0
-        let totalPrice:Int = (quantity * price)
+        let totalPrice = ((Double(quantity)) * price)
         cell.descriptionLabel.text = currency + "\(Double(totalPrice).twoDecimalPoint)"
         
         var addonsNameArr = [String]()

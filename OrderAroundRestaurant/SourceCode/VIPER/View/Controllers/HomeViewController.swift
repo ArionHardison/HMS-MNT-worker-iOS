@@ -202,8 +202,13 @@ extension HomeViewController: UITableViewDelegate,UITableViewDataSource{
                 cell.statusLabel.text = "Processing"
                 cell.statusLabel.textColor = UIColor.primary
             }else{
-                cell.statusLabel.text = "Dispute Created"
-                cell.statusLabel.textColor = UIColor.red
+                if dict.dispute == "CREATED"{
+                    cell.statusLabel.text = "Dispute Created"
+                    cell.statusLabel.textColor = UIColor.red
+                }else{
+                    cell.statusLabel.text = ""
+                    cell.statusLabel.textColor = UIColor.red
+                }
             }
             
             cell.scheduleValue.textColor = .systemRed

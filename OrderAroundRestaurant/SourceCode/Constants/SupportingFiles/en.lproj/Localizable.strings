@@ -53,7 +53,7 @@
 "localize.createProduct" = "Create Product";
 "localize.name" = "Name";
 "localize.description" = "Description";
-"localize.productCusine" = "Product Cusine";
+"localize.productCusine" = "Product Cuisine";
 "localize.status" = "Status";
 "localize.productOrder" = "Product Order";
 "localize.Category" = "Category";
@@ -95,6 +95,7 @@
 "localize.deliverycharge" = "Delivery Charges";
 "localize.tax" = "Tax";
 "localize.payable" = "Payable";
+"localize.paid" = "Paid";
 "localize.total" = "Total";
 "localize.promo" = "Promo Code";
 
