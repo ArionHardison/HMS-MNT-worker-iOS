@@ -23,11 +23,14 @@ class RevenueViewController: BaseViewController, ChartViewDelegate {
     @IBOutlet weak var totalRevenueValueLabel: UILabel!
     @IBOutlet weak var totalRenvenueLabel: UILabel!
     @IBOutlet weak var barChartView: BarChartView!
-    let xaxisValue: [String] = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
-    let yaxisValue: [String] = ["0", "100", "200", "300", "400"]
+    
+    @IBOutlet var noOfOrdersLbl: UILabel!
+    //let xaxisValue: [String] = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
+    //let yaxisValue: [String] = ["0", "100", "200", "300", "400"]
+    var xaxisValue: [String] = []
     var delivered = [Int]()
     var cancelled = [Int]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
        //self.navigationController?.isNavigationBarHidden = true
@@ -66,7 +69,7 @@ extension RevenueViewController{
     private func setFont(){
         totalRevenueValueLabel.text = APPLocalize.localizestring.totalRevenue.localize()
         orderReceivedLabel.text = "Order Received Today" //APPLocalize.localizestring.orderReceived.localize()
-        orderDeliveryLabel.text = "Order Delivered Today" //APPLocalize.localizestring.orderDelivered.localize()
+        orderDeliveryLabel.text = "Order Completed Today" //APPLocalize.localizestring.orderDelivered.localize()
         totalEarningLabel.text = APPLocalize.localizestring.todayEarnings.localize()
         monthlyEarningLabel.text = APPLocalize.localizestring.monthlyEarnings.localize()
         totalEarningValueLabel.font = UIFont.regular(size: 14)
@@ -80,6 +83,7 @@ extension RevenueViewController{
         totalRevenueValueLabel.font = UIFont.regular(size: 15)
         totalRenvenueLabel.font = UIFont.bold(size: 14)
         totalRevenueValueLabel.textColor = UIColor.primary
+        noOfOrdersLbl.font = UIFont.regular(size: 12)
     }
     private func getRevenueApi(){
         showActivityIndicator()
@@ -112,7 +116,7 @@ extension RevenueViewController {
     }
     
     func setupView() {
-        
+    
         //legend
         let legend = barChartView.legend
         legend.enabled = true
@@ -154,7 +158,6 @@ extension RevenueViewController {
         xaxis.enabled = true
         xaxis.labelCount = xaxisValue.count
         barChartView.delegate = self
-        barChartView.noDataText = "You need to provide data for the chart."
         barChartView.noDataTextColor = UIColor.lightGray
         barChartView.chartDescription?.textColor = UIColor.lightGray
         
@@ -175,7 +178,7 @@ extension RevenueViewController {
             dataEntries1.append(dataEntry1)
         }
         
-        let chartDataSet = BarChartDataSet(values: dataEntries, label: APPLocalize.localizestring.orderDelivered.localize())
+        let chartDataSet = BarChartDataSet(values: dataEntries, label: APPLocalize.localizestring.orderCompleted.localize())
         let chartDataSet1 = BarChartDataSet(values: dataEntries1, label: APPLocalize.localizestring.orderCancelled.localize())
         
         let dataSets: [BarChartDataSet] = [chartDataSet,chartDataSet1]
@@ -190,18 +193,16 @@ extension RevenueViewController {
         
         chartData.barWidth = barWidth
         
-        //barChartView.xAxis.axisMinimum = 0.0
-        //barChartView.xAxis.axisMaximum = 0.0 + chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace) * Double(self.xaxisValue.count)
-        
+        barChartView.xAxis.axisMinimum = 0.0
+        barChartView.xAxis.axisMaximum = 0.0 + chartData.groupWidth(groupSpace: groupSpace, barSpace: barSpace) * Double(self.xaxisValue.count)
         chartData.groupBars(fromX: 0.0, groupSpace: groupSpace, barSpace: barSpace)
-        
-       // barChartView.xAxis.granularity = barChartView.xAxis.axisMaximum / Double(self.xaxisValue.count)
+        barChartView.xAxis.granularity = barChartView.xAxis.axisMaximum / Double(self.xaxisValue.count)
         barChartView.data = chartData
         barChartView.notifyDataSetChanged()
-        //barChartView.setVisibleXRangeMaximum(4)
+        //barChartView.setVisibleXRangeMaximum(12)
         barChartView.animate(yAxisDuration: 1.0, easingOption: .linear)
 
-        chartData.setValueTextColor(UIColor.white)
+        chartData.setValueTextColor(UIColor.clear)
     }
     
 
@@ -224,7 +225,12 @@ extension RevenueViewController: PresenterOutputProtocol {
             let monthlyEarningStr = Double(data?.orderIncomeMonthly ?? 0).twoDecimalPoint
             monthlyEarningValueLabel.text = "\(currency) \(monthlyEarningStr)"
             
+            //Modified
+            self.xaxisValue = data?.deliveredOrders?.map{$0.monthName} as? [String] ?? []
+            self.delivered = data?.deliveredOrders?.map{$0.orderCount} as? [Int] ?? []
+            self.cancelled = data?.cancelledOrders?.map{$0.orderCount} as? [Int] ?? []
             
+            /*self.xaxisValue = data?.complete_cancel?.map{$0.month} as? [String] ?? []
             for Dic in data?.complete_cancel ?? []{
                 
                 let cancelledValue : String = {
@@ -247,7 +253,7 @@ extension RevenueViewController: PresenterOutputProtocol {
                 self.delivered.append(Int(deliveredValue) ?? 0)
                 print(self.delivered)
                 print(self.cancelled)
-            }
+            }*/
             self.setupView()
 
             

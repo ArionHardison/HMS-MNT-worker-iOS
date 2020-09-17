@@ -68,7 +68,7 @@ struct APPLocalize {
     var todayEarnings   = "localize.todayEarnings"
     var monthlyEarnings = "localize.monthlyEarnings"
     var orderCancelled  = "localize.orderCancelled"
-    
+    var orderCompleted  = "localize.orderCompleted"
     var addons   = "localize.addons"
     var category = "localize.category"
     var product  = "localize.product"

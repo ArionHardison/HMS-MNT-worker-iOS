@@ -16,6 +16,9 @@ struct RevenueModel : Mappable {
     var orderIncomeMonthly : Int?
     var orderIncomeToday : Int?
     var complete_cancel : [Complete_cancel]?
+    var deliveredOrders : [RevenueOrders]?
+    var cancelledOrders : [RevenueOrders]?
+    var receivedOrders : [RevenueOrders]?
     
     init?(map: Map) {
         
@@ -29,6 +32,9 @@ struct RevenueModel : Mappable {
         orderIncomeMonthly <- map["OrderIncomeMonthly"]
         orderIncomeToday <- map["OrderIncomeToday"]
         complete_cancel <- map["complete_cancel"]
+        deliveredOrders <- map["deliveredOrders"]
+        cancelledOrders <- map["cancelledOrders"]
+        receivedOrders <- map["receivedOrders"]
     }
     
 }
@@ -54,4 +60,22 @@ struct Complete_cancel : Mappable {
         monthdate <- map["monthdate"]
     }
     
+}
+
+struct RevenueOrders: Mappable {
+    
+    var orderCount: Int?
+    var month: String?
+    var monthName: String?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        orderCount <- map["count"]
+        month <- map["month"]
+        monthName <- map["monthName"]
+    }
 }

@@ -187,7 +187,8 @@ class CreateProductViewController: BaseViewController {
             
             if cuisineURL != "" {
                 
-                parameters["image_gallery_img"] = cuisineURL
+                //parameters["image_gallery_img"] = cuisineURL
+                parameters["featuredimage_gallery_img"] = cuisineURL
             }
             if feturedURL != "" {
                 
@@ -264,7 +265,8 @@ class CreateProductViewController: BaseViewController {
             }
             if cuisineURL != "" {
                 
-                parameters["image_gallery_img"] = cuisineURL
+                //parameters["image_gallery_img"] = cuisineURL
+                parameters["featuredimage_gallery_img"] = cuisineURL
             }
             if feturedURL != "" {
                 

@@ -69,7 +69,7 @@ class HistoryTableViewCell: UITableViewCell {
             paymentModeLbl.attributedText = self.setAttributedString(baseString: "Payment Mode : \(orderObj.invoice?.payment_mode ?? "")", setString: "\(orderObj.invoice?.payment_mode ?? "")", font: UIFont.regular(size: 18), color: .darkGray)
         }
         deliveryTimeLbl.text = "Delivery Time : \(orderObj.delivery_date?.convertedDateTime() ?? "")"
-        priceDetailLbl.text = "$\(orderObj.invoice?.payable ?? 0)"
+        priceDetailLbl.text = "$\(orderObj.invoice?.net ?? 0)"
         deliveryTimeLbl.attributedText = self.setAttributedString(baseString: "Delivery Time : \(orderObj.delivery_date?.convertedDateTime() ?? "")", setString: "\(orderObj.delivery_date?.convertedDateTime() ?? "")", font:  UIFont.regular(size: 18), color: .primary)
         
         /*if orderObj.schedule_status != nil && orderObj.schedule_status == 1{

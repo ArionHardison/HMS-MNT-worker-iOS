@@ -36,6 +36,7 @@
 "localize.todayEarnings" = "Today Earnings";
 "localize.monthlyEarnings" = "Monthly Earnings";
 "localize.orderCancelled" = "Ordered Cancelled";
+"localize.orderCompleted" = "Order Completed";
 
 "localize.addons" = "ADDONS";
 "localize.category" = "CATEGORY";
