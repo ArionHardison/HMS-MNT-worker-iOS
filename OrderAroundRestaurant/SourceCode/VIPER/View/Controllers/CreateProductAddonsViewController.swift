@@ -46,6 +46,10 @@ class CreateProductAddonsViewController: BaseViewController {
     @IBOutlet weak var labelIngradients: UILabel!
     @IBOutlet weak var featureImageUploadImageView: UIImageView!
     @IBOutlet weak var imageUploadImageView: UIImageView!
+    
+    @IBOutlet var uploadFeatureImageLbl: UILabel!
+    
+    
     var isUploadImage = false
     var isFeatureUploadImage = false
     
@@ -603,6 +607,7 @@ extension CreateProductAddonsViewController{
         yesLabel.font = UIFont.regular(size: 14)
         featuredProductLabel.font = UIFont.bold(size: 15)
         featuredImageUpload.font = UIFont.bold(size: 15)
+        uploadFeatureImageLbl.font = UIFont.bold(size: 15)
         productOrderLabel.font = UIFont.bold(size: 15)
         statusValueLabel.font = UIFont.regular(size: 14)
         labelExistingLabel.font = UIFont.bold(size: 15)

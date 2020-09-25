@@ -56,10 +56,14 @@ extension Webservice : WebServiceProtocol {
             if httpMethod == .get {
                 request(url, method: .get, parameters: nil,encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                     
-                    if let theJSONData = try? JSONSerialization.data(withJSONObject: response.result.value! , options: []) {
-                        let theJSONText = String(data: theJSONData, encoding: .ascii)
-                        print("JSON Resoponse: \(theJSONText ?? "")")
+                    #if DEBUG
+                    if let responseObj = response.result.value as? [String: AnyObject]{
+                        if let theJSONData = try? JSONSerialization.data(withJSONObject: responseObj, options: []) {
+                            let theJSONText = String(data: theJSONData, encoding: .ascii)
+                            print("JSON Resoponse: \(theJSONText ?? "")")
+                        }
                     }
+                    #endif
                     
                     switch response.result {
                     case .failure:
@@ -90,11 +94,14 @@ extension Webservice : WebServiceProtocol {
             }else if httpMethod == .delete {
                 request(url, method: .delete, parameters: nil,encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                     
-                    if let theJSONData = try? JSONSerialization.data(withJSONObject: response.result.value!, options: []) {
-                        let theJSONText = String(data: theJSONData, encoding: .ascii)
-                        print("JSON Resoponse: \(theJSONText!)")
+                    #if DEBUG
+                    if let responseObj = response.result.value as? [String: AnyObject]{
+                        if let theJSONData = try? JSONSerialization.data(withJSONObject: responseObj, options: []) {
+                            let theJSONText = String(data: theJSONData, encoding: .ascii)
+                            print("JSON Resoponse: \(theJSONText ?? "")")
+                        }
                     }
-                    
+                    #endif
                     
                     switch response.result {
                     
@@ -125,10 +132,14 @@ extension Webservice : WebServiceProtocol {
             else  if httpMethod == .post {
                 request(url, method: .post, parameters: params,encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                     
-                    if let theJSONData = try? JSONSerialization.data(withJSONObject: response.result.value!, options: []) {
-                        let theJSONText = String(data: theJSONData, encoding: .ascii)
-                        print("JSON Resoponse: \(theJSONText!)")
+                    #if DEBUG
+                    if let responseObj = response.result.value as? [String: AnyObject]{
+                        if let theJSONData = try? JSONSerialization.data(withJSONObject: responseObj, options: []) {
+                            let theJSONText = String(data: theJSONData, encoding: .ascii)
+                            print("JSON Resoponse: \(theJSONText ?? "")")
+                        }
                     }
+                    #endif
                     
                     switch response.result {
          
@@ -159,11 +170,14 @@ extension Webservice : WebServiceProtocol {
             } else  if httpMethod == .patch {
                 request(url, method: .patch, parameters: params,encoding: JSONEncoding.default, headers: headers).responseJSON{ response in
                     
-                    if let theJSONData = try? JSONSerialization.data(withJSONObject: response.result.value!, options: []) {
-                        let theJSONText = String(data: theJSONData, encoding: .ascii)
-                        print("JSON Resoponse: \(theJSONText!)")
+                    #if DEBUG
+                    if let responseObj = response.result.value as? [String: AnyObject]{
+                        if let theJSONData = try? JSONSerialization.data(withJSONObject: responseObj, options: []) {
+                            let theJSONText = String(data: theJSONData, encoding: .ascii)
+                            print("JSON Resoponse: \(theJSONText ?? "")")
+                        }
                     }
-                    
+                    #endif
                     
                     
                     switch response.result {

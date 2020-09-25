@@ -49,6 +49,7 @@ class EditTimingViewController: BaseViewController {
     var addOnsPrice = [String]()
     var featureStr = ""
     var offerPercent = ""
+    var offerType = ""
     var maxDelivery = ""
     var address = ""
     var landmark = ""
@@ -61,6 +62,7 @@ class EditTimingViewController: BaseViewController {
     var shopImageId = 0
     var bannerID = 0
     var isHalal = false
+    var isFreeDelivery = false
     var shopURL = String()
     var bannerURL = String()
     
@@ -132,6 +134,7 @@ class EditTimingViewController: BaseViewController {
                 "description":descriptionStr,
                 "offer_min_amount":offer_min_amount,
                 "offer_percent":offerPercent,
+                "offer_type": offerType,
                 "address":landmark,
                 "maps_address":address,
                 "latitude":latitude,
@@ -145,7 +148,8 @@ class EditTimingViewController: BaseViewController {
                 "hours_closing":["ALL":closeTime],
                 "i_offer[0]": isTakeaway ? 1 : 0,
                 "i_offer[1]": isDelivery ? 2 : 0,
-                "halal" : isHalal ? 1 : 0
+                "halal" : isHalal ? 1 : 0,
+                "free_delivery" : isFreeDelivery ? 1 : 0,
                 ] as [String : Any]
                 
                 var cusine = [Int]()
@@ -227,6 +231,7 @@ class EditTimingViewController: BaseViewController {
                     "description":descriptionStr,
                     "offer_min_amount":offer_min_amount,
                     "offer_percent":offerPercent,
+                    "offer_type": offerType,
                     "address":landmark,
                     "maps_address":address,
                     "latitude":latitude,

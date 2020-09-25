@@ -20,6 +20,7 @@ struct ProfileModel : Mappable {
     var description : String?
     var offer_min_amount : Int?
     var offer_percent : Int?
+    var offer_type: String?
     var estimated_delivery_time : Int?
     var address : String?
     var maps_address : String?
@@ -61,6 +62,7 @@ struct ProfileModel : Mappable {
         description <- map["description"]
         offer_min_amount <- map["offer_min_amount"]
         offer_percent <- map["offer_percent"]
+        offer_type <- map["offer_type"]
         estimated_delivery_time <- map["estimated_delivery_time"]
         address <- map["address"]
         maps_address <- map["maps_address"]

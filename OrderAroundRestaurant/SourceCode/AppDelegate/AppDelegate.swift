@@ -120,6 +120,7 @@ extension AppDelegate {
                         let vc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.UpcomingDetailViewController) as! UpcomingDetailViewController
                         vc.OrderId = orderId
                         vc.fromwhere = "HOME"
+                        vc.fromNotification = true
                         //mainNav.pushViewController(vc, animated: true)
                         mainNav.setViewControllers([homeTabBarVC, vc], animated: true)
                     }

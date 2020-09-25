@@ -128,3 +128,6 @@
 "localize.alreadyRegister" = "Already Registered? Login";
 "localize.deliveryTime" = "Delivery Time";
 "localize.scheduleDate" = "Schedule Date";
+"localize.termsOfServiceTitle" = "TERMS OF SERVICE";
+"localize.privacyPolicyTitle" = "PRIVACY POLICY";
+"localize.oyolaCreditApplied" = "Oyola Credit applied";

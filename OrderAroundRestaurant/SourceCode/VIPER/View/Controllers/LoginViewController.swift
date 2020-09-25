@@ -21,6 +21,7 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var buttonForgotPwd: UIButton!
+    @IBOutlet var termsLbl: UILabel!
     
     private var logindata: LoginModel?
     //MARK:- viewDidLoad
@@ -35,6 +36,7 @@ class LoginViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         enableKeyboardHandling()
+        setupTermsLbl()
         if(fromRegister) {
             
             self.showToast(msg: "Registered successfully")
@@ -44,7 +46,7 @@ class LoginViewController: BaseViewController {
             self.showToast(msg: "Restaurant deleted successfully")
             fromRegister = false
         }
-       // self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.isNavigationBarHidden = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -61,6 +63,45 @@ class LoginViewController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    func setupTermsLbl() {
+        
+        
+        let text = "By continuing, You agree to the \n Terms of Services and Privacy Policy"
+        termsLbl.text = text
+        termsLbl.font = UIFont.regular(size: 15.0)
+        self.termsLbl.textColor =  UIColor.lightGray
+        let underlineAttriString = NSMutableAttributedString(string: text)
+        let range1 = (text as NSString).range(of: "Terms of Services")
+        let range2 = (text as NSString).range(of: "Privacy Policy")
+        underlineAttriString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range1)
+        underlineAttriString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: range2)
+        underlineAttriString.addAttribute(NSAttributedString.Key.font, value: UIFont(name: NunitoText.nunitoTextbold.rawValue, size: 14)!, range: range1)
+        underlineAttriString.addAttribute(NSAttributedString.Key.font, value: UIFont(name: NunitoText.nunitoTextbold.rawValue, size: 14)!, range: range2)
+        underlineAttriString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.primary, range: range1)
+        underlineAttriString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.primary, range: range2)
+        termsLbl.attributedText = underlineAttriString
+        termsLbl.isUserInteractionEnabled = true
+        //termsLbl.lineBreakMode = .byWordWrapping
+        let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(tappedOnLabel(_:)))
+        tapGesture.numberOfTouchesRequired = 1
+        termsLbl.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func tappedOnLabel(_ gesture: UITapGestureRecognizer) {
+        guard let text = termsLbl.text else { return }
+        let numberRange = (text as NSString).range(of: "Terms of Services")
+        let emailRange = (text as NSString).range(of: "Privacy Policy")
+        let termsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: Storyboard.Ids.TermsConditionViewController) as! TermsConditionViewController
+        if gesture.didTapAttributedTextInLabel(label: self.termsLbl, inRange: numberRange) {
+            print("terms tapped")
+            termsVC.isTerms = true
+        } else if gesture.didTapAttributedTextInLabel(label: self.termsLbl, inRange: emailRange) {
+            print("Privacy Policy tapped")
+            termsVC.isTerms = false
+        }
+        self.navigationController?.pushViewController(termsVC, animated: true)
+    }
 
     @IBAction func onRegisterAction(_ sender: Any) {
         let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.RegisterViewController) as! RegisterViewController

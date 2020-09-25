@@ -53,6 +53,7 @@ struct Storyboard {
     let PDFLoaderViewController = "PDFLoaderViewController"
     let ForgotPasswordViewController = "ForgotPasswordViewController"
     let VerificationViewController = "VerificationViewController"
+    let TermsConditionViewController = "TermsConditionViewController"
     
     
     

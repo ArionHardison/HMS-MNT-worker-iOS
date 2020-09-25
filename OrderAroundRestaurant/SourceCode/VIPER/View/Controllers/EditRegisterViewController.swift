@@ -82,6 +82,15 @@ class EditRegisterViewController: BaseViewController {
     
     @IBOutlet weak var labelSelectedBannerImg: UILabel!
     
+    
+    
+    @IBOutlet weak var discount: UILabel!
+    @IBOutlet weak var discountTextField: UITextField!
+    @IBOutlet weak var discountTypeView: UIView!
+    @IBOutlet weak var discountTypeValueLabel: UILabel!
+    @IBOutlet weak var discountTypeLabel: UILabel!
+    
+    
     var isImageUpload = false
     var isShopBannerImage = false
     var isNo = false
@@ -140,7 +149,15 @@ class EditRegisterViewController: BaseViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
-
+    @IBAction func onDiscountAction(_ sender: Any) {
+        
+        let statusController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.StatusViewController) as! StatusViewController
+        statusController.isCategory = false
+        statusController.datePickerValues = ["Percentage","Amount"]
+        statusController.delegate = self
+        self.present(statusController, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -375,10 +392,21 @@ class EditRegisterViewController: BaseViewController {
             return
         }
         
-        guard let offerPercent = offerPercentTextField.text, !offerPercent.isEmpty else{
+       /* guard let offerPercent = offerPercentTextField.text, !offerPercent.isEmpty else{
             showToast(msg: "Please Enter Offer Percent")
             return
+        }*/
+        
+        guard let discountType = discountTypeValueLabel.text, !discountType.isEmpty else{
+            showToast(msg: ErrorMessage.list.enterDiscountType)
+            return
         }
+        
+        guard let discount = discountTextField.text, !discount.isEmpty else{
+            showToast(msg: ErrorMessage.list.enterDiscount)
+            return
+        }
+        
         guard let maxDelivery = maximumDeliveryTextField.text, !maxDelivery.isEmpty else{
             showToast(msg: "Please Enter Maximum Delivery Time")
             return
@@ -428,8 +456,8 @@ class EditRegisterViewController: BaseViewController {
                                        "estimated_delivery_time":maximumDeliveryTextField.text!,
                                        "description":descriptionTextField.text!,
                                        "maps_address":addressValueLabel.text!,
-                                       "offer_percent":offerPercentTextField.text!,
-                                       
+                                       //"offer_percent":offerPercentTextField.text!,
+                                       "offer_percent":discountTextField.text?.count ?? 0 > 0 ? discountTextField.text ?? "0" : 0,
                                        "latitude":latStr,
                                        "longitude":longStr,
                                        //"image_gallery_id":self.selectedImageID,
@@ -438,6 +466,12 @@ class EditRegisterViewController: BaseViewController {
                                        "halal"  : isHalal ? 1 : 0,
                                        "free_delivery" : isFreeDelivery ? 1 : 0,
                                        "method":"PATCH"] //   "address":landmarkTextField.text ?? "asdasdasdasd",
+        
+        if discountTypeValueLabel.text == "Percentage" {
+             parameters["offer_type"] = "PERCENTAGE"
+        }else if discountTypeValueLabel.text == "Amount"{
+             parameters["offer_type"] = "AMOUNT"
+        }
         
         
          var cusineArray = [Int]()
@@ -545,7 +579,8 @@ extension EditRegisterViewController {
         self.addShadowTextField(textField: self.emailAddressTextField)
         self.addShadowTextField(textField: self.nameTextField)
         self.addShadowTextField(textField: self.phoneNumberTextField)
-        self.addShadowTextField(textField: self.offerPercentTextField)
+        //self.addShadowTextField(textField: self.offerPercentTextField)
+        self.addShadowTextField(textField: self.discountTextField)
         self.addShadowTextField(textField: self.minAmountTextField)
         self.addShadowTextField(textField: self.descriptionTextField)
         self.addShadowTextField(textField: self.landmarkTextField)
@@ -556,6 +591,7 @@ extension EditRegisterViewController {
         self.addShadowView(view: phoneNumberView)
         self.addShadowView(view: imageUploadView)
         self.addShadowView(view: shopBannerView)
+        self.addShadowView(view: discountTypeView)
     }
     
     private func setRadioTintColor(){
@@ -578,10 +614,12 @@ extension EditRegisterViewController {
         shopBannerImagelabel.text = APPLocalize.localizestring.shopbannerImage.localize()
         vegRestaurantLabel.text = APPLocalize.localizestring.isthisveg.localize()
         minAmountLabel.text = APPLocalize.localizestring.minAmount.localize()
-        offerPercentLabel.text = APPLocalize.localizestring.offerinper.localize()
+        //offerPercentLabel.text = APPLocalize.localizestring.offerinper.localize()
         maximumDeliveryLabel.text = APPLocalize.localizestring.maxdelivery.localize()
         addressLabel.text = APPLocalize.localizestring.address.localize()
         landmarkLabel.text = APPLocalize.localizestring.landmark.localize()
+        discountTypeLabel.text = APPLocalize.localizestring.discountType.localize()
+        discount.text = APPLocalize.localizestring.discount.localize()
     }
     
     
@@ -600,11 +638,11 @@ extension EditRegisterViewController {
         phoneNumberTextField.delegate = self
         nameTextField.delegate = self
         minAmountTextField.delegate = self
-        offerPercentTextField.delegate = self
+        //offerPercentTextField.delegate = self
         maximumDeliveryTextField.delegate = self
         landmarkTextField.delegate = self
         descriptionTextField.delegate = self
-        
+        discountTextField.delegate = self
     }
     private func setTableViewContentInset(){
         registerScrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: self.bottomView.bounds.height, right: 0)
@@ -619,14 +657,16 @@ extension EditRegisterViewController {
         nameTextField.setRightPaddingPoints(10)
         minAmountTextField.setRightPaddingPoints(10)
         minAmountTextField.setLeftPaddingPoints(10)
-        offerPercentTextField.setRightPaddingPoints(10)
-        offerPercentTextField.setLeftPaddingPoints(10)
+        //offerPercentTextField.setRightPaddingPoints(10)
+        //offerPercentTextField.setLeftPaddingPoints(10)
         maximumDeliveryTextField.setRightPaddingPoints(10)
         maximumDeliveryTextField.setLeftPaddingPoints(10)
         landmarkTextField.setRightPaddingPoints(10)
         landmarkTextField.setLeftPaddingPoints(10)
         descriptionTextField.setRightPaddingPoints(10)
         descriptionTextField.setLeftPaddingPoints(10)
+        discountTextField.setRightPaddingPoints(10)
+        discountTextField.setLeftPaddingPoints(10)
     }
     private func setFont(){
         noLabel.font = UIFont.regular(size: 14)
@@ -653,8 +693,8 @@ extension EditRegisterViewController {
         addressValueLabel.font = UIFont.regular(size: 14)
         maximumDeliveryTextField.font = UIFont.regular(size: 14)
         maximumDeliveryLabel.font = UIFont.bold(size: 14)
-        offerPercentTextField.font = UIFont.regular(size: 14)
-        offerPercentLabel.font = UIFont.bold(size: 14)
+        //offerPercentTextField.font = UIFont.regular(size: 14)
+        //offerPercentLabel.font = UIFont.bold(size: 14)
         descriptionLabel.font = UIFont.bold(size: 14)
         descriptionTextField.font = UIFont.regular(size: 14)
         landmarkLabel.font = UIFont.bold(size: 14)
@@ -670,9 +710,10 @@ extension EditRegisterViewController {
         labelSelectBannerImg.font = UIFont.bold(size: 14)
         labelSelectedBannerImg.font = UIFont.bold(size: 14)
         labelSelectCuisineImage.font = UIFont.bold(size: 14)
-
-
-        
+        discount.font = UIFont.regular(size: 14)
+        discountTextField.font = UIFont.regular(size: 14)
+        discountTypeLabel.font = UIFont.regular(size: 14)
+        discountTypeValueLabel.font = UIFont.regular(size: 14)
         
     }
     
@@ -780,8 +821,15 @@ extension EditRegisterViewController: PresenterOutputProtocol {
             let offer_percentStr: String! = String(describing: data?.offer_percent ?? 0)
             let estimatedDeliveryStr: String! = String(describing: data?.estimated_delivery_time ?? 0)
 
+            if data?.offer_type ?? "" == "PERCENTAGE"{
+                self.discountTypeValueLabel.text = "Percentage"
+            }else{
+                self.discountTypeValueLabel.text = "Amount"
+            }
+            
             minAmountTextField.text = offerminamountStr
-            offerPercentTextField.text = offer_percentStr
+            //offerPercentTextField.text = offer_percentStr
+            discountTextField.text = offer_percentStr
             maximumDeliveryTextField.text = estimatedDeliveryStr
             descriptionTextField.text = data?.description
             addressValueLabel.text = data?.maps_address
@@ -1192,7 +1240,12 @@ extension EditRegisterViewController: GMSAutocompleteViewControllerDelegate {
 }
 extension EditRegisterViewController: StatusViewControllerDelegate {
     func setValueShowStatusLabel(statusValue: String) {
-        self.statusValueLabel.text = statusValue
+        
+        if statusValue == "Percentage" || statusValue == "Amount"{
+            self.discountTypeValueLabel.text = statusValue
+        }else{
+            self.statusValueLabel.text = statusValue
+        }
     }
     
     

@@ -50,6 +50,7 @@ enum Base : String{
     case getImagesGallery = "/image-gallery"
     case reasonsList = "/api/shop/reasons"
     case resetPassword = "api/shop/reset/password"
+    case stripeToken = "api/shop/stripe/connect"
     
     
     init(fromRawValue: String){

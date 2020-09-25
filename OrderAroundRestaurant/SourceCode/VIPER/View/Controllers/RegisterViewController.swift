@@ -66,8 +66,6 @@ class RegisterViewController: BaseViewController {
     @IBOutlet weak var addressValueLabel: UILabel!
     @IBOutlet weak var maximumDeliveryTextField: UITextField!
     @IBOutlet weak var maximumDeliveryLabel: UILabel!
-    @IBOutlet weak var offerPercentTextField: UITextField!
-    @IBOutlet weak var offerPercentLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var descriptionTextField: UITextField!
     @IBOutlet weak var landmarkLabel: UILabel!
@@ -78,11 +76,24 @@ class RegisterViewController: BaseViewController {
     @IBOutlet weak var AddressView: UIView!
     
     @IBOutlet weak var labelHalal: UILabel!
+    @IBOutlet weak var labelFreeDelivery: UILabel!
+     @IBOutlet weak var buttonFreeDelivery: UIButton!
+    
+    
     @IBOutlet weak var imagesGalleryCV: UICollectionView!
     //MARK:- Declaration
     
     @IBOutlet weak var bannerGalleryCV: UICollectionView!
     @IBOutlet weak var labelSelectBanner: UILabel!
+    
+    
+    @IBOutlet weak var discount: UILabel!
+    @IBOutlet weak var discountTextField: UITextField!
+    @IBOutlet weak var discountTypeView: UIView!
+    @IBOutlet weak var discountTypeValueLabel: UILabel!
+    @IBOutlet weak var discountTypeLabel: UILabel!
+    
+    
     var isImageUpload = false
     var isShopBannerImage = false
     var isNo = false
@@ -104,6 +115,7 @@ class RegisterViewController: BaseViewController {
     var shopImage = 0
     var shopImgURL = String()
     var bannerImgURL = String()
+    var isFreeDelivery = false
 
     @IBOutlet weak var btnShopARemove: UIButton!
     @IBOutlet weak var btnShopChange: UIButton!
@@ -164,6 +176,17 @@ class RegisterViewController: BaseViewController {
       //  self.navigationController?.isNavigationBarHidden = false
     }
 
+    
+    @IBAction func discountTypeAction(_ sender: Any) {
+        
+        let statusController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.StatusViewController) as! StatusViewController
+        statusController.isCategory = false
+        statusController.datePickerValues = ["Percentage","Amount"]
+        statusController.delegate = self
+        self.present(statusController, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func onShopBannerUploadAction(_ sender: Any) {
         self.showImage { (selectedImage) in
             self.isShopBannerImage = true
@@ -207,6 +230,11 @@ class RegisterViewController: BaseViewController {
             isHalal = !isHalal
             self.buttonHalal.setImage(isHalal ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
             
+            
+        }else if sender.tag == 4{
+            
+            isFreeDelivery = !isFreeDelivery
+            self.buttonFreeDelivery.setImage(isFreeDelivery ? #imageLiteral(resourceName: "radioon") : #imageLiteral(resourceName: "radiooff"), for: .normal)
             
         }
   
@@ -419,10 +447,17 @@ class RegisterViewController: BaseViewController {
             return
         }
         
-        guard let offerPercent = offerPercentTextField.text, !offerPercent.isEmpty else{
-            showToast(msg: "Please Enter Offer Percent")
+        guard let discountType = discountTypeValueLabel.text, !discountType.isEmpty else{
+            showToast(msg: ErrorMessage.list.enterDiscountType)
             return
         }
+        
+        guard let discount = discountTextField.text, !discount.isEmpty else{
+            showToast(msg: ErrorMessage.list.enterDiscount)
+            return
+        }
+        
+        
         guard let maxDelivery = maximumDeliveryTextField.text, !maxDelivery.isEmpty else{
             showToast(msg: "Please Enter Maximum Delivery Time")
             return
@@ -492,7 +527,12 @@ class RegisterViewController: BaseViewController {
         editTimingController.phoneStr = phone
         editTimingController.descriptionStr = description
         editTimingController.offer_min_amount = minAmt
-        editTimingController.offerPercent = offerPercent
+        editTimingController.offerPercent = discount //offerPercent
+        if discountTypeValueLabel.text == "Percentage" {
+             editTimingController.offerType = "PERCENTAGE"
+        }else if discountTypeValueLabel.text == "Amount"{
+             editTimingController.offerType = "AMOUNT"
+        }
         editTimingController.maxDelivery = maxDelivery
         editTimingController.address = address
 //        editTimingController.landmark = landmarkTextField.text ?? ""
@@ -511,7 +551,7 @@ class RegisterViewController: BaseViewController {
         editTimingController.isHalal = isHalal
         editTimingController.shopURL = shopImgURL
         editTimingController.bannerURL = bannerImgURL
-
+        editTimingController.isFreeDelivery = isFreeDelivery
 
 //
 //        if shopImgURL != "" {
@@ -532,7 +572,6 @@ extension RegisterViewController {
         self.addShadowTextField(textField: self.phoneNumberTextField)
         self.addShadowTextField(textField: self.passwordTextField)
         self.addShadowTextField(textField: self.confirmPasswordTextfield)
-        self.addShadowTextField(textField: self.offerPercentTextField)
         self.addShadowTextField(textField: self.minAmountTextField)
         self.addShadowTextField(textField: self.descriptionTextField)
         self.addShadowTextField(textField: self.landmarkTextField)
@@ -598,12 +637,15 @@ extension RegisterViewController {
         shopBannerImagelabel.text = APPLocalize.localizestring.shopbannerImage.localize()
         vegRestaurantLabel.text = APPLocalize.localizestring.isthisveg.localize()
         minAmountLabel.text = APPLocalize.localizestring.minAmount.localize()
-        offerPercentLabel.text = APPLocalize.localizestring.offerinper.localize()
+        //offerPercentLabel.text = APPLocalize.localizestring.offerinper.localize()
         maximumDeliveryLabel.text = APPLocalize.localizestring.maxdelivery.localize()
         addressLabel.text = APPLocalize.localizestring.address.localize()
         landmarkLabel.text = APPLocalize.localizestring.landmark.localize()
         offerLabel.text = "I offer"
         registerButton.setTitle(APPLocalize.localizestring.alreadyRegister.localize(), for: .normal)
+        
+        discountTypeLabel.text = APPLocalize.localizestring.discountType.localize()
+        discount.text = APPLocalize.localizestring.discount.localize()
     }
     
     private func setCountryCode(){
@@ -617,14 +659,13 @@ extension RegisterViewController {
         phoneNumberTextField.delegate = self
         nameTextField.delegate = self
         minAmountTextField.delegate = self
-        offerPercentTextField.delegate = self
         maximumDeliveryTextField.delegate = self
         landmarkTextField.delegate = self
         descriptionTextField.delegate = self
         confirmPasswordTextfield.delegate = self
         self.imagesGalleryCV.delegate = self
         self.imagesGalleryCV.dataSource = self
-        
+        discountTextField.delegate = self
         
     }
     private func setTableViewContentInset(){
@@ -651,14 +692,14 @@ extension RegisterViewController {
         nameTextField.setRightPaddingPoints(10)
         minAmountTextField.setRightPaddingPoints(10)
          minAmountTextField.setLeftPaddingPoints(10)
-        offerPercentTextField.setRightPaddingPoints(10)
-        offerPercentTextField.setLeftPaddingPoints(10)
         maximumDeliveryTextField.setRightPaddingPoints(10)
         maximumDeliveryTextField.setLeftPaddingPoints(10)
         landmarkTextField.setRightPaddingPoints(10)
         landmarkTextField.setLeftPaddingPoints(10)
         descriptionTextField.setRightPaddingPoints(10)
         descriptionTextField.setLeftPaddingPoints(10)
+        discountTextField.setRightPaddingPoints(10)
+        discountTextField.setLeftPaddingPoints(10)
     }
     private func setFont(){
         
@@ -692,8 +733,6 @@ extension RegisterViewController {
         addressValueLabel.font = UIFont.regular(size: 14)
         maximumDeliveryTextField.font = UIFont.regular(size: 14)
         maximumDeliveryLabel.font = UIFont.bold(size: 14)
-        offerPercentTextField.font = UIFont.regular(size: 14)
-        offerPercentLabel.font = UIFont.bold(size: 14)
         descriptionLabel.font = UIFont.bold(size: 14)
         descriptionTextField.font = UIFont.regular(size: 14)
         landmarkLabel.font = UIFont.bold(size: 14)
@@ -703,6 +742,11 @@ extension RegisterViewController {
         deliveryLabel.font = UIFont.bold(size: 14)
         takeAwayLabel.font = UIFont.bold(size: 14)
         offerLabel.font = UIFont.bold(size: 14)
+        discount.font = UIFont.regular(size: 14)
+        discountTextField.font = UIFont.regular(size: 14)
+        discountTypeLabel.font = UIFont.regular(size: 14)
+        discountTypeValueLabel.font = UIFont.regular(size: 14)
+        labelFreeDelivery.font = UIFont.bold(size: 14)
     }
     
     
@@ -716,9 +760,13 @@ extension RegisterViewController {
 
 extension RegisterViewController: StatusViewControllerDelegate {
     func setValueShowStatusLabel(statusValue: String) {
-        self.statusValueLabel.text = statusValue
+        
+        if statusValue == "Percentage" || statusValue == "Amount"{
+            self.discountTypeValueLabel.text = statusValue
+        }else{
+            self.statusValueLabel.text = statusValue
+        }
     }
-    
     
 }
 /******************************************************************/

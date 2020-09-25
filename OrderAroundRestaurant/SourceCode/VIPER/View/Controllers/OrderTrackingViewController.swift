@@ -62,6 +62,7 @@ class OrderTrackingViewController: BaseViewController {
     var CartOrderArr:[Cart] = []
     var OrderModel: Order?
     var isPickupFromResturant = 0
+    var isFromUpcomingDetail: Bool = false
     //0 delivery
     //1 pickup
     
@@ -125,9 +126,20 @@ class OrderTrackingViewController: BaseViewController {
         
     }
     
-    @objc func ClickonBackBtn()
-    {
-        self.navigationController?.popViewController(animated: true)
+    @objc func ClickonBackBtn(){
+        
+        if isFromUpcomingDetail{
+            let allViewControllers = self.navigationController?.viewControllers ?? []
+            let lastControllers = Array(allViewControllers.reversed())
+            for aviewcontroller : UIViewController in lastControllers{
+                if aviewcontroller.isKind(of: HomeViewController.self){
+                    self.navigationController?.popToViewController(aviewcontroller, animated: true)
+                    return
+                }
+            }
+        }else{
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
 }
@@ -180,7 +192,7 @@ extension OrderTrackingViewController{
         subTotalLabel.text = APPLocalize.localizestring.subTotal.localize()
         deliveryChargeLabel.text = APPLocalize.localizestring.deliverycharge.localize()
         CgstLabel.text = APPLocalize.localizestring.tax.localize()
-        sgstLablel.text = APPLocalize.localizestring.paid.localize()
+        sgstLablel.text = APPLocalize.localizestring.oyolaCreditApplied.localize()
     }
     private func setRegister(){
         let editTimenib = UINib(nibName: XIB.Names.ItemListTableViewCell, bundle: nil)
@@ -283,8 +295,10 @@ extension OrderTrackingViewController{
         let discountStr: String! = String(describing: data.invoice?.discount ?? 0)
         discountValueLabel.text = "-" + currency + String(format: " %.02f", Double(discountStr) ?? 0.0)
         
-        let sgstStr: String! = String(describing: data.invoice?.payable ?? 0)
-        sgstValueLabel.text = currency + String(format: " %.02f", Double(sgstStr) ?? 0.0)
+        //let sgstStr: String! = String(describing: data.invoice?.payable ?? 0)
+        
+        let oyolaCredit = String(describing: (data.invoice?.wallet_amount ?? 0.00).twoDecimalPoint)
+        sgstValueLabel.text = currency + oyolaCredit //String(format: " %.02f", Double(sgstStr) ?? 0.0)
         
         let cgstStr: String! = String(describing: data.invoice?.tax ?? 0)
         cgstValueLabel.text = currency + String(format: " %.02f", Double(cgstStr) ?? 0.0)

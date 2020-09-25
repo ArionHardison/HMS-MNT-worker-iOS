@@ -124,10 +124,15 @@ extension RestaurantMenuViewController: UITableViewDelegate,UITableViewDataSourc
             let historyController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.HistoryViewController) as! HistoryViewController
             self.navigationController?.pushViewController(historyController, animated: true)
         }else if indexPath.row == 1{
-            let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.UserDetiailsViewController) as! UserDetiailsViewController
+            /*let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.UserDetiailsViewController) as! UserDetiailsViewController
             registerController.isFromSideMenu = true
             self.navigationController?.pushViewController(registerController, animated: true)
-            
+            */
+ 
+             let termsVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: Storyboard.Ids.TermsConditionViewController) as! TermsConditionViewController
+            termsVC.isPayment = true
+            self.navigationController?.pushViewController(termsVC, animated: true)
+ 
         }
         else if indexPath.row == 2{
             let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.EditRegisterViewController) as! EditRegisterViewController

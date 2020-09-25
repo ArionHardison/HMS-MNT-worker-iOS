@@ -378,7 +378,7 @@ extension UpcomingDetailViewController{
     private func setTitle(){
         deliveryChargeLabel.text = APPLocalize.localizestring.deliverycharge.localize()
         CgstLabel.text = APPLocalize.localizestring.tax.localize()
-        sgstLablel.text = APPLocalize.localizestring.paid.localize()
+        sgstLablel.text = APPLocalize.localizestring.oyolaCreditApplied.localize()
         promoCodeTitle.text = APPLocalize.localizestring.promo.localize()
     }
     private func setFont(){
@@ -428,7 +428,6 @@ extension UpcomingDetailViewController{
         }
         CgstLabel.text = APPLocalize.localizestring.tax.localize()
         discountLabel.text = APPLocalize.localizestring.kitchenDiscount.localize()
-        sgstLablel.text  = APPLocalize.localizestring.paid.localize()
         totalLabel.text = APPLocalize.localizestring.total.localize()
         
        shopImageView.sd_setImage(with: URL(string: data.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
@@ -465,8 +464,11 @@ extension UpcomingDetailViewController{
         let discountStr: String! = String(describing: (data.invoice?.discount ?? 0.00).twoDecimalPoint)
         discountValueLabel.text = "-" + currency + discountStr//String(format: " %.02f", Double(discountStr) ?? 0.0)
         
-        let sgstStr: String! = String(describing: (data.invoice?.payable ?? 0.00).twoDecimalPoint)
-        sgstValueLabel.text = currency + sgstStr //String(format: " %.02f", Double(sgstStr) ?? 0.0)
+       // let sgstStr: String! = String(describing: (data.invoice?.payable ?? 0.00).twoDecimalPoint)
+        
+        let oyolaCredit = String(describing: (data.invoice?.wallet_amount ?? 0.00).twoDecimalPoint)
+        
+        sgstValueLabel.text = currency + oyolaCredit //String(format: " %.02f", Double(sgstStr) ?? 0.0)
         
         let cgstStr: String! = String(describing: (data.invoice?.tax ?? 0.00).twoDecimalPoint)
         cgstValueLabel.text = currency + cgstStr//String(format: " %.02f", Double(cgstStr) ?? 0.0)
@@ -661,10 +663,21 @@ extension UpcomingDetailViewController: PresenterOutputProtocol {
                
                 //self.notesLabel.text = data?.note
                 
-                let historyViewController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.HistoryViewController) as! HistoryViewController
+                /*let historyViewController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.HistoryViewController) as! HistoryViewController
                 historyViewController.fromUpComingDetails = true
                 self.navigationController?.pushViewController(historyViewController, animated: true)
+                */
                 
+                if fromNotification{
+                    self.navigationController?.popViewController(animated: true)
+                }else{
+                    /*let orderDetailController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.OrderTrackingViewController) as! OrderTrackingViewController
+                    orderDetailController.OrderId = data?.id ?? 0
+                    orderDetailController.isPickupFromResturant = data?.pickup_from_restaurants ?? 0
+                    orderDetailController.isFromUpcomingDetail = true
+                    self.navigationController?.pushViewController(orderDetailController, animated: true)*/
+                    self.navigationController?.popViewController(animated: true)
+                }
                 
             }else{
                 //self.scheduleView.isHidden = true

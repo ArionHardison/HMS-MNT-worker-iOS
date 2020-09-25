@@ -10,6 +10,8 @@
 		00043D0F24D3ED0500DDD370 /* CommonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00043D0E24D3ED0500DDD370 /* CommonExtension.swift */; };
 		0055D4F824E7B04200714704 /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0055D4F624E7B04200714704 /* HistoryTableViewCell.swift */; };
 		0055D4F924E7B04200714704 /* HistoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0055D4F724E7B04200714704 /* HistoryTableViewCell.xib */; };
+		008027752514ABC70016D193 /* TermsConditionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008027742514ABBC0016D193 /* TermsConditionViewController.swift */; };
+		0083EC69251B40FF00A3E0E9 /* StripeTokenEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0083EC68251B40FF00A3E0E9 /* StripeTokenEntity.swift */; };
 		00D4C19424F9109A0025A861 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D4C19324F9109A0025A861 /* Utility.swift */; };
 		0817913E2237EBE5002165E1 /* StatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0817913D2237EBE5002165E1 /* StatusViewController.swift */; };
 		0852342F2226668500446B47 /* DishesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0852342E2226668500446B47 /* DishesViewController.swift */; };
@@ -186,6 +188,8 @@
 		00043D0E24D3ED0500DDD370 /* CommonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonExtension.swift; sourceTree = "<group>"; };
 		0055D4F624E7B04200714704 /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		0055D4F724E7B04200714704 /* HistoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryTableViewCell.xib; sourceTree = "<group>"; };
+		008027742514ABBC0016D193 /* TermsConditionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsConditionViewController.swift; sourceTree = "<group>"; };
+		0083EC68251B40FF00A3E0E9 /* StripeTokenEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeTokenEntity.swift; sourceTree = "<group>"; };
 		00D4C19324F9109A0025A861 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		0817913D2237EBE5002165E1 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		0852342E2226668500446B47 /* DishesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesViewController.swift; sourceTree = "<group>"; };
@@ -578,6 +582,7 @@
 		087D0C1022241BF400E58BDE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				008027742514ABBC0016D193 /* TermsConditionViewController.swift */,
 				85EBF5BF2440C51F0031DB32 /* OTPController.swift */,
 				08C43F8B237D3C7B00583886 /* UserDetiailsViewController.swift */,
 				087D0C2B22242A8B00E58BDE /* LoginViewController.swift */,
@@ -668,6 +673,7 @@
 				087F52E9224649050090369C /* EditRegisterEntity.swift */,
 				088F9C982247C97E00900EE5 /* GetProductEntity.swift */,
 				1274D563241B908400000CFE /* CancelReasons.swift */,
+				0083EC68251B40FF00A3E0E9 /* StripeTokenEntity.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -1278,6 +1284,7 @@
 				08A20C30223A9B2A0081256F /* ProfileEntity.swift in Sources */,
 				08A14DDB222FB47E00F35B1E /* OnGoingOrderViewController.swift in Sources */,
 				089A738823703C1300DD89B1 /* TakeAwayOrdersViewController.swift in Sources */,
+				0083EC69251B40FF00A3E0E9 /* StripeTokenEntity.swift in Sources */,
 				08ACEA042239012A0050591D /* ProductEntity.swift in Sources */,
 				08AB876A22363DE900740520 /* UpComingRequestViewController.swift in Sources */,
 				08AD19EC223B8DB90009F5F6 /* CustomLabelsXAxisValueFormatter.swift in Sources */,
@@ -1306,6 +1313,7 @@
 				24FC05B422734385003243D9 /* Global.swift in Sources */,
 				00D4C19424F9109A0025A861 /* Utility.swift in Sources */,
 				087D0C192224241500E58BDE /* WebServiceConstants.swift in Sources */,
+				008027752514ABC70016D193 /* TermsConditionViewController.swift in Sources */,
 				08A14DC0222FA01F00F35B1E /* HistoryViewController.swift in Sources */,
 				08A3B6B722254A330010058B /* Button.swift in Sources */,
 				087D0C2C22242A8B00E58BDE /* LoginViewController.swift in Sources */,
@@ -1511,7 +1519,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33.7;
+				CURRENT_PROJECT_VERSION = 33.9;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = JU248DMV5X;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
@@ -1535,7 +1543,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 33.7;
+				CURRENT_PROJECT_VERSION = 33.9;
 				DEVELOPMENT_TEAM = JU248DMV5X;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

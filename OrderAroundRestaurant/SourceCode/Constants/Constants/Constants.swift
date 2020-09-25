@@ -151,6 +151,10 @@ struct APPLocalize {
     var otpMessage = "Submit OTP"
     var resendOTP = "Resend OTP"
     var scheduled = "Scheduled"
+    let termsOfServiceTitle = "localize.termsOfServiceTitle"
+    let privacyPolicyTitle = "localize.privacyPolicyTitle"
+    
+    let oyolaCreditApplied = "localize.oyolaCreditApplied"
 //
 //    var deviceType = "デバイスタイプなし"
 //    var noDeviceID = "デバイスIDなし"
@@ -389,5 +393,4 @@ struct Constant {
     // var deleteAccountDescr = "Are you sure want to delete your account?"
     var appName = "Oyola Kitchen"
     // var logout = "Are you sure want to logout?"
-    
 }
