@@ -44,6 +44,8 @@ class CreateProductViewController: BaseViewController {
     var feturedURL = String()
     var calories = String()
     var veg = false
+    var cuisineImageData: Data?
+    var featuredImageData: Data?
 
 
     override func viewDidLoad() {
@@ -185,18 +187,18 @@ class CreateProductViewController: BaseViewController {
 //            }
             
             
-            if cuisineURL != "" {
+            if cuisineURL != "" && cuisineImageData == nil{
                 
                 parameters["image_gallery_img"] = cuisineURL
             }
-            if feturedURL != "" {
+            if feturedURL != "" && featuredImageData == nil{
                 
                 parameters["featuredimage_gallery_img"] = feturedURL
   
             }
-           
+           //"default_featured_image": featuredImageData ?? Data()
             let urlStr = Base.productList.rawValue + "/" + productIdStr
-            self.presenter?.IMAGEPOST(api: urlStr, params: parameters, methodType: HttpType.POST, imgData:nil, imgName: "image", modelClass: CategoryListModel.self, token: true)
+            self.presenter?.IMAGEPOST(api: urlStr, params: parameters, methodType: HttpType.POST, imgData: ["image_gallery": cuisineImageData ?? Data(), "default_featured_image": featuredImageData ?? Data()], imgName: "image", modelClass: CategoryListModel.self, token: true)
         }else{
         
         var parameters:[String:Any] = ["name": nameVal,
@@ -231,18 +233,19 @@ class CreateProductViewController: BaseViewController {
             
             var idArray = [String]()
             var priceArray = [String]()
+            var finalArray = [String:String]()
+            
             
         for i in 0..<addOnsId.count {
-            let AddonsStr = "addons[\(i)]"
-            let AddonpriceStr =  "addons_price[\(i)]"
+            //let AddonsStr = "addons[\(i)]"
+            //let AddonpriceStr =  "addons_price[\(i)]"
             //parameters[AddonsStr] = addOnsId[i]
             //parameters[AddonpriceStr] = addOnsPrice[i]
             
             idArray.append(addOnsId[i])
             priceArray.append(addOnsPrice[i])
+            finalArray[addOnsId[i]] = addOnsPrice[i]
         }
-            
-            
             
             
             
@@ -255,25 +258,27 @@ class CreateProductViewController: BaseViewController {
 //
 //            }
             parameters["addons"] = idArray
-            parameters["addons_price"] = priceArray
+            parameters["addons_price"] = finalArray//priceArray
       
             if featuredImageID != 0 {
                 
               parameters["featuredimage_gallery_id"] = featuredImageID
                 
             }
-            if cuisineURL != "" {
+            
+            if cuisineURL != "" && cuisineImageData == nil{
                 
                 parameters["image_gallery_img"] = cuisineURL
             }
-            if feturedURL != "" {
+            if feturedURL != "" && featuredImageData == nil{
                 
                 parameters["featuredimage_gallery_img"] = feturedURL
                 
-                
             }
+            
+            
             print(parameters)
-        self.presenter?.IMAGEPOST(api: Base.productList.rawValue, params: parameters, methodType: HttpType.POST, imgData:nil, imgName: "image", modelClass: CategoryListModel.self, token: true)
+            self.presenter?.IMAGEPOST(api: Base.productList.rawValue, params: parameters, methodType: HttpType.POST, imgData: ["image_gallery": cuisineImageData ?? Data(), "default_featured_image": featuredImageData ?? Data()], imgName: "image", modelClass: CategoryListModel.self, token: true)
         }
     }
     

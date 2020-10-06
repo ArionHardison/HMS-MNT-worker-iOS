@@ -131,3 +131,8 @@
 "localize.termsOfServiceTitle" = "TERMS OF SERVICE";
 "localize.privacyPolicyTitle" = "PRIVACY POLICY";
 "localize.oyolaCreditApplied" = "Oyola Credit applied";
+"localize.selectSource" = "Select Source";
+"localize.camera" = "Camera";
+"localize.photoLibrary" = "Photo Library";
+"localize.cancel" = "Cancel";
+"localize.unSplash" = "UnSplash";

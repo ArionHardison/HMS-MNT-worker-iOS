@@ -110,6 +110,8 @@ class CreateProductAddonsViewController: BaseViewController {
     var fetured = 0
     var cuisineURL = String()
     var featuredURL = String()
+    var cuisineImageData: Data?
+    var featuredImageData: Data?
     private var photos = [UnsplashPhoto]()
 
     
@@ -420,6 +422,14 @@ class CreateProductAddonsViewController: BaseViewController {
             
             createProductController.feturedURL = featuredURL
         
+        }
+        
+        if cuisineImageData != nil{
+            createProductController.cuisineImageData = cuisineImageData
+        }
+        
+        if featuredImageData != nil{
+            createProductController.featuredImageData = featuredImageData
         }
         
         self.navigationController?.pushViewController(createProductController, animated: true)
@@ -1107,6 +1117,7 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
 }
 
 extension CreateProductAddonsViewController:ImageGalleryDelegate{
+    
     func sendImage(sendImage: String) {
             if cuisine == 1 {
             cuisineURL = sendImage
@@ -1127,5 +1138,20 @@ extension CreateProductAddonsViewController:ImageGalleryDelegate{
         }
     }
     
+    func getImage(selectedImage: UIImage) {
+        
+        if let imgData = (selectedImage).jpegData(compressionQuality: 0.4) {
+            if cuisine == 1 {
+                cuisineImageData = imgData
+                existingImage.image = selectedImage
+                cuisine = 0
+                
+            }else if fetured == 1 {
+                featuredImageData = imgData
+                featureImageUploadImageView.image = selectedImage
+                fetured = 0
+            }
+        }
+    }
     
 }

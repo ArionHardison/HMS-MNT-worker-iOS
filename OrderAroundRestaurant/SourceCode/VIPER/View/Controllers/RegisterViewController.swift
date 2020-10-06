@@ -16,6 +16,8 @@ enum SelectionType: Int {
     case multiple
 }
 
+
+
 class RegisterViewController: BaseViewController {
 
     @IBOutlet weak var appIcon: UIImageView!
@@ -115,6 +117,8 @@ class RegisterViewController: BaseViewController {
     var shopImage = 0
     var shopImgURL = String()
     var bannerImgURL = String()
+    var shopImageData: Data?
+    var bannerImageData: Data?
     var isFreeDelivery = false
 
     @IBOutlet weak var btnShopARemove: UIButton!
@@ -483,14 +487,14 @@ class RegisterViewController: BaseViewController {
         }
         
         
-        if shopImgURL == "" {
+        if shopImgURL == "" || shopImageData == nil {
             
             showToast(msg: "Please select image for your Kitchen")
             
             return
             
       
-        }else if bannerImgURL == "" {
+        }else if bannerImgURL == "" || bannerImageData == nil{
             
              showToast(msg: "Please select Banner Image")
             
@@ -552,7 +556,8 @@ class RegisterViewController: BaseViewController {
         editTimingController.shopURL = shopImgURL
         editTimingController.bannerURL = bannerImgURL
         editTimingController.isFreeDelivery = isFreeDelivery
-
+        editTimingController.shopImageData = shopImageData
+        editTimingController.bannerImageData = bannerImageData
 //
 //        if shopImgURL != "" {
 //        }else if bannerImgURL != "" {
@@ -1158,5 +1163,18 @@ extension RegisterViewController : ImageGalleryDelegate {
         }
     }
     
-    
+    func getImage(selectedImage: UIImage) {
+        
+        if  let imgData = (selectedImage).jpegData(compressionQuality: 0.4) {
+            if banner == 1{
+                bannerViewHeight.constant = 150
+                bannerImgUnsplash.image = selectedImage
+                bannerImageData = imgData
+            }else if shopImage == 1{
+                unsplashViewHeight.constant = 150
+                shopUnsplashImage.image = selectedImage
+                shopImageData = imgData
+            }
+        }
+    }
 }

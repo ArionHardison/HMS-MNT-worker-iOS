@@ -556,6 +556,7 @@ extension CreateCategoryViewController : UICollectionViewDelegate,UICollectionVi
 }
 
 extension CreateCategoryViewController : ImageGalleryDelegate {
+    
     func sendImage(sendImage: String) {
              if category == 1 {
                categoryURL =  sendImage
@@ -566,5 +567,8 @@ extension CreateCategoryViewController : ImageGalleryDelegate {
            }
     }
     
+    func getImage(selectedImage: UIImage) {
+        
+    }
     
 }

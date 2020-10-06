@@ -155,6 +155,11 @@ struct APPLocalize {
     let privacyPolicyTitle = "localize.privacyPolicyTitle"
     
     let oyolaCreditApplied = "localize.oyolaCreditApplied"
+    let selectSource = "localize.selectSource"
+    let camera = "localize.camera"
+    let photoLibrary = "localize.photoLibrary"
+    let cancel = "localize.cancel"
+    let unSplash = "localize.unSplash"
 //
 //    var deviceType = "デバイスタイプなし"
 //    var noDeviceID = "デバイスIDなし"

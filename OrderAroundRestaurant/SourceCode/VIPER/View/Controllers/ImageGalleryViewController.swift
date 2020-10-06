@@ -16,24 +16,28 @@ class ImageGalleryViewController: UIViewController {
     @IBOutlet weak var imagesGalleryCV: UICollectionView!
 
     @IBOutlet weak var buttonUploadImage: UIButton!
+    @IBOutlet var buttonPhotoLibrary: UIButton!
     
     var imageArray = [ImageList]()
     var selectedIndex = -1
     var isImageSelected = false
     var isImageSendToAdmin :((Bool)->Void)?
-    var delegate : ImageGalleryDelegate?
-     private var photos = [UnsplashPhoto]()
-    @IBOutlet weak var loadUnsplash: UIButton!
+    weak var delegate : ImageGalleryDelegate?
+    private var photos = [UnsplashPhoto]()
     
+    @IBOutlet weak var loadUnsplash: UIButton!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
       setNavigationController()
       imagesGalleryCV.register(UINib(nibName: XIB.Names.GalleryCollectionViewCell, bundle: nil), forCellWithReuseIdentifier: XIB.Names.GalleryCollectionViewCell)
         self.buttonUploadImage.addTarget(self, action: #selector(uploadAction(sender:)), for: .touchUpInside)
-        self.loadUnsplash.setTitle("load more", for: .normal)
+        self.loadUnsplash.setTitle("UnSplash", for: .normal)
         self.loadUnsplash.setTitleColor(.lightGray, for: .normal)
         self.loadUnsplash.addTarget(self, action: #selector(loadunsplashAction(sender:)), for: .touchUpInside)
+        self.buttonPhotoLibrary.setTitle("Image Gallery", for: .normal)
+        self.buttonPhotoLibrary.setTitleColor(.lightGray, for: .normal)
     }
     override func viewWillAppear(_ animated: Bool) {
        // enableKeyboardHandling()
@@ -60,6 +64,19 @@ class ImageGalleryViewController: UIViewController {
     {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    @IBAction func photoLibraryBtnAction(_ sender: Any) {
+        
+        self.showImage { (selectedImage) in
+            
+            if selectedImage != nil{
+                self.delegate?.getImage(selectedImage: selectedImage!)
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+    }
+    
+    
 }
 extension  ImageGalleryViewController : UICollectionViewDelegate,UICollectionViewDataSource {
     
@@ -135,6 +152,10 @@ extension  ImageGalleryViewController : UICollectionViewDelegate,UICollectionVie
     {
         self.loadUnSplash()
     }
+    
+    
+    
+    
     @IBAction func uploadAction(sender:UIButton){
         
         
@@ -205,4 +226,5 @@ extension ImageGalleryViewController : UnsplashPhotoPickerDelegate {
 
 protocol ImageGalleryDelegate : class {
     func sendImage(sendImage:String)
+    func getImage(selectedImage: UIImage)
 }

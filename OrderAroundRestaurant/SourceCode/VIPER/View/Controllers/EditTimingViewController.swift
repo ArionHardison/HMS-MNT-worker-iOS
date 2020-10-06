@@ -65,8 +65,8 @@ class EditTimingViewController: BaseViewController {
     var isFreeDelivery = false
     var shopURL = String()
     var bannerURL = String()
-    
-    
+    var shopImageData: Data?
+    var bannerImageData: Data?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -178,7 +178,6 @@ class EditTimingViewController: BaseViewController {
                 }
                 
                 
-                
                 let days = "day[\(0)]"
                // param[days] = "ALL"
                 param["cuisine_id"] = cusine
@@ -190,7 +189,13 @@ class EditTimingViewController: BaseViewController {
                 showActivityIndicator()
                 IsSaveBool = true
 //                self.presenter?.IMAGEPOST(api: urlStr, params: param, methodType: HttpType.POST, imgData: ["avatar":imageUploadData,"default_banner":featureImageUploadData], imgName: "image", modelClass: RegisterModel.self, token: false)
-                self.presenter?.GETPOST(api: urlStr, params: param, methodType: HttpType.POST, modelClass: RegisterModel.self, token: false)
+                //self.presenter?.GETPOST(api: urlStr, params: param, methodType: HttpType.POST, modelClass: RegisterModel.self, token: false)
+                
+                
+                
+                
+                
+                self.presenter?.IMAGEPOST(api: urlStr, params: param, methodType: .POST, imgData: ["image_gallery": shopImageData ?? Data(), "default_banner": bannerImageData ?? Data()], imgName: "img", modelClass: RegisterModel.self, token: false)
             } else {
                 
                 print(DateArray)

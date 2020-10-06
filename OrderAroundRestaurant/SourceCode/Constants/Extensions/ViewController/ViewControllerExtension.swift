@@ -11,6 +11,12 @@ import UIKit
 import NVActivityIndicatorView
 fileprivate var imageCompletion : ((UIImage?)->())?
 
+enum ImageCompletionType {
+    case photoLibrary
+    case camera
+    case unsplash
+}
+
 class BaseViewController: UIViewController,NVActivityIndicatorViewable {
     
     
@@ -145,7 +151,7 @@ extension UIViewController {
     
     func showImage(with completion : @escaping ((UIImage?)->())){
         
-//        let alert = UIAlertController(title: Constants.string.selectSource, message: nil, preferredStyle: .actionSheet)
+/*//        let alert = UIAlertController(title: Constants.string.selectSource, message: nil, preferredStyle: .actionSheet)
 //        alert.addAction(UIAlertAction(title: Constants.string.camera, style: .default, handler: { (Void) in
 //            self.chooseImage(with: .camera)
 //        }))
@@ -156,8 +162,20 @@ extension UIViewController {
         self.chooseImage(with: .photoLibrary)
 //        alert.view.tintColor = .primary
         imageCompletion = completion
-        //self.present(alert, animated: true, completion: nil)
+        //self.present(alert, animated: true, completion: nil)*/
         
+        let alert = UIAlertController(title: APPLocalize.localizestring.selectSource.localize(), message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title:  APPLocalize.localizestring.camera.localize(), style: .default, handler: { (Void) in
+            self.chooseImage(with: .camera)
+        }))
+        alert.addAction(UIAlertAction(title:  APPLocalize.localizestring.photoLibrary.localize(), style: .default, handler: { (Void) in
+            self.chooseImage(with: .photoLibrary)
+        }))
+        alert.addAction(UIAlertAction(title: APPLocalize.localizestring.cancel.localize(), style: .cancel, handler:nil))
+        alert.view.tintColor = .primary
+        imageCompletion = completion
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
     

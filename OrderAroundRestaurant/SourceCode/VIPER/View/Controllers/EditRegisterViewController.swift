@@ -1270,5 +1270,8 @@ extension EditRegisterViewController : ImageGalleryDelegate{
                }
     }
     
+    func getImage(selectedImage: UIImage) {
+        
+    }
     
 }

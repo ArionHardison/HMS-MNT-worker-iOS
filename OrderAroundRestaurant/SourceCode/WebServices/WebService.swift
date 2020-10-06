@@ -210,15 +210,32 @@ extension Webservice : WebServiceProtocol {
             
             break
         default: //Image Post:
+            
+            
             Alamofire.upload(multipartFormData: { multipartFormData in
                 if let imageArray = imageData{ //Image:
                     for array in imageArray {
                         multipartFormData.append(array.value, withName: array.key, fileName: "image.png", mimeType: "image/png")
                     }
                 }
+                
                 for (key, value) in params { //Other Params:
+                    #if DEBUG
+                    print("Multi part params: \(key): \(value)")
+                    #endif
                     multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
+                    /*if value is NSDictionary{
+                        let dictData: Data = NSKeyedArchiver.archivedData(withRootObject: value as! NSDictionary)
+                        multipartFormData.append(dictData, withName: key)
+                    }else if value is NSArray{
+                        let objData = NSKeyedArchiver.archivedData(withRootObject: value as! NSArray)
+                        multipartFormData.append(objData, withName: key)
+                    }else{
+                        multipartFormData.append("\(value)".data(using: String.Encoding.utf8)!, withName: key)
+                    }*/
+                    
                 }
+                
             },to:url,method: .post,headers:headers) { (result) in
                 switch result {
                 case .success(let upload, _, _):
