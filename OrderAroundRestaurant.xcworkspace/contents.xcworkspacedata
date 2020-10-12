@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:OrderAroundRestaurant.xcodeproj">
+      location = "group:/Users/applemac/Documents/Shyamala office projects/Foodie Base/DIET Manager/dietmanager_ios_restaurant/DietManagerManager.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">

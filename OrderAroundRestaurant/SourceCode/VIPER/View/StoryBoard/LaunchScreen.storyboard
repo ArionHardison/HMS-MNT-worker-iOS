@@ -16,14 +16,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Splash" translatesAutoresizingMaskIntoConstraints="NO" id="c0Z-On-Hbg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash" translatesAutoresizingMaskIntoConstraints="NO" id="c0Z-On-Hbg">
                                 <rect key="frame" x="96.666666666666671" y="257.66666666666669" width="220.66666666666663" height="220.66666666666669"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="c0Z-On-Hbg" secondAttribute="height" multiplier="1:1" id="9aJ-4B-wyC"/>
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.14901960784313725" green="0.57647058823529407" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="c0Z-On-Hbg" firstAttribute="height" secondItem="Ze5-6b-2t3" secondAttribute="height" multiplier="0.3" id="BXw-bQ-CAm"/>
                             <constraint firstItem="c0Z-On-Hbg" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="DpF-SN-k8E"/>
@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Splash" width="356" height="322"/>
+        <image name="splash" width="1024" height="1024"/>
     </resources>
 </document>

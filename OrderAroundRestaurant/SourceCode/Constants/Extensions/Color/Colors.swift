@@ -13,7 +13,7 @@ extension UIColor {
     
     // Primary Color
     static var primary : UIColor {
-        return UIColor(red: 38/255, green: 148/255, blue: 38/255, alpha: 1)
+         return UIColor(named: "PRIMARYCOLOR")!//return UIColor(red: 38/255, green: 148/255, blue: 38/255, alpha: 1)
     }
     
     // Secondary Color

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VZa-lw-c23">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VZa-lw-c23">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,7 +26,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -75,7 +76,7 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1L-d3-8kY">
                                 <rect key="frame" x="20" y="565.33333333333337" width="374" height="45"/>
-                                <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="PkF-fc-dRe"/>
                                 </constraints>
@@ -102,7 +103,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Forgot Password?">
-                                    <color key="titleColor" red="0.27407762409999997" green="0.57289791109999999" blue="0.19990202779999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    <color key="titleColor" name="PRIMARYCOLOR"/>
                                 </state>
                                 <connections>
                                     <action selector="forgotPwdAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uoG-TO-CYd"/>
@@ -157,7 +158,7 @@
         <!--Image Gallery View Controller-->
         <scene sceneID="Kt7-iP-H9v">
             <objects>
-                <viewController storyboardIdentifier="ImageGalleryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fHV-lj-C5N" customClass="ImageGalleryViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ImageGalleryViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="fHV-lj-C5N" customClass="ImageGalleryViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Epk-Oq-aYp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -173,7 +174,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZNu-62-lzt">
                                 <rect key="frame" x="20" y="661" width="374" height="55"/>
-                                <color key="backgroundColor" red="0.25098039220000001" green="0.73333333329999995" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="2aM-vb-kyf"/>
                                 </constraints>
@@ -255,7 +256,7 @@
         <!--Register View Controller-->
         <scene sceneID="Md9-S3-Btu">
             <objects>
-                <viewController storyboardIdentifier="RegisterViewController" id="jqe-Dl-ARZ" customClass="RegisterViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterViewController" id="jqe-Dl-ARZ" customClass="RegisterViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="f3P-Io-Fee">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="2700"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1106,14 +1107,14 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EDp-h4-A8x">
                                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
-                                                                <color key="backgroundColor" red="0.39549884200000002" green="0.72272908690000004" blue="0.29793912169999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                                                 <state key="normal" title="Change">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Hx-2K-leE">
                                                                 <rect key="frame" x="0.0" y="40" width="150" height="30"/>
-                                                                <color key="backgroundColor" red="0.39159852270000001" green="0.7187699676" blue="0.29794061179999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                                                 <state key="normal" title="Remove">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
@@ -1151,14 +1152,14 @@
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JA6-VC-Vqw">
                                                                 <rect key="frame" x="0.0" y="0.0" width="150" height="30"/>
-                                                                <color key="backgroundColor" red="0.39549884200000002" green="0.72272908690000004" blue="0.29793912169999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                                                 <state key="normal" title="Change">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xnm-RS-ao0">
                                                                 <rect key="frame" x="0.0" y="40" width="150" height="30"/>
-                                                                <color key="backgroundColor" red="0.39159852270000001" green="0.7187699676" blue="0.29794061179999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                                                 <state key="normal" title="Remove">
                                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </state>
@@ -1354,7 +1355,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f98-bq-Bds">
                                         <rect key="frame" x="10" y="10" width="394" height="45"/>
-                                        <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="Eo8-iu-Guw"/>
                                         </constraints>
@@ -1486,7 +1487,7 @@
         <!--Profile-->
         <scene sceneID="xf1-9G-uyz">
             <objects>
-                <viewController storyboardIdentifier="RestaurantMenuViewController" id="tu5-VY-vaW" customClass="RestaurantMenuViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RestaurantMenuViewController" id="tu5-VY-vaW" customClass="RestaurantMenuViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DQo-Qg-FGc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1599,7 +1600,7 @@
         <!--History View Controller-->
         <scene sceneID="tSb-Gg-QK7">
             <objects>
-                <viewController storyboardIdentifier="HistoryViewController" id="cxX-vQ-ETb" customClass="HistoryViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HistoryViewController" id="cxX-vQ-ETb" customClass="HistoryViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cuJ-n9-L7o">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1614,7 +1615,7 @@
         <!--Filter Delivery View Controller-->
         <scene sceneID="7Or-UI-6R0">
             <objects>
-                <viewController storyboardIdentifier="FilterDeliveryViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="Jbk-WA-1M3" customClass="FilterDeliveryViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FilterDeliveryViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="Jbk-WA-1M3" customClass="FilterDeliveryViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LkF-eI-9fu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1653,16 +1654,16 @@
                                         <rect key="frame" x="10" y="171.66666666666666" width="394" height="45"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Delivery Person" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JcG-ZK-Fdj">
-                                                <rect key="frame" x="10" y="12.333333333333341" width="172" height="20.333333333333329"/>
+                                                <rect key="frame" x="10" y="12.333333333333341" width="329" height="20.333333333333329"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MGc-N0-W8p">
-                                                <rect key="frame" x="192" y="0.0" width="45" height="45"/>
+                                                <rect key="frame" x="349" y="0.0" width="45" height="45"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="drop-down" translatesAutoresizingMaskIntoConstraints="NO" id="nUV-62-uw7">
-                                                        <rect key="frame" x="12.666666666666657" y="12.666666666666686" width="20" height="20"/>
+                                                        <rect key="frame" x="12.666666666666686" y="12.666666666666686" width="20" height="20"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="20" id="YjW-dw-hAm"/>
                                                             <constraint firstAttribute="height" constant="20" id="tO7-Eg-Zi9"/>
@@ -1978,7 +1979,7 @@
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="erA-My-eHX">
                                         <rect key="frame" x="10" y="379" width="394" height="45"/>
-                                        <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="cfi-YM-BMB"/>
                                         </constraints>
@@ -2075,7 +2076,7 @@
         <!--Status View Controller-->
         <scene sceneID="r7t-wL-h2I">
             <objects>
-                <viewController storyboardIdentifier="StatusViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="UzM-X7-n3R" customClass="StatusViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StatusViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="UzM-X7-n3R" customClass="StatusViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ovp-97-pEa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2146,7 +2147,7 @@
         <!--Select Cusine View Controller-->
         <scene sceneID="DpV-pd-rtw">
             <objects>
-                <viewController storyboardIdentifier="SelectCusineViewController" id="LpZ-61-eFZ" customClass="SelectCusineViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectCusineViewController" id="LpZ-61-eFZ" customClass="SelectCusineViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Thb-dP-6eQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2157,7 +2158,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ebi-DA-ah9">
                                 <rect key="frame" x="20" y="681" width="374" height="45"/>
-                                <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Jtd-Dl-Tpc"/>
                                 </constraints>
@@ -2194,7 +2195,7 @@
         <!--Country Code View Controller-->
         <scene sceneID="esX-XQ-JYr">
             <objects>
-                <viewController storyboardIdentifier="CountryCodeViewController" id="XbC-Wz-t2i" customClass="CountryCodeViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CountryCodeViewController" id="XbC-Wz-t2i" customClass="CountryCodeViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UK9-oR-xZe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2232,7 +2233,7 @@
         <!--On Going Order View Controller-->
         <scene sceneID="4dN-JE-4KB">
             <objects>
-                <viewController storyboardIdentifier="OnGoingOrderViewController" id="eQM-zn-Bog" customClass="OnGoingOrderViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OnGoingOrderViewController" id="eQM-zn-Bog" customClass="OnGoingOrderViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="05k-fT-CS7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2262,7 +2263,7 @@
         <!--Past Order View Controller-->
         <scene sceneID="f6M-zy-M2o">
             <objects>
-                <viewController storyboardIdentifier="PastOrderViewController" id="mzU-Hi-Omn" customClass="PastOrderViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PastOrderViewController" id="mzU-Hi-Omn" customClass="PastOrderViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dJq-60-3i5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2292,7 +2293,7 @@
         <!--Cancel Order View Controller-->
         <scene sceneID="zT1-yr-reU">
             <objects>
-                <viewController storyboardIdentifier="CancelOrderViewController" id="iQF-ar-9J0" customClass="CancelOrderViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CancelOrderViewController" id="iQF-ar-9J0" customClass="CancelOrderViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3KT-NE-G5T">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2322,7 +2323,7 @@
         <!--Revenue-->
         <scene sceneID="0rr-XN-y83">
             <objects>
-                <viewController storyboardIdentifier="RevenueViewController" id="5WQ-1Q-lC7" customClass="RevenueViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RevenueViewController" id="5WQ-1Q-lC7" customClass="RevenueViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BBf-aG-zNZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2507,7 +2508,7 @@
         <!--Up Coming Request View Controller-->
         <scene sceneID="jtg-JV-aBe">
             <objects>
-                <viewController storyboardIdentifier="UpComingRequestViewController" id="pGo-X6-EnN" customClass="UpComingRequestViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UpComingRequestViewController" id="pGo-X6-EnN" customClass="UpComingRequestViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="boo-0R-1SE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2709,7 +2710,7 @@
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWd-cr-H0e">
                                                 <rect key="frame" x="212" y="427" width="182" height="45"/>
-                                                <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="Kr4-Aj-mtV"/>
                                                 </constraints>
@@ -2792,7 +2793,7 @@
         <!--Create Product View Controller-->
         <scene sceneID="h4h-hH-XGT">
             <objects>
-                <viewController storyboardIdentifier="CreateProductViewController" id="VZa-lw-c23" customClass="CreateProductViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateProductViewController" id="VZa-lw-c23" customClass="CreateProductViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eY3-fm-Q57">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2977,7 +2978,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h8X-nW-n71">
                                         <rect key="frame" x="20" y="12.666666666666629" width="374" height="45"/>
-                                        <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="iq3-f2-TRl"/>
                                         </constraints>
@@ -3036,7 +3037,7 @@
         <!--Add Product View Controller-->
         <scene sceneID="nhX-lm-Ifz">
             <objects>
-                <viewController storyboardIdentifier="AddProductViewController" id="78w-7A-AOQ" customClass="AddProductViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddProductViewController" id="78w-7A-AOQ" customClass="AddProductViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SFR-4h-cbP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3047,7 +3048,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O4P-6r-VvY">
                                 <rect key="frame" x="20" y="671" width="374" height="45"/>
-                                <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="1G9-cw-CvC"/>
                                 </constraints>
@@ -3083,7 +3084,7 @@
         <!--Category List View Controller-->
         <scene sceneID="ctJ-Dw-ac5">
             <objects>
-                <viewController storyboardIdentifier="CategoryListViewController" id="Wdg-LJ-3Ca" customClass="CategoryListViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoryListViewController" id="Wdg-LJ-3Ca" customClass="CategoryListViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tz9-WE-ssl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3094,7 +3095,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sie-gh-PPO">
                                 <rect key="frame" x="20" y="671" width="374" height="45"/>
-                                <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="E4o-pA-YIE"/>
                                 </constraints>
@@ -3130,7 +3131,7 @@
         <!--Create Category View Controller-->
         <scene sceneID="NIz-kD-Y7M">
             <objects>
-                <viewController storyboardIdentifier="CreateCategoryViewController" id="6Rt-cA-APs" customClass="CreateCategoryViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateCategoryViewController" id="6Rt-cA-APs" customClass="CreateCategoryViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SyP-7Q-6eF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3385,7 +3386,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nBS-mN-xNR">
                                         <rect key="frame" x="20" y="12.666666666666629" width="374" height="45"/>
-                                        <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="dBa-FG-KyL"/>
                                         </constraints>
@@ -3448,7 +3449,7 @@
         <!--Create Product Addons View Controller-->
         <scene sceneID="gu1-bb-eS2">
             <objects>
-                <viewController storyboardIdentifier="CreateProductAddonsViewController" id="4aS-Gk-Pl3" customClass="CreateProductAddonsViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateProductAddonsViewController" id="4aS-Gk-Pl3" customClass="CreateProductAddonsViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Ja-o3-5by">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1930"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4119,7 +4120,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="URJ-tJ-FAJ">
                                         <rect key="frame" x="20" y="12.666666666666742" width="335" height="45"/>
-                                        <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="ggI-FN-kBm"/>
                                         </constraints>
@@ -4211,7 +4212,7 @@
         <!--Category Status View Controller-->
         <scene sceneID="ugi-ea-2rv">
             <objects>
-                <viewController storyboardIdentifier="CategoryStatusViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="IXa-re-eIJ" customClass="CategoryStatusViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CategoryStatusViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="IXa-re-eIJ" customClass="CategoryStatusViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Z1h-Ay-Kaj">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4277,19 +4278,19 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LxR-Y0-R0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4008.8000000000002" y="2333.497536945813"/>
+            <point key="canvasLocation" x="4010" y="2515"/>
         </scene>
         <!--Select Addons View Controller-->
         <scene sceneID="XIS-gC-HTK">
             <objects>
-                <viewController storyboardIdentifier="SelectAddonsViewController" id="OGk-wQ-SIl" customClass="SelectAddonsViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectAddonsViewController" id="OGk-wQ-SIl" customClass="SelectAddonsViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xBn-dM-CeK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rn-eV-ALr">
                                 <rect key="frame" x="20" y="681" width="374" height="45"/>
-                                <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="ZNY-HD-0Z0"/>
                                 </constraints>
@@ -4329,7 +4330,7 @@
         <!--Create Addons View Controller-->
         <scene sceneID="uL7-RL-a2t">
             <objects>
-                <viewController storyboardIdentifier="CreateAddonsViewController" id="fh0-Gm-txT" customClass="CreateAddonsViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateAddonsViewController" id="fh0-Gm-txT" customClass="CreateAddonsViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="PVb-Jo-kBE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4352,7 +4353,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="642-cu-q2w">
                                 <rect key="frame" x="20" y="671" width="374" height="45"/>
-                                <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="MCr-wF-2Np"/>
                                 </constraints>
@@ -4415,7 +4416,7 @@
         <!--Addons List View Controller-->
         <scene sceneID="RH4-KA-36T">
             <objects>
-                <viewController storyboardIdentifier="AddonsListViewController" id="2nE-eI-g0j" customClass="AddonsListViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddonsListViewController" id="2nE-eI-g0j" customClass="AddonsListViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xgc-Qj-e0X">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4426,7 +4427,7 @@
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FlA-LM-Uzc">
                                 <rect key="frame" x="20" y="671" width="374" height="45"/>
-                                <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="XPd-u0-mnZ"/>
                                 </constraints>
@@ -4566,7 +4567,7 @@
         <!--Home View Controller-->
         <scene sceneID="scD-XV-56f">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="7k2-92-BKC" customClass="HomeViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="7k2-92-BKC" customClass="HomeViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gTo-Ow-YEd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4593,7 +4594,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cp6-TG-DZr">
                                         <rect key="frame" x="0.0" y="200" width="414" height="50"/>
                                         <subviews>
-                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAC-T7-Cu1" customClass="CosmosView" customModule="OrderAroundRestaurant" customModuleProvider="target">
+                                            <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RAC-T7-Cu1" customClass="CosmosView" customModule="DietManager___Manager" customModuleProvider="target">
                                                 <rect key="frame" x="279" y="8" width="120" height="34"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -4695,7 +4696,7 @@
         <!--Time Picker View Controller-->
         <scene sceneID="oPe-Ae-4H4">
             <objects>
-                <viewController storyboardIdentifier="TimePickerViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="dpB-Ck-4YN" customClass="TimePickerViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TimePickerViewController" modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="dpB-Ck-4YN" customClass="TimePickerViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CMF-8e-Umr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4769,7 +4770,7 @@
         <!--Deliveries View Controller-->
         <scene sceneID="Hm3-YK-gQ4">
             <objects>
-                <viewController storyboardIdentifier="DeliveriesViewController" id="Yxx-LS-Wjl" customClass="DeliveriesViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DeliveriesViewController" id="Yxx-LS-Wjl" customClass="DeliveriesViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BBJ-72-CDz">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4799,7 +4800,7 @@
         <!--Forgot Password View Controller-->
         <scene sceneID="L3k-He-LYp">
             <objects>
-                <viewController storyboardIdentifier="ForgotPasswordViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GUq-fB-p4v" customClass="ForgotPasswordViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ForgotPasswordViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GUq-fB-p4v" customClass="ForgotPasswordViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IVf-iS-f7e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4832,7 +4833,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sJ-Vu-nqP">
                                 <rect key="frame" x="76" y="320" width="262" height="45"/>
-                                <color key="backgroundColor" red="0.27407762409999997" green="0.57289791109999999" blue="0.19990202779999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="wc0-Uo-Vgq"/>
                                 </constraints>
@@ -4903,7 +4904,7 @@
         <!--Tabbar Controller-->
         <scene sceneID="eFT-gL-cZF">
             <objects>
-                <tabBarController storyboardIdentifier="TabbarController" id="DpS-6i-n6E" customClass="TabbarController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabbarController" id="DpS-6i-n6E" customClass="TabbarController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="13s-Wd-2VZ"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dWP-Dj-wVR">
@@ -4911,7 +4912,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.82745098039999998" green="0.44705882349999998" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="selectedImageTintColor" red="0.14901960780000001" green="0.57647058819999997" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" name="PRIMARYCOLOR"/>
                     </tabBar>
                     <connections>
                         <segue destination="Ow6-bN-zD0" kind="relationship" relationship="viewControllers" id="dBT-WV-Yd6"/>
@@ -4928,7 +4929,7 @@
         <!--Edit Timing View Controller-->
         <scene sceneID="dfV-Ge-b0d">
             <objects>
-                <viewController storyboardIdentifier="EditTimingViewController" id="F8i-5B-FxP" customClass="EditTimingViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditTimingViewController" id="F8i-5B-FxP" customClass="EditTimingViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ndj-ph-B3S">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4937,7 +4938,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Everyday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6n-W3-52u">
-                                        <rect key="frame" x="20" y="45.333333333333336" width="315" height="20.333333333333336"/>
+                                        <rect key="frame" x="20" y="46.333333333333336" width="315" height="18.666666666666664"/>
                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                         <color key="textColor" red="0.14901960780000001" green="0.57647058819999997" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -4954,7 +4955,7 @@
                                     </tableView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hkz-SG-Lfr">
                                         <rect key="frame" x="20" y="649" width="374" height="45"/>
-                                        <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="FIP-J9-fZW"/>
                                         </constraints>
@@ -5020,7 +5021,7 @@
         <!--Menu-->
         <scene sceneID="bul-6I-VGd">
             <objects>
-                <viewController storyboardIdentifier="DishesViewController" id="sxb-Re-2eK" customClass="DishesViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DishesViewController" id="sxb-Re-2eK" customClass="DishesViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q6K-Yd-qbi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5052,7 +5053,7 @@
         <!--Change Pwd View Controller-->
         <scene sceneID="cJJ-qQ-NR7">
             <objects>
-                <viewController storyboardIdentifier="ChangePwdViewController" id="Ijt-Ua-ydc" customClass="ChangePwdViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChangePwdViewController" id="Ijt-Ua-ydc" customClass="ChangePwdViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4lp-ZB-fbZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5194,7 +5195,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pjg-Rw-hVT">
                                 <rect key="frame" x="20" y="526" width="374" height="45"/>
-                                <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="dks-26-ekt"/>
                                 </constraints>
@@ -5273,7 +5274,7 @@
         <!--Upcoming Detail View Controller-->
         <scene sceneID="uSt-Ge-dyG">
             <objects>
-                <viewController storyboardIdentifier="UpcomingDetailViewController" id="OcC-PL-4IG" customClass="UpcomingDetailViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UpcomingDetailViewController" id="OcC-PL-4IG" customClass="UpcomingDetailViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uz0-yn-0Ah">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -5744,7 +5745,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Uip-CI-qg7">
                                                 <rect key="frame" x="196.33333333333331" y="0.0" width="176.33333333333331" height="48"/>
-                                                <color key="backgroundColor" red="0.25098039220000001" green="0.73333333329999995" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                                 <state key="normal" title="ACCEPT">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
@@ -5823,7 +5824,7 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yeq-zM-Tex">
                                                 <rect key="frame" x="143.33333333333334" y="106.66666666666663" width="116.00000000000003" height="40"/>
-                                                <color key="backgroundColor" red="0.14901960780000001" green="0.57647058819999997" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="jQ6-xF-xks"/>
                                                 </constraints>
@@ -5957,7 +5958,7 @@
         <!--Edit Register View Controller-->
         <scene sceneID="iLs-Bd-CL0">
             <objects>
-                <viewController storyboardIdentifier="EditRegisterViewController" id="WIz-Ns-Tvs" customClass="EditRegisterViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditRegisterViewController" id="WIz-Ns-Tvs" customClass="EditRegisterViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8UH-Tq-dN7">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="2200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -6675,7 +6676,7 @@
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z45-5g-rov">
                                                         <rect key="frame" x="139" y="47.666666666666629" width="227" height="30"/>
-                                                        <color key="backgroundColor" red="0.41543823479999997" green="0.67856240270000001" blue="0.37641546129999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="KjD-Ub-iVa"/>
                                                         </constraints>
@@ -6751,7 +6752,7 @@
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="toU-cw-Pid">
                                                         <rect key="frame" x="133" y="47.666666666666742" width="233" height="30"/>
-                                                        <color key="backgroundColor" red="0.41543823479999997" green="0.67856240270000001" blue="0.37641546129999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="30" id="hQ8-Vz-GR6"/>
                                                         </constraints>
@@ -6956,7 +6957,7 @@
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lb1-9I-PhP">
                                         <rect key="frame" x="10" y="10" width="394" height="45"/>
-                                        <color key="backgroundColor" red="0.2666666667" green="0.63921568630000003" blue="0.2666666667" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="2Fe-A9-0MR"/>
                                         </constraints>
@@ -7063,7 +7064,7 @@
         <!--Order Tracking View Controller-->
         <scene sceneID="ilx-Kb-igY">
             <objects>
-                <viewController storyboardIdentifier="OrderTrackingViewController" id="s5q-tO-DGK" customClass="OrderTrackingViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OrderTrackingViewController" id="s5q-tO-DGK" customClass="OrderTrackingViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bwk-zc-6GH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -7592,7 +7593,7 @@
         <!--Food Safety View Controller-->
         <scene sceneID="bfZ-PJ-bFO">
             <objects>
-                <viewController storyboardIdentifier="FoodSafetyViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OHm-5q-2Ub" customClass="FoodSafetyViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FoodSafetyViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OHm-5q-2Ub" customClass="FoodSafetyViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CB9-87-aNY">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -7601,7 +7602,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FoodSafetyCell" rowHeight="114" id="4CF-eX-AHH" customClass="FoodSafetyCell" customModule="OrderAroundRestaurant" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FoodSafetyCell" rowHeight="114" id="4CF-eX-AHH" customClass="FoodSafetyCell" customModule="DietManager___Manager" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="114"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="4CF-eX-AHH" id="N0P-QH-nk2">
@@ -7656,7 +7657,7 @@
         <!--Loader View Controller-->
         <scene sceneID="reE-WD-og9">
             <objects>
-                <viewController storyboardIdentifier="PDFLoaderViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YfG-VD-f3A" customClass="PDFLoaderViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PDFLoaderViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YfG-VD-f3A" customClass="PDFLoaderViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="q3l-IE-2Ze">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -7706,7 +7707,7 @@
         <!--Take Away Orders View Controller-->
         <scene sceneID="fdT-b6-Eka">
             <objects>
-                <viewController storyboardIdentifier="TakeAwayOrdersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BxC-XT-etV" customClass="TakeAwayOrdersViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TakeAwayOrdersViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BxC-XT-etV" customClass="TakeAwayOrdersViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2Z3-UD-TKT">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -7776,12 +7777,12 @@
         <!--User Detiails View Controller-->
         <scene sceneID="Sg1-BO-i6I">
             <objects>
-                <viewController storyboardIdentifier="UserDetiailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DZ4-lc-6rp" customClass="UserDetiailsViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserDetiailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DZ4-lc-6rp" customClass="UserDetiailsViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="irG-Aw-9TG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Bank Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SsA-gH-jsl" customClass="HoshiTextField" customModule="OrderAroundRestaurant" customModuleProvider="target">
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Bank Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SsA-gH-jsl" customClass="HoshiTextField" customModule="DietManager___Manager" customModuleProvider="target">
                                 <rect key="frame" x="31" y="400" width="352" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="ClanPro-Book" family="Clan Pro" pointSize="17"/>
@@ -7800,7 +7801,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vyM-Ce-Vvy">
                                 <rect key="frame" x="16" y="676" width="382" height="40"/>
-                                <color key="backgroundColor" red="0.25098039220000001" green="0.73333333329999995" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="T0z-1f-d7M"/>
                                 </constraints>
@@ -7936,7 +7937,7 @@
                                     <constraint firstItem="4ZQ-tS-bPR" firstAttribute="height" secondItem="uHC-en-ux1" secondAttribute="height" id="ymC-se-oY2"/>
                                 </constraints>
                             </stackView>
-                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gd1-nD-6Kb" customClass="HoshiTextField" customModule="OrderAroundRestaurant" customModuleProvider="target">
+                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gd1-nD-6Kb" customClass="HoshiTextField" customModule="DietManager___Manager" customModuleProvider="target">
                                 <rect key="frame" x="42" y="458" width="352" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="ClanPro-Book" family="Clan Pro" pointSize="17"/>
@@ -8008,7 +8009,7 @@
         <!--Verification View Controller-->
         <scene sceneID="BLy-XJ-V8E">
             <objects>
-                <viewController storyboardIdentifier="VerificationViewController" id="26E-Gk-iXF" customClass="VerificationViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VerificationViewController" id="26E-Gk-iXF" customClass="VerificationViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mty-Ol-F84">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -8022,7 +8023,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgD-3d-QaN" customClass="Label" customModule="OrderAroundRestaurant" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LgD-3d-QaN" customClass="Label" customModule="DietManager___Manager" customModuleProvider="target">
                                 <rect key="frame" x="41.333333333333343" y="350" width="331.33333333333326" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -8113,7 +8114,7 @@
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t1M-QA-18d">
                                 <rect key="frame" x="20.666666666666657" y="636" width="372.66666666666674" height="50"/>
-                                <color key="backgroundColor" red="0.27407762409999997" green="0.57289791109999999" blue="0.19990202779999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="mRp-mi-UnV"/>
                                 </constraints>
@@ -8187,7 +8188,7 @@
         <!--Terms Condition View Controller-->
         <scene sceneID="RXG-MV-Fkq">
             <objects>
-                <viewController storyboardIdentifier="TermsConditionViewController" id="Yun-CH-sJf" customClass="TermsConditionViewController" customModule="OrderAroundRestaurant" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TermsConditionViewController" id="Yun-CH-sJf" customClass="TermsConditionViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mis-ca-R8O">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -8224,7 +8225,7 @@
         <image name="Location" width="20" height="20"/>
         <image name="OrderPlaced" width="32" height="32"/>
         <image name="antenna" width="128" height="128"/>
-        <image name="app_icon" width="1024" height="1024"/>
+        <image name="app_icon" width="512" height="512"/>
         <image name="back" width="32" height="32"/>
         <image name="calendar" width="30" height="30"/>
         <image name="call-answer" width="30" height="30"/>
@@ -8249,5 +8250,8 @@
         <image name="shopping-bag" width="35" height="35"/>
         <image name="unfillstar" width="128" height="128"/>
         <image name="user-placeholder" width="300" height="300"/>
+        <namedColor name="PRIMARYCOLOR">
+            <color red="0.89803921568627454" green="0.49019607843137253" blue="0.22745098039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

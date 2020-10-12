@@ -6,7 +6,7 @@
 //  Copyright © 2018 Appoets. All rights reserved.
 //
 
-var AppName = "Oyola Kitchen"
+var AppName = "DietManager - Manager"
 
 let deviceType = "ios"
 
