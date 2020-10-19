@@ -131,6 +131,7 @@ extension CountryCodeViewController : UITableViewDataSource, UITableViewDelegate
             
             self.countryCode?(filterDataSource[indexPath.row])
             delegate?.fetchCountryCode(Value: filterDataSource[indexPath.row])
+            self.dismiss(animated: true, completion: nil)
            self.navigationController?.popViewController(animated: true)
         }
         

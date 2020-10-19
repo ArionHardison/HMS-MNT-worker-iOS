@@ -62,6 +62,9 @@ PODS:
     - GoogleUtilities/Logger
   - GoogleUtilities/UserDefaults (6.1.0):
     - GoogleUtilities/Logger
+  - KWDrawerController (4.2):
+    - KWDrawerController/Core (= 4.2)
+  - KWDrawerController/Core (4.2)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
     - nanopb/encode (= 0.3.901)
@@ -88,6 +91,7 @@ DEPENDENCIES:
   - Firebase/Core
   - GoogleMaps
   - GooglePlaces
+  - KWDrawerController
   - NVActivityIndicatorView
   - SDWebImage
   - SwiftyJSON
@@ -110,6 +114,7 @@ SPEC REPOS:
     - GoogleMaps
     - GooglePlaces
     - GoogleUtilities
+    - KWDrawerController
     - nanopb
     - NVActivityIndicatorView
     - ObjectMapper
@@ -133,6 +138,7 @@ SPEC CHECKSUMS:
   GoogleMaps: 82f8fe307193bb4de6ef6bf9e88f1d624b718f9d
   GooglePlaces: 1b9d29cf3e164903d873600f511f42acdfe85294
   GoogleUtilities: 84df567c76ca84f67b7bb40e769fdd4acc746a10
+  KWDrawerController: 244ecb42378bd13a56826458647b76758db5cb67
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   NVActivityIndicatorView: 4ca19fccc84595a78957336a086d00a49be6ce61
   ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
@@ -141,6 +147,6 @@ SPEC CHECKSUMS:
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
   UnsplashPhotoPicker: 9bbce3281825f0f61b98a53df84875e33723cd1d
 
-PODFILE CHECKSUM: 4c1d53fd7635c9c85d601b5add4083777cd75fc8
+PODFILE CHECKSUM: ced26b60286dd05de0e4f754869a625123e5c454
 
-COCOAPODS: 1.9.1
+COCOAPODS: 1.8.4

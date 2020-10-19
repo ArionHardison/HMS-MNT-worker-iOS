@@ -27,7 +27,11 @@ class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
         self.navigationController?.isNavigationBarHidden = false
     }
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.isNavigationBarHidden = true
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.black]
+
     }
    
 

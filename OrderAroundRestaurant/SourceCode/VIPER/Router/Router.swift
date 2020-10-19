@@ -38,14 +38,7 @@ class Router: PresenterToRouterProtocol {
         mainInteractor.webService = mainWebservice
         mainWebservice.interactor = mainInteractor
         
-        return retrieveUserData() ? {
-            {
-                let nav = UINavigationController(rootViewController: main.instantiateViewController(withIdentifier:  Storyboard.Ids.TabbarController))
-                nav.isNavigationBarHidden = false
-                return nav
-                
-            }()
-            }() : {
+        return retrieveUserData() ? setDrawerController() : {
                 let nav = UINavigationController(rootViewController: main.instantiateViewController(withIdentifier:  Storyboard.Ids.LoginViewController))
                 nav.isNavigationBarHidden = true
                 return nav

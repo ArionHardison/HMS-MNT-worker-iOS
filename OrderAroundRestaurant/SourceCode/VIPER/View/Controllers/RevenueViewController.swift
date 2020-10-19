@@ -39,19 +39,6 @@ class RevenueViewController: BaseViewController, ChartViewDelegate {
         
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
-    
     //MARK:- viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isNavigationBarHidden = false
@@ -65,8 +52,16 @@ extension RevenueViewController{
         setNavigationController()
         setFont()
         getRevenueApi()
+        
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "back-white").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.backButtonClick))
+
     }
+    
+    
+    
     private func setFont(){
+        
         totalRevenueValueLabel.text = APPLocalize.localizestring.totalRevenue.localize()
         orderReceivedLabel.text = "Order Received Today" //APPLocalize.localizestring.orderReceived.localize()
         orderDeliveryLabel.text = "Order Completed Today" //APPLocalize.localizestring.orderDelivered.localize()
@@ -84,6 +79,7 @@ extension RevenueViewController{
         totalRenvenueLabel.font = UIFont.bold(size: 14)
         totalRevenueValueLabel.textColor = UIColor.primary
         noOfOrdersLbl.font = UIFont.regular(size: 12)
+        
     }
     private func getRevenueApi(){
         showActivityIndicator()
@@ -96,15 +92,14 @@ extension RevenueViewController{
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.title = APPLocalize.localizestring.Revenue.localize()
          self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.white]
- 
-//        let btnBack = UIButton(type: .custom)
-//        btnBack.setTitle("Revenue", for: .normal)
-//        btnBack.titleLabel?.textColor = UIColor.white
-//        btnBack.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
-//        btnBack.isUserInteractionEnabled = false
-//        let item = UIBarButtonItem(customView: btnBack)
-//        self.navigationItem.setLeftBarButtonItems([item], animated: true)
-        
+         
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.black]
+
     }
    
     

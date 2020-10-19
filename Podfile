@@ -23,6 +23,7 @@ target 'DietManagerManager' do
   pod 'TextFieldEffects'
   pod 'UnsplashPhotoPicker', '~> 1.1'
   pod 'EasyTipView', '~> 2.0.4'
+  pod 'KWDrawerController'
 
 
   target 'DietManagerManagerTests' do

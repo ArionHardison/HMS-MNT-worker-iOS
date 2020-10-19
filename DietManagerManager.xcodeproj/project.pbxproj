@@ -159,6 +159,11 @@
 		315A1BA642769148D0DB3DA0 /* Pods_DietManagerManagerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C88C502898BF0E1B56B35362 /* Pods_DietManagerManagerUITests.framework */; };
 		4B57F6101554E1BCC0FB3975 /* Pods_DietManagerManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1F21A782AE3A322AB58C696F /* Pods_DietManagerManagerTests.framework */; };
 		4DC94467C866A511C9DB4495 /* Pods_DietManagerManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69981DE36D8EDAACA1BDDAA1 /* Pods_DietManagerManager.framework */; };
+		7777A581253DAB9D00A24D60 /* MobileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7777A580253DAB9D00A24D60 /* MobileViewController.swift */; };
+		7777A586253DAFC400A24D60 /* CountryCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7777A584253DAFC400A24D60 /* CountryCodeCell.swift */; };
+		7777A587253DAFC400A24D60 /* CountryCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7777A585253DAFC400A24D60 /* CountryCodeCell.xib */; };
+		77C48CC2253DCC5100A5AD82 /* LiveTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C48CC1253DCC5100A5AD82 /* LiveTaskViewController.swift */; };
+		77C48CC4253DCE2500A5AD82 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C48CC3253DCE2500A5AD82 /* SideBarTableViewController.swift */; };
 		850F3DC3247BCB00003DF2C3 /* EmailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850F3DC1247BCB00003DF2C3 /* EmailCollectionViewCell.swift */; };
 		850F3DC4247BCB00003DF2C3 /* EmailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850F3DC2247BCB00003DF2C3 /* EmailCollectionViewCell.xib */; };
 		85EBF5C02440C51F0031DB32 /* OTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EBF5BF2440C51F0031DB32 /* OTPController.swift */; };
@@ -344,6 +349,11 @@
 		69981DE36D8EDAACA1BDDAA1 /* Pods_DietManagerManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietManagerManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D0B33191C1793789EF186C8 /* Pods-DietManagerManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerManager.release.xcconfig"; path = "Target Support Files/Pods-DietManagerManager/Pods-DietManagerManager.release.xcconfig"; sourceTree = "<group>"; };
 		720967599EA4387BC1D693F4 /* Pods-OrderAroundRestaurant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurant.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurant/Pods-OrderAroundRestaurant.release.xcconfig"; sourceTree = "<group>"; };
+		7777A580253DAB9D00A24D60 /* MobileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileViewController.swift; sourceTree = "<group>"; };
+		7777A584253DAFC400A24D60 /* CountryCodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCodeCell.swift; sourceTree = "<group>"; };
+		7777A585253DAFC400A24D60 /* CountryCodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryCodeCell.xib; sourceTree = "<group>"; };
+		77C48CC1253DCC5100A5AD82 /* LiveTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTaskViewController.swift; sourceTree = "<group>"; };
+		77C48CC3253DCE2500A5AD82 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
 		850F3DC1247BCB00003DF2C3 /* EmailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCollectionViewCell.swift; sourceTree = "<group>"; };
 		850F3DC2247BCB00003DF2C3 /* EmailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailCollectionViewCell.xib; sourceTree = "<group>"; };
 		85EBF5BF2440C51F0031DB32 /* OTPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPController.swift; sourceTree = "<group>"; };
@@ -511,6 +521,8 @@
 				1274D567241B92FD00000CFE /* ReasonsListView.xib */,
 				1274D569241B97B300000CFE /* ReasonsCell.swift */,
 				1274D56A241B97B300000CFE /* ReasonsCell.xib */,
+				7777A584253DAFC400A24D60 /* CountryCodeCell.swift */,
+				7777A585253DAFC400A24D60 /* CountryCodeCell.xib */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -588,6 +600,8 @@
 		087D0C1022241BF400E58BDE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7777A580253DAB9D00A24D60 /* MobileViewController.swift */,
+				77C48CC3253DCE2500A5AD82 /* SideBarTableViewController.swift */,
 				008027742514ABBC0016D193 /* TermsConditionViewController.swift */,
 				85EBF5BF2440C51F0031DB32 /* OTPController.swift */,
 				08C43F8B237D3C7B00583886 /* UserDetiailsViewController.swift */,
@@ -630,6 +644,7 @@
 				125B965523D710F300923CE3 /* FoodSafetyViewController.swift */,
 				125B965723D7183700923CE3 /* PDFLoaderViewController.swift */,
 				124EE8A3243E27ED0080E87B /* ForgotPasswordViewController.swift */,
+				77C48CC1253DCC5100A5AD82 /* LiveTaskViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1081,6 +1096,7 @@
 				08A14DF3222FE37E00F35B1E /* AddCategoryTableViewCell.xib in Resources */,
 				1274D568241B92FD00000CFE /* ReasonsListView.xib in Resources */,
 				08A3B6B4222546BB0010058B /* SideMenuTableViewCell.xib in Resources */,
+				7777A587253DAFC400A24D60 /* CountryCodeCell.xib in Resources */,
 				087D0C092224093400E58BDE /* LaunchScreen.storyboard in Resources */,
 				08A3B6A922253D1A0010058B /* Nunito-ExtraLight.ttf in Resources */,
 				08A44ACC2237B14000228233 /* CountryPicker.bundle in Resources */,
@@ -1307,7 +1323,9 @@
 				08AD19EE223B94900009F5F6 /* RevenueEntity.swift in Sources */,
 				08A14DF2222FE37E00F35B1E /* AddCategoryTableViewCell.swift in Sources */,
 				08A44AC222379E6200228233 /* SelectCusineViewController.swift in Sources */,
+				77C48CC4253DCE2500A5AD82 /* SideBarTableViewController.swift in Sources */,
 				124EE8A4243E27ED0080E87B /* ForgotPasswordViewController.swift in Sources */,
+				7777A581253DAB9D00A24D60 /* MobileViewController.swift in Sources */,
 				08A20C2A223A52C90081256F /* AddAddonsEntity.swift in Sources */,
 				08ACEA06223922BA0050591D /* RemoveProductEntity.swift in Sources */,
 				08B6BD1A237C22D400F3C25A /* ImageGalleryViewController.swift in Sources */,
@@ -1318,7 +1336,9 @@
 				0891E215223103E700409038 /* ViewControllerExtension.swift in Sources */,
 				08A3B6BC22254FE10010058B /* Identifiers.swift in Sources */,
 				0891E20A2230FFB900409038 /* LoginEntity.swift in Sources */,
+				77C48CC2253DCC5100A5AD82 /* LiveTaskViewController.swift in Sources */,
 				08A3B6BF22255C8C0010058B /* EditTimingTableViewCell.swift in Sources */,
+				7777A586253DAFC400A24D60 /* CountryCodeCell.swift in Sources */,
 				08A14DF5222FF95200F35B1E /* CreateCategoryViewController.swift in Sources */,
 				08A44AD42237B2CE00228233 /* CountryCodeTableViewCell.swift in Sources */,
 				088F9C992247C97E00900EE5 /* GetProductEntity.swift in Sources */,

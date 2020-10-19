@@ -14,7 +14,10 @@ struct Storyboard {
     static let Ids = Storyboard()
     let EditRegisterViewController = "EditRegisterViewController"
     let LoginViewController = "LoginViewController"
+    let LaunchNavigationController = "LaunchNavigationController"
+    let SideBarTableViewController = "SideBarTableViewController"
     let RegisterViewController = "RegisterViewController"
+    let MobileViewController = "MobileViewController"
     let RestaurantMenuViewController = "RestaurantMenuViewController"
     let ChangePwdViewController = "ChangePwdViewController"
     let EditTimingViewController = "EditTimingViewController"

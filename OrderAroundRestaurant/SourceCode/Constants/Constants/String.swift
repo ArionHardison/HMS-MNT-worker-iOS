@@ -42,6 +42,11 @@ extension String {
         return NSLocalizedString(self, bundle: currentBundle, comment: "")
     }
     
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + dropFirst()
+    }
+
+    
     func isValidPassword()->Bool{
         
 //        let emailTest = NSPredicate(format:"SELF MATCHES %@","(?:(?:(?=.*?[0-9])(?=.*?[-!@#$%&*ˆ+=_])|(?:(?=.*?[0-9])|(?=.*?[A-Z])|(?=.*?[-!@#$%&*ˆ+=_])))|(?=.*?[a-z])(?=.*?[0-9])(?=.*?[-!@#$%&*ˆ+=_]))[A-Za-z0-9-!@#$%&*ˆ+=_]{6,15}")

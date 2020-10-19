@@ -104,8 +104,12 @@ class LoginViewController: BaseViewController {
     }
 
     @IBAction func onRegisterAction(_ sender: Any) {
-        let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.RegisterViewController) as! RegisterViewController
-        self.navigationController?.pushViewController(registerController, animated: true)
+        
+        let mobileVC = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.MobileViewController) as! MobileViewController
+        self.navigationController?.pushViewController(mobileVC, animated: true)
+        
+//        let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.RegisterViewController) as! RegisterViewController
+//        self.navigationController?.pushViewController(registerController, animated: true)
     }
     @IBAction func onLoginAction(_ sender: Any) {
         print("SignIn Pressed")
@@ -150,8 +154,6 @@ class LoginViewController: BaseViewController {
     
     @IBAction func forgotPwdAction(_ sender: Any) {
         
-        
-        
         let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ForgotPasswordViewController) as! ForgotPasswordViewController
               self.navigationController?.pushViewController(registerController, animated: true)
         
@@ -175,8 +177,8 @@ extension LoginViewController {
         setCornerRadius()
         setTextFieldDelegate()
         hideKeyboardWhenTappedAround()
-        loginButton.layer.cornerRadius = 16
-        loginButton.layer.borderWidth = 1
+//        loginButton.layer.cornerRadius = 16
+//        loginButton.layer.borderWidth = 1
 //        RegisterButton.layer.cornerRadius = 16
 //        RegisterButton.layer.borderWidth = 1
 

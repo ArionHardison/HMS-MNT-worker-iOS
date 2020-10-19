@@ -53,16 +53,6 @@ class HomeViewController: BaseViewController {
     }
    
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 extension HomeViewController{
     private func setInitialLoad(){
@@ -92,12 +82,14 @@ extension HomeViewController{
         self.presenter?.GETPOST(api: url, params:[:], methodType: HttpType.GET, modelClass: ProfileModel.self, token: true)
     }
     private func setFont(){
+        
         restaurantNameLabel.font = UIFont.bold(size: 20)
         restaurantLocation.font = UIFont.bold(size: 18)
         labelUpComingRequests.font = UIFont.bold(size: 20)
 
     }
     private func setValues(profile: ProfileModel){
+        
         restaurantNameLabel.text = profile.name
         restaurantLocation.text = profile.maps_address
         bannerImageView.sd_setImage(with: URL(string: profile.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
@@ -105,6 +97,7 @@ extension HomeViewController{
 
     }
     private func setRegister(){
+        
         let upcomingRequestViewnib = UINib(nibName: XIB.Names.UpcomingRequestTableViewCell, bundle: nil)
         upcomingRequestTableView.register(upcomingRequestViewnib, forCellReuseIdentifier: XIB.Names.UpcomingRequestTableViewCell)
         upcomingRequestTableView.delegate = self

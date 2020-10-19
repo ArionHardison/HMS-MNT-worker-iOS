@@ -8,6 +8,7 @@
 
 import UIKit
 import Foundation
+import KWDrawerController
 
 var currentBundle : Bundle!
 var selectedLanguage : Language = .japanese
@@ -25,6 +26,23 @@ func setLocalization(language : Language){
     }
     
 }
+
+//MARK:- Set Drawer Controller
+func setDrawerController()->UIViewController {
+    
+    let drawerController =  DrawerController()
+    if let sideBarController = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.SideBarTableViewController) as? SideBarTableViewController  {
+        //let drawerSide : DrawerSide = selectedLanguage == .arabic ? .right : .left
+        let mainController = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.LaunchNavigationController)
+        drawerController.setViewController(sideBarController, for: .left)
+        drawerController.setViewController(sideBarController, for: .right)
+        drawerController.setViewController(mainController, for: .none)
+        drawerController.getSideOption(for: .left)?.isGesture = false
+        drawerController.getSideOption(for: .right)?.isGesture = false
+    }
+    return drawerController
+}
+
 
 extension UIView {
 
