@@ -61,8 +61,7 @@ class MobileViewController: UIViewController {
     }
     
     func localize() {
-        signInBut.layer.cornerRadius = 16
-     //   signInBut.layer.borderWidth = 1
+
         self.mobileNumberTxtFlb.placeholder = APPLocalize.localizestring.phonenumber.localize()
         self.alreadyLbl.setTitle(APPLocalize.localizestring.alreadyRegister.localize(), for: .normal)
 //        self.connectWithSocial.text = APPLocalize.localizestring.s.localize()
@@ -99,28 +98,31 @@ class MobileViewController: UIViewController {
         
         self.view.endEditingForce()
         
-        guard let mobileNumber = mobileNumberTxtFlb.text, !mobileNumber.isEmpty else {
-            self.showToast(string: ErrorMessage.list.enterMobile.localize())
-            return
-        }
-        guard mobileNumberTxtFlb.text?.count ?? 0 > 7 else {
-            self.showToast(string: ErrorMessage.list.enterValidEmail.localize())
-            
-            return
-        }
-        guard mobileNumberTxtFlb.text?.count ?? 0 < 15 else {
-            self.showToast(string: ErrorMessage.list.enterValidEmail.localize())
-            
-            return
-        }
-        self.view.endEditingForce()
-        
-        if isFromForgetPassword {
-           
-            
-        } else {
-           
-        }
+        let signIn = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.SignUpViewController) as! SignUpViewController
+        self.navigationController?.pushViewController(signIn, animated: true)
+
+//        guard let mobileNumber = mobileNumberTxtFlb.text, !mobileNumber.isEmpty else {
+//            self.showToast(string: ErrorMessage.list.enterMobile.localize())
+//            return
+//        }
+//        guard mobileNumberTxtFlb.text?.count ?? 0 > 7 else {
+//            self.showToast(string: ErrorMessage.list.enterValidEmail.localize())
+//            return
+//        }
+//        
+//        guard mobileNumberTxtFlb.text?.count ?? 0 < 15 else {
+//            self.showToast(string: ErrorMessage.list.enterValidEmail.localize())
+//            return
+//        }
+//        
+//        self.view.endEditingForce()
+//        
+//        if isFromForgetPassword {
+//           
+//            
+//        } else {
+//           
+//        }
     }
     
     @IBAction func openCountryPicker(_ sender: UIButton) {

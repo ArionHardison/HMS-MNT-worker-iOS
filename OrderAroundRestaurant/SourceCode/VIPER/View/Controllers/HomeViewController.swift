@@ -262,7 +262,6 @@ extension HomeViewController: PresenterOutputProtocol {
             setValues(profile: self.profileDataResponse!)
             setOrderHistoryApi()
             
-            
             if self.profileDataResponse?.bank == nil {
                 
                 let bankVC = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.UserDetiailsViewController) as! UserDetiailsViewController

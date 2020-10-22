@@ -13,7 +13,7 @@ import Foundation
 import Foundation
 
 
-let baseUrl = "https://oyola.co/"//"https://foodie.deliveryventure.com/"
+let baseUrl = "http://54.91.83.2/"//"https://foodie.deliveryventure.com/"
 
 //MARK:- Status Code
 

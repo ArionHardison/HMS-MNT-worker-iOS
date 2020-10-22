@@ -66,17 +66,20 @@ extension SideBarTableViewController {
     
     private func initialLoads() {
         
+        self.buttonEDit.addTarget(self, action: #selector(editAction(sender:)), for: .touchUpInside)
+        
         // self.drawerController?.fadeColor = UIColor
         self.drawerController?.shadowOpacity = 0.2
         let fadeWidth = self.view.frame.width*(0.2)
         //self.profileImageCenterContraint.constant = 0//-(fadeWidth/3)
         self.drawerController?.drawerWidth = Float(self.view.frame.width - fadeWidth)
         self.viewShadow.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.imageViewAction)))
-        
+
     }
     
     @IBAction func editAction(sender:UIButton) {
-        self.push(to: Storyboard.Ids.RestaurantMenuViewController)
+        self.drawerController?.closeSide()
+        self.push(to: Storyboard.Ids.ProfileTableViewController)
     }
     
     // MARK:- Set Designs
@@ -150,28 +153,8 @@ extension SideBarTableViewController {
         case (0,2):
             self.push(to: Storyboard.Ids.RevenueViewController)
 
-//        case (0,4):
-//            if let vc = self.drawerController?.getViewController(for: .none)?.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.YourTripsPassbookViewController) as? YourTripsPassbookViewController {
-//                vc.isYourTripsSelected = indexPath.row == 1
-//                if indexPath.row == 1{
-//                    vc.isFromTrips = true
-//                }
-//                (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(vc, animated: true)
-//            }
-//        case (0,2):
-//            self.push(to: CouponCollectionViewController())
-//        case (0,3):
-//            self.push(to: Storyboard.Ids.WalletViewController)
-//        case (0,5):
-//            self.push(to: Storyboard.Ids.SettingTableViewController)
-//        case (0,6):
-//            self.push(to: Storyboard.Ids.HelpViewController)
-//        case (0,7):
-//            (self.drawerController?.getViewController(for: .none)?.children.first as? HomeViewController)?.share(items: ["\(AppName)", URL.init(string: baseUrl)!])
-//        case (0,8):
-//            Common.open(url: baseUrl)
-//        case (0,9):
-//            self.logout()
+        case (0,3):
+            (self.drawerController?.getViewController(for: .none)?.children.first as? LiveTaskViewController)?.logOutAction()
             
         default:
             break

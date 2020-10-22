@@ -38,9 +38,10 @@ class TakeAwayOrdersViewController: BaseViewController {
         timerGetRequest = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(self.getProfile), userInfo: nil, repeats: true)
     }
     override func viewWillDisappear(_ animated: Bool) {
-        //  self.navigationController?.isNavigationBarHidden = false
+
         timerGetRequest?.invalidate()
         timerGetRequest = nil
+        
     }
 
     @objc private func getProfile(){
@@ -229,16 +230,14 @@ extension TakeAwayOrdersViewController : PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         self.HideActivityIndicator()
         if String(describing: modelClass) == model.type.ProfileModel {
+            
             self.profileDataResponse = dataDict  as? ProfileModel
             UserDefaults.standard.set(self.profileDataResponse?.id, forKey: Keys.list.shopId)
             UserDefaults.standard.set(self.profileDataResponse?.currency, forKey: Keys.list.currency)
-            
             profiledata = self.profileDataResponse
-            
             otpString = "\(profileDataResponse?.otp ?? 0)"
             //setValues(profile: self.profileDataResponse!)
             setOrderHistoryApi()
-            
             
         }else if String(describing: modelClass) == model.type.OrderModel  {
             HideActivityIndicator()

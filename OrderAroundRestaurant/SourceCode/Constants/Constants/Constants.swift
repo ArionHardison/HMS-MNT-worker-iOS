@@ -396,6 +396,6 @@ struct Constant {
     var cancelOrder = "Cancel Orders"
     
     // var deleteAccountDescr = "Are you sure want to delete your account?"
-    var appName = "Oyola Kitchen"
+    var appName = "DietManager - Manager"
     // var logout = "Are you sure want to logout?"
 }
