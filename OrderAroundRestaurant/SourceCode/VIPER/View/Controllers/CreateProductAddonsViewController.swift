@@ -976,9 +976,9 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
         print(">>>>>>>>>>DID SELECT>>>>>>>>>")
         if(collectionView == featuredGalleryCV){
             if(indexPath.row == imageList.count - 1){
-                let alert = UIAlertController(title: "Desired Image Not There?", message: "Mail Us in:support@oyola.co", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Desired Image Not There?", message: "Mail Us in:support@DietManager.co", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action:UIAlertAction!) in
-                    let email = "support@oyola.co"
+                    let email = "support@DietManager.co"
                     if let url = URL(string: "mailto:\(email)") {
                       if #available(iOS 10.0, *) {
                         UIApplication.shared.open(url)
@@ -995,9 +995,9 @@ extension CreateProductAddonsViewController : UICollectionViewDelegate,UICollect
             
         }else{
             if(indexPath.row == imageList.count - 1){
-                let alert = UIAlertController(title: "Desired Image Not There?", message: "Mail Us in:support@oyola.co", preferredStyle: UIAlertController.Style.alert)
+                let alert = UIAlertController(title: "Desired Image Not There?", message: "Mail Us in:support@DietManager.co", preferredStyle: UIAlertController.Style.alert)
                 alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action:UIAlertAction!) in
-                    let email = "support@oyola.co"
+                    let email = "support@DietManager.co"
                     if let url = URL(string: "mailto:\(email)") {
                       if #available(iOS 10.0, *) {
                         UIApplication.shared.open(url)

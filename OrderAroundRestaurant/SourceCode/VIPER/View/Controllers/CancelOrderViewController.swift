@@ -41,7 +41,7 @@ extension CancelOrderViewController{
     private func setOrderHistoryApi(){
         showActivityIndicator()
         let urlStr = "\(Base.getOrder.rawValue)?t=cancelled"
-        self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
+      //  self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
     }
     private func setRegister(){
         //let upcomingRequestViewnib = UINib(nibName: XIB.Names.UpcomingRequestTableViewCell, bundle: nil)

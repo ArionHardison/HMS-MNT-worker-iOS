@@ -51,7 +51,7 @@ extension OnGoingOrderViewController{
     private func setOrderHistoryApi(){
         showActivityIndicator()
         let urlStr = "\(Base.getOrder.rawValue)?t=processing"
-        self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
+       // self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
     }
 
     private func setRegister(){

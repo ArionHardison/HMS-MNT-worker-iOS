@@ -81,3 +81,14 @@ extension String {
     }
     
 }
+
+
+extension Int {
+    
+    static var Empty : Int {
+          return 0
+      }
+    static func removeNil(_ value : Int?) -> Int{
+        return value ?? Int.Empty
+       }
+}

@@ -21,11 +21,19 @@ class VerificationViewController: BaseViewController {
     @IBOutlet private weak var labelVerficationCodeSentString : UILabel!
     @IBOutlet private weak var buttonContinue : UIButton!
     @IBOutlet private weak var imageViewBack : UIImageView!
-    private lazy var textFieldsArray = [self.textView1,self.textView2,self.textView3,self.textView4,self.textView5,self.textView6]
+    private lazy var textFieldsArray = [self.textView1,self.textView2,self.textView3,self.textView4]
+                                        //self.textView5,self.textView6]
      var mobileNumber : String = .Empty
+    var countryCodeValue : String = .Empty
+    var phomeNumber : String = .Empty
+    
+    
     
      var otp : String = .Empty
      var id = Int()
+    private lazy var  loader = {
+          return createActivityIndicator(UIApplication.shared.keyWindow ?? self.view)
+      }()
     
 //    private lazy var loader : UIView = {
 //        return createLottieLoader(in: self.view)
@@ -35,9 +43,13 @@ class VerificationViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initalLoads()
+        self.loader.isHidden = true
+        HideActivityIndicator()
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         enableKeyboardHandling()
+
 
     }
     
@@ -46,6 +58,8 @@ class VerificationViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        self.loader.isHidden = true
+            HideActivityIndicator()
         self.navigationController?.isNavigationBarHidden = true
     }
     
@@ -73,6 +87,7 @@ class VerificationViewController: BaseViewController {
 extension VerificationViewController : UIViewStructure {
     
     func initalLoads() {
+        HideActivityIndicator()
         buttonContinue.layer.cornerRadius = 16
         buttonContinue.layer.borderWidth = 0.5
         self.design()
@@ -91,15 +106,15 @@ extension VerificationViewController : UIViewStructure {
         addToolBarTextView(textView: textView2)
         addToolBarTextView(textView: textView3)
         addToolBarTextView(textView: textView4)
-        addToolBarTextView(textView: textView5)
-        addToolBarTextView(textView: textView6)
+//        addToolBarTextView(textView: textView5)
+//        addToolBarTextView(textView: textView6)
 
         textView1.tintColor = UIColor.primary
         textView2.tintColor = UIColor.primary
         textView3.tintColor = UIColor.primary
         textView4.tintColor = UIColor.primary
-        textView5.tintColor = UIColor.primary
-        textView6.tintColor = UIColor.primary
+//        textView5.tintColor = UIColor.primary
+//        textView6.tintColor = UIColor.primary
         textView1.delegate = self
         textView2.delegate = self
         textView3.delegate = self
@@ -119,7 +134,7 @@ extension VerificationViewController : UIViewStructure {
      func localize() {
         self.buttonContinue.setTitle("Continue", for: .normal)
         self.labelVerficationString.text = "Verification Code"
-        let textString = "Please enter the verification code sent to your " + "\(mobileNumber)"
+        let textString = "Please enter the verification code sent to your " + "\(mobileNumber)\("--")\(otp)"
         self.labelVerficationCodeSentString.text = textString
 //        self.labelVerficationCodeSentString.startLocation = (textString.count-" \(mobileNumber)".count)
 //        self.labelVerficationCodeSentString.length = " \(mobileNumber)".count
@@ -147,7 +162,9 @@ extension VerificationViewController : UIViewStructure {
         self.mobileNumber = mobileNumber
         self.otp = otp
         self.id = shopID
+        
         print(otp)
+           self.loader.isHidden = true
     }
     
 }
@@ -159,25 +176,76 @@ extension VerificationViewController {
     @IBAction private func buttonContinueAction() {
         
         self.view.endEditingForce()
-        var otpEntered : String = .Empty
-        for textField in textFieldsArray {
-            guard let textFieldOtp = textField?.text, !textFieldOtp.isEmpty else {
-                self.view.makeToast("Enter OTP")
-                return
-            }
-            otpEntered += textFieldOtp
-        }
-        if self.otp == otpEntered {
-            
-            let pwdViewController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ChangePwdViewController) as! ChangePwdViewController
-            pwdViewController.shopID = id
-            pwdViewController.isFromForrgotPwd = true
-            self.navigationController?.pushViewController(pwdViewController, animated: true)
-          
-           
-        }else {
-            self.view.makeToast("Incorrect OTP")
-        }
+               guard let otp1 = textView1.text, !otp1.isEmpty,
+                     let otp2 = textView2.text, !otp2.isEmpty,
+                     let otp3 = textView3.text, !otp3.isEmpty,
+                     let otp4 = textView4.text, !otp4.isEmpty
+//                     let otp5 = textView5.text, !otp5.isEmpty,
+//                     let otp6 = textView6.text, !otp6.isEmpty
+               
+                   else {
+                    self.view.makeToast(APPLocalize.localizestring.enterOtp.localize())
+                   return
+               }
+               
+               let otpString = otp1 + otp2 + otp3 + otp4
+                //+ otp5 + otp6
+               
+               if  otpString == self.otp {
+                   
+//                   if login_by == "google"  || login_by == "fb" {
+//
+//                       let signUP = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.SignUpViewController) as! SignUpViewController
+//                       signUP.accessToken = accessToken
+//                       signUP.email = email
+//                       signUP.login_by = login_by
+//                       signUP.name = name
+//                       signUP.phoneNumber = phoneNumber
+//                       self.navigationController?.pushViewController(signUP, animated: true)
+//
+//                   } else if isFromForgetPassword {
+//                       let changePassword = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ForgotPasswordController) as! ForgotPasswordController
+//                       changePassword.getForgetPasswordOTP(otp: Int(self.otp)!, id: userId!)
+//                       self.navigationController?.pushViewController(changePassword, animated: true)
+//                }
+//
+//                   else {
+                    
+                   let signUP = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.SignUpViewController) as! SignUpViewController
+                signUP.countryCodeVal1 = countryCodeValue
+                
+                
+                       signUP.phoneNumber = Int(self.phomeNumber)!
+                       
+                   self.navigationController?.pushViewController(signUP, animated: true)
+                   }
+               
+               
+               else {
+                   
+                   self.view.makeToast(APPLocalize.localizestring.enterCorrectOTP.localize())
+               }
+        
+//        self.view.endEditingForce()
+//        var otpEntered : String = .Empty
+//        for textField in textFieldsArray {
+//            guard let textFieldOtp = textField?.text, !textFieldOtp.isEmpty else {
+//                self.view.makeToast("Enter OTP")
+//                return
+//            }
+//            otpEntered += textFieldOtp
+//        }
+//        if self.otp == otpEntered {
+//
+//            let pwdViewController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.ChangePwdViewController) as! ChangePwdViewController
+//            pwdViewController.shopID = id
+//            pwdViewController.isFromForrgotPwd = true
+//            self.navigationController?.pushViewController(pwdViewController, animated: true)
+//
+//
+//        }else {
+//            self.view.makeToast("Incorrect OTP")
+//        }
 
         
     }

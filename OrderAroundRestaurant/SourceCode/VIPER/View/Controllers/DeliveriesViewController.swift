@@ -51,13 +51,13 @@ extension DeliveriesViewController{
     private func setInitialLoad(){
         setRegister()
         setNavigationController()
-        getBookingStatus()
+      //  getBookingStatus()
     }
     private func getBookingStatus(){
         statusStr = "COMPLETED"
         let urlStr = "\(Base.getOrder.rawValue)?list=true&status=\(statusStr)"
         showActivityIndicator()
-        self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
+      //  self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
     }
     private func setTransportList(){
         showActivityIndicator()
@@ -172,7 +172,7 @@ extension DeliveriesViewController: FilterDeliveryViewControllerDelegate {
         
         let urlStr = "\(Base.getOrder.rawValue)?list=true&status=\(statusStr)&dp=\(deliveryPersonId)&start_date=\(fromConDate ?? "")&end_date=\(toConDate ?? "")&order_type=\(orderType)"
         showActivityIndicator()
-        self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
+     //   self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
     }
     
     

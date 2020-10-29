@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import ObjectMapper
+import NVActivityIndicatorView
+
 //import GoogleSignIn
 //import FBSDKLoginKit
 
@@ -23,17 +26,19 @@ class MobileViewController: UIViewController {
     @IBOutlet weak var signInBut: UIButton!
     @IBOutlet weak var mobileNumberTxtFlb: UITextField!
     var isFromForgetPassword = false
-//    private var userInfo : UserData?
-//     var userData = LoginRequestData()
-//    fileprivate var socialLogin = SocialLoginHelper ()
-    
+    private var userInfo : UserData?
+    private var getOTPData : GetOTPModel?
+   //  var userData = LoginRequestData()
+   
+  //  fileprivate var socialLogin = SocialLoginHelper ()
+//
 //    private lazy var  loader = {
 //        return createActivityIndicator(UIApplication.shared.keyWindow ?? self.view)
 //    }()
     
     let facebook = "fb"
     let google = "google"
-//    var getOTP: GetOTP?
+    var getOTP: GetOTP?
      var  login_by: String?
     var apiType = String()
     var isFromSocialLogin = false
@@ -98,31 +103,44 @@ class MobileViewController: UIViewController {
         
         self.view.endEditingForce()
         
-        let signIn = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.SignUpViewController) as! SignUpViewController
-        self.navigationController?.pushViewController(signIn, animated: true)
+//        let signIn = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.SignUpViewController) as! SignUpViewController
+//        self.navigationController?.pushViewController(signIn, animated: true)
 
-//        guard let mobileNumber = mobileNumberTxtFlb.text, !mobileNumber.isEmpty else {
-//            self.showToast(string: ErrorMessage.list.enterMobile.localize())
-//            return
-//        }
-//        guard mobileNumberTxtFlb.text?.count ?? 0 > 7 else {
-//            self.showToast(string: ErrorMessage.list.enterValidEmail.localize())
-//            return
-//        }
-//        
-//        guard mobileNumberTxtFlb.text?.count ?? 0 < 15 else {
-//            self.showToast(string: ErrorMessage.list.enterValidEmail.localize())
-//            return
-//        }
-//        
-//        self.view.endEditingForce()
-//        
-//        if isFromForgetPassword {
-//           
-//            
-//        } else {
-//           
-//        }
+        guard let mobileNumber = mobileNumberTxtFlb.text, !mobileNumber.isEmpty else {
+            self.showToast(string: ErrorMessage.list.enterMobile.localize())
+            return
+        }
+        guard mobileNumberTxtFlb.text?.count ?? 0 > 7 else {
+            self.showToast(string: ErrorMessage.list.enterValidEmail.localize())
+            return
+        }
+        
+        guard mobileNumberTxtFlb.text?.count ?? 0 < 15 else {
+            self.showToast(string: ErrorMessage.list.enterValidEmail.localize())
+            return
+        }
+        UserDefaults.standard.set(countryCodeLbl.text! + mobileNumberTxtFlb.text!, forKey: Keys.list.mobile)
+               self.view.endEditingForce()
+            //   self.loader.isHidden = false
+               self.getOTP = GetOTP()
+               getOTP?.phone = countryCodeLbl.text! + mobileNumberTxtFlb.text!
+        
+        self.view.endEditingForce()
+        
+        if isFromForgetPassword {
+            // self.presenter?.post(api: .forgetPassword, data: getOTP?.toData())
+            
+        } else {
+            
+let parameters:[String:Any] = ["dial_code": countryCodeLbl.text ?? "",
+                            "mobile":mobileNumberTxtFlb.text ?? "",
+                                                ]
+
+                   self.presenter?.GETPOST(api: Base.getOTP.rawValue, params:parameters, methodType: HttpType.POST, modelClass: GetOTPModel.self, token: false)
+            
+           
+           
+        }
     }
     
     @IBAction func openCountryPicker(_ sender: UIButton) {
@@ -152,3 +170,50 @@ extension MobileViewController: UITextFieldDelegate {
         return true
     }
 }
+
+/******************************************************************/
+//MARK: VIPER Extension:
+extension MobileViewController: PresenterOutputProtocol {
+    func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+          
+        
+        if String(describing: modelClass) == model.type.GetOTPModel {
+            self.getOTPData = dataDict as? GetOTPModel
+            let verifyOTP = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.VerificationViewController) as! VerificationViewController
+                  // verifyOTP.isFromForgetPassword = isFromForgetPassword
+//            verifyOTP.set(mobile: countryCodeLbl.text! + mobileNumberTxtFlb.text!, otp: String(describing: (?.otp)!))
+            verifyOTP.countryCodeValue = countryCodeLbl.text!
+            verifyOTP.phomeNumber = mobileNumberTxtFlb.text ?? ""
+            verifyOTP.set(mobile: countryCodeLbl.text! + mobileNumberTxtFlb.text!, otp: "\(Int.removeNil(getOTPData?.otp))", shopID: 0)
+                   self.navigationController?.pushViewController(verifyOTP, animated: true)
+//
+//            DispatchQueue.main.async {
+//                self.HideActivityIndicator()
+//                let data = NSKeyedArchiver.archivedData(withRootObject: self.logindata?.access_token ?? "")
+//                UserDefaults.standard.set(data, forKey:  Keys.list.userData)
+//                UserDefaults.standard.synchronize()
+//
+//                 UserDataDefaults.main.access_token = self.logindata?.access_token ?? ""
+//                print(UserDataDefaults.main.access_token)
+//                let tabController = self.storyboard?.instantiateViewController(withIdentifier: "TabbarController") as! TabbarController
+//                self.navigationController?.navigationBar.isHidden = true
+//                self.navigationController?.pushViewController(tabController, animated: true)
+            }
+        }
+        
+    
+    
+    func showError(error: CustomError) {
+        print(error)
+        
+     
+        let alert = showAlert(message: error.localizedDescription)
+//        DispatchQueue.main.async {
+//            self.present(alert, animated: true, completion: {
+//                self.HideActivityIndicator()
+//            })
+//        }
+        
+    }
+}
+/******************************************************************/

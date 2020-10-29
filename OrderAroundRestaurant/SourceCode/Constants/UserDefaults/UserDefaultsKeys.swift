@@ -20,6 +20,7 @@ struct Keys {
     let message = "message"
     let shopId = "shopId"
     let currency = "currency"
+    let mobile = "mobile"
 
 }
 

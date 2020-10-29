@@ -13,7 +13,8 @@ import Foundation
 import Foundation
 
 
-let baseUrl = "http://34.203.193.141/"//"https://foodie.deliveryventure.com/"
+let baseUrl = "http://dietmanager.com/"
+//"http://34.203.193.141/"//"https://foodie.deliveryventure.com/"
 
 //MARK:- Status Code
 
@@ -31,8 +32,12 @@ enum StatusCode : Int {
 
 enum Base : String{
    
-    case login = "api/shop/oauth/token" //"/oauth/token"
-    case register = "/api/shop/register"
+    case login = "/api/chef/oauth/token"
+    //"api/shop/oauth/token" //"/oauth/token"
+    case register = "/api/chef/register"
+    case getOTP = "/api/chef/register/otp"
+  //  case signUp = "/api/chef/register"
+    //"/api/shop/register"
     case forgotPassword = "api/shop/forgot/password"
     case logout = "/api/shop/logout"
     case changePassword = "/api/shop/password"
@@ -41,7 +46,8 @@ enum Base : String{
     case categoryList = "/api/shop/categories"
     case productList = "/api/shop/products"
     case historyList = "/api/shop/history"
-    case getprofile = "/api/shop/profile"
+    case getprofile = "/api/chef/profile"
+    //"/api/shop/profile"
     case getRevenue = "/api/shop/revenue"
     case getOrder = "/api/shop/order"
     case getTransportList = "/api/shop/transporterlist"

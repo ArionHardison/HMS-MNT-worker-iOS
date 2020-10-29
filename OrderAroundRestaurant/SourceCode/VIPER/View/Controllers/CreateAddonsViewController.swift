@@ -94,7 +94,7 @@ class CreateAddonsViewController: BaseViewController {
         let headers = ["Authorization" : "Bearer "+accessToken+"",
                        "Content-Type": "application/json"]
         
-        let requestString : URL = URL(string:"https://oyola.com.au/api/shop/addons")!
+        let requestString : URL = URL(string:"http://3.94.119.197/api/shop/addons")!
         //let params = ["request_id":self.requestID] as [String:Any]
         Alamofire.request(requestString, method: .post, parameters: params,encoding: JSONEncoding.default, headers: headers).responseJSON {
             response in

@@ -28,7 +28,12 @@ enum NunitoText: String {
 //MARK:- Constant Strings
 struct APPLocalize {
     
+    
     static let localizestring = APPLocalize()
+    let enterCorrectOTP =  "localize.EnterCorrectOTP"
+    
+    
+    let enterOtp =   "localize.EnterOTP"
 
     let English = "localize.English"
     let Arabic = "localize.Arabic"
@@ -36,6 +41,7 @@ struct APPLocalize {
     let empty = ""
     
     var password  = "localize.password"
+    var mobile = "Mobile Number"
     var donthanve = "localize.donthanve"
     var register  = "localize.register"
     var login     = "localize.login"
@@ -154,7 +160,7 @@ struct APPLocalize {
     let termsOfServiceTitle = "localize.termsOfServiceTitle"
     let privacyPolicyTitle = "localize.privacyPolicyTitle"
     
-    let oyolaCreditApplied = "localize.oyolaCreditApplied"
+    let oyolaCreditApplied = "localize.dietChefCreditApplied"
     let selectSource = "localize.selectSource"
     let camera = "localize.camera"
     let photoLibrary = "localize.photoLibrary"
@@ -188,6 +194,8 @@ struct APPLocalize {
 //MARK:- Error Message:
 struct ErrorMessage {
     static let list = ErrorMessage()
+      let mobile = "mobile"
+
     
     
     let serverError = "Server Could not be reached. \n Try Again"
@@ -237,6 +245,7 @@ struct ErrorMessage {
     
     let enterValidCurrentPassword = "Current Password is incorrect."
     let enterCalories = "Please Enter Calories"
+        let passwordDonotMatch = "Password does not match"
 
 
     
@@ -337,6 +346,9 @@ struct model {
     let FoodSafetyModel = "FoodSafetyModel"
     let CancelReasons  = "CancelReasons"
     let OTPResponseModel = "OTPResponseModel"
+    let GetOTPModel = "GetOTPModel"
+    let SignUpEntityModel = "SignUpEntityModel"
+    
     
     
     

@@ -13,8 +13,9 @@ let deviceType = "ios"
 var tokenType = "Bearer"
 
 var client_ID = "2"
+var deviceTokenString = Constants.string.noDevice
 
-var client_Secret = "aCaCS0Kf2MArewwGDgHqfTz9q4U3GRqZwgK1LR70"//"O5UIpF9H1QXSx3Kc41E5WZUP6UauJmRaoqyE8itq"
+var client_Secret = "jHwkBi09BdDHCIswdhYszBT78tRc2LBmttngQ1A0"//"O5UIpF9H1QXSx3Kc41E5WZUP6UauJmRaoqyE8itq"
 
 var access_token = "access_token"
 

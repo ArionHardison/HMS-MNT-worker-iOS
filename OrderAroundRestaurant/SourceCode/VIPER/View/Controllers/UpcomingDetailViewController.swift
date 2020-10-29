@@ -254,7 +254,7 @@ class UpcomingDetailViewController: BaseViewController {
             "_method":"PATCH","cancel_reason_id":id]
         }
         
-        self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
+    //    self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
     }
     
     
@@ -273,7 +273,7 @@ class UpcomingDetailViewController: BaseViewController {
             self.navigationController?.pushViewController(vc, animated: true)
                   // self.present(vc, animated: true, completion: nil)
         }else{
-            self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
+         //   self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
         }
         
         
@@ -345,7 +345,7 @@ extension UpcomingDetailViewController{
         
         let urlStr = "\(Base.getOrder.rawValue)/" + String(OrderId)
         print("url>>>>",urlStr)
-        self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderDetailModel.self, token: true)
+      //  self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderDetailModel.self, token: true)
     }
     
     
@@ -733,7 +733,7 @@ extension UpcomingDetailViewController : OTPDelegate {
               let urlStr = "\(Base.getOrder.rawValue)/" + String(OrderId)
               let parameters:[String:Any] = ["status": "COMPLETED",
                                              "_method":"PATCH", "otp": otpString]
-         self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
+//self.presenter?.GETPOST(api: urlStr, params: parameters, methodType: .POST, modelClass: AcceptModel.self, token: true)
 
         
     }

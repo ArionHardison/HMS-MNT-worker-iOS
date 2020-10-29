@@ -172,6 +172,7 @@
 		B4086EDD2271F159008C5BC0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4086EDF2271F159008C5BC0 /* Localizable.strings */; };
 		B4B405DB225B87D700D86215 /* DeleteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B405DA225B87D600D86215 /* DeleteEntity.swift */; };
 		B4DBB6E9225CA46600CB31F8 /* OrderTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DBB6E8225CA46600CB31F8 /* OrderTrackingViewController.swift */; };
+		BB9A65D12549B6A100C91426 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9A65D02549B6A000C91426 /* Common.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -372,6 +373,7 @@
 		B4BC6BCD2254BE83007427BD /* OrderAroundRestaurant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OrderAroundRestaurant.entitlements; sourceTree = "<group>"; };
 		B4DBB6E8225CA46600CB31F8 /* OrderTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackingViewController.swift; sourceTree = "<group>"; };
 		BAB4B17BE6A699D17BCF67EB /* Pods-DietManagerManagerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerManagerUITests.release.xcconfig"; path = "Target Support Files/Pods-DietManagerManagerUITests/Pods-DietManagerManagerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BB9A65D02549B6A000C91426 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		C5A079EBE806DF346E387BC6 /* Pods-OrderAroundRestaurantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantTests.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantTests/Pods-OrderAroundRestaurantTests.release.xcconfig"; sourceTree = "<group>"; };
 		C88C502898BF0E1B56B35362 /* Pods_DietManagerManagerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietManagerManagerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC2C017217BF53DC674AEEA1 /* Pods-OrderAroundRestaurantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantTests.debug.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantTests/Pods-OrderAroundRestaurantTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -761,6 +763,7 @@
 		087D0C24222428DE00E58BDE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				BB9A65D02549B6A000C91426 /* Common.swift */,
 				0891E2232231597100409038 /* TextField */,
 				0891E21A22311E6200409038 /* Device */,
 				0891E213223103CC00409038 /* ViewController */,
@@ -1340,6 +1343,7 @@
 				08A14DED222FE1CF00F35B1E /* CategoryListViewController.swift in Sources */,
 				0055D4F824E7B04200714704 /* HistoryTableViewCell.swift in Sources */,
 				0852342F2226668500446B47 /* DishesViewController.swift in Sources */,
+				BB9A65D12549B6A100C91426 /* Common.swift in Sources */,
 				0891E215223103E700409038 /* ViewControllerExtension.swift in Sources */,
 				08A3B6BC22254FE10010058B /* Identifiers.swift in Sources */,
 				0891E20A2230FFB900409038 /* LoginEntity.swift in Sources */,

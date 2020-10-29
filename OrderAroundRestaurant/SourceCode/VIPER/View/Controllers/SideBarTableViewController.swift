@@ -22,11 +22,11 @@ class SideBarTableViewController: UITableViewController {
     
     private let cellId = "cellId"
     
-//    private lazy var loader : UIView = {
-//
-//        return createActivityIndicator(self.view)
-//
-//    }()
+    private lazy var loader : UIView = {
+
+        return createActivityIndicator(self.view)
+
+    }()
     
 
     override func viewDidLoad() {

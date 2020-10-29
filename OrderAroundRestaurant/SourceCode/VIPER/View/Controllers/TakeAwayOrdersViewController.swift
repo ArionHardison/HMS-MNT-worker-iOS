@@ -71,7 +71,7 @@ class TakeAwayOrdersViewController: BaseViewController {
     @objc private func setOrderHistoryApi(){
         
         let urlStr = "\(Base.getOrder.rawValue)?t=takeaway"
-        self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
+    //    self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
     }
     
     

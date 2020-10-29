@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ObjectMapper
 
 class SignUpViewController: UIViewController {
 
@@ -26,11 +27,14 @@ class SignUpViewController: UIViewController {
     
 //    private var userInfo : UserData?
     var  name: String?
+    var countryCodeVal1 : String?
     var  accessToken: String?
     @IBOutlet weak var registerBut: UIButton!
     var  email: String?
     var  login_by: String?
     var phoneNumber: Int?
+    var signUpData : SignUpEntityModel?
+    
     
 //    private lazy var  loader = {
 //        return createActivityIndicator(UIApplication.shared.keyWindow ?? self.view)
@@ -41,6 +45,7 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         
         localize()
+        print("phoneNumber>>",phoneNumber)
         setCustomFont()
         hideKeyboardWhenTappedAround()
 
@@ -114,6 +119,20 @@ class SignUpViewController: UIViewController {
             }
         }
     }
+    
+    private func validateEmail()->String? {
+        guard let email = emailTxtFld.text?.trimmingCharacters(in: .whitespaces), !email.isEmpty else {
+            self.showToast(string: ErrorMessage.list.enterEmail.localize())
+            emailTxtFld.becomeFirstResponder()
+            return nil
+        }
+        guard Common.isValid(email: email) else {
+            self.showToast(string: ErrorMessage.list.enterValidEmail.localize())
+            emailTxtFld.becomeFirstResponder()
+            return nil
+        }
+        return email
+    }
    
     // MARK: - Button Actions
     
@@ -165,10 +184,134 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpClickEvent(sender:UIButton) {
+        self.view.endEditingForce()
+             
+       // guard self.validateEmail() != nil else { return }
+          guard let email = self.validateEmail() else { return }
+             
+             guard let userName = self.userNameTxtFld.text, !userName.isEmpty else {
+                 self.showToast(string: ErrorMessage.list.enterName.localize())
+                 return
+             }
+             
+             guard let password = passwordTxtFld.text, !password.isEmpty else {
+                 self.showToast(string: ErrorMessage.list.enterPassword.localize())
+                 return
+             }
         
-    }
+        
+             guard let confirmPwd = confirmPassword.text, !confirmPwd.isEmpty else {
+                 self.showToast(string: ErrorMessage.list.enterConfirmPassword.localize())
+                 return
+             }
+             guard confirmPwd == password else {
+                 self.showToast(string: ErrorMessage.list.passwordDonotMatch.localize())
+                 return
+             }
+             
+//             guard isImageUpload(isupdate: isLicenseImage) else{
+//                 self.showToast(string: ErrorMessage.list.uploadLicense.localize())
+//
+//                 return
+//             }
+             
+//             if login_by == "google"  {
+//
+//                    if (UserDefaults.standard.value(forKey: Keys.list.socialLoginAccessToken) as? String) != nil {
+//                     //userInfo =  MakeJson.signUpViaSocial(loginBy: .google, email: String(describing: email), userName: String(describing: name!), phone: phoneNumber, accessToken: (UserDefaults.standard.value(forKey: Keys.list.socialLoginAccessToken) as? String)!)
+//                     var userDetailInfo = UserProfile()
+//                     userDetailInfo.email = String(describing: email)
+//                     let phone = String(phoneNumber!)
+//                     if !phone.contains("+") {
+//                         userDetailInfo.phone = "+" + phone
+//                     }else{
+//                         userDetailInfo.phone = phone
+//                     }
+//                     userDetailInfo.accessToken = (UserDefaults.standard.value(forKey: Keys.list.socialLoginAccessToken) as? String)!
+//                     userDetailInfo.login_by = .google
+//                     userDetailInfo.device_id = UUID().uuidString
+//                     userDetailInfo.device_token = deviceTokenString
+//                     userDetailInfo.device_type = .ios
+//                     userDetailInfo.name = String(describing: name!)
+//                     self.loader.isHidden = false
+//                     self.presenter?.post(api: .signUp, data: userDetailInfo.toData())
+//                 }
+//
+//             } else if login_by == "fb" {
+//
+//                  if (UserDefaults.standard.value(forKey: Keys.list.socialLoginAccessToken) as? String) != nil {
+//                    // userInfo =  MakeJson.signUpViaSocial(loginBy: .fb, email: String(describing: email), userName: String(describing: name!), phone: phoneNumber, accessToken: (UserDefaults.standard.value(forKey: Keys.list.socialLoginAccessToken) as? String)!)
+//                     var userDetailInfo = UserProfile()
+//                     userDetailInfo.email = String(describing: email)
+//                     let phone = String(phoneNumber!)
+//                     if !phone.contains("+") {
+//                         userDetailInfo.phone = "+" + phone
+//                     }else{
+//                         userDetailInfo.phone = phone
+//                     }
+//                     userDetailInfo.accessToken = (UserDefaults.standard.value(forKey: Keys.list.socialLoginAccessToken) as? String)!
+//                     userDetailInfo.login_by = .facebook
+//                     userDetailInfo.password = password
+//                     userDetailInfo.device_id = UUID().uuidString
+//                     userDetailInfo.device_token = deviceTokenString
+//                     userDetailInfo.device_type = .ios
+//                     userDetailInfo.password_confirmation = confirmPwd
+//                     userDetailInfo.name = String(describing: name!)
+//                     self.loader.isHidden = false
+//                     self.presenter?.post(api: .signUp, data: userDetailInfo.toData())
+//                 }
+//
+//             } else {
+    
+//                 var userDetailInfo = UserProfile()
+//                 userDetailInfo.email = email
+//                 let phone = String(phoneNumber!)
+//                 if !phone.contains("+") {
+//                   userDetailInfo.phone = "+" + phone
+//                 }else{
+//                     userDetailInfo.phone = phone
+//                 }
+//                 userDetailInfo.device_id = UUID().uuidString
+//                 userDetailInfo.device_token = deviceTokenString
+//                 userDetailInfo.device_type = .ios
+//                 userDetailInfo.password = password
+//                 userDetailInfo.password_confirmation = confirmPwd
+//                 userDetailInfo.name = userName
+//                 userDetailInfo.referral_code = referalTextfield.text ?? ""
+                 
+          //  "dial_code":self.countryCodeVal1 ?? "",
+        print("phonenumer>>>",phoneNumber)
+        
+        let parameters:[String:Any] = ["email": email ,
+                 "name":userNameTxtFld.text ?? "",
+                 "password": passwordTxtFld.text ?? "",
+                 "mobile": phoneNumber ?? "",
+             
+                
+                 "password_confirmation":confirmPassword.text ?? "",
+                   "device_id":UUID().uuidString,
+                "device_token":deviceTokenString,
+                "device_type": "ios"
+                 
+                                     ]
+
+        self.presenter?.GETPOST(api: Base.register.rawValue, params:parameters, methodType: HttpType.POST, modelClass: SignUpEntityModel.self, token: false)
+        
+//
+//                 print(userDetailInfo)
+//               //  self.presenter?.post(api: .signUp, data: userDetailInfo.toData())
+//                 var uploadimgeData:Data!
+//
+//                 if  let dataImg = UIImageJPEGRepresentation(self.licenceImageView.image ?? UIImage(), 0.4) {
+//                     uploadimgeData = dataImg
+//                 }
+//                 self.presenter?.post(api: .signUp, imageData: ["d_licence":uploadimgeData], data: userDetailInfo.toData())
+             }
+    
 
 }
+
+
     
 
 
@@ -183,3 +326,37 @@ extension SignUpViewController: UITextFieldDelegate {
 
 
 
+/******************************************************************/
+//MARK: VIPER Extension:
+extension SignUpViewController: PresenterOutputProtocol {
+    func showError(error: CustomError) {
+        let alert = showAlert(message: error.localizedDescription)
+
+    }
+    
+    func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+          
+        
+        if String(describing: modelClass) == model.type.SignUpEntityModel {
+            self.signUpData = dataDict as? SignUpEntityModel
+            
+            let success = signUpData?.message
+           
+            showToast(string: success)
+           
+//
+            DispatchQueue.main.async {
+               
+            
+                let tabController = self.storyboard?.instantiateViewController(withIdentifier: "TabbarController") as! TabbarController
+                self.navigationController?.navigationBar.isHidden = true
+                self.navigationController?.pushViewController(tabController, animated: true)
+            }
+        }
+        
+    
+    
+}
+
+}
+/******************************************************************/

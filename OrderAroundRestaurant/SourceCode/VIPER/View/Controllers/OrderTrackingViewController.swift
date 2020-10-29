@@ -155,7 +155,7 @@ extension OrderTrackingViewController{
     private func setOrderHistoryApi(){
         //showActivityIndicator()
         let urlStr = "\(Base.getOrder.rawValue)/" + String(OrderId)
-        self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderDetailModel.self, token: true)
+      //  self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderDetailModel.self, token: true)
     }
     
     private func setNavigationController(){

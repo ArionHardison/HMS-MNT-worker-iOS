@@ -89,9 +89,9 @@ class TermsConditionViewController: BaseViewController {
             myURLString = "https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_GCqVbp3vX9JZsAk0XeOs8aWraIUCgFOA&scope=read_write"
         }else{
             if isTerms{
-                myURLString = "https://www.oyola.com.au/terms-of-service-kitchens"
+                myURLString = "http://3.94.119.197/terms"
             }else{
-                myURLString = "https://www.oyola.com.au/privacy-policy"
+                myURLString = "http://3.94.119.197/privacy"
             }
         }
         
@@ -143,7 +143,7 @@ extension TermsConditionViewController: WKNavigationDelegate, WKUIDelegate{
         print("WEB VIEW URL::: \(webView.url?.host ?? "")")
         
         if let currentURL = webView.url?.host{
-            if currentURL.uppercased().contains("OYOLA"){
+            if currentURL.uppercased().contains("DIET"){
                 print(currentURL)
             }
         }

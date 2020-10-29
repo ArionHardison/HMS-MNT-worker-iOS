@@ -72,7 +72,7 @@ extension HomeViewController{
         
         let urlStr = "\(Base.getOrder.rawValue)?t=ordered"
         print("url>>>",urlStr)
-        self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
+       // self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
     }
     
     
