@@ -261,9 +261,13 @@ extension LoginViewController: PresenterOutputProtocol {
                 
                  UserDataDefaults.main.access_token = self.logindata?.access_token ?? ""
                 print(UserDataDefaults.main.access_token)
-                let tabController = self.storyboard?.instantiateViewController(withIdentifier: "TabbarController") as! TabbarController
-                self.navigationController?.navigationBar.isHidden = true
-                self.navigationController?.pushViewController(tabController, animated: true)
+//                let tabController = self.storyboard?.instantiateViewController(withIdentifier: "LiveTaskViewController") as! HomeViewController
+//                self.navigationController?.navigationBar.isHidden = true
+//                self.navigationController?.pushViewController(tabController, animated: true)
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                appDelegate.window?.rootViewController = Router.createModule()
+                appDelegate.window?.makeKeyAndVisible()
             }
         }
         

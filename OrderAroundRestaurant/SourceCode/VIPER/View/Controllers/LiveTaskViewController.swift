@@ -16,7 +16,13 @@ class LiveTaskViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         //initialLoads()
+        
+        self.view.addTap {
+            self.push(to: Storyboard.Ids.TaskDetailViewController)
+        }
     }
+    
+    
     
     override func viewWillAppear(_ animated: Bool) {
         initialLoads()
@@ -29,7 +35,11 @@ class LiveTaskViewController: BaseViewController {
 
     }
     
-    
+    private func push(to identifier : String) {
+        let viewController = self.storyboard!.instantiateViewController(withIdentifier: identifier)
+        (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(viewController, animated: true)
+        
+    }
     
 }
 
@@ -45,7 +55,7 @@ extension LiveTaskViewController {
     
     @IBAction func menuAction() {
         self.drawerController?.openSide(.left)
-
+    
     }
     
     @IBAction func logOutAction() {

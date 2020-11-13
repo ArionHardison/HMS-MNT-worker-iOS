@@ -140,6 +140,19 @@
 		08C43F8C237D3C7C00583886 /* UserDetiailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C43F8B237D3C7B00583886 /* UserDetiailsViewController.swift */; };
 		08D65704237D61350043A7CE /* HoshiTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D65703237D61350043A7CE /* HoshiTextField.swift */; };
 		08D65706237D62170043A7CE /* TextFieldEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08D65705237D62160043A7CE /* TextFieldEffects.swift */; };
+		103815AD255E99AC0087E7A8 /* UXView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103815AC255E99AC0087E7A8 /* UXView.swift */; };
+		103815B3255E9F700087E7A8 /* IngredientsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 103815B1255E9F6F0087E7A8 /* IngredientsCell.xib */; };
+		103815B4255E9F700087E7A8 /* IngredientsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103815B2255E9F700087E7A8 /* IngredientsCell.swift */; };
+		103815BC255EA1840087E7A8 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103815BB255EA1840087E7A8 /* PurchaseView.swift */; };
+		103815C1255EBCEF0087E7A8 /* PurchasedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103815C0255EBCEF0087E7A8 /* PurchasedListView.swift */; };
+		103815C7255EBD4D0087E7A8 /* PurchasedListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103815C5255EBD4D0087E7A8 /* PurchasedListCell.swift */; };
+		103815C8255EBD4D0087E7A8 /* PurchasedListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 103815C6255EBD4D0087E7A8 /* PurchasedListCell.xib */; };
+		1097DAF6255E626500A3D702 /* SideBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097DAF5255E626500A3D702 /* SideBarTableViewCell.swift */; };
+		1097DB1A255E6E5300A3D702 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097DB19255E6E5300A3D702 /* TaskDetailViewController.swift */; };
+		1097DB20255E771B00A3D702 /* NewRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097DB1F255E771B00A3D702 /* NewRequestView.swift */; };
+		1097DB25255E772600A3D702 /* NewRequestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1097DB24255E772600A3D702 /* NewRequestView.xib */; };
+		1097DB2A255E7F8F00A3D702 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097DB29255E7F8F00A3D702 /* ViewExtension.swift */; };
+		10D193B1255EC8FE00AD940D /* LiveTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D193B0255EC8FE00AD940D /* LiveTrackViewController.swift */; };
 		12235D2C241F795600FF4A1B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12235D2B241F795600FF4A1B /* GoogleService-Info.plist */; };
 		124EE8A4243E27ED0080E87B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124EE8A3243E27ED0080E87B /* ForgotPasswordViewController.swift */; };
 		1251978B243EEA6000291159 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1251978A243EEA6000291159 /* VerificationViewController.swift */; };
@@ -332,6 +345,19 @@
 		08C43F8B237D3C7B00583886 /* UserDetiailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetiailsViewController.swift; sourceTree = "<group>"; };
 		08D65703237D61350043A7CE /* HoshiTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HoshiTextField.swift; sourceTree = "<group>"; };
 		08D65705237D62160043A7CE /* TextFieldEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldEffects.swift; sourceTree = "<group>"; };
+		103815AC255E99AC0087E7A8 /* UXView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UXView.swift; sourceTree = "<group>"; };
+		103815B1255E9F6F0087E7A8 /* IngredientsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IngredientsCell.xib; sourceTree = "<group>"; };
+		103815B2255E9F700087E7A8 /* IngredientsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsCell.swift; sourceTree = "<group>"; };
+		103815BB255EA1840087E7A8 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
+		103815C0255EBCEF0087E7A8 /* PurchasedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedListView.swift; sourceTree = "<group>"; };
+		103815C5255EBD4D0087E7A8 /* PurchasedListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedListCell.swift; sourceTree = "<group>"; };
+		103815C6255EBD4D0087E7A8 /* PurchasedListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PurchasedListCell.xib; sourceTree = "<group>"; };
+		1097DAF5255E626500A3D702 /* SideBarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewCell.swift; sourceTree = "<group>"; };
+		1097DB19255E6E5300A3D702 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		1097DB1F255E771B00A3D702 /* NewRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRequestView.swift; sourceTree = "<group>"; };
+		1097DB24255E772600A3D702 /* NewRequestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewRequestView.xib; sourceTree = "<group>"; };
+		1097DB29255E7F8F00A3D702 /* ViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		10D193B0255EC8FE00AD940D /* LiveTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTrackViewController.swift; sourceTree = "<group>"; };
 		12235D2B241F795600FF4A1B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		124EE8A3243E27ED0080E87B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		1251978A243EEA6000291159 /* VerificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
@@ -606,6 +632,7 @@
 		087D0C1022241BF400E58BDE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				1097DAEF255E623400A3D702 /* Dietician */,
 				7777A580253DAB9D00A24D60 /* MobileViewController.swift */,
 				77C48CC3253DCE2500A5AD82 /* SideBarTableViewController.swift */,
 				008027742514ABBC0016D193 /* TermsConditionViewController.swift */,
@@ -763,6 +790,8 @@
 		087D0C24222428DE00E58BDE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				103815AC255E99AC0087E7A8 /* UXView.swift */,
+				1097DB29255E7F8F00A3D702 /* ViewExtension.swift */,
 				BB9A65D02549B6A000C91426 /* Common.swift */,
 				0891E2232231597100409038 /* TextField */,
 				0891E21A22311E6200409038 /* Device */,
@@ -930,6 +959,32 @@
 			path = Rating;
 			sourceTree = "<group>";
 		};
+		1097DAEF255E623400A3D702 /* Dietician */ = {
+			isa = PBXGroup;
+			children = (
+				1097DB1E255E76EE00A3D702 /* XibViews */,
+				1097DAF5255E626500A3D702 /* SideBarTableViewCell.swift */,
+				1097DB19255E6E5300A3D702 /* TaskDetailViewController.swift */,
+				10D193B0255EC8FE00AD940D /* LiveTrackViewController.swift */,
+			);
+			path = Dietician;
+			sourceTree = "<group>";
+		};
+		1097DB1E255E76EE00A3D702 /* XibViews */ = {
+			isa = PBXGroup;
+			children = (
+				103815B2255E9F700087E7A8 /* IngredientsCell.swift */,
+				103815B1255E9F6F0087E7A8 /* IngredientsCell.xib */,
+				1097DB1F255E771B00A3D702 /* NewRequestView.swift */,
+				1097DB24255E772600A3D702 /* NewRequestView.xib */,
+				103815BB255EA1840087E7A8 /* PurchaseView.swift */,
+				103815C0255EBCEF0087E7A8 /* PurchasedListView.swift */,
+				103815C5255EBD4D0087E7A8 /* PurchasedListCell.swift */,
+				103815C6255EBD4D0087E7A8 /* PurchasedListCell.xib */,
+			);
+			path = XibViews;
+			sourceTree = "<group>";
+		};
 		895EF82E92E15E58D1446280 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -1089,6 +1144,7 @@
 				08A613172242225600219465 /* ItemListTableViewCell.xib in Resources */,
 				08A44AC622379F3300228233 /* SelectCusineTableViewCell.xib in Resources */,
 				08A3B6A522253D0F0010058B /* Nunito-SemiBold.ttf in Resources */,
+				103815C8255EBD4D0087E7A8 /* PurchasedListCell.xib in Resources */,
 				850F3DC4247BCB00003DF2C3 /* EmailCollectionViewCell.xib in Resources */,
 				08A44ACD2237B14000228233 /* countryCodes.json in Resources */,
 				12235D2C241F795600FF4A1B /* GoogleService-Info.plist in Resources */,
@@ -1105,10 +1161,12 @@
 				08A14DF3222FE37E00F35B1E /* AddCategoryTableViewCell.xib in Resources */,
 				1274D568241B92FD00000CFE /* ReasonsListView.xib in Resources */,
 				08A3B6B4222546BB0010058B /* SideMenuTableViewCell.xib in Resources */,
+				1097DB25255E772600A3D702 /* NewRequestView.xib in Resources */,
 				7777A587253DAFC400A24D60 /* CountryCodeCell.xib in Resources */,
 				087D0C092224093400E58BDE /* LaunchScreen.storyboard in Resources */,
 				08A3B6A922253D1A0010058B /* Nunito-ExtraLight.ttf in Resources */,
 				08A44ACC2237B14000228233 /* CountryPicker.bundle in Resources */,
+				103815B3255E9F700087E7A8 /* IngredientsCell.xib in Resources */,
 				08A3B6A322253D0A0010058B /* Nunito-ExtraBold.ttf in Resources */,
 				1274D56C241B97B300000CFE /* ReasonsCell.xib in Resources */,
 				08A3B6A222253D080010058B /* Nunito-Bold.ttf in Resources */,
@@ -1269,9 +1327,11 @@
 				08AB8774223696F400740520 /* CreateProductAddonsViewController.swift in Sources */,
 				08C43F8C237D3C7C00583886 /* UserDetiailsViewController.swift in Sources */,
 				0880805622397557005B7072 /* UserData.swift in Sources */,
+				1097DB2A255E7F8F00A3D702 /* ViewExtension.swift in Sources */,
 				08A20C2E223A70780081256F /* CreateCategoryEntity.swift in Sources */,
 				08A14DE1222FB5F200F35B1E /* CAPSPageMenu.swift in Sources */,
 				089F2D5D223270F3000D7C8D /* FilterViewController.swift in Sources */,
+				103815C7255EBD4D0087E7A8 /* PurchasedListCell.swift in Sources */,
 				089F2D5F22327615000D7C8D /* CountryCodeViewController.swift in Sources */,
 				08ACEA002238D0E30050591D /* changePwdEntity.swift in Sources */,
 				08D65704237D61350043A7CE /* HoshiTextField.swift in Sources */,
@@ -1318,10 +1378,12 @@
 				08ACEA022238EA510050591D /* CategoryListEntity.swift in Sources */,
 				08A14DE3222FCAAD00F35B1E /* RevenueViewController.swift in Sources */,
 				08AB876C2236441C00740520 /* AddOnsListEntity.swift in Sources */,
+				103815B4255E9F700087E7A8 /* IngredientsCell.swift in Sources */,
 				08A44AD92237CAA500228233 /* CusineListEntity.swift in Sources */,
 				08A20C30223A9B2A0081256F /* ProfileEntity.swift in Sources */,
 				08A14DDB222FB47E00F35B1E /* OnGoingOrderViewController.swift in Sources */,
 				089A738823703C1300DD89B1 /* TakeAwayOrdersViewController.swift in Sources */,
+				10D193B1255EC8FE00AD940D /* LiveTrackViewController.swift in Sources */,
 				0083EC69251B40FF00A3E0E9 /* StripeTokenEntity.swift in Sources */,
 				08ACEA042239012A0050591D /* ProductEntity.swift in Sources */,
 				08AB876A22363DE900740520 /* UpComingRequestViewController.swift in Sources */,
@@ -1337,6 +1399,7 @@
 				124EE8A4243E27ED0080E87B /* ForgotPasswordViewController.swift in Sources */,
 				7777A581253DAB9D00A24D60 /* MobileViewController.swift in Sources */,
 				08A20C2A223A52C90081256F /* AddAddonsEntity.swift in Sources */,
+				1097DB1A255E6E5300A3D702 /* TaskDetailViewController.swift in Sources */,
 				08ACEA06223922BA0050591D /* RemoveProductEntity.swift in Sources */,
 				08B6BD1A237C22D400F3C25A /* ImageGalleryViewController.swift in Sources */,
 				125B965823D7183700923CE3 /* PDFLoaderViewController.swift in Sources */,
@@ -1353,6 +1416,7 @@
 				08A14DF5222FF95200F35B1E /* CreateCategoryViewController.swift in Sources */,
 				08A44AD42237B2CE00228233 /* CountryCodeTableViewCell.swift in Sources */,
 				088F9C992247C97E00900EE5 /* GetProductEntity.swift in Sources */,
+				103815BC255EA1840087E7A8 /* PurchaseView.swift in Sources */,
 				24FC05B422734385003243D9 /* Global.swift in Sources */,
 				00D4C19424F9109A0025A861 /* Utility.swift in Sources */,
 				087D0C192224241500E58BDE /* WebServiceConstants.swift in Sources */,
@@ -1371,21 +1435,25 @@
 				08A20C26223A433D0081256F /* RemoveCategoryEntity.swift in Sources */,
 				08A3B6B3222546BB0010058B /* SideMenuTableViewCell.swift in Sources */,
 				1274D566241B92E500000CFE /* ReasonsListView.swift in Sources */,
+				103815C1255EBCEF0087E7A8 /* PurchasedListView.swift in Sources */,
 				087D0BC7222403FC00E58BDE /* AppDelegate.swift in Sources */,
 				0891E2222231581100409038 /* TextField.swift in Sources */,
 				125B965623D710F300923CE3 /* FoodSafetyViewController.swift in Sources */,
+				1097DAF6255E626500A3D702 /* SideBarTableViewCell.swift in Sources */,
 				0891E2042230EBE200409038 /* AddProductViewController.swift in Sources */,
 				087D0C0E2224110200E58BDE /* Constants.swift in Sources */,
 				0876C561223F86300035E2C5 /* FilterDeliveryViewController.swift in Sources */,
 				087F52EA224649050090369C /* EditRegisterEntity.swift in Sources */,
 				08AD752922269CDB002A0419 /* DeliveriesViewController.swift in Sources */,
 				0891E2202231562300409038 /* Toast.swift in Sources */,
+				103815AD255E99AC0087E7A8 /* UXView.swift in Sources */,
 				08A44AC522379F3300228233 /* SelectCusineTableViewCell.swift in Sources */,
 				08A44AD72237B84A00228233 /* country.swift in Sources */,
 				0876C55F223F74B30035E2C5 /* OrderEntity.swift in Sources */,
 				08A3B6C5222583EB0010058B /* dishesTableViewCell.swift in Sources */,
 				08A44AC022378CE800228233 /* OrderHistoryEntity.swift in Sources */,
 				1274D564241B908400000CFE /* CancelReasons.swift in Sources */,
+				1097DB20255E771B00A3D702 /* NewRequestView.swift in Sources */,
 				0817913E2237EBE5002165E1 /* StatusViewController.swift in Sources */,
 				0891E20C2231018000409038 /* Interactor.swift in Sources */,
 				08A20C2C223A63600081256F /* CategoryStatusViewController.swift in Sources */,

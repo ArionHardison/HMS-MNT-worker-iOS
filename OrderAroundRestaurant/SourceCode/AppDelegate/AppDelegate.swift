@@ -11,6 +11,7 @@ import ObjectMapper
 import GooglePlaces
 import UserNotifications
 import Firebase
+import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let place_key = "AIzaSyBMWRPvgbKb2ffzW7E2yHTUoDN631Dq2-4"//"AIzaSyDNmSE7xEYTKxPOXp1rkda67va-HTr_Mes"//"AIzaSyBpk9s5L2o4iVB8bUdIIVEkBj7fW2NeQtI"
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         setLocalization(language: .english)
+        self.setGoogleMapKey()
         device_ID = (UIDevice.current.identifierForVendor?.uuidString)!
         print("Device_ID----\(device_ID)")
         Constant.string.deviceType = UIDevice.current.screenType.rawValue
@@ -54,7 +56,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    private func setGoogleMapKey(){
+        
+        GMSServices.provideAPIKey(googleMapKey)
+        
+    }
 }
 // MARK:- Register Push
 private func registerPush(forApp application : UIApplication){

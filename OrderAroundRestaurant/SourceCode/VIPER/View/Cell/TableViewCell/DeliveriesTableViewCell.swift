@@ -70,10 +70,10 @@ class DeliveriesTableViewCell: UITableViewCell {
         deliveryUserNameLabel.font = UIFont.regular(size: 14)
         dateLabel.font = UIFont.regular(size: 14)
     }
-    private func setCornerRadius(){
-        orderStatusLabel.layer.cornerRadius = 18
-        orderStatusLabel.layer.masksToBounds = true
-    }
+//     func setCornerRadius(){
+//        orderStatusLabel.layer.cornerRadius = 18
+//        orderStatusLabel.layer.masksToBounds = true
+//    }
     private func changeTintColor(){
         calendarImageView.setImageColor(color: UIColor.init(red: 252.0/255, green: 166.0/255.0, blue: 83.0/255.0, alpha: 1.0))//252,166,83
         deliveryImageView.setImageColor(color:  UIColor.init(red: 252.0/255, green: 166.0/255.0, blue: 83.0/255.0, alpha: 1.0))

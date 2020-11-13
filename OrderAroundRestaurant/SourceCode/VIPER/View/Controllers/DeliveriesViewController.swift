@@ -61,7 +61,7 @@ extension DeliveriesViewController{
     }
     private func setTransportList(){
         showActivityIndicator()
-        self.presenter?.GETPOST(api: Base.getTransportList.rawValue, params: [:], methodType: .GET, modelClass: DeliveryModel.self, token: true)
+//        self.presenter?.GETPOST(api: Base.getTransportList.rawValue, params: [:], methodType: .GET, modelClass: DeliveryModel.self, token: true)
         
     }
     private func setRegister(){
