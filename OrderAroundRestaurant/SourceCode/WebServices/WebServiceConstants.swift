@@ -49,7 +49,7 @@ enum Base : String{
     case getprofile = "/api/chef/profile"
     //"/api/shop/profile"
     case getRevenue = "/api/shop/revenue"
-    case getOrder = "/api/shop/order"
+    case getOrder = "/api/chef/order"
     case getTransportList = "/api/shop/transporterlist"
     case getTimeUpdate = "/api/shop/time"
     case getDelete = "/api/shop/remove/"

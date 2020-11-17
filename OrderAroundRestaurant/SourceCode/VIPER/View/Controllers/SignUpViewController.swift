@@ -348,9 +348,13 @@ extension SignUpViewController: PresenterOutputProtocol {
             DispatchQueue.main.async {
                
             
-                let tabController = self.storyboard?.instantiateViewController(withIdentifier: "TabbarController") as! TabbarController
-                self.navigationController?.navigationBar.isHidden = true
-                self.navigationController?.pushViewController(tabController, animated: true)
+//                let tabController = self.storyboard?.instantiateViewController(withIdentifier: "TabbarController") as! TabbarController
+//                self.navigationController?.navigationBar.isHidden = true
+//                self.navigationController?.pushViewController(tabController, animated: true)
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                appDelegate.window?.rootViewController = Router.createModule()
+                appDelegate.window?.makeKeyAndVisible()
             }
         }
         

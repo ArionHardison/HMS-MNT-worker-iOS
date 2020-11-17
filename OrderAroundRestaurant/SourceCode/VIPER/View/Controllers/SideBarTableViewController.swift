@@ -105,15 +105,9 @@ extension SideBarTableViewController {
     
     private func setValues(){
         
-//        let url = (User.main.picture?.contains(WebConstants.string.http) ?? false) ? User.main.picture : Common.getImageUrl(for: User.main.picture)
-//
-//        Cache.image(forUrl: url) { (image) in
-//            DispatchQueue.main.async {
-//                self.imageViewProfile.image = image == nil ? #imageLiteral(resourceName: "userPlaceholder") : image
-//            }
-//        }
-//        self.labelName.text = String.removeNil(User.main.firstName)+" "+String.removeNil(User.main.lastName)
-//        self.labelEmail.text = User.main.email
+        self.imageViewProfile.setImage(with: (profiledata?.avatar ?? ""), placeHolder: UIImage(named: "userPlaceholder"))
+        
+        self.labelName.text = String.removeNil(profiledata?.name ?? "")
         self.setDesigns()
     }
     

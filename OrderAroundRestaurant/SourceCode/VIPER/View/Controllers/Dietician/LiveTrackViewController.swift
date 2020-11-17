@@ -8,8 +8,9 @@
 
 import UIKit
 import GoogleMaps
+import ObjectMapper
 
-class LiveTrackViewController: UIViewController {
+class LiveTrackViewController: BaseViewController {
 
     
     @IBOutlet weak var mapView: GMSMapView!
@@ -27,9 +28,19 @@ class LiveTrackViewController: UIViewController {
     @IBOutlet weak var shadowViewfourImage: UIImageView!
     
     
-    @IBOutlet weak var bgview: UIView!
-    @IBOutlet weak var changeOrderStatusBtn: UIView!
+    @IBOutlet weak var nameLbl : UILabel!
+    @IBOutlet weak var locLbl : UILabel!
+    @IBOutlet weak var itemLbl : UILabel!
+    @IBOutlet weak var ingredientsLbl : UILabel!
+    @IBOutlet weak var dateLbl : UILabel!
     
+    @IBOutlet weak var bgview: UIView!
+    @IBOutlet weak var changeOrderStatusBtn: UIButton!
+    
+    
+    var waitingforapproval : WaitingforApproval!
+    
+    var orderListData: OrderListModel?
     
     var currentLocation : CLLocation = CLLocation()
     
@@ -43,21 +54,49 @@ class LiveTrackViewController: UIViewController {
     }()
     
     
+    var orderTimer : Timer?
+    
     var orderStatus : Int = 0
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        orderTimer?.invalidate()
+        orderTimer = nil
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupMapDelegate()
         self.setupView()
-        self.trackorder(status: self.orderStatus)
+        self.setupData(data: self.orderListData!)
         self.changeOrderStatusBtn.addTap {
-            self.orderStatus += 1
-            self.trackorder(status: self.orderStatus)
+            switch self.orderListData?.status ?? "" {
+                    case "ASSIGNED":
+                        self.orderStatusUpdate(status: "PICKEDUP")
+                    case "PICKEDUP" :
+                        self.orderStatusUpdate(status: "ARRIVED")
+                    case "ARRIVED":
+                        self.orderStatusUpdate(status: "PROCESSING")
+                    case "PROCESSING" :
+                        self.orderStatusUpdate(status: "PREPARED")
+                    case "PREPARED" :
+                        self.showWaitingforapproval()
+                        self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
+                            self.getOrderDetail()
+                        }
+                    default:
+                        break
+                }
         }
         self.backBtn.addTap {
             self.navigationController?.popViewController(animated: true)
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.getOrderDetail()
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     func setupView(){
@@ -66,35 +105,103 @@ class LiveTrackViewController: UIViewController {
         }
     }
     
-    func trackorder(status : Int){
+    func setupData(data : OrderListModel){
+        self.nameLbl.text = (data.food?.name ?? "").capitalized
+        self.locLbl.text = "--"
+        self.itemLbl.text = data.food?.time_category?.name ?? ""
+        self.dateLbl.text = data.created_at ?? ""
+        var category : String = ""
+        for i in 0..<(data.orderingredient?.count ?? 0){
+            if i ==
+                (data.orderingredient?.count ?? 0)-1{
+                category = (data.orderingredient?[i].foodingredient?.ingredient?.name ?? "").capitalized
+            }else{
+                category = (data.orderingredient?[i].foodingredient?.ingredient?.name ?? "").capitalized + ","
+                
+            }
+        }
+        if category.count > 0{
+            self.ingredientsLbl.text = category
+        }
+        
+        self.trackorder(status: data.status ?? "")
+        
+    }
+    
+    func trackorder(status : String){
         switch status {
-            case 0:
-                self.shadowViewOne.backgroundColor = .primary
-                shadowViewOneImage?.image = shadowViewOneImage?.image?.withRenderingMode(.alwaysTemplate)
-                shadowViewOneImage?.tintColor = .white
-                self.shadowViewtwo.borderColor = .gray
-                self.shadowViewtwo.borderLineWidth = 1
-            case 1 :
-                self.shadowViewtwo.backgroundColor = .primary
-                shadowViewtwoImage?.image = shadowViewtwoImage?.image?.withRenderingMode(.alwaysTemplate)
-                shadowViewtwoImage?.tintColor = .white
-                self.shadowViewthree.borderColor = .gray
-                self.shadowViewthree.borderLineWidth = 1
-            case 2 :
-                self.shadowViewthree.backgroundColor = .primary
-                shadowViewthreeImage?.image = shadowViewthreeImage?.image?.withRenderingMode(.alwaysTemplate)
-                shadowViewthreeImage?.tintColor = .white
-                self.shadowViewfour.borderColor = .gray
-                self.shadowViewfour.borderLineWidth = 1
-            case 3 :
-                self.shadowViewfour.backgroundColor = .primary
-                shadowViewfourImage?.image = shadowViewfourImage?.image?.withRenderingMode(.alwaysTemplate)
-                shadowViewfourImage?.tintColor = .white
+            case "ASSIGNED":
+                  self.setupViewBorder(firstView: [self.shadowViewOne], image: [self.shadowViewOneImage], secoundView: self.shadowViewtwo)
+                self.changeOrderStatusBtn.setTitle("Started toward location", for: .normal)
+               
+            case "PICKEDUP" :
+                   self.setupViewBorder(firstView: [self.shadowViewOne,self.shadowViewtwo], image: [self.shadowViewOneImage,self.shadowViewtwoImage], secoundView: self.shadowViewthree)
+                self.changeOrderStatusBtn.setTitle("Reached Location", for: .normal)
+                      
+            case "ARRIVED":
+                self.setupViewBorder(firstView: [self.shadowViewOne,self.shadowViewtwo,self.shadowViewthree], image: [self.shadowViewOneImage,self.shadowViewtwoImage,self.shadowViewthreeImage], secoundView: self.shadowViewfour)
+                self.changeOrderStatusBtn.setTitle("Food prepration in progress", for: .normal)
+                     
+            case "PROCESSING" :
+                 self.setupViewBorder(firstView: [self.shadowViewOne,self.shadowViewtwo,self.shadowViewthree,self.shadowViewfour], image: [self.shadowViewOneImage,self.shadowViewtwoImage,self.shadowViewthreeImage,self.shadowViewfourImage], secoundView: UIView())
+                self.changeOrderStatusBtn.setTitle("Food prepared", for: .normal)
+                
+            case "PREPARED" :
+                self.setupViewBorder(firstView: [self.shadowViewOne,self.shadowViewtwo,self.shadowViewthree,self.shadowViewfour], image: [self.shadowViewOneImage,self.shadowViewtwoImage,self.shadowViewthreeImage,self.shadowViewfourImage], secoundView: UIView())
+                self.changeOrderStatusBtn.setTitle("Food prepared", for: .normal)
+                self.showWaitingforapproval()
+                self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
+                    self.getOrderDetail()
+                }
             default:
                 break
         }
     }
-
+    
+    func setupViewBorder(firstView : [UIView],image : [UIImageView], secoundView : UIView){
+        firstView.forEach { (view) in
+            view.backgroundColor = .primary
+        }
+        image.forEach { (imageview) in
+            imageview.image = imageview.image?.withRenderingMode(.alwaysTemplate)
+            imageview.tintColor = .white
+        }
+       
+        secoundView.borderColor = .gray
+        secoundView.borderLineWidth = 1
+       
+    }
+    
+    func orderStatusUpdate(status : String){
+        self.showActivityIndicator()
+        var parameters:[String:Any] = ["_method": "PATCH",
+                                       "status":status]
+        
+        
+        let profileURl = Base.getOrder.rawValue + "/" + String(self.orderListData?.id ?? 0)
+        self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["":Data()], imgName: "image", modelClass: OrderListModel.self, token: true)
+        
+    }
+    
+    func showWaitingforapproval(){
+        if self.waitingforapproval == nil, let requestView = Bundle.main.loadNibNamed("NewRequestView", owner: self, options: [:])?[3] as? WaitingforApproval {
+            requestView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height))
+            self.waitingforapproval = requestView
+            self.view.addSubview(requestView)
+            self.waitingforapproval.show(with: .bottom, completion: nil)
+        }
+        self.waitingforapproval.onClickcancel = {
+            self.waitingforapproval.dismissView {
+                self.waitingforapproval = nil
+            }
+        }
+       
+    }
+    
+    deinit {
+        orderTimer?.invalidate()
+        orderTimer = nil
+    }
 }
 
 extension LiveTrackViewController : GMSMapViewDelegate, CLLocationManagerDelegate{
@@ -143,4 +250,30 @@ extension LiveTrackViewController : GMSMapViewDelegate, CLLocationManagerDelegat
         self.currentLocation = locations.last ?? CLLocation()
         self.mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
     }
+}
+//MARK: VIPER Extension:
+extension LiveTrackViewController: PresenterOutputProtocol {
+    func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        if String(describing: modelClass) == model.type.OrderListModel {
+            self.HideActivityIndicator()
+            self.orderListData = dataDict as! OrderListModel
+            self.setupData(data: dataDict as! OrderListModel)
+        }
+    }
+    
+    func showError(error: CustomError) {
+        print(error)
+        let alert = showAlert(message: error.localizedDescription)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: {
+                
+            })
+        }
+    }
+    
+    func getOrderDetail(){
+        let url = "\(Base.getOrder.rawValue)/\(self.orderListData?.id ?? 0)"
+        self.presenter?.GETPOST(api: url, params: [:], methodType: .GET, modelClass: OrderListModel.self, token: true)
+    }
+    
 }

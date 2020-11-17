@@ -16,7 +16,6 @@ class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
         setInitialLoad()
     }
@@ -26,6 +25,7 @@ class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
         super.viewWillAppear(true)
         self.navigationController?.isNavigationBarHidden = false
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
 
     }
@@ -47,7 +47,6 @@ extension HistoryViewController {
         setNavigationController()
         CapsPageMenu()
     }
-    
     
     
     private func setNavigationController(){

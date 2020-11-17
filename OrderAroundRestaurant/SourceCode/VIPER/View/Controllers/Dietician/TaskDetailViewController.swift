@@ -8,8 +8,9 @@
 
 import UIKit
 import GoogleMaps
+import ObjectMapper
 
-class TaskDetailViewController: UIViewController {
+class TaskDetailViewController: BaseViewController {
 
     var requestView: NewRequestView!
     var purchaseView : PurchaseView!
@@ -18,6 +19,9 @@ class TaskDetailViewController: UIViewController {
     @IBOutlet weak var bgView : UIView!
     @IBOutlet weak var mapView : GMSMapView!
     @IBOutlet weak var backBtn: UIButton!
+    
+    
+     var orderListData: OrderListModel?
     
     lazy var locationManager: CLLocationManager = {
         var _locationManager = CLLocationManager()
@@ -41,6 +45,7 @@ class TaskDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        
     }
     
     func showNewRequestView(){
@@ -50,6 +55,8 @@ class TaskDetailViewController: UIViewController {
             self.view.addSubview(requestView)
             requestView.show(with: .bottom, completion: nil)
         }
+        self.requestView.orderListData = self.orderListData
+        self.requestView.setupData()
         self.requestView.onClickAccept = { [weak self] in
             self?.requestView?.dismissView(onCompletion: {
                 self?.requestView = nil
@@ -68,8 +75,10 @@ class TaskDetailViewController: UIViewController {
             purchaseview.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height))
             self.purchaseView = purchaseview
             self.view.addSubview(purchaseView)
-            purchaseView.show(with: .top, completion: nil)
+            purchaseView.show(with: .bottom, completion: nil)
         }
+        self.purchaseView.orderListData = self.orderListData
+        
         self.purchaseView.onClickpurchase = { [weak self] in
             self?.purchaseView?.dismissView(onCompletion: {
                 self?.purchaseView = nil
@@ -87,13 +96,30 @@ class TaskDetailViewController: UIViewController {
             self.view.addSubview(purchasedListView)
             purchasedListView.show(with: .bottom, completion: nil)
         }
+        self.purchasedListView.orderListData = self.orderListData
+        self.purchasedListView.uploadImag.addTap {
+            self.showImage { (selectedImage) in
+                self.purchasedListView.uploadImag.image = selectedImage
+            }
+        }
         self.purchasedListView.onClickpurchase = { [weak self] in
-            self?.purchasedListView?.dismissView(onCompletion: {
-                self?.purchasedListView = nil
-                let viewController = self?.storyboard!.instantiateViewController(withIdentifier: "LiveTrackViewController")
-                self?.navigationController?.pushViewController(viewController!, animated: true)
-                
-            })
+            
+            var uploadimgeData:Data!
+            
+            if  let dataImg = self?.purchasedListView.uploadImag.image?.jpegData(compressionQuality: 0.5) {
+                uploadimgeData = dataImg
+            }
+            
+            self?.showActivityIndicator()
+            var parameters:[String:Any] = ["_method": "PATCH",
+                                           "status":"ASSIGNED"]
+            
+            
+            let profileURl = Base.getOrder.rawValue + "/" + String(self?.orderListData?.id ?? 0)
+            
+            
+            self?.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["image":uploadimgeData], imgName: "image", modelClass: OrderListModel.self, token: true)
+            
         }
         
     }
@@ -143,4 +169,30 @@ extension TaskDetailViewController : GMSMapViewDelegate, CLLocationManagerDelega
         self.currentLocation = locations.last ?? CLLocation()
         self.mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
     }
+}
+//MARK: VIPER Extension:
+extension TaskDetailViewController: PresenterOutputProtocol {
+    func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        if String(describing: modelClass) == model.type.OrderListModel {
+            self.HideActivityIndicator()
+            self.purchasedListView?.dismissView(onCompletion: {
+                self.purchasedListView = nil
+                let vc = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.LiveTrackViewController) as! LiveTrackViewController
+                vc.orderListData = self.orderListData
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
+        }
+    }
+    
+    func showError(error: CustomError) {
+        print(error)
+        let alert = showAlert(message: error.localizedDescription)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: {
+                
+            })
+        }
+    }
+    
+   
 }

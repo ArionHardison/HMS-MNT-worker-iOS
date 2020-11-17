@@ -21,7 +21,7 @@ class OnGoingOrderViewController: BaseViewController {
     
     @IBOutlet weak var onGoingTableView: UITableView!
     
-    var onGoingOrderArr:[Orders] = []
+    var onGoingOrderArr:[OrderListModel] = []
     var ogArray: [OnGoingOrderArrayModel] = []
     var headerHeight: CGFloat = 55
     
@@ -50,15 +50,12 @@ extension OnGoingOrderViewController{
     }
     private func setOrderHistoryApi(){
         showActivityIndicator()
-        let urlStr = "\(Base.getOrder.rawValue)?t=processing"
-       // self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
+        let urlStr = "\(Base.getOrder.rawValue)"
+       self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderListModel.self, token: true)
     }
 
     private func setRegister(){
-        //let upcomingRequestViewnib = UINib(nibName: XIB.Names.UpcomingRequestTableViewCell, bundle: nil)
-        //onGoingTableView.register(upcomingRequestViewnib, forCellReuseIdentifier: XIB.Names.UpcomingRequestTableViewCell)
-        let historyCellNid = UINib(nibName: XIB.Names.HistoryTableViewCell, bundle: nil)
-        onGoingTableView.register(historyCellNid, forCellReuseIdentifier: XIB.Names.HistoryTableViewCell)
+        onGoingTableView.register(UINib(nibName: "OrderListCell", bundle: nil), forCellReuseIdentifier: "OrderListCell")
         onGoingTableView.delegate = self
         onGoingTableView.dataSource = self
     }
@@ -66,82 +63,35 @@ extension OnGoingOrderViewController{
 }
 extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        
-        return ogArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        
-        return headerHeight
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
-        return tableView.headerView(height: headerHeight, text: ogArray[section].title)
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //return onGoingOrderArr.count
-        return ogArray[section].orderArray.count
+        return self.onGoingOrderArr.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-       /*let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
-        
-    
-        //let dict = self.onGoingOrderArr[indexPath.row]
-       
-        let dict = self.ogArray[indexPath.section].orderArray[indexPath.row]
-        if(dict.invoice?.payment_mode == "stripe"){
-            cell.paymentLabel.text = "Card"
-        }else{
-        cell.paymentLabel.text = dict.invoice?.payment_mode
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OrderListCell", for: indexPath) as! OrderListCell
+        if let data : OrderListModel = self.onGoingOrderArr[indexPath.row]{
+            cell.foodImage.setImage(with: data.food?.avatar ?? "", placeHolder: UIImage(named: "user-placeholder"))
+            cell.foodname.text = data.food?.name ?? ""
+            cell.foodDes.text = data.food?.description ?? ""
+            cell.foodCategory.text = data.food?.time_category?.name ?? ""
+            cell.foodPrice.text = data.food?.price ?? ""
         }
-        if dict.schedule_status == 0{
-            cell.scheduleValue.isHidden = true
-            //  cell.scheduleValue.text = "Schedule"
-        }else{
-            cell.scheduleValue.isHidden = false
-            cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
+        cell.contentView.addTap {
+            let vc = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.TaskDetailViewController) as! TaskDetailViewController
+            vc.orderListData = self.onGoingOrderArr[indexPath.row]
+            self.navigationController?.pushViewController(vc, animated: true)
         }
-        cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at?.convertedDateTime()
-        cell.deliverTimeValueLabel.text = dict.delivery_date?.convertedDateTime()
-        cell.locationLabel.text = dict.address?.map_address
-        cell.userNameLabel.text = dict.user?.name
-        cell.orderTimeLabel.text = "Order Time"
-        cell.userImageView.sd_setImage(with: URL(string: dict.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
-        if (dict.status == "ORDERED") {
-            
-            
-            if (dict.dispute == "CREATED") {
-                
-                cell.statusLabel.text = "Dispute Created"
-                cell.statusLabel.textColor = UIColor.red
-            } else {
-                cell.statusLabel.text = "Incoming"
-                cell.statusLabel.textColor = UIColor.green
-                
-            }
-        }
-        return cell*/
-        
-        let historyCell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.HistoryTableViewCell) as! HistoryTableViewCell
-        DispatchQueue.main.async {
-            historyCell.updateCell(orderObj: self.ogArray[indexPath.section].orderArray[indexPath.row])
-        }
-        return historyCell
+        return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let orderDetailController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.OrderTrackingViewController) as! OrderTrackingViewController
-        //let dict = self.onGoingOrderArr[indexPath.row]
-        let dict = self.ogArray[indexPath.section].orderArray[indexPath.row]
-        orderDetailController.OrderId = dict.id ?? 0
-        orderDetailController.isPickupFromResturant = dict.pickup_from_restaurants ?? 0
-        self.navigationController?.pushViewController(orderDetailController, animated: true)
+      
     }
    
 }
@@ -149,24 +99,13 @@ extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
 //MARK: VIPER Extension:
 extension OnGoingOrderViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-        if String(describing: modelClass) == model.type.OrderModel {
+        if String(describing: modelClass) == model.type.OrderListModel {
             HideActivityIndicator()
-            let data = dataDict as? OrderModel
-            self.onGoingOrderArr = data?.orders ?? []
+            print("OrderListModelOrderListModel",dataArray)
             
-            let scheduleArray = self.onGoingOrderArr.filter{$0.schedule_status == 1}
-            let ongoingArray = self.onGoingOrderArr.filter{$0.schedule_status != 1}
-            var scheduleObj = OnGoingOrderArrayModel()
-            scheduleObj.title = "SCHEDULE ORDERS"
-            scheduleObj.orderArray = scheduleArray
-            var ongoingObj = OnGoingOrderArrayModel()
-            ongoingObj.title = "ONGOING ORDERS"
-            ongoingObj.orderArray = ongoingArray
-            ogArray.append(scheduleObj)
-            ogArray.append(ongoingObj)
+            self.onGoingOrderArr = dataArray as! [OrderListModel]
             onGoingTableView.reloadData()
 
-            
         }
     }
     

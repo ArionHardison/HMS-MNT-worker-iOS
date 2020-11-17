@@ -14,7 +14,11 @@ struct ProfileModel : Mappable {
     var id : Int?
     var name : String?
     var email : String?
+    var unique_id : String?
+    var gender : String?
     var phone : String?
+    var mobile : Int?
+    var country_code : String?
     var avatar : String?
     var default_banner : String?
     var description : String?
@@ -54,9 +58,13 @@ struct ProfileModel : Mappable {
     mutating func mapping(map: Map) {
         
         id <- map["id"]
+        unique_id <- map["unique_id"]
         name <- map["name"]
+        mobile <- map["mobile"]
+        gender <- map["gender"]
         email <- map["email"]
         phone <- map["phone"]
+        country_code <- map["country_code"]
         avatar <- map["avatar"]
         default_banner <- map["default_banner"]
         description <- map["description"]
@@ -234,4 +242,305 @@ struct OTPResponseModel : Mappable {
         user <- map["user"]
         
     }
+}
+
+
+struct Dietitian : Mappable {
+    var id : Int?
+    var name : String?
+    var email : String?
+    var unique_id : String?
+    var gender : String?
+    var avatar : String?
+    var country_code : String?
+    var mobile : Int?
+    var address : String?
+    var latitude : String?
+    var longitude : String?
+    var device_id : String?
+    var device_type : String?
+    var device_token : String?
+    var status : String?
+    var created_at : String?
+    var updated_at : String?
+    var deleted_at : String?
+    var description : String?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        id <- map["id"]
+        name <- map["name"]
+        email <- map["email"]
+        unique_id <- map["unique_id"]
+        gender <- map["gender"]
+        avatar <- map["avatar"]
+        country_code <- map["country_code"]
+        mobile <- map["mobile"]
+        address <- map["address"]
+        latitude <- map["latitude"]
+        longitude <- map["longitude"]
+        device_id <- map["device_id"]
+        device_type <- map["device_type"]
+        device_token <- map["device_token"]
+        status <- map["status"]
+        created_at <- map["created_at"]
+        updated_at <- map["updated_at"]
+        deleted_at <- map["deleted_at"]
+        description <- map["description"]
+    }
+    
+}
+
+struct Food : Mappable {
+    var id : Int?
+    var dietitian_id : String?
+    var name : String?
+    var description : String?
+    var avatar : String?
+    var price : String?
+    var status : String?
+    var created_at : String?
+    var who : String?
+    var time_category_id : String?
+    var days : Int?
+    var code : String?
+    var time_category : Time_category?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        id <- map["id"]
+        dietitian_id <- map["dietitian_id"]
+        name <- map["name"]
+        description <- map["description"]
+        avatar <- map["avatar"]
+        price <- map["price"]
+        status <- map["status"]
+        created_at <- map["created_at"]
+        who <- map["who"]
+        time_category_id <- map["time_category_id"]
+        days <- map["days"]
+        code <- map["code"]
+        time_category <- map["time_category"]
+    }
+    
+}
+
+struct Foodingredient : Mappable {
+    var id : Int?
+    var food_id : Int?
+    var ingredient_id : Int?
+    var status : String?
+    var created_at : String?
+    var quantity : String?
+    var ingredient : Ingredient?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        id <- map["id"]
+        food_id <- map["food_id"]
+        ingredient_id <- map["ingredient_id"]
+        status <- map["status"]
+        created_at <- map["created_at"]
+        quantity <- map["quantity"]
+        ingredient <- map["ingredient"]
+    }
+    
+}
+
+
+struct Ingredient : Mappable {
+    var id : Int?
+    var dietitian_id : String?
+    var name : String?
+    var unit_type_id : Int?
+    var avatar : String?
+    var price : String?
+    var status : String?
+    var created_at : String?
+    var code : String?
+    var unit_type : String?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        id <- map["id"]
+        dietitian_id <- map["dietitian_id"]
+        name <- map["name"]
+        unit_type_id <- map["unit_type_id"]
+        avatar <- map["avatar"]
+        price <- map["price"]
+        status <- map["status"]
+        created_at <- map["created_at"]
+        code <- map["code"]
+        unit_type <- map["unit_type"]
+    }
+    
+}
+
+
+struct OrderListModel : Mappable {
+    var id : Int?
+    var food_id : Int?
+    var user_id : Int?
+    var chef_id : Int?
+    var dietitian_id : Int?
+    var status : String?
+    var chef_rating : Int?
+    var dietitian_rating : Int?
+    var is_scheduled : Int?
+    var schedule_at : String?
+    var created_at : String?
+    var payable : String?
+    var total : String?
+    var discount : String?
+    var ingredient_image : String?
+    var orderingredient : [Orderingredient]?
+    var food : Food?
+    var dietitian : Dietitian?
+    var rating : [String]?
+    var user : UserDatas?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        id <- map["id"]
+        food_id <- map["food_id"]
+        user_id <- map["user_id"]
+        chef_id <- map["chef_id"]
+        dietitian_id <- map["dietitian_id"]
+        status <- map["status"]
+        chef_rating <- map["chef_rating"]
+        dietitian_rating <- map["dietitian_rating"]
+        is_scheduled <- map["is_scheduled"]
+        schedule_at <- map["schedule_at"]
+        created_at <- map["created_at"]
+        payable <- map["payable"]
+        total <- map["total"]
+        discount <- map["discount"]
+        ingredient_image <- map["ingredient_image"]
+        orderingredient <- map["orderingredient"]
+        food <- map["food"]
+        dietitian <- map["dietitian"]
+        rating <- map["rating"]
+        user <- map["user"]
+    }
+    
+}
+
+struct Orderingredient : Mappable {
+    var id : Int?
+    var order_id : Int?
+    var ingredient_id : Int?
+    var created_at : String?
+    var foodingredient : Foodingredient?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        id <- map["id"]
+        order_id <- map["order_id"]
+        ingredient_id <- map["ingredient_id"]
+        created_at <- map["created_at"]
+        foodingredient <- map["foodingredient"]
+    }
+    
+}
+
+struct Time_category : Mappable {
+    var id : Int?
+    var name : String?
+    var status : String?
+    var created_at : String?
+    var code : String?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        id <- map["id"]
+        name <- map["name"]
+        status <- map["status"]
+        created_at <- map["created_at"]
+        code <- map["code"]
+    }
+    
+}
+
+struct UserDatas : Mappable {
+    var id : Int?
+    var name : String?
+    var email : String?
+    var phone : String?
+    var avatar : String?
+    var device_token : String?
+    var device_id : String?
+    var device_type : String?
+    var login_by : String?
+    var social_unique_id : String?
+    var stripe_cust_id : String?
+    var wallet_balance : Int?
+    var referral_code : String?
+    var referral_amount : String?
+    var otp : String?
+    var braintree_id : String?
+    var cuisines : String?
+    var map_address : String?
+    var latitude : String?
+    var longitude : String?
+    var is_verified : Int?
+    var customer_support : String?
+    
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        id <- map["id"]
+        name <- map["name"]
+        email <- map["email"]
+        phone <- map["phone"]
+        avatar <- map["avatar"]
+        device_token <- map["device_token"]
+        device_id <- map["device_id"]
+        device_type <- map["device_type"]
+        login_by <- map["login_by"]
+        social_unique_id <- map["social_unique_id"]
+        stripe_cust_id <- map["stripe_cust_id"]
+        wallet_balance <- map["wallet_balance"]
+        referral_code <- map["referral_code"]
+        referral_amount <- map["referral_amount"]
+        otp <- map["otp"]
+        braintree_id <- map["braintree_id"]
+        cuisines <- map["cuisines"]
+        map_address <- map["map_address"]
+        latitude <- map["latitude"]
+        longitude <- map["longitude"]
+        is_verified <- map["is_verified"]
+        customer_support <- map["customer_support"]
+    }
+    
 }

@@ -44,6 +44,7 @@ extension Webservice : WebServiceProtocol {
             headers.updateValue("\(WebConstants.string.bearer) \(accessToken)", forKey: WebConstants.string.Authorization)
             headers.updateValue(WebConstants.string.application_json, forKey: "Content-Type")
             
+            print("accessToken----\(accessToken)")
             
             
         }

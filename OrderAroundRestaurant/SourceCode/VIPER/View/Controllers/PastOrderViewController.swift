@@ -13,7 +13,7 @@ class PastOrderViewController: BaseViewController {
     @IBOutlet weak var pastTableView: UITableView!
     
     
-    var completedOrderArr = [Orders]()
+    var completedOrderArr = [OrderListModel]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,68 +39,45 @@ extension PastOrderViewController{
         setOrderHistoryApi()
     }
     private func setRegister(){
-        //let upcomingRequestViewnib = UINib(nibName: XIB.Names.UpcomingRequestTableViewCell, bundle: nil)
-        //pastTableView.register(upcomingRequestViewnib, forCellReuseIdentifier: XIB.Names.UpcomingRequestTableViewCell)
-        let upcomingRequestViewnib = UINib(nibName: XIB.Names.HistoryTableViewCell, bundle: nil)
-        pastTableView.register(upcomingRequestViewnib, forCellReuseIdentifier: XIB.Names.HistoryTableViewCell)
+        pastTableView.register(UINib(nibName: "OrderListCell", bundle: nil), forCellReuseIdentifier: "OrderListCell")
         pastTableView.delegate = self
         pastTableView.dataSource = self
         pastTableView.reloadData()
     }
     private func setOrderHistoryApi(){
         showActivityIndicator()
-        let urlStr = "\(Base.getOrder.rawValue)?t=past"
-     //   self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderModel.self, token: true)
+        let urlStr = "\(Base.getOrder.rawValue)?status=COMPLETED"
+        self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderListModel.self, token: true)
     }
     
 }
 extension PastOrderViewController: UITableViewDelegate,UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return completedOrderArr.count
+        return self.completedOrderArr.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-       /* let cell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.UpcomingRequestTableViewCell, for: indexPath) as! UpcomingRequestTableViewCell
-        let dict = self.completedOrderArr[indexPath.row]
-    
-     
-       if(dict.invoice?.payment_mode == "stripe"){
-            cell.paymentLabel.text = "Card"
-        }else{
-        cell.paymentLabel.text = dict.invoice?.payment_mode
+        let cell = tableView.dequeueReusableCell(withIdentifier: "OrderListCell", for: indexPath) as! OrderListCell
+        if let data : OrderListModel = self.completedOrderArr[indexPath.row]{
+            cell.foodImage.setImage(with: data.food?.avatar ?? "", placeHolder: UIImage(named: "user-placeholder"))
+            cell.foodname.text = data.food?.name ?? ""
+            cell.foodDes.text = data.food?.description ?? ""
+            cell.foodCategory.text = data.food?.time_category?.name ?? ""
+            cell.foodPrice.text = data.food?.price ?? ""
         }
-        if dict.schedule_status == 0{
-            cell.scheduleValue.isHidden = true
-            //  cell.scheduleValue.text = "Schedule"
-        }else{
-            cell.scheduleValue.isHidden = false
-            cell.scheduleValue.text = APPLocalize.localizestring.scheduled.localize()
-        }
-        cell.orderTimeValueLabel.text = dict.ordertiming?[0].created_at
-        cell.deliverTimeValueLabel.text = dict.delivery_date
-        cell.locationLabel.text = dict.address?.map_address
-        cell.userNameLabel.text = dict.user?.name
-        cell.orderTimeLabel.text = "Order Time"
-        cell.userImageView.sd_setImage(with: URL(string: dict.user?.avatar ?? ""), placeholderImage: UIImage(named: "user-placeholder"))
-        
-        return cell*/
-        
-        let historyCell = tableView.dequeueReusableCell(withIdentifier: XIB.Names.HistoryTableViewCell) as! HistoryTableViewCell
-        historyCell.updateCell(orderObj: self.completedOrderArr[indexPath.row])
-        return historyCell
-        
+       
+        return cell
     }
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 108
-//    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let orderDetailController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.OrderTrackingViewController) as! OrderTrackingViewController
-          let dict = self.completedOrderArr[indexPath.row]
-        orderDetailController.OrderId = dict.id ?? 0
-        orderDetailController.isPickupFromResturant = dict.pickup_from_restaurants ?? 0
-        self.navigationController?.pushViewController(orderDetailController, animated: true)
+        
     }
     
 }
@@ -108,10 +85,10 @@ extension PastOrderViewController: UITableViewDelegate,UITableViewDataSource{
 //MARK: VIPER Extension:
 extension PastOrderViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-        if String(describing: modelClass) == model.type.OrderModel {
+        if String(describing: modelClass) == model.type.OrderListModel {
             HideActivityIndicator()
-            let data = dataDict as? OrderModel
-            self.completedOrderArr = data?.orders ?? []
+            let data = dataArray as! [OrderListModel]
+            self.completedOrderArr = data
             pastTableView.reloadData()
             
             

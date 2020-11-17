@@ -21,6 +21,8 @@ class NewRequestView: UIView {
     @IBOutlet weak var bgView : UIView!
     
     
+    var orderListData: OrderListModel?
+    
     var onClickAccept:(()->Void)?
     var onClickReject:(()->Void)?
     
@@ -31,6 +33,25 @@ class NewRequestView: UIView {
         }
         self.acceptBtn.addTap {
             self.onClickAccept?()
+        }
+    }
+    
+    func setupData(){
+        self.nameLbl.text = (orderListData?.food?.name ?? "").capitalized
+        self.locLbl.text = "--"
+        self.itemLbl.text = orderListData?.food?.time_category?.name ?? ""
+        var category : String = ""
+        for i in 0..<(orderListData?.orderingredient?.count ?? 0){
+            if i ==
+                (orderListData?.orderingredient?.count ?? 0)-1{
+            category = (orderListData?.orderingredient?[i].foodingredient?.ingredient?.name ?? "").capitalized
+            }else{
+                category = (orderListData?.orderingredient?[i].foodingredient?.ingredient?.name ?? "").capitalized + ","
+                
+            }
+        }
+        if category.count > 0{
+        self.ingredientsLbl.text = category
         }
     }
     

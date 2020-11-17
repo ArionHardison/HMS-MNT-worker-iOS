@@ -15,6 +15,7 @@ struct Storyboard {
     let EditRegisterViewController = "EditRegisterViewController"
     let LoginViewController = "LoginViewController"
     let TaskDetailViewController = "TaskDetailViewController"
+    let LiveTrackViewController = "LiveTrackViewController"
     let LaunchNavigationController = "LaunchNavigationController"
     let SideBarTableViewController = "SideBarTableViewController"
     let RegisterViewController = "RegisterViewController"

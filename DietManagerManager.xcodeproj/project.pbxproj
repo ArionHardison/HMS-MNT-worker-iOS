@@ -147,12 +147,16 @@
 		103815C1255EBCEF0087E7A8 /* PurchasedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103815C0255EBCEF0087E7A8 /* PurchasedListView.swift */; };
 		103815C7255EBD4D0087E7A8 /* PurchasedListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103815C5255EBD4D0087E7A8 /* PurchasedListCell.swift */; };
 		103815C8255EBD4D0087E7A8 /* PurchasedListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 103815C6255EBD4D0087E7A8 /* PurchasedListCell.xib */; };
+		1084354125639A8900DC92C8 /* WaitingforApproval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1084354025639A8900DC92C8 /* WaitingforApproval.swift */; };
 		1097DAF6255E626500A3D702 /* SideBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097DAF5255E626500A3D702 /* SideBarTableViewCell.swift */; };
 		1097DB1A255E6E5300A3D702 /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097DB19255E6E5300A3D702 /* TaskDetailViewController.swift */; };
 		1097DB20255E771B00A3D702 /* NewRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097DB1F255E771B00A3D702 /* NewRequestView.swift */; };
 		1097DB25255E772600A3D702 /* NewRequestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1097DB24255E772600A3D702 /* NewRequestView.xib */; };
 		1097DB2A255E7F8F00A3D702 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097DB29255E7F8F00A3D702 /* ViewExtension.swift */; };
 		10D193B1255EC8FE00AD940D /* LiveTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10D193B0255EC8FE00AD940D /* LiveTrackViewController.swift */; };
+		10FC93DC25629EBF006C1D52 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FC93DB25629EBE006C1D52 /* Cache.swift */; };
+		10FC93FD2562BF7D006C1D52 /* OrderListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10FC93FC2562BF7D006C1D52 /* OrderListCell.xib */; };
+		10FC94022562BF97006C1D52 /* OrderListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10FC94012562BF97006C1D52 /* OrderListCell.swift */; };
 		12235D2C241F795600FF4A1B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12235D2B241F795600FF4A1B /* GoogleService-Info.plist */; };
 		124EE8A4243E27ED0080E87B /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 124EE8A3243E27ED0080E87B /* ForgotPasswordViewController.swift */; };
 		1251978B243EEA6000291159 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1251978A243EEA6000291159 /* VerificationViewController.swift */; };
@@ -352,12 +356,16 @@
 		103815C0255EBCEF0087E7A8 /* PurchasedListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedListView.swift; sourceTree = "<group>"; };
 		103815C5255EBD4D0087E7A8 /* PurchasedListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasedListCell.swift; sourceTree = "<group>"; };
 		103815C6255EBD4D0087E7A8 /* PurchasedListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PurchasedListCell.xib; sourceTree = "<group>"; };
+		1084354025639A8900DC92C8 /* WaitingforApproval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingforApproval.swift; sourceTree = "<group>"; };
 		1097DAF5255E626500A3D702 /* SideBarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewCell.swift; sourceTree = "<group>"; };
 		1097DB19255E6E5300A3D702 /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		1097DB1F255E771B00A3D702 /* NewRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRequestView.swift; sourceTree = "<group>"; };
 		1097DB24255E772600A3D702 /* NewRequestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewRequestView.xib; sourceTree = "<group>"; };
 		1097DB29255E7F8F00A3D702 /* ViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
 		10D193B0255EC8FE00AD940D /* LiveTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTrackViewController.swift; sourceTree = "<group>"; };
+		10FC93DB25629EBE006C1D52 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		10FC93FC2562BF7D006C1D52 /* OrderListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderListCell.xib; sourceTree = "<group>"; };
+		10FC94012562BF97006C1D52 /* OrderListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListCell.swift; sourceTree = "<group>"; };
 		12235D2B241F795600FF4A1B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		124EE8A3243E27ED0080E87B /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		1251978A243EEA6000291159 /* VerificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
@@ -595,6 +603,8 @@
 				08A44AD32237B2CE00228233 /* CountryCodeTableViewCell.xib */,
 				0055D4F624E7B04200714704 /* HistoryTableViewCell.swift */,
 				0055D4F724E7B04200714704 /* HistoryTableViewCell.xib */,
+				10FC93FC2562BF7D006C1D52 /* OrderListCell.xib */,
+				10FC94012562BF97006C1D52 /* OrderListCell.swift */,
 			);
 			path = TableViewCell;
 			sourceTree = "<group>";
@@ -611,6 +621,7 @@
 		087D0C0A22240DCB00E58BDE /* Constants */ = {
 			isa = PBXGroup;
 			children = (
+				10FC93DB25629EBE006C1D52 /* Cache.swift */,
 				00D4C19224F910710025A861 /* Utility */,
 				B4086ED82271F0DD008C5BC0 /* SupportingFiles */,
 				08AD19EA223B8DA60009F5F6 /* Chart */,
@@ -981,6 +992,7 @@
 				103815C0255EBCEF0087E7A8 /* PurchasedListView.swift */,
 				103815C5255EBD4D0087E7A8 /* PurchasedListCell.swift */,
 				103815C6255EBD4D0087E7A8 /* PurchasedListCell.xib */,
+				1084354025639A8900DC92C8 /* WaitingforApproval.swift */,
 			);
 			path = XibViews;
 			sourceTree = "<group>";
@@ -1155,6 +1167,7 @@
 				087D0BCE222403FF00E58BDE /* Assets.xcassets in Resources */,
 				08AD751E2226728F002A0419 /* UpcomingRequestTableViewCell.xib in Resources */,
 				08A3B6A622253D120010058B /* Nunito-Regular.ttf in Resources */,
+				10FC93FD2562BF7D006C1D52 /* OrderListCell.xib in Resources */,
 				B4086EDD2271F159008C5BC0 /* Localizable.strings in Resources */,
 				08A3B6C022255C8C0010058B /* EditTimingTableViewCell.xib in Resources */,
 				0055D4F924E7B04200714704 /* HistoryTableViewCell.xib in Resources */,
@@ -1325,6 +1338,7 @@
 				08AD19F0223BE0080009F5F6 /* TimePickerViewController.swift in Sources */,
 				0891E2172231049C00409038 /* AppData.swift in Sources */,
 				08AB8774223696F400740520 /* CreateProductAddonsViewController.swift in Sources */,
+				1084354125639A8900DC92C8 /* WaitingforApproval.swift in Sources */,
 				08C43F8C237D3C7C00583886 /* UserDetiailsViewController.swift in Sources */,
 				0880805622397557005B7072 /* UserData.swift in Sources */,
 				1097DB2A255E7F8F00A3D702 /* ViewExtension.swift in Sources */,
@@ -1412,12 +1426,14 @@
 				0891E20A2230FFB900409038 /* LoginEntity.swift in Sources */,
 				77C48CC2253DCC5100A5AD82 /* LiveTaskViewController.swift in Sources */,
 				08A3B6BF22255C8C0010058B /* EditTimingTableViewCell.swift in Sources */,
+				10FC93DC25629EBF006C1D52 /* Cache.swift in Sources */,
 				7777A586253DAFC400A24D60 /* CountryCodeCell.swift in Sources */,
 				08A14DF5222FF95200F35B1E /* CreateCategoryViewController.swift in Sources */,
 				08A44AD42237B2CE00228233 /* CountryCodeTableViewCell.swift in Sources */,
 				088F9C992247C97E00900EE5 /* GetProductEntity.swift in Sources */,
 				103815BC255EA1840087E7A8 /* PurchaseView.swift in Sources */,
 				24FC05B422734385003243D9 /* Global.swift in Sources */,
+				10FC94022562BF97006C1D52 /* OrderListCell.swift in Sources */,
 				00D4C19424F9109A0025A861 /* Utility.swift in Sources */,
 				087D0C192224241500E58BDE /* WebServiceConstants.swift in Sources */,
 				008027752514ABC70016D193 /* TermsConditionViewController.swift in Sources */,

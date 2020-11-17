@@ -19,6 +19,7 @@ class PurchasedListView: UIView {
     
     
     
+    var orderListData: OrderListModel?
     var onClickpurchase:(()->Void)?
     
     override  func awakeFromNib() {
@@ -47,12 +48,15 @@ class PurchasedListView: UIView {
 }
 extension PurchasedListView : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return self.orderListData?.orderingredient?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "PurchasedListCell", for: indexPath) as! PurchasedListCell
-        
+        if let ingredience = self.orderListData?.orderingredient?[indexPath.row]{
+            cell.ingredientName.text = ingredience.foodingredient?.ingredient?.name ?? ""
+            cell.ingredientWeight.text = "$ " + (ingredience.foodingredient?.ingredient?.price ?? "")
+        }
         return cell
     }
     

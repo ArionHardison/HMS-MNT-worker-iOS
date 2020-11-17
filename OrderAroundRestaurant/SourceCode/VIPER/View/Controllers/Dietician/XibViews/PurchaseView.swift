@@ -18,6 +18,7 @@ class PurchaseView: UIView {
     @IBOutlet weak var ingredientsTable : UITableView!
     
     
+    var orderListData: OrderListModel?
     var onClickpurchase:(()->Void)?
     
     override  func awakeFromNib() {
@@ -43,17 +44,21 @@ class PurchaseView: UIView {
 }
 extension PurchaseView : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return self.orderListData?.orderingredient?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "IngredientsCell", for: indexPath) as! IngredientsCell
-       
+        if let ingredience = self.orderListData?.orderingredient?[indexPath.row]{
+            cell.ingredientImg.setImage(with: ingredience.foodingredient?.ingredient?.avatar ?? "", placeHolder: UIImage(named: "user-placeholder"))
+            cell.ingredientName.text = ingredience.foodingredient?.ingredient?.name ?? ""
+            cell.ingredientCount.text = "$ " + (ingredience.foodingredient?.ingredient?.price ?? "")
+        }
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 95
+        return 75
     }
     
     func setupTable(){
