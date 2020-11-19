@@ -153,6 +153,7 @@ struct APPLocalize {
     var alreadyRegister = "localize.alreadyRegister"
     var ongoingOrders = "localize.ongoingOrder"
     var pastOrders = "localize.pastOrder"
+    var upcomingOrder = "localize.upcomingOrder"
     var cancelOrder = "localize.cancelOrder"
     var otpMessage = "Submit OTP"
     var resendOTP = "Resend OTP"

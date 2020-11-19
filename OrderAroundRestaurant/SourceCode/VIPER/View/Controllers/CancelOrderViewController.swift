@@ -87,6 +87,7 @@ extension CancelOrderViewController: UITableViewDelegate,UITableViewDataSource{
 //MARK: VIPER Extension:
 extension CancelOrderViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        HideActivityIndicator()
         if String(describing: modelClass) == model.type.OrderModel {
             HideActivityIndicator()
             let data = dataDict as? OrderModel
@@ -99,6 +100,7 @@ extension CancelOrderViewController: PresenterOutputProtocol {
     
     func showError(error: CustomError) {
         print(error)
+        HideActivityIndicator()
         let alert = showAlert(message: error.localizedDescription)
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: {

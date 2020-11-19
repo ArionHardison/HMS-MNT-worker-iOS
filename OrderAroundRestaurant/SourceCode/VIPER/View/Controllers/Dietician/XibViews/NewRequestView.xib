@@ -37,15 +37,15 @@
                             <rect key="frame" x="30" y="683" width="354" height="55"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GDK-C3-LCU">
-                                    <rect key="frame" x="0.0" y="0.0" width="354" height="55"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="167" height="55"/>
                                     <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                     <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="18"/>
-                                    <state key="normal" title="Next">
+                                    <state key="normal" title="Accept">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
                                 </button>
-                                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tu3-Na-hFe">
-                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="55"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tu3-Na-hFe">
+                                    <rect key="frame" x="187" y="0.0" width="167" height="55"/>
                                     <color key="backgroundColor" name="PRIMARYCOLOR"/>
                                     <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="18"/>
                                     <state key="normal" title="Reject">
@@ -158,9 +158,23 @@
                                 <constraint firstItem="5SY-up-lm9" firstAttribute="top" secondItem="hWO-Ui-PdE" secondAttribute="top" constant="30" id="cNd-8C-yhv"/>
                                 <constraint firstItem="5SY-up-lm9" firstAttribute="leading" secondItem="hWO-Ui-PdE" secondAttribute="leading" constant="20" id="mZC-F2-VYb"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="size" keyPath="offsetShadow">
+                                    <size key="value" width="2" height="2"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="opacityShadow">
+                                    <real key="value" value="0.80000000000000004"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="colorShadow">
+                                    <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="radiusShadow">
+                                    <real key="value" value="10"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.30588235294117649" green="0.30588235294117649" blue="0.30588235294117649" alpha="0.80465999119718312" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstItem="hWO-Ui-PdE" firstAttribute="centerY" secondItem="TwV-Dm-I4e" secondAttribute="centerY" constant="-20" id="BGZ-iT-0tD"/>
                         <constraint firstItem="hWO-Ui-PdE" firstAttribute="height" secondItem="TwV-Dm-I4e" secondAttribute="height" multiplier="0.55" id="BwP-ew-wyW"/>
@@ -258,7 +272,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.19260567069893153" alpha="0.88960717429577463" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="S7g-Cu-VhY" firstAttribute="height" secondItem="4Yy-jq-Sz5" secondAttribute="height" multiplier="0.55" id="3qd-OB-3e9"/>
                         <constraint firstAttribute="trailing" secondItem="RYx-8t-LXo" secondAttribute="trailing" constant="30" id="BVZ-yz-G51"/>
@@ -385,7 +399,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" white="0.1705711196425935" alpha="0.88116197183098588" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="fho-Kh-7PD" secondAttribute="trailing" constant="30" id="QwO-WB-WPY"/>
                         <constraint firstItem="fho-Kh-7PD" firstAttribute="height" secondItem="swE-fO-bVq" secondAttribute="height" multiplier="0.55" id="Snn-gp-9xP"/>
@@ -430,7 +444,7 @@
                             </constraints>
                         </activityIndicatorView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for User Approval" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6AO-vc-IFL">
-                            <rect key="frame" x="37.5" y="275" width="215" height="23"/>
+                            <rect key="frame" x="42" y="277" width="206" height="21"/>
                             <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="18"/>
                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>

@@ -85,7 +85,6 @@ class TaskDetailViewController: BaseViewController {
                 self?.showpurchasedListView()
             })
         }
-      
     }
 
     

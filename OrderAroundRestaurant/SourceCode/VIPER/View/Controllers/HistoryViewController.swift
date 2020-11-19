@@ -14,18 +14,45 @@ class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
     var pageMenu : CAPSPageMenu?
     var fromUpComingDetails = false
 
+    var requestView: NewRequestView!
+    
+    var orderTimer : Timer?
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        orderTimer?.invalidate()
+        orderTimer = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setInitialLoad()
+        
+        self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
+            self.getOrder()
+        }
     }
     
-    //MARK:- viewWillAppear
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        
         self.navigationController?.isNavigationBarHidden = false
+        self.initialLoads()
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.black]
     }
-    
+    func initialLoads() {
+        
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.menuAction))
+        self.navigationItem.title = "Orders"
+       
+    }
+    @IBAction func menuAction() {
+        self.drawerController?.openSide(.left)
+        
+    }
     override func viewWillDisappear(_ animated: Bool) {
 
     }
@@ -89,6 +116,10 @@ extension HistoryViewController {
         ongoingOrderVc.title = APPLocalize.localizestring.ongoingOrders.localize()
         controllerArray.append(ongoingOrderVc)
         
+        let upcomingOrderVc:UpcomingOrderViewController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.UpcomingOrderViewController) as! UpcomingOrderViewController
+        upcomingOrderVc.title = APPLocalize.localizestring.upcomingOrder.localize()
+        controllerArray.append(upcomingOrderVc)
+        
         let pastOrderVc:PastOrderViewController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.PastOrderViewController) as! PastOrderViewController
         pastOrderVc.title = APPLocalize.localizestring.pastOrders.localize()
         controllerArray.append(pastOrderVc)
@@ -123,6 +154,65 @@ extension HistoryViewController {
     
     func willMoveToPage(_ controller: UIViewController, index: Int) {
         print(index)
+        
+    }
+}
+
+//MARK: VIPER Extension:
+extension HistoryViewController: PresenterOutputProtocol {
+    func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        self.HideActivityIndicator()
+        if String(describing: modelClass) == model.type.OrderListModel {
+            if dataArray?.count ?? 0 > 0 {
+            self.showNewRequestView(data: (dataArray as? [OrderListModel])?.first ?? OrderListModel())
+            }
+        }
+    }
+    func showNewRequestView(data : OrderListModel){
+        if self.requestView == nil, let requestView = Bundle.main.loadNibNamed("NewRequestView", owner: self, options: [:])?.first as? NewRequestView {
+            requestView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height))
+            self.requestView = requestView
+            self.view.addSubview(requestView)
+            requestView.show(with: .bottom, completion: nil)
+        }
+        self.requestView.orderListData = data
+        self.requestView.setupData()
+        self.requestView.onClickAccept = { [weak self] in
+            self?.requestView?.dismissView(onCompletion: {
+                self?.requestView = nil
+                self?.orderStatusUpdate(status: "ASSIGNED", id: data.id ?? 0)
+            })
+        }
+        self.requestView.onClickReject = {[weak self] in
+            self?.requestView?.dismissView(onCompletion: {
+                self?.requestView = nil
+                self?.orderStatusUpdate(status: "CANCELLED", id: data.id ?? 0)
+            })
+        }
+    }
+    func showError(error: CustomError) {
+        print(error)
+        let alert = showAlert(message: error.localizedDescription)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: {
+                self.HideActivityIndicator()
+            })
+        }
+    }
+  
+    
+    func getOrder(){
+        self.presenter?.GETPOST(api: Base.incomeRequest.rawValue, params: [:], methodType: .GET, modelClass: OrderListModel.self, token: true)
+    }
+    
+    func orderStatusUpdate(status : String,id : Int){
+        self.showActivityIndicator()
+        var parameters:[String:Any] = ["_method": "PATCH",
+                                       "status":status]
+        
+        
+        let profileURl = Base.getOrder.rawValue + "/" + String(id ?? 0)
+        self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["":Data()], imgName: "image", modelClass: OrderListModel.self, token: true)
         
     }
 }

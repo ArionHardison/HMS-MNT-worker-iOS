@@ -57,7 +57,7 @@ enum Base : String{
     case reasonsList = "/api/shop/reasons"
     case resetPassword = "api/shop/reset/password"
     case stripeToken = "api/shop/stripe/connect"
-    
+    case incomeRequest = "api/chef/incoming/order"
     
     init(fromRawValue: String){
         self = Base(rawValue: fromRawValue) ?? .addOnList

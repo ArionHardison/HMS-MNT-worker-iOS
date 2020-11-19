@@ -414,7 +414,7 @@ struct OrderListModel : Mappable {
     var dietitian : Dietitian?
     var rating : [String]?
     var user : UserDatas?
-    
+    init(){}
     init?(map: Map) {
         
     }
