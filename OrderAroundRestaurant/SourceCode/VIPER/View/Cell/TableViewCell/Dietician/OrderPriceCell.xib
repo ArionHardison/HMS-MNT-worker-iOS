@@ -185,6 +185,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="deliveryChargeLbl" destination="4o9-sJ-3lT" id="Vvw-xu-LP7"/>
+                <outlet property="subtotal" destination="Y86-nt-xlq" id="KGD-sf-XF6"/>
+                <outlet property="taxLbl" destination="rJW-VO-VTb" id="YSl-i9-fc4"/>
+                <outlet property="totalLbl" destination="x90-mQ-1ua" id="mvA-WG-AuY"/>
+            </connections>
             <point key="canvasLocation" x="137.68115942028987" y="117.1875"/>
         </tableViewCell>
     </objects>

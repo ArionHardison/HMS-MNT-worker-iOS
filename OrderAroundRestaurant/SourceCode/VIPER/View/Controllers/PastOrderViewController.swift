@@ -21,7 +21,10 @@ class PastOrderViewController: BaseViewController {
         setInitialLoad()
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setInitialLoad()
+    }
     /*
     // MARK: - Navigation
 
@@ -64,7 +67,7 @@ extension PastOrderViewController: UITableViewDelegate,UITableViewDataSource{
             cell.foodname.text = data.food?.name ?? ""
             cell.foodDes.text = data.food?.description ?? ""
             cell.foodCategory.text = data.food?.time_category?.name ?? ""
-            cell.foodPrice.text = data.food?.price ?? ""
+            cell.foodPrice.text = "$ " + (data.food?.price ?? "")
         }
        
         return cell
@@ -87,7 +90,7 @@ extension PastOrderViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         if String(describing: modelClass) == model.type.OrderListModel {
             HideActivityIndicator()
-            let data = dataArray as! [OrderListModel]
+            let data = dataArray as? [OrderListModel] ?? [OrderListModel]()
             self.completedOrderArr = data
             pastTableView.reloadData()
             

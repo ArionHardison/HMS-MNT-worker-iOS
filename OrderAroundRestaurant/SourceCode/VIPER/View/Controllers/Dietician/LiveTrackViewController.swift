@@ -39,6 +39,8 @@ class LiveTrackViewController: BaseViewController {
     
     
     var waitingforapproval : WaitingforApproval!
+    var userapproved : UserApprovedView!
+    var uploadPrepareimg : UploadPreparedImage!
     
     var orderListData: OrderListModel?
     
@@ -78,7 +80,7 @@ class LiveTrackViewController: BaseViewController {
                     case "ARRIVED":
                         self.orderStatusUpdate(status: "PROCESSING")
                     case "PROCESSING" :
-                        self.orderStatusUpdate(status: "PREPARED")
+                        self.showUploadImage()
                     case "PREPARED" :
                         self.showWaitingforapproval()
                         self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
@@ -107,7 +109,7 @@ class LiveTrackViewController: BaseViewController {
     
     func setupData(data : OrderListModel){
         self.nameLbl.text = (data.food?.name ?? "").capitalized
-        self.locLbl.text = "--"
+        self.locLbl.text = data.customer_address?.map_address ?? ""
         self.itemLbl.text = data.food?.time_category?.name ?? ""
         self.dateLbl.text = data.created_at ?? ""
         var category : String = ""
@@ -145,14 +147,26 @@ class LiveTrackViewController: BaseViewController {
             case "PROCESSING" :
                  self.setupViewBorder(firstView: [self.shadowViewOne,self.shadowViewtwo,self.shadowViewthree,self.shadowViewfour], image: [self.shadowViewOneImage,self.shadowViewtwoImage,self.shadowViewthreeImage,self.shadowViewfourImage], secoundView: UIView())
                 self.changeOrderStatusBtn.setTitle("Food prepared", for: .normal)
-                
+               
             case "PREPARED" :
                 self.setupViewBorder(firstView: [self.shadowViewOne,self.shadowViewtwo,self.shadowViewthree,self.shadowViewfour], image: [self.shadowViewOneImage,self.shadowViewtwoImage,self.shadowViewthreeImage,self.shadowViewfourImage], secoundView: UIView())
+                
                 self.changeOrderStatusBtn.setTitle("Food prepared", for: .normal)
+                if self.uploadPrepareimg != nil{
+                    self.uploadPrepareimg.dismissView {
+                            self.uploadPrepareimg = nil
+                    }
+                }
                 self.showWaitingforapproval()
                 self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
                     self.getOrderDetail()
                 }
+            case "COMPLETED" :
+                if self.waitingforapproval != nil{
+                    self.waitingforapproval.dismissView {
+                    self.waitingforapproval = nil
+                    }}
+                self.showUserApprovedView()
             default:
                 break
         }
@@ -172,14 +186,14 @@ class LiveTrackViewController: BaseViewController {
        
     }
     
-    func orderStatusUpdate(status : String){
+    func orderStatusUpdate(status : String,imageData : Data = Data()){
         self.showActivityIndicator()
         var parameters:[String:Any] = ["_method": "PATCH",
                                        "status":status]
         
         
         let profileURl = Base.getOrder.rawValue + "/" + String(self.orderListData?.id ?? 0)
-        self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["":Data()], imgName: "image", modelClass: OrderListModel.self, token: true)
+        self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["image":imageData], imgName: "image", modelClass: OrderListModel.self, token: true)
         
     }
     
@@ -190,12 +204,52 @@ class LiveTrackViewController: BaseViewController {
             self.view.addSubview(requestView)
             self.waitingforapproval.show(with: .bottom, completion: nil)
         }
-        self.waitingforapproval.onClickcancel = {
-            self.waitingforapproval.dismissView {
-                self.waitingforapproval = nil
+//        self.waitingforapproval.onClickcancel = {
+//            self.waitingforapproval.dismissView {
+//                self.waitingforapproval = nil
+//            }
+//        }
+       
+    }
+    
+    func showUserApprovedView(){
+        if self.userapproved == nil, let userapproveds = Bundle.main.loadNibNamed("NewRequestView", owner: self, options: [:])?[5] as? UserApprovedView {
+            userapproveds.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height))
+            self.userapproved = userapproveds
+            self.view.addSubview(userapproved)
+            self.userapproved.show(with: .bottom, completion: nil)
+        }
+        self.userapproved.onClickdone = {
+            self.userapproved.dismissView {
+                self.userapproved = nil
+                self.navigationController?.popToRootViewController(animated: true)
             }
         }
-       
+        
+    }
+    
+    func showUploadImage(){
+        if self.uploadPrepareimg == nil, let requestView = Bundle.main.loadNibNamed("NewRequestView", owner: self, options: [:])?[4] as? UploadPreparedImage {
+            requestView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height))
+            self.uploadPrepareimg = requestView
+            self.view.addSubview(requestView)
+            self.uploadPrepareimg.show(with: .bottom, completion: nil)
+        }
+        self.uploadPrepareimg.onClickUploadImage = {
+            self.showImage { (selectedImage) in
+                self.uploadPrepareimg.uploadImag.image = selectedImage
+            }
+        }
+        self.uploadPrepareimg.onClickSubmit = {
+            var uploadimgeData:Data!
+            
+            if  let dataImg = self.uploadPrepareimg.uploadImag.image?.jpegData(compressionQuality: 0.5) {
+                uploadimgeData = dataImg
+            }
+            self.orderStatusUpdate(status: "PREPARED",imageData: uploadimgeData)
+
+        }
+        
     }
     
     deinit {
@@ -236,7 +290,6 @@ extension LiveTrackViewController : GMSMapViewDelegate, CLLocationManagerDelegat
                 self.locationManager.startUpdatingLocation()
             case .authorizedWhenInUse:
                 self.locationManager.startUpdatingLocation()
-                
             case .notDetermined:
                 self.locationManager.requestAlwaysAuthorization()
             case .denied:
@@ -256,10 +309,14 @@ extension LiveTrackViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         if String(describing: modelClass) == model.type.OrderListModel {
             self.HideActivityIndicator()
-            self.orderListData = dataDict as! OrderListModel
-            self.setupData(data: dataDict as! OrderListModel)
+            self.orderListData = dataDict as? OrderListModel
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+                
+                self.setupData(data: (dataDict as? OrderListModel ?? OrderListModel()))
+            }
         }
     }
+    
     
     func showError(error: CustomError) {
         print(error)

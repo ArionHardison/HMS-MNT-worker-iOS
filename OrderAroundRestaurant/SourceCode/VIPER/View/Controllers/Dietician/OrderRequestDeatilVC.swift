@@ -103,6 +103,10 @@ extension OrderRequestDeatilVC : UITableViewDelegate, UITableViewDataSource{
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "OrderPriceCell", for: indexPath) as! OrderPriceCell
+            cell.subtotal.text = "$ " + (self.orderListData?.payable ?? "")
+            cell.taxLbl.text = "$ " + (self.orderListData?.tax ?? "")
+            cell.deliveryChargeLbl.text = "$ " + "0.0"
+            cell.totalLbl.text = "$ " + (self.orderListData?.total ?? "")
             return cell
         }
     }

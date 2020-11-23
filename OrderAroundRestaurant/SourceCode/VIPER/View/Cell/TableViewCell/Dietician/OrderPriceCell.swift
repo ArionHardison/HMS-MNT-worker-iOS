@@ -10,6 +10,11 @@ import UIKit
 
 class OrderPriceCell: UITableViewCell {
 
+    @IBOutlet weak var subtotal : UILabel!
+    @IBOutlet weak var taxLbl : UILabel!
+    @IBOutlet weak var deliveryChargeLbl : UILabel!
+    @IBOutlet weak var totalLbl : UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

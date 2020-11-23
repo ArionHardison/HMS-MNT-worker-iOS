@@ -1,0 +1,6 @@
+framework module Pods_DietManagerChefTests {
+  umbrella header "Pods-DietManagerChefTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

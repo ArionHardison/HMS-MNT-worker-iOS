@@ -8,6 +8,7 @@
 
 import UIKit
 import ObjectMapper
+import GoogleMaps
 
 class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
     
@@ -15,7 +16,16 @@ class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
     var fromUpComingDetails = false
 
     var requestView: NewRequestView!
+    var userSttausView: UserStatusView!
+    var currentLocation : CLLocation = CLLocation()
+    lazy var locationManager: CLLocationManager = {
+        var _locationManager = CLLocationManager()
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        _locationManager.delegate = self
+        return _locationManager
+    }()
     
+    private var profileDataResponse: ProfileModel?
     var orderTimer : Timer?
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -28,10 +38,8 @@ class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setInitialLoad()
-        
-        self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
-            self.getOrder()
-        }
+        self.setupMapDelegate()
+       
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,6 +55,7 @@ class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.menuAction))
         self.navigationItem.title = "Orders"
+        self.getProfileDetail()
        
     }
     @IBAction func menuAction() {
@@ -56,6 +65,22 @@ class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
     override func viewWillDisappear(_ animated: Bool) {
 
     }
+    
+    @IBAction func logOutAction() {
+        let alertController = UIAlertController(title: Constant.string.appName, message: APPLocalize.localizestring.logout.localize(), preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: APPLocalize.localizestring.yes.localize(), style: .default) { (action) in
+            self.showActivityIndicator()
+            self.presenter?.GETPOST(api: Base.logout.rawValue, params: [:], methodType: .GET, modelClass: LogoutModel.self, token: true)
+        }
+        alertController.addAction(yesAction)
+        let noAction = UIAlertAction(title: APPLocalize.localizestring.no.localize(), style: .default) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        alertController.addAction(noAction)
+        self.present(alertController, animated: true, completion: nil)
+        
+    }
+    
    
 
     /*
@@ -162,10 +187,44 @@ extension HistoryViewController {
 extension HistoryViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         self.HideActivityIndicator()
-        if String(describing: modelClass) == model.type.OrderListModel {
-            if dataArray?.count ?? 0 > 0 {
-            self.showNewRequestView(data: (dataArray as? [OrderListModel])?.first ?? OrderListModel())
+        if String(describing: modelClass) == model.type.LogoutModel {
+            
+            DispatchQueue.main.async {
+                self.HideActivityIndicator()
+                
+                UserDataDefaults.main.access_token = ""
+                // UserDefaults.standard.set(nil, forKey: "access_token")
+                let data = NSKeyedArchiver.archivedData(withRootObject: "")
+                UserDefaults.standard.set(data, forKey:  Keys.list.userData)
+                UserDefaults.standard.synchronize()
+                forceLogout()
+                
             }
+        }else if String(describing: modelClass) == model.type.NewOrderListModel {
+            let dataarray : [OrderListModel] = (dataDict as? NewOrderListModel)?.orders as? [OrderListModel] ?? [OrderListModel]()
+            if ((dataDict as? NewOrderListModel)?.chef_status ?? "") == "ACTIVE"{
+                if  self.userSttausView != nil{
+                    self.userSttausView.dismissView(onCompletion: {
+                        self.userSttausView = nil
+                    })
+                }
+            }else{
+                showUserStatusView()
+            }
+            if dataarray.count ?? 0 > 0 {
+                self.showNewRequestView(data: (dataarray as? [OrderListModel])?.first ?? OrderListModel())
+            }
+        
+        }else if String(describing: modelClass) ==  model.type.ProfileModel {
+            
+            
+            self.profileDataResponse = dataDict  as? ProfileModel
+            UserDefaults.standard.set(self.profileDataResponse?.id, forKey: Keys.list.shopId)
+            UserDefaults.standard.set(self.profileDataResponse?.currency, forKey: Keys.list.currency)
+            profiledata = self.profileDataResponse
+            HideActivityIndicator()
+            
+            
         }
     }
     func showNewRequestView(data : OrderListModel){
@@ -175,7 +234,8 @@ extension HistoryViewController: PresenterOutputProtocol {
             self.view.addSubview(requestView)
             requestView.show(with: .bottom, completion: nil)
         }
-        self.requestView.orderListData = data
+        
+        self.requestView.orderListData = data //restoreToOrderList(data: data)
         self.requestView.setupData()
         self.requestView.onClickAccept = { [weak self] in
             self?.requestView?.dismissView(onCompletion: {
@@ -183,6 +243,7 @@ extension HistoryViewController: PresenterOutputProtocol {
                 self?.orderStatusUpdate(status: "ASSIGNED", id: data.id ?? 0)
             })
         }
+        
         self.requestView.onClickReject = {[weak self] in
             self?.requestView?.dismissView(onCompletion: {
                 self?.requestView = nil
@@ -190,6 +251,18 @@ extension HistoryViewController: PresenterOutputProtocol {
             })
         }
     }
+    
+    func showUserStatusView(){
+        if self.userSttausView == nil, let requestView = Bundle.main.loadNibNamed("NewRequestView", owner: self, options: [:])?[6] as? UserStatusView {
+            requestView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height))
+            self.userSttausView = requestView
+            self.view.addSubview(requestView)
+            requestView.show(with: .bottom, completion: nil)
+        }
+      
+    }
+    
+    
     func showError(error: CustomError) {
         print(error)
         let alert = showAlert(message: error.localizedDescription)
@@ -202,7 +275,8 @@ extension HistoryViewController: PresenterOutputProtocol {
   
     
     func getOrder(){
-        self.presenter?.GETPOST(api: Base.incomeRequest.rawValue, params: [:], methodType: .GET, modelClass: OrderListModel.self, token: true)
+        let url = Base.incomeRequest.rawValue+"?latitude=\(self.currentLocation.coordinate.latitude ?? 0.0)&longitude=\(self.currentLocation.coordinate.longitude ?? 0.0)"
+        self.presenter?.GETPOST(api: url, params: [:], methodType: .GET, modelClass: NewOrderListModel.self, token: true)
     }
     
     func orderStatusUpdate(status : String,id : Int){
@@ -214,5 +288,58 @@ extension HistoryViewController: PresenterOutputProtocol {
         let profileURl = Base.getOrder.rawValue + "/" + String(id ?? 0)
         self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["":Data()], imgName: "image", modelClass: OrderListModel.self, token: true)
         
+    }
+    
+    
+    func getProfileDetail(){
+        self.showActivityIndicator()
+        self.presenter?.GETPOST(api: Base.getprofile.rawValue, params: [:], methodType: .GET, modelClass: ProfileModel.self, token: true)
+    }
+    
+}
+extension HistoryViewController : GMSMapViewDelegate, CLLocationManagerDelegate{
+    
+    func setupMapDelegate(){
+       
+        if CLLocationManager.locationServicesEnabled()
+        {
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+            locationManager.startUpdatingHeading()
+        }
+        else
+        {
+            //            showToast(msg: "Please enable the location service in settings")
+        }
+        self.locationManager.startUpdatingLocation()
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        switch status {
+            case .restricted:
+                print("Location access was restricted.")
+            case .authorizedAlways:
+                self.locationManager.startUpdatingLocation()
+            case .authorizedWhenInUse:
+                self.locationManager.startUpdatingLocation()
+                
+            case .notDetermined:
+                self.locationManager.requestAlwaysAuthorization()
+                self.locationManager.startUpdatingLocation()
+                
+            case .denied:
+                print("User denied access to location.")
+        }
+    }
+    
+    
+    // MARK: update Location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.currentLocation = locations.last ?? CLLocation()
+        self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
+            self.getOrder()
+        }
     }
 }

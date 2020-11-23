@@ -111,6 +111,7 @@ class LoginViewController: BaseViewController {
 //        let registerController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.RegisterViewController) as! RegisterViewController
 //        self.navigationController?.pushViewController(registerController, animated: true)
     }
+    
     @IBAction func onLoginAction(_ sender: Any) {
         print("SignIn Pressed")
         self.Validate()
@@ -119,19 +120,19 @@ class LoginViewController: BaseViewController {
     //MARK: Validate
     func Validate(){
         view.endEditing(true)
-//        guard let email = emailAddressTextField.text, !email.isEmpty else{
-//            showToast(msg: "Please Enter Email Address")
-//            return
-//        }
-//        guard isValid(email: email) else{
-//            showToast(msg: ErrorMessage.list.enterValidEmail)
-//
-//            return
-//        }
-        guard let mobile = emailAddressTextField.text, !mobile.isEmpty else{
-                   showToast(msg: "Please Enter Mobile Number")
-                   return
-               }
+        guard let email = emailAddressTextField.text, !email.isEmpty else{
+            showToast(msg: "Please Enter Email Address")
+            return
+        }
+        guard isValid(email: email) else{
+            showToast(msg: ErrorMessage.list.enterValidEmail)
+
+            return
+        }
+//        guard let mobile = emailAddressTextField.text, !mobile.isEmpty else{
+//                   showToast(msg: "Please Enter Mobile Number")
+//                   return
+//               }
         
         guard let password = passwordTextField.text, !password.isEmpty else{
             showToast(msg: "Please Enter Password")
@@ -143,7 +144,7 @@ class LoginViewController: BaseViewController {
         }
         
         showActivityIndicator()
-        let parameters:[String:Any] = ["mobile": emailAddressTextField.text ?? "",
+        let parameters:[String:Any] = ["username": emailAddressTextField.text ?? "",
                                        "password":passwordTextField.text ?? "",
                                        "grant_type":WebConstants.string.password,
                                        "client_id":client_ID,
@@ -194,7 +195,7 @@ extension LoginViewController {
     }
     
     private func setTitle(){
-         emailAddressLabel.text = APPLocalize.localizestring.mobile.localize()
+         emailAddressLabel.text = APPLocalize.localizestring.emailAddr.localize()
          passwordLabel.text = APPLocalize.localizestring.password.localize()
         loginButton.setTitle(APPLocalize.localizestring.login.localize(), for: .normal)
     }

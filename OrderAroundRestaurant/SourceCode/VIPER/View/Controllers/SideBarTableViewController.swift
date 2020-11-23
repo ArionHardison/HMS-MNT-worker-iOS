@@ -145,10 +145,11 @@ extension SideBarTableViewController {
         case (0,1):
             self.push(to: Storyboard.Ids.HistoryViewController)
         case (0,2):
-            self.push(to: Storyboard.Ids.RevenueViewController)
+            break
+//            self.push(to: Storyboard.Ids.RevenueViewController)
 
         case (0,3):
-            (self.drawerController?.getViewController(for: .none)?.children.first as? LiveTaskViewController)?.logOutAction()
+            (self.drawerController?.getViewController(for: .none)?.children.first as? HistoryViewController)?.logOutAction()
             
         default:
             break

@@ -21,6 +21,11 @@ class UpcomingOrderViewController: BaseViewController {
             // Do any additional setup after loading the view.
             setInitialLoad()
         }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setInitialLoad()
+    }
         
     }
     extension UpcomingOrderViewController{
@@ -77,7 +82,7 @@ class UpcomingOrderViewController: BaseViewController {
         func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
             if String(describing: modelClass) == model.type.OrderListModel {
                 HideActivityIndicator()
-                let data = dataArray as! [OrderListModel]
+                let data = dataArray as? [OrderListModel] ?? [OrderListModel]()
                 self.completedOrderArr = data
                 upcomingTableView.reloadData()
                 

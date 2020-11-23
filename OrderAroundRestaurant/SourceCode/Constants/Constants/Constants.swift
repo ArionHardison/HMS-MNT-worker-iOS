@@ -350,6 +350,7 @@ struct model {
     let GetOTPModel = "GetOTPModel"
     let SignUpEntityModel = "SignUpEntityModel"
     let OrderListModel = "OrderListModel"
+    let NewOrderListModel = "NewOrderListModel"
     
     
     

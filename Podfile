@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'DietManagerManager' do
+target 'DietManagerChef' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
 
@@ -26,12 +26,12 @@ target 'DietManagerManager' do
   pod 'KWDrawerController'
 
 
-  target 'DietManagerManagerTests' do
+  target 'DietManagerChefTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'DietManagerManagerUITests' do
+  target 'DietManagerChefUITests' do
     inherit! :search_paths
     # Pods for testing
   end

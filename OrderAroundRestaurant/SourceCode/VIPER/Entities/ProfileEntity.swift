@@ -391,7 +391,87 @@ struct Ingredient : Mappable {
     }
     
 }
+struct NewOrderListModel : Mappable {
+//    var id : Int?
+//    var food_id : Int?
+//    var user_id : Int?
+//    var chef_id : Int?
+//    var dietitian_id : Int?
+//    var status : String?
+//    var chef_rating : Int?
+//    var dietitian_rating : Int?
+//    var is_scheduled : Int?
+//    var schedule_at : String?
+//    var created_at : String?
+//    var payable : String?
+//    var total : String?
+//    var discount : String?
+//    var ingredient_image : String?
+//    var orderingredient : [Orderingredient]?
+//    var food : Food?
+//    var dietitian : Dietitian?
+//    var rating : [String]?
+//    var user : UserDatas?
+    
+    var orders : [OrderListModel]?
+    var chef_status : String?
+    
+    init(){}
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+//        id <- map["id"]
+//        food_id <- map["food_id"]
+//        user_id <- map["user_id"]
+//        chef_id <- map["chef_id"]
+//        dietitian_id <- map["dietitian_id"]
+//        status <- map["status"]
+//        chef_rating <- map["chef_rating"]
+//        dietitian_rating <- map["dietitian_rating"]
+//        is_scheduled <- map["is_scheduled"]
+//        schedule_at <- map["schedule_at"]
+//        created_at <- map["created_at"]
+//        payable <- map["payable"]
+//        total <- map["total"]
+//        discount <- map["discount"]
+//        ingredient_image <- map["ingredient_image"]
+//        orderingredient <- map["orderingredient"]
+//        food <- map["food"]
+//        dietitian <- map["dietitian"]
+//        rating <- map["rating"]
+//        user <- map["user"]
+        orders <- map["orders"]
+        chef_status <- map["chef_status"]
+    }
+    
+}
 
+
+struct CustomerAddress : Mappable {
+    var id : Int?
+    var user_id : Int?
+    var map_address : String?
+    var latitude : Double?
+    var longitude : Double?
+    var type : String?
+    init(){}
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        id <- map["id"]
+        user_id <- map["user_id"]
+        map_address <- map["map_address"]
+        latitude <- map["latitude"]
+        longitude <- map["longitude"]
+        type <- map["type"]
+    }
+}
 
 struct OrderListModel : Mappable {
     var id : Int?
@@ -407,6 +487,7 @@ struct OrderListModel : Mappable {
     var created_at : String?
     var payable : String?
     var total : String?
+    var tax : String?
     var discount : String?
     var ingredient_image : String?
     var orderingredient : [Orderingredient]?
@@ -414,6 +495,7 @@ struct OrderListModel : Mappable {
     var dietitian : Dietitian?
     var rating : [String]?
     var user : UserDatas?
+    var customer_address : CustomerAddress?
     init(){}
     init?(map: Map) {
         
@@ -441,6 +523,8 @@ struct OrderListModel : Mappable {
         dietitian <- map["dietitian"]
         rating <- map["rating"]
         user <- map["user"]
+        tax <- map["tax"]
+        customer_address <- map["customer_address"]
     }
     
 }
