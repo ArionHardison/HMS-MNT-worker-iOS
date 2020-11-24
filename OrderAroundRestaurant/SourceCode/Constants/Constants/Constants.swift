@@ -402,8 +402,8 @@ struct Constant {
     var deviceType = "no deviceType"
     var noDeviceID = "no device id"
     var noDeviceToken = "nodevice"
-    var countryNumber = "+91"
-    var countryCode = "IN"
+    var countryNumber = "+1"
+    var countryCode = "US"
     var deleteCategory = "Are you sure want to delete Category?"
     var deleteProduct = "Are you sure want to delete Product?"
     

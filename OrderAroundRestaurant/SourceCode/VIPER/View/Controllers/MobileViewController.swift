@@ -119,6 +119,7 @@ class MobileViewController: UIViewController {
             self.showToast(string: ErrorMessage.list.enterValidEmail.localize())
             return
         }
+        
         UserDefaults.standard.set(countryCodeLbl.text! + mobileNumberTxtFlb.text!, forKey: Keys.list.mobile)
                self.view.endEditingForce()
             //   self.loader.isHidden = false
@@ -132,14 +133,10 @@ class MobileViewController: UIViewController {
             
         } else {
             
-let parameters:[String:Any] = ["dial_code": countryCodeLbl.text ?? "",
-                            "mobile":mobileNumberTxtFlb.text ?? "",
-                                                ]
-
-                   self.presenter?.GETPOST(api: Base.getOTP.rawValue, params:parameters, methodType: HttpType.POST, modelClass: GetOTPModel.self, token: false)
+            let parameters:[String:Any] = ["dial_code": countryCodeLbl.text ?? "",
+                            "mobile":mobileNumberTxtFlb.text ?? "",]
             
-           
-           
+            self.presenter?.GETPOST(api: Base.getOTP.rawValue, params:parameters, methodType: HttpType.POST, modelClass: GetOTPModel.self, token: false)
         }
     }
     

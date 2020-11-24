@@ -331,7 +331,7 @@ extension SignUpViewController: UITextFieldDelegate {
 extension SignUpViewController: PresenterOutputProtocol {
     func showError(error: CustomError) {
         let alert = showAlert(message: error.localizedDescription)
-
+        self.present(alert, animated: true, completion: nil)
     }
     
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
