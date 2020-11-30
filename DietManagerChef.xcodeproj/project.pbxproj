@@ -160,6 +160,12 @@
 		1097DB20255E771B00A3D702 /* NewRequestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097DB1F255E771B00A3D702 /* NewRequestView.swift */; };
 		1097DB25255E772600A3D702 /* NewRequestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1097DB24255E772600A3D702 /* NewRequestView.xib */; };
 		1097DB2A255E7F8F00A3D702 /* ViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1097DB29255E7F8F00A3D702 /* ViewExtension.swift */; };
+		10ADBC24257003630041F29D /* WalletHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ADBC1E257003620041F29D /* WalletHistory.swift */; };
+		10ADBC25257003630041F29D /* UserMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ADBC1F257003620041F29D /* UserMenu.swift */; };
+		10ADBC26257003630041F29D /* UserMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10ADBC20257003630041F29D /* UserMenu.xib */; };
+		10ADBC27257003630041F29D /* WalletHistory.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10ADBC21257003630041F29D /* WalletHistory.xib */; };
+		10ADBC28257003630041F29D /* WalletListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ADBC22257003630041F29D /* WalletListViewController.swift */; };
+		10ADBC29257003630041F29D /* WalletModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10ADBC23257003630041F29D /* WalletModel.swift */; };
 		10CA955725666C6B00C1DE3E /* IngredientsCell.swift in Resources */ = {isa = PBXBuildFile; fileRef = 103815B2255E9F700087E7A8 /* IngredientsCell.swift */; };
 		10CA955825666C6B00C1DE3E /* IngredientsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 103815B1255E9F6F0087E7A8 /* IngredientsCell.xib */; };
 		10CA955C25666C8400C1DE3E /* IngredientsPriceCell.swift in Resources */ = {isa = PBXBuildFile; fileRef = 107BEBDE256666D5006BCB2D /* IngredientsPriceCell.swift */; };
@@ -385,6 +391,12 @@
 		1097DB1F255E771B00A3D702 /* NewRequestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRequestView.swift; sourceTree = "<group>"; };
 		1097DB24255E772600A3D702 /* NewRequestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewRequestView.xib; sourceTree = "<group>"; };
 		1097DB29255E7F8F00A3D702 /* ViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewExtension.swift; sourceTree = "<group>"; };
+		10ADBC1E257003620041F29D /* WalletHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletHistory.swift; sourceTree = "<group>"; };
+		10ADBC1F257003620041F29D /* UserMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserMenu.swift; sourceTree = "<group>"; };
+		10ADBC20257003630041F29D /* UserMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserMenu.xib; sourceTree = "<group>"; };
+		10ADBC21257003630041F29D /* WalletHistory.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WalletHistory.xib; sourceTree = "<group>"; };
+		10ADBC22257003630041F29D /* WalletListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletListViewController.swift; sourceTree = "<group>"; };
+		10ADBC23257003630041F29D /* WalletModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletModel.swift; sourceTree = "<group>"; };
 		10D193B0255EC8FE00AD940D /* LiveTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTrackViewController.swift; sourceTree = "<group>"; };
 		10FC93DB25629EBE006C1D52 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		10FC93FC2562BF7D006C1D52 /* OrderListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderListCell.xib; sourceTree = "<group>"; };
@@ -1016,6 +1028,7 @@
 		1097DAEF255E623400A3D702 /* Dietician */ = {
 			isa = PBXGroup;
 			children = (
+				10ADBC1D257003530041F29D /* Wallet */,
 				1097DB1E255E76EE00A3D702 /* XibViews */,
 				1097DAF5255E626500A3D702 /* SideBarTableViewCell.swift */,
 				1097DB19255E6E5300A3D702 /* TaskDetailViewController.swift */,
@@ -1042,6 +1055,19 @@
 				104E1E36256BBAB300939829 /* UserStatusView.swift */,
 			);
 			path = XibViews;
+			sourceTree = "<group>";
+		};
+		10ADBC1D257003530041F29D /* Wallet */ = {
+			isa = PBXGroup;
+			children = (
+				10ADBC1F257003620041F29D /* UserMenu.swift */,
+				10ADBC20257003630041F29D /* UserMenu.xib */,
+				10ADBC1E257003620041F29D /* WalletHistory.swift */,
+				10ADBC21257003630041F29D /* WalletHistory.xib */,
+				10ADBC22257003630041F29D /* WalletListViewController.swift */,
+				10ADBC23257003630041F29D /* WalletModel.swift */,
+			);
+			path = Wallet;
 			sourceTree = "<group>";
 		};
 		895EF82E92E15E58D1446280 /* Frameworks */ = {
@@ -1236,6 +1262,7 @@
 				1097DB25255E772600A3D702 /* NewRequestView.xib in Resources */,
 				7777A587253DAFC400A24D60 /* CountryCodeCell.xib in Resources */,
 				087D0C092224093400E58BDE /* LaunchScreen.storyboard in Resources */,
+				10ADBC27257003630041F29D /* WalletHistory.xib in Resources */,
 				08A3B6A922253D1A0010058B /* Nunito-ExtraLight.ttf in Resources */,
 				08A44ACC2237B14000228233 /* CountryPicker.bundle in Resources */,
 				08A3B6A322253D0A0010058B /* Nunito-ExtraBold.ttf in Resources */,
@@ -1247,6 +1274,7 @@
 				08AB877222367A2000740520 /* SelectAddonsTableViewCell.xib in Resources */,
 				08A3B6A422253D0D0010058B /* Nunito-Black.ttf in Resources */,
 				08A3B6A722253D150010058B /* Nunito-Medium.ttf in Resources */,
+				10ADBC26257003630041F29D /* UserMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1413,9 +1441,11 @@
 				08A3B6AE2225441C0010058B /* View.swift in Sources */,
 				087D0C2E22242A9A00E58BDE /* RegisterViewController.swift in Sources */,
 				08D65706237D62170043A7CE /* TextFieldEffects.swift in Sources */,
+				10ADBC24257003630041F29D /* WalletHistory.swift in Sources */,
 				24FC05B822734548003243D9 /* String.swift in Sources */,
 				08A3B6C2222578B10010058B /* EditTimingViewController.swift in Sources */,
 				100787592566533D00D7CBE6 /* OrderRequestDeatilVC.swift in Sources */,
+				10ADBC28257003630041F29D /* WalletListViewController.swift in Sources */,
 				08A6131322421F5300219465 /* UpcomingDetailViewController.swift in Sources */,
 				0891E21C223125BC00409038 /* TabbarController.swift in Sources */,
 				08A14DDF222FB4C900F35B1E /* CancelOrderViewController.swift in Sources */,
@@ -1471,6 +1501,7 @@
 				08A14DF2222FE37E00F35B1E /* AddCategoryTableViewCell.swift in Sources */,
 				08A44AC222379E6200228233 /* SelectCusineViewController.swift in Sources */,
 				77C48CC4253DCE2500A5AD82 /* SideBarTableViewController.swift in Sources */,
+				10ADBC25257003630041F29D /* UserMenu.swift in Sources */,
 				124EE8A4243E27ED0080E87B /* ForgotPasswordViewController.swift in Sources */,
 				7777A581253DAB9D00A24D60 /* MobileViewController.swift in Sources */,
 				08A20C2A223A52C90081256F /* AddAddonsEntity.swift in Sources */,
@@ -1519,6 +1550,7 @@
 				087D0BC7222403FC00E58BDE /* AppDelegate.swift in Sources */,
 				0891E2222231581100409038 /* TextField.swift in Sources */,
 				125B965623D710F300923CE3 /* FoodSafetyViewController.swift in Sources */,
+				10ADBC29257003630041F29D /* WalletModel.swift in Sources */,
 				1097DAF6255E626500A3D702 /* SideBarTableViewCell.swift in Sources */,
 				0891E2042230EBE200409038 /* AddProductViewController.swift in Sources */,
 				087D0C0E2224110200E58BDE /* Constants.swift in Sources */,
@@ -1712,7 +1744,7 @@
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Q4N6XWX7K3;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
@@ -1721,7 +1753,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.diet.manager;
 				PRODUCT_NAME = "DietManager - Manager";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1738,7 +1770,7 @@
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.3;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = Q4N6XWX7K3;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -1746,7 +1778,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.diet.manager;
 				PRODUCT_NAME = "DietManager - Manager";
 				PROVISIONING_PROFILE_SPECIFIER = "";

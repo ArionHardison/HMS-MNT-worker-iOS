@@ -72,14 +72,15 @@ extension ForgotPasswordViewController : PresenterOutputProtocol {
         if String(describing: modelClass) == model.type.OTPResponseModel {
             self.otpResponse = dataDict as? OTPResponseModel
             
-            
             showToast(msg:self.otpResponse!.message!)
-            
-        let OTPController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.VerificationViewController) as! VerificationViewController
-            
-            OTPController.set(mobile: self.otpResponse?.user?.email ?? "", otp:"\(self.otpResponse?.user?.otp ?? 0)", shopID: self.otpResponse?.user?.id ?? 0)
-        
-            self.navigationController?.pushViewController(OTPController, animated: true)
+            DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                self.navigationController?.popViewController(animated: true)
+            }
+//        let OTPController = self.storyboard?.instantiateViewController(withIdentifier: Storyboard.Ids.VerificationViewController) as! VerificationViewController
+//
+//            OTPController.set(mobile: self.otpResponse?.user?.email ?? "", otp:"\(self.otpResponse?.user?.otp ?? 0)", shopID: self.otpResponse?.user?.id ?? 0)
+//
+//            self.navigationController?.pushViewController(OTPController, animated: true)
             
         }
      }

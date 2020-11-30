@@ -26,12 +26,14 @@ class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
     }()
     
     private var profileDataResponse: ProfileModel?
+    var stopCallingOrder : Bool = false
     var orderTimer : Timer?
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         orderTimer?.invalidate()
         orderTimer = nil
+        NotificationCenter.default.post(name: .didReceiveData, object: nil)
     }
     
     override func viewDidLoad() {
@@ -43,15 +45,21 @@ class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         self.navigationController?.isNavigationBarHidden = false
         self.initialLoads()
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.black]
+        self.locationManager.startUpdatingLocation()
+        self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
+            if !self.stopCallingOrder{
+                DispatchQueue.global(qos: .background).async {
+                    self.getOrder()
+                }
+            }
+        }
     }
     func initialLoads() {
-        
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.menuAction))
         self.navigationItem.title = "Orders"
@@ -186,6 +194,8 @@ extension HistoryViewController {
 //MARK: VIPER Extension:
 extension HistoryViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        DispatchQueue.main.async {
+            
         self.HideActivityIndicator()
         if String(describing: modelClass) == model.type.LogoutModel {
             
@@ -209,22 +219,21 @@ extension HistoryViewController: PresenterOutputProtocol {
                     })
                 }
             }else{
-                showUserStatusView()
+                self.showUserStatusView()
             }
             if dataarray.count ?? 0 > 0 {
                 self.showNewRequestView(data: (dataarray as? [OrderListModel])?.first ?? OrderListModel())
             }
         
         }else if String(describing: modelClass) ==  model.type.ProfileModel {
-            
-            
             self.profileDataResponse = dataDict  as? ProfileModel
             UserDefaults.standard.set(self.profileDataResponse?.id, forKey: Keys.list.shopId)
             UserDefaults.standard.set(self.profileDataResponse?.currency, forKey: Keys.list.currency)
             profiledata = self.profileDataResponse
-            HideActivityIndicator()
-            
-            
+            self.HideActivityIndicator()
+        }else if String(describing: modelClass) ==  model.type.OrderListModel {
+            self.stopCallingOrder = false
+        }
         }
     }
     func showNewRequestView(data : OrderListModel){
@@ -264,12 +273,15 @@ extension HistoryViewController: PresenterOutputProtocol {
     
     
     func showError(error: CustomError) {
+        DispatchQueue.main.async {
+            
         print(error)
         let alert = showAlert(message: error.localizedDescription)
         DispatchQueue.main.async {
             self.present(alert, animated: true, completion: {
                 self.HideActivityIndicator()
             })
+        }
         }
     }
   
@@ -284,7 +296,7 @@ extension HistoryViewController: PresenterOutputProtocol {
         var parameters:[String:Any] = ["_method": "PATCH",
                                        "status":status]
         
-        
+        self.stopCallingOrder = true
         let profileURl = Base.getOrder.rawValue + "/" + String(id ?? 0)
         self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["":Data()], imgName: "image", modelClass: OrderListModel.self, token: true)
         
@@ -309,7 +321,7 @@ extension HistoryViewController : GMSMapViewDelegate, CLLocationManagerDelegate{
         }
         else
         {
-            //            showToast(msg: "Please enable the location service in settings")
+//            showToast(msg: "Please enable the location service in settings")
         }
         self.locationManager.startUpdatingLocation()
     }
@@ -324,22 +336,16 @@ extension HistoryViewController : GMSMapViewDelegate, CLLocationManagerDelegate{
                 self.locationManager.startUpdatingLocation()
             case .authorizedWhenInUse:
                 self.locationManager.startUpdatingLocation()
-                
             case .notDetermined:
                 self.locationManager.requestAlwaysAuthorization()
-                self.locationManager.startUpdatingLocation()
-                
             case .denied:
                 print("User denied access to location.")
         }
     }
     
-    
     // MARK: update Location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.currentLocation = locations.last ?? CLLocation()
-        self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
-            self.getOrder()
-        }
+       
     }
 }

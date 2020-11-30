@@ -18,7 +18,7 @@ class SideBarTableViewController: UITableViewController {
     
     // private let sideBarList = [Constants.string.payment,Constants.string.yourTrips,Constants.string.coupon,Constants.string.wallet,Constants.string.passbook,Constants.string.settings,Constants.string.help,Constants.string.share,Constants.string.inviteReferral,Constants.string.faqSupport,Constants.string.termsAndConditions,Constants.string.privacyPolicy,Constants.string.logout]
     
-    private let sideBarList = ["Home","Order Request", "Earnings", "Logout"]
+    private let sideBarList = ["Home","Wallet", "Logout"]
     
     private let cellId = "cellId"
     
@@ -85,9 +85,9 @@ extension SideBarTableViewController {
     // MARK:- Set Designs
     
     private func setLayers(){
-        
         //self.viewShadow.addShadow()
         self.imageViewProfile.layer.cornerRadius = self.imageViewProfile.frame.height/2
+        self.imageViewProfile.clipsToBounds = true
         
     }
     
@@ -96,7 +96,7 @@ extension SideBarTableViewController {
     
     private func setDesigns () {
         
-        self.labelName.font = .regular(size: 14)
+        self.labelName.font = .bold(size: 20)
 
     }
     
@@ -128,7 +128,7 @@ extension SideBarTableViewController {
 //        let homeVC = Router.user.instantiateViewController(withIdentifier: Storyboard.Ids.ProfileViewController)
 //        (self.drawerController?.getViewController(for: .none) as? UINavigationController)?.pushViewController(homeVC, animated: true)
 //        self.drawerController?.closeSide()
-        self.push(to: Storyboard.Ids.RestaurantMenuViewController)
+//        self.push(to: Storyboard.Ids.RestaurantMenuViewController)
 
         
     }
@@ -143,13 +143,15 @@ extension SideBarTableViewController {
         case (0,0):
             self.drawerController?.closeSide()
         case (0,1):
-            self.push(to: Storyboard.Ids.HistoryViewController)
+            self.push(to: Storyboard.Ids.WalletListViewController)
         case (0,2):
+            (self.drawerController?.getViewController(for: .none)?.children.first as? HistoryViewController)?.logOutAction()
             break
 //            self.push(to: Storyboard.Ids.RevenueViewController)
 
         case (0,3):
-            (self.drawerController?.getViewController(for: .none)?.children.first as? HistoryViewController)?.logOutAction()
+            break
+//            (self.drawerController?.getViewController(for: .none)?.children.first as? HistoryViewController)?.logOutAction()
             
         default:
             break

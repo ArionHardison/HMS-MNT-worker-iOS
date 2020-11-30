@@ -30,6 +30,7 @@ struct Storyboard {
     let HomeViewController = "HomeViewController"
     let DeliveriesViewController = "DeliveriesViewController"
     let HistoryViewController = "HistoryViewController"
+    let WalletListViewController = "WalletListViewController"
     let OnGoingOrderViewController = "OnGoingOrderViewController"
     let UpcomingOrderViewController = "UpcomingOrderViewController"
     let PastOrderViewController = "PastOrderViewController"

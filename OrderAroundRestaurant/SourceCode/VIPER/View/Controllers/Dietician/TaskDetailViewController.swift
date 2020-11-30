@@ -21,6 +21,8 @@ class TaskDetailViewController: BaseViewController {
     @IBOutlet weak var backBtn: UIButton!
     
     
+    
+    
      var orderListData: OrderListModel?
     
     lazy var locationManager: CLLocationManager = {
@@ -89,6 +91,7 @@ class TaskDetailViewController: BaseViewController {
 
     
     func showpurchasedListView(){
+        var isImageuploaded : Bool = false
         if self.purchasedListView == nil, let purchaseview = Bundle.main.loadNibNamed("NewRequestView", owner: self, options: [:])?[2] as? PurchasedListView {
             purchaseview.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height))
             self.purchasedListView = purchaseview
@@ -98,11 +101,14 @@ class TaskDetailViewController: BaseViewController {
         self.purchasedListView.orderListData = self.orderListData
         self.purchasedListView.uploadImag.addTap {
             self.showImage { (selectedImage) in
+                isImageuploaded = true
                 self.purchasedListView.uploadImag.image = selectedImage
             }
         }
         self.purchasedListView.onClickpurchase = { [weak self] in
-            
+            if isImageuploaded{
+                self?.showToast(msg: "Please upload purchased items image")
+            }else{
             var uploadimgeData:Data!
             
             if  let dataImg = self?.purchasedListView.uploadImag.image?.jpegData(compressionQuality: 0.5) {
@@ -116,9 +122,8 @@ class TaskDetailViewController: BaseViewController {
             
             let profileURl = Base.getOrder.rawValue + "/" + String(self?.orderListData?.id ?? 0)
             
-            
             self?.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["image":uploadimgeData], imgName: "image", modelClass: OrderListModel.self, token: true)
-            
+            }
         }
         
     }
@@ -174,12 +179,14 @@ extension TaskDetailViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         if String(describing: modelClass) == model.type.OrderListModel {
             self.HideActivityIndicator()
-            self.purchasedListView?.dismissView(onCompletion: {
-                self.purchasedListView = nil
-                let vc = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.LiveTrackViewController) as! LiveTrackViewController
-                vc.orderListData = self.orderListData
-                self.navigationController?.pushViewController(vc, animated: true)
-            })
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+                self.purchasedListView?.dismissView(onCompletion: {
+                    self.purchasedListView = nil
+                    let vc = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.LiveTrackViewController) as! LiveTrackViewController
+                    vc.orderListData = self.orderListData
+                    self.navigationController?.pushViewController(vc, animated: true)
+                })
+            }
         }
     }
     

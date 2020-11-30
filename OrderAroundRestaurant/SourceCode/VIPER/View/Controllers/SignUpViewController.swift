@@ -22,6 +22,8 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTxtFld: UITextField!
     @IBOutlet weak var emailTxtFld: UITextField!
     @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var newPwdButton: UIButton!
+    @IBOutlet weak var currentPwdShowBtn: UIButton!
     
     @IBOutlet weak var textfieldReferralCode: UITextField!
     
@@ -40,7 +42,34 @@ class SignUpViewController: UIViewController {
 //        return createActivityIndicator(UIApplication.shared.keyWindow ?? self.view)
 //    }()
     
+    
+    @IBAction func onNewPwdShowAction(_ sender: Any) {
+        if (newPwdButton.currentImage?.isEqual(UIImage(named: "invisible")))!{
+            let image = UIImage(named: "eye")?.withRenderingMode(.alwaysTemplate)
+            newPwdButton.setImage(image, for: .normal)
+            newPwdButton.tintColor = UIColor.lightGray
+            passwordTxtFld.isSecureTextEntry = false
+        }else{
+            newPwdButton.setImage(UIImage(named: "invisible"), for: .normal)
+            passwordTxtFld.isSecureTextEntry = true
+        }
+    }
+    
+    @IBAction func onCurrentPwdShowAction(_ sender: Any) {
+        if (currentPwdShowBtn.currentImage?.isEqual(UIImage(named: "invisible")))!{
+            let image = UIImage(named: "eye")?.withRenderingMode(.alwaysTemplate)
+            currentPwdShowBtn.setImage(image, for: .normal)
+            currentPwdShowBtn.tintColor = UIColor.lightGray
+            confirmPassword.isSecureTextEntry = false
+        }else{
+            currentPwdShowBtn.setImage(UIImage(named: "invisible"), for: .normal)
+            confirmPassword.isSecureTextEntry = true
+            
+        }
+    }
+    
     // MARK: - ViewLifeCycles
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,7 +81,7 @@ class SignUpViewController: UIViewController {
         //confirmPassword.isSecureTextEntry = true
         //passwordTxtFld.isSecureTextEntry = true
         checkForDeviceToEnableScroll()
-       
+        self.setdefualtPwdType()
             
         emailTxtFld.isUserInteractionEnabled = true
         userNameTxtFld.isUserInteractionEnabled = true
@@ -65,6 +94,15 @@ class SignUpViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         disableKeyboardHandling()
+    }
+    
+    
+     func setdefualtPwdType(){
+//        newPwdButton.setImage(UIImage(named: "invisible"), for: .normal)
+//        passwordTxtFld.isSecureTextEntry = true
+//        currentPwdShowBtn.setImage(UIImage(named: "invisible"), for: .normal)
+//        confirmPassword.isSecureTextEntry = true
+        
     }
     
     func localize() {
@@ -146,25 +184,25 @@ class SignUpViewController: UIViewController {
         
         if sender.tag == 888 {
             confirmPassword.isSecureTextEntry = false
-            sender.setBackgroundImage(#imageLiteral(resourceName: "eyeoff"), for: .normal)
+            sender.setBackgroundImage(#imageLiteral(resourceName: "invisible"), for: .normal)
             sender.tag = 0
         } else {
            // confirmPassword.isSecureTextEntry = true
-            confirmPasswordEyeBut.tag = 888
-            confirmPasswordEyeBut.setBackgroundImage(#imageLiteral(resourceName: "eye"), for: .normal)
+            passwordEyeButton.tag = 888
+            passwordEyeButton.setBackgroundImage(#imageLiteral(resourceName: "eye"), for: .normal)
         }
     }
     
      // showConfirmPassword
     @IBAction func showConfirmPassword(_ sender: UIButton) {
         if sender.tag == 999 {
-           // passwordTxtFld.isSecureTextEntry = false
-            sender.setBackgroundImage(#imageLiteral(resourceName: "eyeoff"), for: .normal)
+            passwordTxtFld.isSecureTextEntry = false
+            sender.setBackgroundImage(#imageLiteral(resourceName: "invisible"), for: .normal)
             sender.tag = 0
         } else {
            // passwordTxtFld.isSecureTextEntry = true
-            passwordEyeButton.tag = 999
-            passwordEyeButton.setBackgroundImage(#imageLiteral(resourceName: "eye"), for: .normal)
+            confirmPasswordEyeBut.tag = 999
+            confirmPasswordEyeBut.setBackgroundImage(#imageLiteral(resourceName: "eye"), for: .normal)
         }
     }
     
@@ -209,91 +247,15 @@ class SignUpViewController: UIViewController {
                  return
              }
              
-//             guard isImageUpload(isupdate: isLicenseImage) else{
-//                 self.showToast(string: ErrorMessage.list.uploadLicense.localize())
-//
-//                 return
-//             }
-             
-//             if login_by == "google"  {
-//
-//                    if (UserDefaults.standard.value(forKey: Keys.list.socialLoginAccessToken) as? String) != nil {
-//                     //userInfo =  MakeJson.signUpViaSocial(loginBy: .google, email: String(describing: email), userName: String(describing: name!), phone: phoneNumber, accessToken: (UserDefaults.standard.value(forKey: Keys.list.socialLoginAccessToken) as? String)!)
-//                     var userDetailInfo = UserProfile()
-//                     userDetailInfo.email = String(describing: email)
-//                     let phone = String(phoneNumber!)
-//                     if !phone.contains("+") {
-//                         userDetailInfo.phone = "+" + phone
-//                     }else{
-//                         userDetailInfo.phone = phone
-//                     }
-//                     userDetailInfo.accessToken = (UserDefaults.standard.value(forKey: Keys.list.socialLoginAccessToken) as? String)!
-//                     userDetailInfo.login_by = .google
-//                     userDetailInfo.device_id = UUID().uuidString
-//                     userDetailInfo.device_token = deviceTokenString
-//                     userDetailInfo.device_type = .ios
-//                     userDetailInfo.name = String(describing: name!)
-//                     self.loader.isHidden = false
-//                     self.presenter?.post(api: .signUp, data: userDetailInfo.toData())
-//                 }
-//
-//             } else if login_by == "fb" {
-//
-//                  if (UserDefaults.standard.value(forKey: Keys.list.socialLoginAccessToken) as? String) != nil {
-//                    // userInfo =  MakeJson.signUpViaSocial(loginBy: .fb, email: String(describing: email), userName: String(describing: name!), phone: phoneNumber, accessToken: (UserDefaults.standard.value(forKey: Keys.list.socialLoginAccessToken) as? String)!)
-//                     var userDetailInfo = UserProfile()
-//                     userDetailInfo.email = String(describing: email)
-//                     let phone = String(phoneNumber!)
-//                     if !phone.contains("+") {
-//                         userDetailInfo.phone = "+" + phone
-//                     }else{
-//                         userDetailInfo.phone = phone
-//                     }
-//                     userDetailInfo.accessToken = (UserDefaults.standard.value(forKey: Keys.list.socialLoginAccessToken) as? String)!
-//                     userDetailInfo.login_by = .facebook
-//                     userDetailInfo.password = password
-//                     userDetailInfo.device_id = UUID().uuidString
-//                     userDetailInfo.device_token = deviceTokenString
-//                     userDetailInfo.device_type = .ios
-//                     userDetailInfo.password_confirmation = confirmPwd
-//                     userDetailInfo.name = String(describing: name!)
-//                     self.loader.isHidden = false
-//                     self.presenter?.post(api: .signUp, data: userDetailInfo.toData())
-//                 }
-//
-//             } else {
-    
-//                 var userDetailInfo = UserProfile()
-//                 userDetailInfo.email = email
-//                 let phone = String(phoneNumber!)
-//                 if !phone.contains("+") {
-//                   userDetailInfo.phone = "+" + phone
-//                 }else{
-//                     userDetailInfo.phone = phone
-//                 }
-//                 userDetailInfo.device_id = UUID().uuidString
-//                 userDetailInfo.device_token = deviceTokenString
-//                 userDetailInfo.device_type = .ios
-//                 userDetailInfo.password = password
-//                 userDetailInfo.password_confirmation = confirmPwd
-//                 userDetailInfo.name = userName
-//                 userDetailInfo.referral_code = referalTextfield.text ?? ""
-                 
-          //  "dial_code":self.countryCodeVal1 ?? "",
-        print("phonenumer>>>",phoneNumber)
         
         let parameters:[String:Any] = ["email": email ,
                  "name":userNameTxtFld.text ?? "",
                  "password": passwordTxtFld.text ?? "",
-                 "mobile": phoneNumber ?? "",
-             
-                
+                 "mobile": "\(phoneNumber ?? 0)",
                  "password_confirmation":confirmPassword.text ?? "",
-                   "device_id":UUID().uuidString,
+                "device_id":UUID().uuidString,
                 "device_token":deviceTokenString,
-                "device_type": "ios"
-                 
-                                     ]
+                "device_type": "ios"]
 
         self.presenter?.GETPOST(api: Base.register.rawValue, params:parameters, methodType: HttpType.POST, modelClass: SignUpEntityModel.self, token: false)
         

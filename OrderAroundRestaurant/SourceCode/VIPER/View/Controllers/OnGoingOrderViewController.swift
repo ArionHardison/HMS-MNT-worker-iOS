@@ -10,6 +10,10 @@ import UIKit
 import ObjectMapper
 import GoogleMaps
 
+extension Notification.Name {
+    static let didReceiveData = Notification.Name("didReceiveData")
+}
+
 struct OnGoingOrderArrayModel{
     
     var title: String = ""
@@ -22,6 +26,7 @@ class OnGoingOrderViewController: BaseViewController {
     
     var purchaseView : PurchaseView!
     var purchasedListView : PurchasedListView!
+    var userSttausView: UserStatusView!
     
     var onGoingOrderArr:[OrderListModel] = []
     var ogArray: [OnGoingOrderArrayModel] = []
@@ -44,6 +49,7 @@ class OnGoingOrderViewController: BaseViewController {
         orderTimer?.invalidate()
         orderTimer = nil
     }
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +67,8 @@ extension OnGoingOrderViewController{
     private func setInitialLoad(){
         setRegister()
         self.getOngoingRequest()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil)
     }
     private func setOrderHistoryApi(){
 //        showActivityIndicator()
@@ -74,6 +82,11 @@ extension OnGoingOrderViewController{
         onGoingTableView.dataSource = self
     }
     
+    @objc func onDidReceiveData(_ notification:Notification) {
+        orderTimer?.invalidate()
+        orderTimer?.fire()
+        orderTimer = nil
+    }
 }
 extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
     
@@ -103,7 +116,7 @@ extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 120
     }
     
   
@@ -128,13 +141,30 @@ extension OnGoingOrderViewController: PresenterOutputProtocol {
             }
            else if String(describing: modelClass) == model.type.NewOrderListModel {
             let dataarray : [OrderListModel] = (dataDict as? NewOrderListModel)?.orders as? [OrderListModel] ?? [OrderListModel]()
-            print("Chef_stats",(dataDict as? NewOrderListModel)?.chef_status ?? "")
-            if dataarray.count ?? 0 > 0 {
-                    self.showNewRequestView(data: (dataarray as? [OrderListModel])?.first ?? OrderListModel())
+            if ((dataDict as? NewOrderListModel)?.chef_status ?? "") == "ACTIVE"{
+                if  self.userSttausView != nil{
+                    self.userSttausView.dismissView(onCompletion: {
+                        self.userSttausView = nil
+                    })
                 }
+            }else{
+                self.showUserStatusView()
+            }
+
             }
         }
     }
+    
+    func showUserStatusView(){
+        if self.userSttausView == nil, let requestView = Bundle.main.loadNibNamed("NewRequestView", owner: self, options: [:])?[6] as? UserStatusView {
+            requestView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height))
+            self.userSttausView = requestView
+            self.view.addSubview(requestView)
+            requestView.show(with: .bottom, completion: nil)
+        }
+        
+    }
+    
     func showNewRequestView(data : OrderListModel){
         if self.requestView == nil, let requestView = Bundle.main.loadNibNamed("NewRequestView", owner: self, options: [:])?.first as? NewRequestView {
             requestView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height))
@@ -188,9 +218,9 @@ extension OnGoingOrderViewController: PresenterOutputProtocol {
     
     func getOngoingRequest(){
         self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
-//            DispatchQueue.global(qos: .background).async {
+            DispatchQueue.global(qos: .background).async {
                 self.setOrderHistoryApi()
-//            }
+            }
         }
     }
     

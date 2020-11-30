@@ -69,12 +69,11 @@ extension CancelOrderViewController: UITableViewDelegate,UITableViewDataSource{
             cell.foodCategory.text = data.food?.time_category?.name ?? ""
             cell.foodPrice.text = data.food?.price ?? ""
         }
-        
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 110
     }
     
     

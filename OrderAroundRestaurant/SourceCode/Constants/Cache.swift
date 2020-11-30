@@ -60,26 +60,26 @@ extension UIImageView {
         activity.tintColor = .primary
         activity.frame = CGRect(x: (self.frame.width/2)-(activityWidth*0.5), y: (self.frame.height/2)-(activityHeight*0.5), width: activityWidth, height: activityHeight)
         self.addSubview(activity)
-        activity.startAnimating()
+//        activity.startAnimating()
         guard urlStrings != nil, let imageUrl = URL(string: urlStrings) else {
             self.image = placeHolderImage
-            self.stopActivity(image: self)
+//            self.stopActivity(image: self)
             return
         }
         if let image = Cache.shared.object(forKey: urlStrings as AnyObject) {
-            self.stopActivity(image: self)
+//            self.stopActivity(image: self)
             self.image = image
         } else {
             URLSession.shared.dataTask(with: imageUrl) { (data, response, error) in
                 guard data != nil, let imagePic = UIImage(data: data!), let responseUrl = response?.url?.absoluteString else {
                     DispatchQueue.main.async {
-                        self.stopActivity(image: self)
+//                        self.stopActivity(image: self)
                         self.image = placeHolderImage
                     }
                     return
                 }
                 DispatchQueue.main.async {
-                    self.stopActivity(image: self)
+//                    self.stopActivity(image: self)
                     self.image = imagePic
                 }
                 Cache.shared.setObject(imagePic, forKey: responseUrl as AnyObject)

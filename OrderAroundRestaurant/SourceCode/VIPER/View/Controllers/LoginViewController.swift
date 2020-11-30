@@ -19,9 +19,22 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var passwordLabel: UILabel!
     @IBOutlet weak var emailAddressLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var passworshowBtn: UIButton!
     
     @IBOutlet weak var buttonForgotPwd: UIButton!
     @IBOutlet var termsLbl: UILabel!
+    
+    @IBAction func onPwdShowAction(_ sender: Any) {
+        if (passworshowBtn.currentImage?.isEqual(UIImage(named: "invisible")))!{
+            let image = UIImage(named: "eye")?.withRenderingMode(.alwaysTemplate)
+            passworshowBtn.setImage(image, for: .normal)
+            passworshowBtn.tintColor = UIColor.lightGray
+            passwordTextField.isSecureTextEntry = false
+        }else{
+            passworshowBtn.setImage(UIImage(named: "invisible"), for: .normal)
+            passwordTextField.isSecureTextEntry = true
+        }
+    }
     
     private var logindata: LoginModel?
     //MARK:- viewDidLoad

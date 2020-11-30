@@ -37,9 +37,9 @@ class NewRequestView: UIView {
     }
     
     func setupData(){
-        self.nameLbl.text = (orderListData?.food?.name ?? "").capitalized
+        self.nameLbl.text = (orderListData?.user?.name ?? "").capitalized
         self.locLbl.text = orderListData?.customer_address?.map_address ?? ""
-        self.itemLbl.text = orderListData?.food?.time_category?.name ?? ""
+        self.itemLbl.text = (orderListData?.food?.name ?? "").capitalized
         var category : String = ""
         for i in 0..<(orderListData?.orderingredient?.count ?? 0){
             if i ==

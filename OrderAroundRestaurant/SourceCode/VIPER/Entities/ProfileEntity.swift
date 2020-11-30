@@ -17,7 +17,7 @@ struct ProfileModel : Mappable {
     var unique_id : String?
     var gender : String?
     var phone : String?
-    var mobile : Int?
+    var mobile : String?
     var country_code : String?
     var avatar : String?
     var default_banner : String?
@@ -49,6 +49,7 @@ struct ProfileModel : Mappable {
     var halal : Int?
     var free_delivery : Int?
     var image_banner_id : String?
+    var wallet_balance : String?
     var otp : Int?
     var training_module : [FoodSafetyModel]?
     init?(map: Map) {
@@ -97,7 +98,7 @@ struct ProfileModel : Mappable {
         image_banner_id <- map["image_banner_id"]
         training_module <- map["training_module"]
         otp  <- map["otp"]
-        
+        wallet_balance <- map["wallet_balance"]
     }
     
 }
@@ -490,6 +491,7 @@ struct OrderListModel : Mappable {
     var tax : String?
     var discount : String?
     var ingredient_image : String?
+    var payment_mode : String?
     var orderingredient : [Orderingredient]?
     var food : Food?
     var dietitian : Dietitian?
@@ -525,6 +527,7 @@ struct OrderListModel : Mappable {
         user <- map["user"]
         tax <- map["tax"]
         customer_address <- map["customer_address"]
+        payment_mode <- map["payment_mode"]
     }
     
 }

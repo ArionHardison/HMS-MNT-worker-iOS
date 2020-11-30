@@ -257,6 +257,7 @@ extension Webservice : WebServiceProtocol {
                                         return
                                     }
                                     self.interactor?.responseSuccess(className: modelClass, responseDict: responseJSON, responseArray: [])
+                                   
                                 }else{  //Array
                                     if let json = response.result.value as? [[String:Any]] {
                                         self.interactor?.responseSuccess(className: modelClass, responseDict: [:], responseArray: json)

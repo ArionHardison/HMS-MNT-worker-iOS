@@ -13,7 +13,7 @@ import Foundation
 import Foundation
 
 
-let baseUrl = "http://dietmanager.com/"
+let baseUrl = "https://dietmanager.com/"
 //"http://34.203.193.141/"//"https://foodie.deliveryventure.com/"
 
 //MARK:- Status Code
@@ -38,7 +38,7 @@ enum Base : String{
     case getOTP = "/api/chef/register/otp"
   //  case signUp = "/api/chef/register"
     //"/api/shop/register"
-    case forgotPassword = "api/shop/forgot/password"
+    case forgotPassword = "api/chef/forgot/password"
     case logout = "/api/shop/logout"
     case changePassword = "/api/shop/password"
     case cusineList = "/api/shop/cuisines"
@@ -58,6 +58,7 @@ enum Base : String{
     case resetPassword = "api/shop/reset/password"
     case stripeToken = "api/shop/stripe/connect"
     case incomeRequest = "api/chef/incoming/order"
+    case wallettransaction = "/api/chef/wallet/transaction"
     
     init(fromRawValue: String){
         self = Base(rawValue: fromRawValue) ?? .addOnList

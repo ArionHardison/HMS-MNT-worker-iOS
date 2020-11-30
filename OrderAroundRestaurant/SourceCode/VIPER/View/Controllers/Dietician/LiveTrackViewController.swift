@@ -83,7 +83,7 @@ class LiveTrackViewController: BaseViewController {
                         self.showUploadImage()
                     case "PREPARED" :
                         self.showWaitingforapproval()
-                        self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
+                        self.orderTimer = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true) { (_) in
                             self.getOrderDetail()
                         }
                     default:
@@ -108,9 +108,9 @@ class LiveTrackViewController: BaseViewController {
     }
     
     func setupData(data : OrderListModel){
-        self.nameLbl.text = (data.food?.name ?? "").capitalized
+        self.nameLbl.text = (data.user?.name ?? "").capitalized
         self.locLbl.text = data.customer_address?.map_address ?? ""
-        self.itemLbl.text = data.food?.time_category?.name ?? ""
+        self.itemLbl.text = (data.food?.name ?? "").capitalized //data.food?.time_category?.name ?? ""
         self.dateLbl.text = data.created_at ?? ""
         var category : String = ""
         for i in 0..<(data.orderingredient?.count ?? 0){
@@ -148,7 +148,7 @@ class LiveTrackViewController: BaseViewController {
                  self.setupViewBorder(firstView: [self.shadowViewOne,self.shadowViewtwo,self.shadowViewthree,self.shadowViewfour], image: [self.shadowViewOneImage,self.shadowViewtwoImage,self.shadowViewthreeImage,self.shadowViewfourImage], secoundView: UIView())
                 self.changeOrderStatusBtn.setTitle("Food prepared", for: .normal)
                
-            case "PREPARED" :
+            case "PREPARED":
                 self.setupViewBorder(firstView: [self.shadowViewOne,self.shadowViewtwo,self.shadowViewthree,self.shadowViewfour], image: [self.shadowViewOneImage,self.shadowViewtwoImage,self.shadowViewthreeImage,self.shadowViewfourImage], secoundView: UIView())
                 
                 self.changeOrderStatusBtn.setTitle("Food prepared", for: .normal)
@@ -157,8 +157,11 @@ class LiveTrackViewController: BaseViewController {
                             self.uploadPrepareimg = nil
                     }
                 }
-                self.showWaitingforapproval()
-                self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
+                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
+                    self.showWaitingforapproval()
+                    
+                }
+                self.orderTimer = Timer.scheduledTimer(withTimeInterval: 15.0, repeats: true) { (_) in
                     self.getOrderDetail()
                 }
             case "COMPLETED" :
@@ -229,6 +232,7 @@ class LiveTrackViewController: BaseViewController {
     }
     
     func showUploadImage(){
+        var isuploadfoodImg : Bool = false
         if self.uploadPrepareimg == nil, let requestView = Bundle.main.loadNibNamed("NewRequestView", owner: self, options: [:])?[4] as? UploadPreparedImage {
             requestView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height))
             self.uploadPrepareimg = requestView
@@ -237,17 +241,21 @@ class LiveTrackViewController: BaseViewController {
         }
         self.uploadPrepareimg.onClickUploadImage = {
             self.showImage { (selectedImage) in
+                isuploadfoodImg = true
                 self.uploadPrepareimg.uploadImag.image = selectedImage
             }
         }
-        self.uploadPrepareimg.onClickSubmit = {
-            var uploadimgeData:Data!
-            
-            if  let dataImg = self.uploadPrepareimg.uploadImag.image?.jpegData(compressionQuality: 0.5) {
-                uploadimgeData = dataImg
+        self.uploadPrepareimg.onClickSubmit = {[weak self] in
+            if !isuploadfoodImg{
+                self?.showToast(msg: "Please upload Prepared Food image")
+            }else{
+                var uploadimgeData:Data!
+                
+                if  let dataImg = self?.uploadPrepareimg.uploadImag.image?.jpegData(compressionQuality: 0.5) {
+                    uploadimgeData = dataImg
+                }
+                self?.orderStatusUpdate(status: "PREPARED",imageData: uploadimgeData)
             }
-            self.orderStatusUpdate(status: "PREPARED",imageData: uploadimgeData)
-
         }
         
     }
@@ -309,11 +317,13 @@ extension LiveTrackViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         if String(describing: modelClass) == model.type.OrderListModel {
             self.HideActivityIndicator()
-            self.orderListData = dataDict as? OrderListModel
-            DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
-                
+            print("dataDictOrderListMode>>>>>>" , (dataDict as? OrderListModel))
+//           DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+            if (dataDict as? OrderListModel) != nil{
+                self.orderListData = dataDict as? OrderListModel
                 self.setupData(data: (dataDict as? OrderListModel ?? OrderListModel()))
             }
+//            }
         }
     }
     
@@ -329,8 +339,10 @@ extension LiveTrackViewController: PresenterOutputProtocol {
     }
     
     func getOrderDetail(){
-        let url = "\(Base.getOrder.rawValue)/\(self.orderListData?.id ?? 0)"
-        self.presenter?.GETPOST(api: url, params: [:], methodType: .GET, modelClass: OrderListModel.self, token: true)
+        if (self.orderListData?.id ?? 0) != 0{
+            let url = "\(Base.getOrder.rawValue)/\(self.orderListData?.id ?? 0)"
+            self.presenter?.GETPOST(api: url, params: [:], methodType: .GET, modelClass: OrderListModel.self, token: true)
+        }
     }
     
 }

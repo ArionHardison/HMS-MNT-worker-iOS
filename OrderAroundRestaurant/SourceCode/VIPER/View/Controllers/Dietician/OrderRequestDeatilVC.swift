@@ -22,7 +22,7 @@ class OrderRequestDeatilVC: BaseViewController {
     
     @IBOutlet weak var orderDetailTable : UITableView!
     
-    
+    var ispastOrder : Bool = false
     var isfooditemPurchase : Bool = false
     var purchaseView : PurchaseView!
     var purchasedListView : PurchasedListView!
@@ -34,6 +34,12 @@ class OrderRequestDeatilVC: BaseViewController {
         self.setupAction()
         self.setupTableView()
         self.setupData()
+        
+        if self.ispastOrder{
+            self.startedBtn.isHidden = true
+        }else{
+            self.startedBtn.isHidden = false
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,7 +52,6 @@ class OrderRequestDeatilVC: BaseViewController {
         let tintedImage  = UIImage(named: "call-answer")?.withRenderingMode(.alwaysTemplate)
         self.callBtn.setImage(tintedImage, for: .normal)
         self.callBtn.tintColor = .primary
-        
     }
     
     func setupAction(){
@@ -72,8 +77,8 @@ class OrderRequestDeatilVC: BaseViewController {
     func setupData(){
         self.userImage.setImage(with: self.orderListData?.user?.avatar ?? "", placeHolder: UIImage(named: "user-placeholder"))
         self.userName.text = self.orderListData?.user?.name ?? ""
-        self.userLocation.text = self.orderListData?.user?.map_address ?? ""
-        self.paymentType.text = "Cash"
+        self.userLocation.text = self.orderListData?.customer_address?.map_address ?? ""
+        self.paymentType.text = self.orderListData?.payment_mode ?? ""
         self.callBtn.addTap {
             
             if let url = URL(string: "tel://\(self.orderListData?.user?.phone ?? "")"), UIApplication.shared.canOpenURL(url) {
@@ -149,6 +154,7 @@ extension OrderRequestDeatilVC{
     
     
     func showpurchasedListView(data : OrderListModel){
+       var isImageuploaded = false
         if self.purchasedListView == nil, let purchaseview = Bundle.main.loadNibNamed("NewRequestView", owner: self, options: [:])?[2] as? PurchasedListView {
             purchaseview.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height))
             self.purchasedListView = purchaseview
@@ -158,11 +164,15 @@ extension OrderRequestDeatilVC{
         self.purchasedListView.orderListData = data
         self.purchasedListView.uploadImag.addTap {
             self.showImage { (selectedImage) in
+                isImageuploaded = true
                 self.purchasedListView.uploadImag.image = selectedImage
             }
         }
         self.purchasedListView.onClickpurchase = { [weak self] in
-            
+            if !isImageuploaded{
+                self?.showToast(msg: "Please upload purchased items image")
+            }else{
+                
             var uploadimgeData:Data!
             
             if  let dataImg = self?.purchasedListView.uploadImag.image?.jpegData(compressionQuality: 0.5) {
@@ -178,7 +188,7 @@ extension OrderRequestDeatilVC{
             
             self?.isfooditemPurchase = true
             self?.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["image":uploadimgeData], imgName: "image", modelClass: OrderListModel.self, token: true)
-            
+            }
         }
         
     }
@@ -188,14 +198,17 @@ extension OrderRequestDeatilVC{
 extension OrderRequestDeatilVC: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         if String(describing: modelClass) == model.type.OrderListModel {
+            DispatchQueue.main.sync {
             self.HideActivityIndicator()
+            if self.purchasedListView != nil{
                self.purchasedListView?.dismissView(onCompletion: {
                     self.purchasedListView = nil
                     let vc = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.LiveTrackViewController) as! LiveTrackViewController
-                
-                vc.orderListData = self.orderListData
+                    vc.orderListData = self.orderListData
                     self.navigationController?.pushViewController(vc, animated: true)
                 })
+            }
+            }
            
         }
     }

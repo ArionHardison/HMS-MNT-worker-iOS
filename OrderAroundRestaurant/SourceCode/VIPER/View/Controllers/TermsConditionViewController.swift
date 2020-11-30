@@ -89,9 +89,9 @@ class TermsConditionViewController: BaseViewController {
             myURLString = "https://dashboard.stripe.com/express/oauth/authorize?response_type=code&client_id=ca_GCqVbp3vX9JZsAk0XeOs8aWraIUCgFOA&scope=read_write"
         }else{
             if isTerms{
-                myURLString = "http://3.94.119.197/terms"
+                myURLString = "https://www.dietmanager.com/terms"
             }else{
-                myURLString = "http://3.94.119.197/privacy"
+                myURLString = "https://www.dietmanager.com/privacy"
             }
         }
         
