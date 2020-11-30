@@ -151,10 +151,10 @@ extension ProfileTableViewController: PresenterOutputProtocol {
         self.TxtUserID.text = String.removeNil(data.unique_id ?? "")
         self.TxtemailAddress.text = String.removeNil(data.email ?? "")
         self.TxtMobileNumber.text = String.removeNil("\(data.mobile ?? "0")")
-        self.TxtName.isUserInteractionEnabled = false
+//        self.TxtName.isUserInteractionEnabled = false
         self.TxtUserID.isUserInteractionEnabled = false
-        self.TxtMobileNumber.isUserInteractionEnabled = false
-        self.TxtemailAddress.isUserInteractionEnabled = false
-        self.imageViewProfile.isUserInteractionEnabled = false
+//        self.TxtMobileNumber.isUserInteractionEnabled = false
+//        self.TxtemailAddress.isUserInteractionEnabled = false
+//        self.imageViewProfile.isUserInteractionEnabled = false
     }
 }
