@@ -51,12 +51,14 @@ class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.titleTextAttributes = [ NSAttributedString.Key.font: UIFont.bold(size: 18), NSAttributedString.Key.foregroundColor : UIColor.black]
         self.locationManager.startUpdatingLocation()
+        if self.orderTimer == nil{
         self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
             if !self.stopCallingOrder{
                 DispatchQueue.global(qos: .background).async {
                     self.getOrder()
                 }
             }
+        }
         }
     }
     func initialLoads() {

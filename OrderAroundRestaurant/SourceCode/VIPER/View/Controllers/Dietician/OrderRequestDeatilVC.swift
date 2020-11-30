@@ -198,7 +198,7 @@ extension OrderRequestDeatilVC{
 extension OrderRequestDeatilVC: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
         if String(describing: modelClass) == model.type.OrderListModel {
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
             self.HideActivityIndicator()
             if self.purchasedListView != nil{
                self.purchasedListView?.dismissView(onCompletion: {
@@ -207,7 +207,7 @@ extension OrderRequestDeatilVC: PresenterOutputProtocol {
                     vc.orderListData = self.orderListData
                     self.navigationController?.pushViewController(vc, animated: true)
                 })
-            }
+             }
             }
            
         }

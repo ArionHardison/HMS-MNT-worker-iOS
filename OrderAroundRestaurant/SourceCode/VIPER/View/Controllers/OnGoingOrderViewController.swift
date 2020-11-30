@@ -66,9 +66,11 @@ class OnGoingOrderViewController: BaseViewController {
 extension OnGoingOrderViewController{
     private func setInitialLoad(){
         setRegister()
-        self.getOngoingRequest()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil)
+       // self.getOngoingRequest()
+        if orderTimer == nil{
+            self.getOngoingRequest()
+        }
+    //    NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil)
     }
     private func setOrderHistoryApi(){
 //        showActivityIndicator()
@@ -150,7 +152,6 @@ extension OnGoingOrderViewController: PresenterOutputProtocol {
             }else{
                 self.showUserStatusView()
             }
-
             }
         }
     }
@@ -218,10 +219,10 @@ extension OnGoingOrderViewController: PresenterOutputProtocol {
     
     func getOngoingRequest(){
         self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
-            DispatchQueue.global(qos: .background).async {
-                self.setOrderHistoryApi()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    self.setOrderHistoryApi()
+                }
             }
-        }
     }
     
     func getOrder(){
