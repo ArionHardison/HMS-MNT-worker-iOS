@@ -145,6 +145,9 @@
 		1007876125665A9700D7CBE6 /* OrderItemsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1007875F25665A9700D7CBE6 /* OrderItemsCell.xib */; };
 		1007876725665AAA00D7CBE6 /* OrderPriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1007876525665AAA00D7CBE6 /* OrderPriceCell.swift */; };
 		1007876825665AAA00D7CBE6 /* OrderPriceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1007876625665AAA00D7CBE6 /* OrderPriceCell.xib */; };
+		10094C4625751507008342EA /* GooglePlacesHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10094C4325751506008342EA /* GooglePlacesHelpers.swift */; };
+		10094C4725751507008342EA /* GMSMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10094C4425751507008342EA /* GMSMapView.swift */; };
+		10094C4825751507008342EA /* GoogleMapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10094C4525751507008342EA /* GoogleMapsHelper.swift */; };
 		103815AD255E99AC0087E7A8 /* UXView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103815AC255E99AC0087E7A8 /* UXView.swift */; };
 		103815BC255EA1840087E7A8 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103815BB255EA1840087E7A8 /* PurchaseView.swift */; };
 		103815C1255EBCEF0087E7A8 /* PurchasedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103815C0255EBCEF0087E7A8 /* PurchasedListView.swift */; };
@@ -372,6 +375,9 @@
 		1007875F25665A9700D7CBE6 /* OrderItemsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderItemsCell.xib; sourceTree = "<group>"; };
 		1007876525665AAA00D7CBE6 /* OrderPriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderPriceCell.swift; sourceTree = "<group>"; };
 		1007876625665AAA00D7CBE6 /* OrderPriceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderPriceCell.xib; sourceTree = "<group>"; };
+		10094C4325751506008342EA /* GooglePlacesHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesHelpers.swift; sourceTree = "<group>"; };
+		10094C4425751507008342EA /* GMSMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMSMapView.swift; sourceTree = "<group>"; };
+		10094C4525751507008342EA /* GoogleMapsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsHelper.swift; sourceTree = "<group>"; };
 		103815AC255E99AC0087E7A8 /* UXView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UXView.swift; sourceTree = "<group>"; };
 		103815B1255E9F6F0087E7A8 /* IngredientsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IngredientsCell.xib; sourceTree = "<group>"; };
 		103815B2255E9F700087E7A8 /* IngredientsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsCell.swift; sourceTree = "<group>"; };
@@ -894,6 +900,7 @@
 		0891E20F2231023C00409038 /* VIPER */ = {
 			isa = PBXGroup;
 			children = (
+				10094C42257514FD008342EA /* GMSMapHelper */,
 				0891E2102231025700409038 /* Protocol */,
 				087D0BFF2224089400E58BDE /* View */,
 				087D0C1122241C0D00E58BDE /* Interactor */,
@@ -1023,6 +1030,16 @@
 				107BEBDF256666D5006BCB2D /* IngredientsPriceCell.xib */,
 			);
 			path = Dietician;
+			sourceTree = "<group>";
+		};
+		10094C42257514FD008342EA /* GMSMapHelper */ = {
+			isa = PBXGroup;
+			children = (
+				10094C4425751507008342EA /* GMSMapView.swift */,
+				10094C4525751507008342EA /* GoogleMapsHelper.swift */,
+				10094C4325751506008342EA /* GooglePlacesHelpers.swift */,
+			);
+			path = GMSMapHelper;
 			sourceTree = "<group>";
 		};
 		1097DAEF255E623400A3D702 /* Dietician */ = {
@@ -1429,6 +1446,7 @@
 				08C43F8C237D3C7C00583886 /* UserDetiailsViewController.swift in Sources */,
 				0880805622397557005B7072 /* UserData.swift in Sources */,
 				1097DB2A255E7F8F00A3D702 /* ViewExtension.swift in Sources */,
+				10094C4725751507008342EA /* GMSMapView.swift in Sources */,
 				08A20C2E223A70780081256F /* CreateCategoryEntity.swift in Sources */,
 				08A14DE1222FB5F200F35B1E /* CAPSPageMenu.swift in Sources */,
 				089F2D5D223270F3000D7C8D /* FilterViewController.swift in Sources */,
@@ -1456,6 +1474,7 @@
 				08A3B6B922254C3B0010058B /* RestaurantMenuViewController.swift in Sources */,
 				087D0C342224346000E58BDE /* Image.swift in Sources */,
 				08AD751D2226728F002A0419 /* UpcomingRequestTableViewCell.swift in Sources */,
+				10094C4825751507008342EA /* GoogleMapsHelper.swift in Sources */,
 				1251978D243EEC0C00291159 /* SingleTonClass.swift in Sources */,
 				850F3DC3247BCB00003DF2C3 /* EmailCollectionViewCell.swift in Sources */,
 				0891E2062230EC1500409038 /* CreateProductViewController.swift in Sources */,
@@ -1508,6 +1527,7 @@
 				1097DB1A255E6E5300A3D702 /* TaskDetailViewController.swift in Sources */,
 				08ACEA06223922BA0050591D /* RemoveProductEntity.swift in Sources */,
 				08B6BD1A237C22D400F3C25A /* ImageGalleryViewController.swift in Sources */,
+				10094C4625751507008342EA /* GooglePlacesHelpers.swift in Sources */,
 				125B965823D7183700923CE3 /* PDFLoaderViewController.swift in Sources */,
 				08A14DED222FE1CF00F35B1E /* CategoryListViewController.swift in Sources */,
 				0055D4F824E7B04200714704 /* HistoryTableViewCell.swift in Sources */,

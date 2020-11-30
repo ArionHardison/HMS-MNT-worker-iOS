@@ -38,6 +38,8 @@ class LiveTrackViewController: BaseViewController {
     @IBOutlet weak var changeOrderStatusBtn: UIButton!
     
     
+    var pickupMarker : GMSMarker = GMSMarker()
+    var dropMarker : GMSMarker = GMSMarker()
     var waitingforapproval : WaitingforApproval!
     var userapproved : UserApprovedView!
     var uploadPrepareimg : UploadPreparedImage!
@@ -127,7 +129,7 @@ class LiveTrackViewController: BaseViewController {
         }
         
         self.trackorder(status: data.status ?? "")
-        
+        self.setupPickupDropMArker()
     }
     
     func trackorder(status : String){
@@ -310,6 +312,40 @@ extension LiveTrackViewController : GMSMapViewDelegate, CLLocationManagerDelegat
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.currentLocation = locations.last ?? CLLocation()
         self.mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
+    }
+    
+    
+    func setupPickupDropMArker(){
+        if let pmarker : GMSMarker = self.pickupMarker ,let dmarker : GMSMarker = self.dropMarker{
+            self.pickupMarker.map = nil
+            self.dropMarker.map = nil
+        }
+        
+        let pickupPosition = CLLocationCoordinate2D(latitude: self.orderListData?.customer_address?.latitude ?? 0.0, longitude: self.orderListData?.customer_address?.longitude ?? 0.0)
+        
+        
+        self.pickupMarker.icon =  UIImage(named:"restaurantmarker")?.resizeImage(newWidth: 30)
+        self.pickupMarker.map = self.mapView
+        self.pickupMarker.position = pickupPosition
+        self.pickupMarker.snippet = self.orderListData?.customer_address?.map_address ?? ""
+        
+        
+        let dropPosition = CLLocationCoordinate2D(latitude: Double(self.orderListData?.chef?.latitude ?? 0.0) ?? 0.0, longitude: Double(self.orderListData?.chef?.longitude ?? 0.0) ?? 0.0)
+        
+        self.dropMarker.icon = UIImage(named: "HomeMarker")? .resizeImage(newWidth: 30)
+        self.dropMarker.map = self.mapView
+        self.dropMarker.position = dropPosition
+        self.pickupMarker.snippet = self.orderListData?.chef?.address ?? ""
+        self.drawPolyline()
+        if (self.orderListData?.chef?.latitude ?? 0.0) == 0.0{
+            self.mapView.camera = GMSCameraPosition(target: CLLocationCoordinate2D(latitude: self.orderListData?.customer_address?.latitude ?? 0.0, longitude: self.orderListData?.customer_address?.longitude ?? 0.0), zoom: 16, bearing: 0, viewingAngle: 0)
+        }
+        
+    }
+    
+    func drawPolyline(){
+        
+        self.mapView.drawPolygon(from:CLLocationCoordinate2D(latitude: self.orderListData?.customer_address?.latitude ?? 0.0, longitude: self.orderListData?.customer_address?.longitude ?? 0.0), to: CLLocationCoordinate2D(latitude: Double(self.orderListData?.chef?.latitude ?? 0.0) ?? 0.0, longitude: Double(self.orderListData?.chef?.longitude ?? 0.0) ?? 0.0))
     }
 }
 //MARK: VIPER Extension:

@@ -40,7 +40,7 @@ struct ProfileModel : Mappable {
     var device_type : String?
     var created_at : String?
     var updated_at : String?
-    var deleted_at : String?
+    var devared_at : String?
     var currency : String?
     var cuisines : [Cuisines]?
     var timings : [Timings]?
@@ -49,8 +49,9 @@ struct ProfileModel : Mappable {
     var halal : Int?
     var free_delivery : Int?
     var image_banner_id : String?
-    var wallet_balance : String?
+    var walvar_balance : String?
     var otp : Int?
+    var wallet_balance : String?
     var training_module : [FoodSafetyModel]?
     init?(map: Map) {
         
@@ -86,7 +87,7 @@ struct ProfileModel : Mappable {
         device_type <- map["device_type"]
         created_at <- map["created_at"]
         updated_at <- map["updated_at"]
-        deleted_at <- map["deleted_at"]
+        devared_at <- map["devared_at"]
         currency <- map["currency"]
         cuisines <- map["cuisines"]
         timings <- map["timings"]
@@ -98,9 +99,9 @@ struct ProfileModel : Mappable {
         image_banner_id <- map["image_banner_id"]
         training_module <- map["training_module"]
         otp  <- map["otp"]
+        walvar_balance <- map["walvar_balance"]
         wallet_balance <- map["wallet_balance"]
     }
-    
 }
 
 struct Tokens : Mappable {
@@ -264,7 +265,7 @@ struct Dietitian : Mappable {
     var status : String?
     var created_at : String?
     var updated_at : String?
-    var deleted_at : String?
+    var devared_at : String?
     var description : String?
     
     init?(map: Map) {
@@ -290,7 +291,7 @@ struct Dietitian : Mappable {
         status <- map["status"]
         created_at <- map["created_at"]
         updated_at <- map["updated_at"]
-        deleted_at <- map["deleted_at"]
+        devared_at <- map["devared_at"]
         description <- map["description"]
     }
     
@@ -498,6 +499,7 @@ struct OrderListModel : Mappable {
     var rating : [String]?
     var user : UserDatas?
     var customer_address : CustomerAddress?
+    var chef : Chef?
     init(){}
     init?(map: Map) {
         
@@ -528,9 +530,68 @@ struct OrderListModel : Mappable {
         tax <- map["tax"]
         customer_address <- map["customer_address"]
         payment_mode <- map["payment_mode"]
+        rating <- map["rating"]
+        chef <- map["chef"]
     }
     
 }
+
+
+struct Chef : Mappable {
+    var id : Int?
+    var name : String?
+    var email : String?
+    var unique_id : String?
+    var gender : String?
+    var avatar : String?
+    var country_code : String?
+    var mobile : String?
+    var address : String?
+    var latitude : Double?
+    var longitude : Double?
+    var device_id : String?
+    var device_type : String?
+    var device_token : String?
+    var status : String?
+    var created_at : String?
+    var updated_at : String?
+    var devared_at : String?
+    var otp : String?
+    var rating : String?
+    var walvar_balance : String?
+    init(){}
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        id <- map["id"]
+        name <- map["name"]
+       email <- map["email"]
+       unique_id <- map["unique_id"]
+       gender <- map["gender"]
+       avatar <- map["avatar"]
+       country_code <- map["country_code"]
+       mobile <- map["mobile"]
+       address <- map["address"]
+       latitude <- map["latitude"]
+       longitude <- map["longitude"]
+       device_id <- map["device_id"]
+       device_type <- map["device_type"]
+       device_token <- map["device_token"]
+       status <- map["status"]
+       created_at <- map["created_at"]
+       updated_at <- map["updated_at"]
+       devared_at <- map["devared_at"]
+       otp <- map["otp"]
+       rating <- map["rating"]
+       walvar_balance <- map["walvar_balance"]
+    }
+    
+    
+}
+
 
 struct Orderingredient : Mappable {
     var id : Int?
@@ -588,7 +649,7 @@ struct UserDatas : Mappable {
     var login_by : String?
     var social_unique_id : String?
     var stripe_cust_id : String?
-    var wallet_balance : Int?
+    var walvar_balance : Int?
     var referral_code : String?
     var referral_amount : String?
     var otp : String?
@@ -617,7 +678,7 @@ struct UserDatas : Mappable {
         login_by <- map["login_by"]
         social_unique_id <- map["social_unique_id"]
         stripe_cust_id <- map["stripe_cust_id"]
-        wallet_balance <- map["wallet_balance"]
+        walvar_balance <- map["walvar_balance"]
         referral_code <- map["referral_code"]
         referral_amount <- map["referral_amount"]
         otp <- map["otp"]
