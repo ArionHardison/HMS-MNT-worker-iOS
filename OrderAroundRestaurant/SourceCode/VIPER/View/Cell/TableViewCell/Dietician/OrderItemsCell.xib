@@ -36,11 +36,11 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVg-Bl-EYx">
-                        <rect key="frame" x="5" y="30" width="310" height="25"/>
+                        <rect key="frame" x="5" y="35" width="310" height="25"/>
                         <subviews>
                             <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" placeholderIntrinsicWidth="264.5" placeholderIntrinsicHeight="21" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1KZ-0n-lTv">
                                 <rect key="frame" x="10" y="2" width="205" height="21"/>
-                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="14"/>
                                 <color key="textColor" name="TextDarkGrayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -49,7 +49,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="90X-hM-gvm"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="15"/>
+                                <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="14"/>
                                 <color key="textColor" name="TextDarkGrayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -67,7 +67,7 @@
                         </constraints>
                     </view>
                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zVR-fI-LlP">
-                        <rect key="frame" x="10" y="60" width="300" height="107"/>
+                        <rect key="frame" x="10" y="65" width="300" height="102"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tableView>
@@ -76,7 +76,7 @@
                 <constraints>
                     <constraint firstItem="seB-ww-Ksq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="ABb-VI-CJB"/>
                     <constraint firstAttribute="trailingMargin" secondItem="seB-ww-Ksq" secondAttribute="trailing" id="Bhb-1k-uKM"/>
-                    <constraint firstItem="UVg-Bl-EYx" firstAttribute="top" secondItem="seB-ww-Ksq" secondAttribute="bottom" id="CL8-eC-cOx"/>
+                    <constraint firstItem="UVg-Bl-EYx" firstAttribute="top" secondItem="seB-ww-Ksq" secondAttribute="bottom" constant="5" id="CL8-eC-cOx"/>
                     <constraint firstItem="UVg-Bl-EYx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="Fm4-R5-O3i"/>
                     <constraint firstAttribute="trailing" secondItem="zVR-fI-LlP" secondAttribute="trailing" constant="10" id="PYW-Ca-SX3"/>
                     <constraint firstItem="zVR-fI-LlP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Tax-f3-Dix"/>

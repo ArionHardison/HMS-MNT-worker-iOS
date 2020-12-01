@@ -112,7 +112,7 @@ extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
             
             cell.foodDes.isHidden = ((data.customer_address?.map_address ?? "" ).isEmpty ?? false)
             cell.foodCategory.text = data.food?.time_category?.name ?? "".capitalized
-            cell.foodPrice.text = "$ " + (data.payable ?? "")
+            cell.foodPrice.text = "$" + (data.payable ?? "")
         }
         cell.contentView.addTap {
 

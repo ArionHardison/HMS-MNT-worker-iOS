@@ -50,7 +50,7 @@ class OrderRequestDeatilVC: BaseViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.userImage.roundCorners([.layerMinXMinYCorner,.layerMaxXMaxYCorner,.layerMaxXMinYCorner,.layerMinXMaxYCorner], radius: self.userImage.frame.height/2)
-
+        self.startedBtn.setCornerRadiuswithValue(value: 7.0)
     }
     
     func setupView(){
@@ -142,7 +142,7 @@ extension OrderRequestDeatilVC : UITableViewDelegate, UITableViewDataSource{
             return 140
         }
         
-        return CGFloat(45+((self.orderListData?.orderingredient?.count ?? 0)*35))
+        return CGFloat(55+((self.orderListData?.orderingredient?.count ?? 0)*35))
        
     }
     func setupTableView(){

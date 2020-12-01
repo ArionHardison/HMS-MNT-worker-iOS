@@ -28,6 +28,7 @@ class UpcomingOrderViewController: BaseViewController {
     }
         
     }
+
     extension UpcomingOrderViewController{
         private func setInitialLoad(){
             setRegister()

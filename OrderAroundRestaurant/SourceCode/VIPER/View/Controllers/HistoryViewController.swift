@@ -64,7 +64,7 @@ class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
     func initialLoads() {
         self.navigationController?.isNavigationBarHidden = false
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "Menu").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(self.menuAction))
-        self.navigationItem.title = "Orders"
+        self.navigationItem.title = "Orders".uppercased()
         self.getProfileDetail()
        
     }
@@ -171,7 +171,7 @@ extension HistoryViewController {
             .selectionIndicatorColor(UIColor.primary),
             .bottomMenuHairlineColor(UIColor.white),
             .menuItemFont(UIFont.regular(size: 16)),
-            .menuHeight(40.0),
+            .menuHeight(30.0),
             .selectionIndicatorHeight(0.9),
             .centerMenuItems(true),
             .menuItemWidth(UIScreen.main.bounds.width/3),
@@ -179,15 +179,12 @@ extension HistoryViewController {
             .unselectedMenuItemLabelColor(UIColor.lightGray),
             .enableHorizontalBounce(false)]
         
-        let setrame = CGRect.init(x: 0.0, y: 20, width: self.view.frame.width, height: self.view.frame.height)
+        let setrame = CGRect.init(x: 0.0, y: 10, width: self.view.frame.width, height: self.view.frame.height)
         
         DispatchQueue.main.async {
             self.pageMenu = CAPSPageMenu(viewControllers: controllerArray, frame:setrame
                 , pageMenuOptions: parameters)
-    //        self.pageMenu?.view.layer.shadowColor = UIColor.lightGray.cgColor
-    //        self.pageMenu?.view.layer.shadowOffset = CGSize(width: 0, height: 0)
-    //        self.pageMenu?.view.layer.shadowRadius = 2
-    //        self.pageMenu?.view.layer.shadowOpacity = 0.5
+ 
             self.pageMenu?.delegate = self
             self.addChild(self.pageMenu!)
             self.view.addSubview(self.pageMenu!.view)
