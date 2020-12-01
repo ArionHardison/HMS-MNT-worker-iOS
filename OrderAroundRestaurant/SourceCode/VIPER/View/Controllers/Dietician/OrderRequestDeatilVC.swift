@@ -142,7 +142,7 @@ extension OrderRequestDeatilVC : UITableViewDelegate, UITableViewDataSource{
             return 140
         }
         
-        return CGFloat(55+((self.orderListData?.orderingredient?.count ?? 0)*35))
+        return CGFloat(65+((self.orderListData?.orderingredient?.count ?? 0)*35))
        
     }
     func setupTableView(){

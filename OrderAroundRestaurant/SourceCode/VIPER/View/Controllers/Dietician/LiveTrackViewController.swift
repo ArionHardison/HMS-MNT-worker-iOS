@@ -104,8 +104,23 @@ class LiveTrackViewController: BaseViewController {
     }
     
     func setupView(){
+        
+        self.changeOrderStatusBtn.setCornerRadiuswithValue(value: 8.0)
+        self.view.addSubview(self.backBtn)
         [self.shadowViewOne,self.shadowViewtwo,self.shadowViewthree,self.shadowViewfour].forEach { (view) in
+            view?.layer.cornerRadius = 10
+            view?.layer.shadowColor = UIColor.black.cgColor
+            view?.layer.shadowOffset = CGSize(width: 0, height: 1)
+            view?.layer.shadowRadius = 2
+            view?.layer.shadowOpacity = 0.3
             view?.layer.cornerRadius = (view?.frame.width ?? 0)/2
+            
+        }
+        
+        [self.shadowViewOneImage,self.shadowViewtwoImage,self.shadowViewthreeImage,self.shadowViewfourImage].forEach { (img) in
+            
+            img?.image = img?.image?.withRenderingMode(.alwaysTemplate)
+            img?.tintColor = UIColor(named: "TextGrayColor")
         }
     }
     
