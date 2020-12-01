@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
         <array key="Nunito-Medium.ttf">
             <string>Nunito-Medium</string>
+        </array>
+        <array key="Nunito-Regular.ttf">
+            <string>Nunito-Regular</string>
         </array>
     </customFonts>
     <objects>
@@ -23,21 +27,21 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order List" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="seB-ww-Ksq">
-                        <rect key="frame" x="5" y="11" width="299" height="25"/>
+                        <rect key="frame" x="5" y="5" width="299" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="ly4-Qq-iUy"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="15"/>
+                        <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UVg-Bl-EYx">
-                        <rect key="frame" x="5" y="36" width="310" height="25"/>
+                        <rect key="frame" x="5" y="30" width="310" height="25"/>
                         <subviews>
                             <label verifyAmbiguity="off" opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" placeholderIntrinsicWidth="264.5" placeholderIntrinsicHeight="21" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1KZ-0n-lTv">
                                 <rect key="frame" x="10" y="2" width="205" height="21"/>
                                 <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="16"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" name="TextDarkGrayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Xj-HL-JY6">
@@ -46,7 +50,7 @@
                                     <constraint firstAttribute="width" constant="80" id="90X-hM-gvm"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="15"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" name="TextDarkGrayColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -63,13 +67,14 @@
                         </constraints>
                     </view>
                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zVR-fI-LlP">
-                        <rect key="frame" x="10" y="66" width="300" height="101"/>
+                        <rect key="frame" x="10" y="60" width="300" height="107"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tableView>
                 </subviews>
-                <color key="backgroundColor" white="0.78000000000000003" alpha="0.51193882042253525" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" name="GrayBackgroundColor"/>
                 <constraints>
+                    <constraint firstItem="seB-ww-Ksq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="ABb-VI-CJB"/>
                     <constraint firstAttribute="trailingMargin" secondItem="seB-ww-Ksq" secondAttribute="trailing" id="Bhb-1k-uKM"/>
                     <constraint firstItem="UVg-Bl-EYx" firstAttribute="top" secondItem="seB-ww-Ksq" secondAttribute="bottom" id="CL8-eC-cOx"/>
                     <constraint firstItem="UVg-Bl-EYx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="Fm4-R5-O3i"/>
@@ -77,7 +82,6 @@
                     <constraint firstItem="zVR-fI-LlP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Tax-f3-Dix"/>
                     <constraint firstAttribute="trailing" secondItem="UVg-Bl-EYx" secondAttribute="trailing" constant="5" id="fN0-rc-eOs"/>
                     <constraint firstAttribute="bottom" secondItem="zVR-fI-LlP" secondAttribute="bottom" constant="10" id="fwS-J9-alA"/>
-                    <constraint firstItem="seB-ww-Ksq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="s9U-N8-M2R"/>
                     <constraint firstItem="seB-ww-Ksq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="yj7-q2-JoN"/>
                     <constraint firstItem="zVR-fI-LlP" firstAttribute="top" secondItem="UVg-Bl-EYx" secondAttribute="bottom" constant="5" id="ztv-AE-d1M"/>
                 </constraints>
@@ -93,4 +97,12 @@
             <point key="canvasLocation" x="76.811594202898561" y="148.32589285714286"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <namedColor name="GrayBackgroundColor">
+            <color red="0.9882352941176471" green="0.9882352941176471" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextDarkGrayColor">
+            <color red="0.28235294117647058" green="0.28235294117647058" blue="0.28235294117647058" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

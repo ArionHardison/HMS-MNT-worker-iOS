@@ -316,11 +316,13 @@ extension LiveTrackViewController : GMSMapViewDelegate, CLLocationManagerDelegat
     
     
     func setupPickupDropMArker(){
-        if let pmarker : GMSMarker = self.pickupMarker ,let dmarker : GMSMarker = self.dropMarker{
-            self.pickupMarker.map = nil
-            self.dropMarker.map = nil
-        }
-        
+//        if let pmarker : GMSMarker = self.pickupMarker ,let dmarker : GMSMarker = self.dropMarker{
+//            self.pickupMarker.map = nil
+//            self.dropMarker.map = nil
+//        }
+        self.pickupMarker.map = nil
+        self.dropMarker.map = nil
+
         let pickupPosition = CLLocationCoordinate2D(latitude: self.orderListData?.customer_address?.latitude ?? 0.0, longitude: self.orderListData?.customer_address?.longitude ?? 0.0)
         
         

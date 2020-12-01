@@ -60,7 +60,6 @@
 		08A14DDB222FB47E00F35B1E /* OnGoingOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A14DDA222FB47E00F35B1E /* OnGoingOrderViewController.swift */; };
 		08A14DDD222FB4B300F35B1E /* PastOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A14DDC222FB4B300F35B1E /* PastOrderViewController.swift */; };
 		08A14DDF222FB4C900F35B1E /* CancelOrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A14DDE222FB4C900F35B1E /* CancelOrderViewController.swift */; };
-		08A14DE1222FB5F200F35B1E /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A14DE0222FB5F200F35B1E /* CAPSPageMenu.swift */; };
 		08A14DE3222FCAAD00F35B1E /* RevenueViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A14DE2222FCAAD00F35B1E /* RevenueViewController.swift */; };
 		08A14DE5222FD74800F35B1E /* AddonsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A14DE4222FD74800F35B1E /* AddonsListViewController.swift */; };
 		08A14DE8222FD77B00F35B1E /* AddOnsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A14DE6222FD77B00F35B1E /* AddOnsListTableViewCell.swift */; };
@@ -190,6 +189,8 @@
 		1274D568241B92FD00000CFE /* ReasonsListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1274D567241B92FD00000CFE /* ReasonsListView.xib */; };
 		1274D56B241B97B300000CFE /* ReasonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1274D569241B97B300000CFE /* ReasonsCell.swift */; };
 		1274D56C241B97B300000CFE /* ReasonsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1274D56A241B97B300000CFE /* ReasonsCell.xib */; };
+		18D82B7C25755B36005E9479 /* Color.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D82AE425754781005E9479 /* Color.xcassets */; };
+		18D82B8425755CFA005E9479 /* CAPSPageMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D82B8325755CFA005E9479 /* CAPSPageMenu.swift */; };
 		24FC05B422734385003243D9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B322734385003243D9 /* Global.swift */; };
 		24FC05B6227343E3003243D9 /* LocaliseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B5227343E3003243D9 /* LocaliseManager.swift */; };
 		24FC05B822734548003243D9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B722734548003243D9 /* String.swift */; };
@@ -298,7 +299,6 @@
 		08A14DDA222FB47E00F35B1E /* OnGoingOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnGoingOrderViewController.swift; sourceTree = "<group>"; };
 		08A14DDC222FB4B300F35B1E /* PastOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PastOrderViewController.swift; sourceTree = "<group>"; };
 		08A14DDE222FB4C900F35B1E /* CancelOrderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelOrderViewController.swift; sourceTree = "<group>"; };
-		08A14DE0222FB5F200F35B1E /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		08A14DE2222FCAAD00F35B1E /* RevenueViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevenueViewController.swift; sourceTree = "<group>"; };
 		08A14DE4222FD74800F35B1E /* AddonsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddonsListViewController.swift; sourceTree = "<group>"; };
 		08A14DE6222FD77B00F35B1E /* AddOnsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOnsListTableViewCell.swift; sourceTree = "<group>"; };
@@ -420,6 +420,8 @@
 		1274D567241B92FD00000CFE /* ReasonsListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReasonsListView.xib; sourceTree = "<group>"; };
 		1274D569241B97B300000CFE /* ReasonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReasonsCell.swift; path = OrderAroundRestaurant/SourceCode/VIPER/View/Cell/ReasonsCell.swift; sourceTree = SOURCE_ROOT; };
 		1274D56A241B97B300000CFE /* ReasonsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReasonsCell.xib; path = OrderAroundRestaurant/SourceCode/VIPER/View/Cell/ReasonsCell.xib; sourceTree = SOURCE_ROOT; };
+		18D82AE425754781005E9479 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
+		18D82B8325755CFA005E9479 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
 		19CABD98D6CF809DA9041749 /* Pods_DietManagerChefTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietManagerChefTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2251CA67FF8334380F754820 /* Pods_DietManagerChefUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietManagerChefUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FC05B322734385003243D9 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 				087D0BFE2224087F00E58BDE /* SourceCode */,
 				087D0BF4222404F300E58BDE /* Resources */,
 				087D0BD2222403FF00E58BDE /* Info.plist */,
+				18D82AE425754781005E9479 /* Color.xcassets */,
 			);
 			path = OrderAroundRestaurant;
 			sourceTree = "<group>";
@@ -946,7 +949,7 @@
 		08A14DBC222F9F0300F35B1E /* CapsPageMenu */ = {
 			isa = PBXGroup;
 			children = (
-				08A14DE0222FB5F200F35B1E /* CAPSPageMenu.swift */,
+				18D82B8325755CFA005E9479 /* CAPSPageMenu.swift */,
 			);
 			path = CapsPageMenu;
 			sourceTree = "<group>";
@@ -1254,6 +1257,7 @@
 				10CA955725666C6B00C1DE3E /* IngredientsCell.swift in Resources */,
 				10CA955825666C6B00C1DE3E /* IngredientsCell.xib in Resources */,
 				08A613172242225600219465 /* ItemListTableViewCell.xib in Resources */,
+				18D82B7C25755B36005E9479 /* Color.xcassets in Resources */,
 				08A44AC622379F3300228233 /* SelectCusineTableViewCell.xib in Resources */,
 				08A3B6A522253D0F0010058B /* Nunito-SemiBold.ttf in Resources */,
 				103815C8255EBD4D0087E7A8 /* PurchasedListCell.xib in Resources */,
@@ -1448,7 +1452,6 @@
 				1097DB2A255E7F8F00A3D702 /* ViewExtension.swift in Sources */,
 				10094C4725751507008342EA /* GMSMapView.swift in Sources */,
 				08A20C2E223A70780081256F /* CreateCategoryEntity.swift in Sources */,
-				08A14DE1222FB5F200F35B1E /* CAPSPageMenu.swift in Sources */,
 				089F2D5D223270F3000D7C8D /* FilterViewController.swift in Sources */,
 				10469E9D2566A55F0008E636 /* UpcomingOrderViewController.swift in Sources */,
 				103815C7255EBD4D0087E7A8 /* PurchasedListCell.swift in Sources */,
@@ -1510,6 +1513,7 @@
 				10D193B1255EC8FE00AD940D /* LiveTrackViewController.swift in Sources */,
 				0083EC69251B40FF00A3E0E9 /* StripeTokenEntity.swift in Sources */,
 				08ACEA042239012A0050591D /* ProductEntity.swift in Sources */,
+				18D82B8425755CFA005E9479 /* CAPSPageMenu.swift in Sources */,
 				08AB876A22363DE900740520 /* UpComingRequestViewController.swift in Sources */,
 				08AD19EC223B8DB90009F5F6 /* CustomLabelsXAxisValueFormatter.swift in Sources */,
 				125D85A0242E314200E87359 /* GooglePlacesHelper.swift in Sources */,

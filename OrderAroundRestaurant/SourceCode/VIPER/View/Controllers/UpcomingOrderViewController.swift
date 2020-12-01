@@ -14,7 +14,7 @@ class UpcomingOrderViewController: BaseViewController {
         @IBOutlet weak var upcomingTableView: UITableView!
         
         
-        var completedOrderArr = [OrderListModel]()
+    var completedOrderArr : [OrderListModel]?
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -49,14 +49,15 @@ class UpcomingOrderViewController: BaseViewController {
     extension UpcomingOrderViewController: UITableViewDelegate,UITableViewDataSource{
         
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return self.completedOrderArr.count ?? 0
+            return self.completedOrderArr?.count ?? 0
         }
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let cell = tableView.dequeueReusableCell(withIdentifier: "OrderListCell", for: indexPath) as! OrderListCell
-            if let data : OrderListModel = self.completedOrderArr[indexPath.row]{
+            if let data = self.completedOrderArr?[indexPath.row]{
                 cell.foodImage.setImage(with: data.food?.avatar ?? "", placeHolder: UIImage(named: "user-placeholder"))
                 cell.foodname.text = data.food?.name ?? ""
+                cell.foodname.text = cell.foodname.text?.capitalized
                 cell.foodDes.text = data.food?.description ?? ""
                 cell.foodCategory.text = data.food?.time_category?.name ?? ""
                 cell.foodPrice.text = data.food?.price ?? ""
@@ -67,6 +68,7 @@ class UpcomingOrderViewController: BaseViewController {
         
         func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
             return 120
+  //140
         }
         
         

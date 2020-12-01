@@ -47,8 +47,13 @@ class OrderRequestDeatilVC: BaseViewController {
         self.navigationController?.isNavigationBarHidden = true
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.userImage.roundCorners([.layerMinXMinYCorner,.layerMaxXMaxYCorner,.layerMaxXMinYCorner,.layerMinXMaxYCorner], radius: self.userImage.frame.height/2)
+
+    }
+    
     func setupView(){
-        self.userImage.roundCorners([.layerMinXMinYCorner,.layerMaxXMaxYCorner,.layerMaxXMinYCorner,.layerMinXMaxYCorner], radius: self.userImage.frame.width/2)
         let tintedImage  = UIImage(named: "call-answer")?.withRenderingMode(.alwaysTemplate)
         self.callBtn.setImage(tintedImage, for: .normal)
         self.callBtn.tintColor = .primary
@@ -77,6 +82,7 @@ class OrderRequestDeatilVC: BaseViewController {
     func setupData(){
         self.userImage.setImage(with: self.orderListData?.user?.avatar ?? "", placeHolder: UIImage(named: "user-placeholder"))
         self.userName.text = self.orderListData?.user?.name ?? ""
+        self.userName.text = self.userName.text?.capitalized
         self.userLocation.text = self.orderListData?.customer_address?.map_address ?? ""
         self.paymentType.text = self.orderListData?.payment_mode ?? ""
         self.callBtn.addTap {
@@ -115,12 +121,28 @@ extension OrderRequestDeatilVC : UITableViewDelegate, UITableViewDataSource{
             return cell
         }
     }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        if section == 1{
+            return 5
+        }
+        return 3
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 1{
             return 140
         }
         
-        return CGFloat(65+((self.orderListData?.orderingredient?.count ?? 0)*35))
+        return CGFloat(45+((self.orderListData?.orderingredient?.count ?? 0)*35))
        
     }
     func setupTableView(){

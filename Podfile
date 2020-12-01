@@ -16,7 +16,7 @@ target 'DietManagerChef' do
   #pod 'GooglePlaces'
   pod 'GooglePlaces'
   pod 'GoogleMaps'
-
+#  pod 'PageMenu'
   pod 'Fabric', '~> 1.9.0'
   pod 'Crashlytics', '~> 3.12.0'
   pod 'Firebase/Core'

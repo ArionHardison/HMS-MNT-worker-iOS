@@ -27,8 +27,10 @@ class OnGoingOrderViewController: BaseViewController {
     var purchaseView : PurchaseView!
     var purchasedListView : PurchasedListView!
     var userSttausView: UserStatusView!
+    var flagforloader = 0
     
-    var onGoingOrderArr:[OrderListModel] = []
+    
+    var onGoingOrderArr:[OrderListModel]!
     var ogArray: [OnGoingOrderArrayModel] = []
     var headerHeight: CGFloat = 55
     
@@ -53,12 +55,15 @@ class OnGoingOrderViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setInitialLoad()
+//        setInitialLoad()
+        flagforloader = 0
+        showActivityIndicator()
         self.setupMapDelegate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         setInitialLoad()
     }
 }
@@ -73,7 +78,8 @@ extension OnGoingOrderViewController{
     //    NotificationCenter.default.addObserver(self, selector: #selector(onDidReceiveData(_:)), name: .didReceiveData, object: nil)
     }
     private func setOrderHistoryApi(){
-//        showActivityIndicator()
+        _ = flagforloader == 0 ? showActivityIndicator() : HideActivityIndicator()
+        flagforloader = 1
         let urlStr = "\(Base.getOrder.rawValue)"
        self.presenter?.GETPOST(api: urlStr, params: [:], methodType: .GET, modelClass: OrderListModel.self, token: true)
     }
@@ -93,18 +99,19 @@ extension OnGoingOrderViewController{
 extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.onGoingOrderArr.count ?? 0
+        return self.onGoingOrderArr?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrderListCell", for: indexPath) as! OrderListCell
-        if let data : OrderListModel = self.onGoingOrderArr[indexPath.row]{
+        if let data = self.onGoingOrderArr?[indexPath.row]{
             cell.foodImage.setImage(with: data.user?.avatar ?? "", placeHolder: UIImage(named: "user-placeholder"))
             cell.foodname.text = data.user?.name ?? ""
+            cell.foodname.text = cell.foodname.text?.capitalized
             cell.foodDes.text = data.customer_address?.map_address ?? ""
             
-            cell.foodDes.isHidden = ((data.customer_address?.map_address ?? "").isEmpty ?? false)
-            cell.foodCategory.text = data.food?.time_category?.name ?? ""
+            cell.foodDes.isHidden = ((data.customer_address?.map_address ?? "" ).isEmpty ?? false)
+            cell.foodCategory.text = data.food?.time_category?.name ?? "".capitalized
             cell.foodPrice.text = "$ " + (data.payable ?? "")
         }
         cell.contentView.addTap {

@@ -12,7 +12,7 @@ class CancelOrderViewController: BaseViewController {
 
     @IBOutlet weak var cancelTableView: UITableView!
     
-    var cancelOrderArr = [OrderListModel]()
+    var cancelOrderArr : [OrderListModel]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,14 +57,15 @@ extension CancelOrderViewController{
 }
 extension CancelOrderViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.cancelOrderArr.count ?? 0
+        return self.cancelOrderArr?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrderListCell", for: indexPath) as! OrderListCell
-        if let data : OrderListModel = self.cancelOrderArr[indexPath.row]{
+        if let data : OrderListModel = self.cancelOrderArr?[indexPath.row]{
             cell.foodImage.setImage(with: data.food?.avatar ?? "", placeHolder: UIImage(named: "user-placeholder"))
             cell.foodname.text = data.food?.name ?? ""
+            cell.foodname.text = cell.foodname.text?.capitalized
             cell.foodDes.text = data.food?.description ?? ""
             cell.foodCategory.text = data.food?.time_category?.name ?? ""
             cell.foodPrice.text = data.food?.price ?? ""
@@ -73,7 +74,7 @@ extension CancelOrderViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110
+        return 140
     }
     
     

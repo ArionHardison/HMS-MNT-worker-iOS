@@ -13,7 +13,7 @@ class PastOrderViewController: BaseViewController {
     @IBOutlet weak var pastTableView: UITableView!
     
     
-    var completedOrderArr = [OrderListModel]()
+    var completedOrderArr : [OrderListModel]?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -57,22 +57,28 @@ extension PastOrderViewController{
 extension PastOrderViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.completedOrderArr.count ?? 0
+        return self.completedOrderArr?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "OrderListCell", for: indexPath) as! OrderListCell
-        if let data : OrderListModel = self.completedOrderArr[indexPath.row]{
+        if let data  = self.completedOrderArr?[indexPath.row]{
             cell.foodImage.setImage(with: data.user?.avatar ?? "", placeHolder: UIImage(named: "user-placeholder"))
             cell.foodname.text = data.user?.name ?? ""
+            cell.foodname.text = cell.foodname.text?.capitalized
             cell.foodDes.text = data.food?.description ?? ""
             cell.foodCategory.text = data.food?.name ?? ""//data.food?.time_category?.name ?? ""
             cell.foodPrice.text = "$ " + (data.food?.price ?? "")
+            
+
+            
+            cell.foodDes.isHidden = ((data.customer_address?.map_address ?? "" ).isEmpty ?? false)
+            cell.foodCategory.text = data.food?.time_category?.name ?? "".capitalized
         }
         
         cell.contentView.addTap {
             let vc = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.OrderRequestDeatilVC) as! OrderRequestDeatilVC
-            vc.orderListData = self.completedOrderArr[indexPath.row]
+            vc.orderListData = self.completedOrderArr?[indexPath.row]
             vc.ispastOrder = true
             self.navigationController?.pushViewController(vc, animated: true)
         }
@@ -81,7 +87,9 @@ extension PastOrderViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 140
         return 120
+
     }
     
     
