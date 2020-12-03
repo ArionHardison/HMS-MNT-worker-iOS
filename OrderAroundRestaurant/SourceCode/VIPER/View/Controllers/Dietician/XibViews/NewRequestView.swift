@@ -41,15 +41,24 @@ class NewRequestView: UIView {
         self.locLbl.text = orderListData?.customer_address?.map_address ?? ""
         self.itemLbl.text = (orderListData?.food?.name ?? "").capitalized
         var category : String = ""
-        for i in 0..<(orderListData?.orderingredient?.count ?? 0){
-            if i ==
-                (orderListData?.orderingredient?.count ?? 0)-1{
-            category = (orderListData?.orderingredient?[i].foodingredient?.ingredient?.name ?? "").capitalized
-            }else{
-                category = (orderListData?.orderingredient?[i].foodingredient?.ingredient?.name ?? "").capitalized + ","
-                
-            }
+        
+        
+        for item in orderListData?.orderingredient ?? [] {
+             let qty = item.foodingredient?.ingredient?.name ?? ""
+//            let name = item.foodingredient?.ingredient?.price ?? ""
+            category = category + "\(qty)" + ","
+            
         }
+        
+//        for i in 0..<(orderListData?.orderingredient?.count ?? 0){
+//            if i ==
+//                (orderListData?.orderingredient?.count ?? 0)-1{
+//            category = (orderListData?.orderingredient?[i].foodingredient?.ingredient?.name ?? "").capitalized
+//            }else{
+//                category = (orderListData?.orderingredient?[i].foodingredient?.ingredient?.name ?? "").capitalized + ","
+                
+//            }
+//        }
         if category.count > 0{
         self.ingredientsLbl.text = category
         }
@@ -61,7 +70,4 @@ class NewRequestView: UIView {
         }
         self.bgView.layer.cornerRadius = 10
     }
-
-    
-    
 }

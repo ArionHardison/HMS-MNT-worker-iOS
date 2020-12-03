@@ -225,11 +225,14 @@ extension OnGoingOrderViewController: PresenterOutputProtocol {
     
     
     func getOngoingRequest(){
-        self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    self.setOrderHistoryApi()
+                    
+            self.orderTimer = Timer.scheduledTimer(withTimeInterval: 5.0, repeats: true) { (_) in
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        self.setOrderHistoryApi()
+                    }
                 }
-            }
+        
+
     }
     
     func getOrder(){
