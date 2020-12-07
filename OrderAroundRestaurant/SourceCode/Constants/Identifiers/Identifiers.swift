@@ -20,6 +20,7 @@ struct Storyboard {
     let LaunchNavigationController = "LaunchNavigationController"
     let SideBarTableViewController = "SideBarTableViewController"
     let RegisterViewController = "RegisterViewController"
+    let ChatVC = "ChatVC"
     let MobileViewController = "MobileViewController"
     let SignUpViewController = "SignUpViewController"
     let RestaurantMenuViewController = "RestaurantMenuViewController"

@@ -16,6 +16,7 @@ class OrderRequestDeatilVC: BaseViewController {
     @IBOutlet weak var userLocation : UILabel!
     @IBOutlet weak var paymentType : UILabel!
     @IBOutlet weak var callBtn : UIButton!
+    @IBOutlet weak var messageBtn : UIButton!
     
     @IBOutlet weak var startedBtn : UIButton!
     @IBOutlet weak var backBtn : UIButton!
@@ -57,6 +58,10 @@ class OrderRequestDeatilVC: BaseViewController {
         let tintedImage  = UIImage(named: "call-answer")?.withRenderingMode(.alwaysTemplate)
         self.callBtn.setImage(tintedImage, for: .normal)
         self.callBtn.tintColor = .primary
+        
+        let msgtintedImage  = UIImage(named: "userEmail")?.withRenderingMode(.alwaysTemplate)
+        self.messageBtn.setImage(msgtintedImage, for: .normal)
+        self.messageBtn.tintColor = .primary
     }
     
     func setupAction(){
@@ -76,6 +81,13 @@ class OrderRequestDeatilVC: BaseViewController {
 //            let vc = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.LiveTrackViewController) as! LiveTrackViewController
 //            vc.orderListData = self.orderListData
 //            self.navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        self.messageBtn.addTap {
+            let chatvc = Router.main.instantiateViewController(withIdentifier: Storyboard.Ids.ChatVC) as! ChatVC
+            chatvc.orderID = "\(self.orderListData?.id ?? 0)"
+            self.navigationController?.present(chatvc, animated: true, completion: nil)
+            
         }
     }
     

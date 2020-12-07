@@ -272,3 +272,25 @@ extension UIImage {
         return newImage
     }
 }
+extension UIView{
+    func setCorneredElevation(shadow With : Int = 2 , corner radius : Int = 20 , color : UIColor = UIColor.clear){
+        self.layer.masksToBounds = false
+        self.clipsToBounds  = false
+        self.layer.shadowColor = color.cgColor
+        self.layer.shadowOpacity = 0.7
+        self.layer.shadowOffset = CGSize(width: With, height: With)
+        self.layer.shadowRadius = CGFloat(With)
+        self.layer.cornerRadius = CGFloat(radius)
+    }
+    
+    
+    func blurViews(){
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        blurEffectView.alpha = 0.5
+        self.addSubview(blurEffectView)
+    }
+    
+}

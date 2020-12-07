@@ -33,7 +33,7 @@ class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
         super.viewDidDisappear(animated)
         orderTimer?.invalidate()
         orderTimer = nil
-        NotificationCenter.default.post(name: .didReceiveData, object: nil)
+//        NotificationCenter.default.post(name: .didReceiveData, object: nil)
     }
     
     override func viewDidLoad() {
@@ -204,7 +204,7 @@ extension HistoryViewController {
 //MARK: VIPER Extension:
 extension HistoryViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
-        DispatchQueue.main.async {
+//        DispatchQueue.main.async {
             
         self.HideActivityIndicator()
         if String(describing: modelClass) == model.type.LogoutModel {
@@ -244,7 +244,7 @@ extension HistoryViewController: PresenterOutputProtocol {
         }else if String(describing: modelClass) ==  model.type.OrderListModel {
             self.stopCallingOrder = false
         }
-        }
+//        }
     }
     func showNewRequestView(data : OrderListModel){
         if self.requestView == nil, let requestView = Bundle.main.loadNibNamed("NewRequestView", owner: self, options: [:])?.first as? NewRequestView {

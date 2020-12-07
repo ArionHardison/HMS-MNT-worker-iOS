@@ -12,7 +12,7 @@ let deviceType = "ios"
 
 var tokenType = "Bearer"
 
-var googleMapKey = "AIzaSyAlpDGEYqZS44sI_ffynh5sjm5JsNPPFLg"
+var googleMapKey = "AIzaSyDfIOHOLtN6tsZjn19BZX4ypGL3X39jT00"
 var client_ID = "2"
 var deviceTokenString = Constants.string.noDevice
 

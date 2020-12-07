@@ -147,6 +147,12 @@
 		10094C4625751507008342EA /* GooglePlacesHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10094C4325751506008342EA /* GooglePlacesHelpers.swift */; };
 		10094C4725751507008342EA /* GMSMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10094C4425751507008342EA /* GMSMapView.swift */; };
 		10094C4825751507008342EA /* GoogleMapsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10094C4525751507008342EA /* GoogleMapsHelper.swift */; };
+		1027690E257A85DA00AA77AD /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1027690C257A85DA00AA77AD /* FirebaseManager.swift */; };
+		1027690F257A85DA00AA77AD /* FirebaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1027690D257A85DA00AA77AD /* FirebaseModel.swift */; };
+		10276917257A85E000AA77AD /* ChatVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10276913257A85E000AA77AD /* ChatVC.swift */; };
+		10276918257A85E000AA77AD /* ChatMsgCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10276916257A85E000AA77AD /* ChatMsgCell.swift */; };
+		10276A01257A910A00AA77AD /* ChatLeftCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10276A00257A910A00AA77AD /* ChatLeftCell.xib */; };
+		10276A06257A913200AA77AD /* ChatRightCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 10276A05257A913200AA77AD /* ChatRightCell.xib */; };
 		103815AD255E99AC0087E7A8 /* UXView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103815AC255E99AC0087E7A8 /* UXView.swift */; };
 		103815BC255EA1840087E7A8 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103815BB255EA1840087E7A8 /* PurchaseView.swift */; };
 		103815C1255EBCEF0087E7A8 /* PurchasedListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103815C0255EBCEF0087E7A8 /* PurchasedListView.swift */; };
@@ -378,6 +384,12 @@
 		10094C4325751506008342EA /* GooglePlacesHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GooglePlacesHelpers.swift; sourceTree = "<group>"; };
 		10094C4425751507008342EA /* GMSMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GMSMapView.swift; sourceTree = "<group>"; };
 		10094C4525751507008342EA /* GoogleMapsHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GoogleMapsHelper.swift; sourceTree = "<group>"; };
+		1027690C257A85DA00AA77AD /* FirebaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		1027690D257A85DA00AA77AD /* FirebaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseModel.swift; sourceTree = "<group>"; };
+		10276913257A85E000AA77AD /* ChatVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatVC.swift; sourceTree = "<group>"; };
+		10276916257A85E000AA77AD /* ChatMsgCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMsgCell.swift; sourceTree = "<group>"; };
+		10276A00257A910A00AA77AD /* ChatLeftCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatLeftCell.xib; sourceTree = "<group>"; };
+		10276A05257A913200AA77AD /* ChatRightCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatRightCell.xib; sourceTree = "<group>"; };
 		103815AC255E99AC0087E7A8 /* UXView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UXView.swift; sourceTree = "<group>"; };
 		103815B1255E9F6F0087E7A8 /* IngredientsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IngredientsCell.xib; sourceTree = "<group>"; };
 		103815B2255E9F700087E7A8 /* IngredientsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IngredientsCell.swift; sourceTree = "<group>"; };
@@ -903,6 +915,7 @@
 		0891E20F2231023C00409038 /* VIPER */ = {
 			isa = PBXGroup;
 			children = (
+				1027690A257A85CD00AA77AD /* ChatFlow */,
 				10094C42257514FD008342EA /* GMSMapHelper */,
 				0891E2102231025700409038 /* Protocol */,
 				087D0BFF2224089400E58BDE /* View */,
@@ -1043,6 +1056,27 @@
 				10094C4325751506008342EA /* GooglePlacesHelpers.swift */,
 			);
 			path = GMSMapHelper;
+			sourceTree = "<group>";
+		};
+		1027690A257A85CD00AA77AD /* ChatFlow */ = {
+			isa = PBXGroup;
+			children = (
+				10276916257A85E000AA77AD /* ChatMsgCell.swift */,
+				10276913257A85E000AA77AD /* ChatVC.swift */,
+				1027690B257A85D200AA77AD /* FirebaseManager */,
+				10276A00257A910A00AA77AD /* ChatLeftCell.xib */,
+				10276A05257A913200AA77AD /* ChatRightCell.xib */,
+			);
+			path = ChatFlow;
+			sourceTree = "<group>";
+		};
+		1027690B257A85D200AA77AD /* FirebaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				1027690C257A85DA00AA77AD /* FirebaseManager.swift */,
+				1027690D257A85DA00AA77AD /* FirebaseModel.swift */,
+			);
+			path = FirebaseManager;
 			sourceTree = "<group>";
 		};
 		1097DAEF255E623400A3D702 /* Dietician */ = {
@@ -1252,6 +1286,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10276A06257A913200AA77AD /* ChatRightCell.xib in Resources */,
 				10CA955C25666C8400C1DE3E /* IngredientsPriceCell.swift in Resources */,
 				10CA955D25666C8400C1DE3E /* IngredientsPriceCell.xib in Resources */,
 				10CA955725666C6B00C1DE3E /* IngredientsCell.swift in Resources */,
@@ -1269,6 +1304,7 @@
 				08A44AD52237B2CE00228233 /* CountryCodeTableViewCell.xib in Resources */,
 				1007876825665AAA00D7CBE6 /* OrderPriceCell.xib in Resources */,
 				08B6BD18237C12A200F3C25A /* GalleryCollectionViewCell.xib in Resources */,
+				10276A01257A910A00AA77AD /* ChatLeftCell.xib in Resources */,
 				1007876125665A9700D7CBE6 /* OrderItemsCell.xib in Resources */,
 				087D0BCE222403FF00E58BDE /* Assets.xcassets in Resources */,
 				08AD751E2226728F002A0419 /* UpcomingRequestTableViewCell.xib in Resources */,
@@ -1453,6 +1489,7 @@
 				10094C4725751507008342EA /* GMSMapView.swift in Sources */,
 				08A20C2E223A70780081256F /* CreateCategoryEntity.swift in Sources */,
 				089F2D5D223270F3000D7C8D /* FilterViewController.swift in Sources */,
+				1027690F257A85DA00AA77AD /* FirebaseModel.swift in Sources */,
 				10469E9D2566A55F0008E636 /* UpcomingOrderViewController.swift in Sources */,
 				103815C7255EBD4D0087E7A8 /* PurchasedListCell.swift in Sources */,
 				089F2D5F22327615000D7C8D /* CountryCodeViewController.swift in Sources */,
@@ -1515,6 +1552,7 @@
 				08ACEA042239012A0050591D /* ProductEntity.swift in Sources */,
 				18D82B8425755CFA005E9479 /* CAPSPageMenu.swift in Sources */,
 				08AB876A22363DE900740520 /* UpComingRequestViewController.swift in Sources */,
+				10276918257A85E000AA77AD /* ChatMsgCell.swift in Sources */,
 				08AD19EC223B8DB90009F5F6 /* CustomLabelsXAxisValueFormatter.swift in Sources */,
 				125D85A0242E314200E87359 /* GooglePlacesHelper.swift in Sources */,
 				087D0C0C222410EB00E58BDE /* Alert.swift in Sources */,
@@ -1538,11 +1576,13 @@
 				0852342F2226668500446B47 /* DishesViewController.swift in Sources */,
 				BB9A65D12549B6A100C91426 /* Common.swift in Sources */,
 				0891E215223103E700409038 /* ViewControllerExtension.swift in Sources */,
+				10276917257A85E000AA77AD /* ChatVC.swift in Sources */,
 				08A3B6BC22254FE10010058B /* Identifiers.swift in Sources */,
 				0891E20A2230FFB900409038 /* LoginEntity.swift in Sources */,
 				77C48CC2253DCC5100A5AD82 /* LiveTaskViewController.swift in Sources */,
 				08A3B6BF22255C8C0010058B /* EditTimingTableViewCell.swift in Sources */,
 				10FC93DC25629EBF006C1D52 /* Cache.swift in Sources */,
+				1027690E257A85DA00AA77AD /* FirebaseManager.swift in Sources */,
 				7777A586253DAFC400A24D60 /* CountryCodeCell.swift in Sources */,
 				08A14DF5222FF95200F35B1E /* CreateCategoryViewController.swift in Sources */,
 				08A44AD42237B2CE00228233 /* CountryCodeTableViewCell.swift in Sources */,
@@ -1768,7 +1808,7 @@
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Q4N6XWX7K3;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
@@ -1794,7 +1834,7 @@
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 1.2;
 				DEVELOPMENT_TEAM = Q4N6XWX7K3;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

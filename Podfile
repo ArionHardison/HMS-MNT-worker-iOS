@@ -19,11 +19,15 @@ target 'DietManagerChef' do
 #  pod 'PageMenu'
   pod 'Fabric', '~> 1.9.0'
   pod 'Crashlytics', '~> 3.12.0'
-  pod 'Firebase/Core'
   pod 'TextFieldEffects'
   pod 'UnsplashPhotoPicker', '~> 1.1'
   pod 'EasyTipView', '~> 2.0.4'
   pod 'KWDrawerController'
+  pod 'IQKeyboardManagerSwift'
+  pod 'Firebase/Core'
+  pod 'Firebase/Database'
+  pod 'Firebase/Messaging'
+  pod 'SwiftyJSON'
 
 
   target 'DietManagerChefTests' do

@@ -52,7 +52,6 @@ extension UIImageView {
         }else{
             urlStrings = baseUrl+"\(urlString ?? "")"
         }
-        print("IMAGEURL",urlStrings)
         let activity = UIActivityIndicatorView()
         activity.tag = 100
         let activityHeight = self.frame.height/3
