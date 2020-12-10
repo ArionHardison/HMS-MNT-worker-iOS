@@ -598,6 +598,7 @@ struct User : Mappable {
     var otp : String?
     var braintree_id : String?
     
+    
     init?(map: Map) {
         
     }

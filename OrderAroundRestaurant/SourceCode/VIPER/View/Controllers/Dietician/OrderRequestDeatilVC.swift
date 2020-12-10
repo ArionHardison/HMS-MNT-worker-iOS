@@ -23,6 +23,7 @@ class OrderRequestDeatilVC: BaseViewController {
     
     @IBOutlet weak var orderDetailTable : UITableView!
     
+    
     var ispastOrder : Bool = false
     var isfooditemPurchase : Bool = false
     var purchaseView : PurchaseView!

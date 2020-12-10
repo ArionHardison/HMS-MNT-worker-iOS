@@ -27,6 +27,9 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var textfieldReferralCode: UITextField!
     
+    @IBOutlet weak var userImmageView: UIImageView!
+    
+    
 //    private var userInfo : UserData?
     var  name: String?
     var countryCodeVal1 : String?
@@ -36,7 +39,7 @@ class SignUpViewController: UIViewController {
     var  login_by: String?
     var phoneNumber: Int?
     var signUpData : SignUpEntityModel?
-    
+    private var modifiedImage : UIImage?
     
 //    private lazy var  loader = {
 //        return createActivityIndicator(UIApplication.shared.keyWindow ?? self.view)
@@ -74,6 +77,11 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         
         localize()
+        layouts()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.changeImage(_:)))
+        userImmageView.isUserInteractionEnabled = true
+        userImmageView.addGestureRecognizer(tapGesture)
         print("phoneNumber>>",phoneNumber)
         setCustomFont()
         hideKeyboardWhenTappedAround()
@@ -86,6 +94,26 @@ class SignUpViewController: UIViewController {
         emailTxtFld.isUserInteractionEnabled = true
         userNameTxtFld.isUserInteractionEnabled = true
     
+    }
+    
+    @objc func changeImage(_ tap: UITapGestureRecognizer) {
+
+        showImage { (image) in
+            if image != nil {
+                  let imageObject = image?.resizeImage(newWidth: 100)
+                  self.modifiedImage = imageObject
+                  self.userImmageView.image = imageObject
+            }
+        }
+
+    }
+    
+    
+    func layouts() {
+  //   self.userImageView.makeRoundedCorner()
+        self.userImmageView.setImage(with: "", placeHolder: #imageLiteral(resourceName: "userPlaceholder"))
+//self.userImageView.cornerRadius = 10
+//self.userImmageView.setImage(with: User.avatar, placeHolder: #imageLiteral(resourceName: "userPlaceholder"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -246,18 +274,37 @@ class SignUpViewController: UIViewController {
                  self.showToast(string: ErrorMessage.list.passwordDonotMatch.localize())
                  return
              }
+        
+        if userImmageView.image == #imageLiteral(resourceName: "userPlaceholder")  {
+
+            self.showToast(string: ErrorMessage.list.enterUploadImg.localize())
+            
+        }else{
+            
+            var uploadimgeData:Data!
+            
+            if  let dataImg = self.userImmageView.image?.jpegData(compressionQuality: 0.5) {
+                uploadimgeData = dataImg
+           }
+           
+            
+            let parameters:[String:Any] = ["email": email ,
+                     "name":userNameTxtFld.text ?? "",
+                     "password": passwordTxtFld.text ?? "",
+                     "mobile": "\(phoneNumber ?? 0)",
+                     "password_confirmation":confirmPassword.text ?? "",
+                    "device_id":UUID().uuidString,
+                    "device_token":deviceTokenString,
+                    "device_type": "ios"]
+
+          //  self.presenter?.GETPOST(api: Base.register.rawValue, params:parameters, methodType: HttpType.POST, modelClass: SignUpEntityModel.self, token: false)
+            
+            self.presenter?.IMAGEPOST(api: Base.register.rawValue, params: parameters, methodType: HttpType.POST, imgData: ["avatar":uploadimgeData], imgName: "image", modelClass: SignUpEntityModel.self, token: false)
+            
+        }
              
         
-        let parameters:[String:Any] = ["email": email ,
-                 "name":userNameTxtFld.text ?? "",
-                 "password": passwordTxtFld.text ?? "",
-                 "mobile": "\(phoneNumber ?? 0)",
-                 "password_confirmation":confirmPassword.text ?? "",
-                "device_id":UUID().uuidString,
-                "device_token":deviceTokenString,
-                "device_type": "ios"]
-
-        self.presenter?.GETPOST(api: Base.register.rawValue, params:parameters, methodType: HttpType.POST, modelClass: SignUpEntityModel.self, token: false)
+     
         
 //
 //                 print(userDetailInfo)
@@ -268,11 +315,11 @@ class SignUpViewController: UIViewController {
 //                     uploadimgeData = dataImg
 //                 }
 //                 self.presenter?.post(api: .signUp, imageData: ["d_licence":uploadimgeData], data: userDetailInfo.toData())
-             }
+             
     
 
 }
-
+}
 
     
 
@@ -305,6 +352,8 @@ extension SignUpViewController: PresenterOutputProtocol {
             let success = signUpData?.message
            
             showToast(string: success)
+            
+            showAlertMessage(message: "Registered Successfully")
            
 //
             DispatchQueue.main.async {

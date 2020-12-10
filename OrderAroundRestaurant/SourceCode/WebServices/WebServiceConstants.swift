@@ -47,6 +47,8 @@ enum Base : String{
     case productList = "/api/shop/products"
     case historyList = "/api/shop/history"
     case getprofile = "/api/chef/profile"
+    
+    case updateProfile = "//api/chef/profile"
     //"/api/shop/profile"
     case getRevenue = "/api/shop/revenue"
     case getOrder = "/api/chef/order"

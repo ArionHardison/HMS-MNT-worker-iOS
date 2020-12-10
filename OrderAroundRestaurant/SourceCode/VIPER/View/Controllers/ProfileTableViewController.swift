@@ -86,8 +86,8 @@ extension ProfileTableViewController {
             var parameters:[String:Any] = ["name": userName,
                                         "email":email,
                                         "mobile":phone]
-            let profileURl = Base.getprofile.rawValue
-            self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["avatar":uploadimgeData], imgName: "image", modelClass: OrderListModel.self, token: true)
+            let profileURl = Base.updateProfile.rawValue
+            self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["avatar":uploadimgeData], imgName: "image", modelClass: UpdateModel.self, token: true)
             
         }
     }
@@ -115,9 +115,16 @@ extension ProfileTableViewController {
 extension ProfileTableViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
       if String(describing: modelClass) ==  model.type.ProfileModel {
-            
+        
+        print("dataDic>>",dataDict)
         self.setValues(data: dataDict as! ProfileModel)
-        }
+
+       
+      }else if String(describing: modelClass) ==  model.type.UpdateModel{
+        
+        getProfileDetail()
+        showAlertMessage(message: "updated successfully")
+      }
     }
     
     func showError(error: CustomError) {

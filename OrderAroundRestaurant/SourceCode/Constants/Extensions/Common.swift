@@ -157,11 +157,11 @@ class Common {
 ////            UserDefaults.standard.set(language.rawValue, forKey: Keys.list.language)
 ////            setLocalization(language: language)
 //       // }
-//        if let languageStr = UserDefaults.standard.value(forKey: Keys.list.language) as? String, let language = Language(rawValue: languageStr) {
-//            setLocalization(language: language)
-//        }else {
-//            setLocalization(language: .english)
-//        }
+////        if let languageStr = UserDefaults.standard.value(forKey: Keys.list.language) as? String, let language = Language(rawValue: languageStr) {
+////            setLocalization(language: language)
+////        }else {
+////            setLocalization(language: .english)
+////        }
 //
 //    }
 //

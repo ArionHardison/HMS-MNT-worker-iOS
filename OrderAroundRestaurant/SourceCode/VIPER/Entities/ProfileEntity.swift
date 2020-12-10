@@ -104,6 +104,104 @@ struct ProfileModel : Mappable {
     }
 }
 
+
+
+
+struct UpdateModel : Mappable {
+    
+    var id : Int?
+    var name : String?
+    var email : String?
+    var unique_id : String?
+    var gender : String?
+    var phone : String?
+    var mobile : String?
+    var country_code : String?
+    var avatar : String?
+    var default_banner : String?
+    var description : String?
+    var offer_min_amount : Int?
+    var offer_percent : Int?
+    var offer_type: String?
+    var estimated_delivery_time : Int?
+    var address : String?
+    var maps_address : String?
+    var latitude : Double?
+    var longitude : Double?
+    var pure_veg : Int?
+    var rating : Int?
+    var bank : BankDestails?
+    var rating_status : Int?
+    var status : String?
+    var device_token : String?
+    var device_id : String?
+    var device_type : String?
+    var created_at : String?
+    var updated_at : String?
+    var devared_at : String?
+    var currency : String?
+    var cuisines : [Cuisines]?
+    var timings : [Timings]?
+    var tokens : [Tokens]?
+    var deliveryoption : [DeliveyOptions]?
+    var halal : Int?
+    var free_delivery : Int?
+    var image_banner_id : String?
+    var walvar_balance : String?
+    var otp : Int?
+    var wallet_balance : String?
+    var training_module : [FoodSafetyModel]?
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        id <- map["id"]
+        unique_id <- map["unique_id"]
+        name <- map["name"]
+        mobile <- map["mobile"]
+        gender <- map["gender"]
+        email <- map["email"]
+        phone <- map["phone"]
+        country_code <- map["country_code"]
+        avatar <- map["avatar"]
+        default_banner <- map["default_banner"]
+        description <- map["description"]
+        offer_min_amount <- map["offer_min_amount"]
+        offer_percent <- map["offer_percent"]
+        offer_type <- map["offer_type"]
+        estimated_delivery_time <- map["estimated_delivery_time"]
+        address <- map["address"]
+        maps_address <- map["maps_address"]
+        latitude <- map["latitude"]
+        longitude <- map["longitude"]
+        pure_veg <- map["pure_veg"]
+        rating <- map["rating"]
+        rating_status <- map["rating_status"]
+        status <- map["status"]
+        device_token <- map["device_token"]
+        device_id <- map["device_id"]
+        device_type <- map["device_type"]
+        created_at <- map["created_at"]
+        updated_at <- map["updated_at"]
+        devared_at <- map["devared_at"]
+        currency <- map["currency"]
+        cuisines <- map["cuisines"]
+        timings <- map["timings"]
+        tokens <- map["tokens"]
+        deliveryoption <- map["deliveryoption"]
+        bank <- map["bank"]
+        halal <- map["halal"]
+        free_delivery <- map["free_delivery"]
+        image_banner_id <- map["image_banner_id"]
+        training_module <- map["training_module"]
+        otp  <- map["otp"]
+        walvar_balance <- map["walvar_balance"]
+        wallet_balance <- map["wallet_balance"]
+    }
+}
+
 struct Tokens : Mappable {
     var id : String?
     var user_id : Int?

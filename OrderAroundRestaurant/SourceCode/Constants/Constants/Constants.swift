@@ -334,6 +334,7 @@ struct model {
     let AddAddonsModel = "AddAddonsModel"
     let CreateCategoryModel = "CreateCategoryModel"
     let ProfileModel = "ProfileModel"
+    let UpdateModel = "UpdateModel"
     let RevenueModel = "RevenueModel"
     let DeliveryModel = "DeliveryModel"
     let OrderModel = "OrderModel"
