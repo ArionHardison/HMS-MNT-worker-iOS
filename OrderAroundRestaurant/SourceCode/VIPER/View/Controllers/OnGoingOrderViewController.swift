@@ -112,10 +112,9 @@ extension OnGoingOrderViewController: UITableViewDelegate,UITableViewDataSource{
             
             cell.foodDes.isHidden = ((data.customer_address?.map_address ?? "" ).isEmpty ?? false)
             cell.foodCategory.text = data.food?.time_category?.name ?? "".capitalized
-            cell.foodPrice.text = "$" + (data.payable ?? "")
+            cell.foodPrice.text = "$" + (data.total ?? "")
         }
         cell.contentView.addTap {
-
                 let vc = self.storyboard!.instantiateViewController(withIdentifier: Storyboard.Ids.OrderRequestDeatilVC) as! OrderRequestDeatilVC
                 vc.orderListData = self.onGoingOrderArr[indexPath.row]
                 self.navigationController?.pushViewController(vc, animated: true)
@@ -170,7 +169,6 @@ extension OnGoingOrderViewController: PresenterOutputProtocol {
             self.view.addSubview(requestView)
             requestView.show(with: .bottom, completion: nil)
         }
-        
     }
     
     func showNewRequestView(data : OrderListModel){
@@ -248,7 +246,6 @@ extension OnGoingOrderViewController: PresenterOutputProtocol {
         
         let profileURl = Base.getOrder.rawValue + "/" + String(id ?? 0)
         self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["":Data()], imgName: "image", modelClass: OrderListModel.self, token: true)
-        
     }
 }
 /******************************************************************/

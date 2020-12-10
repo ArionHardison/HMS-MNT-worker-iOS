@@ -68,7 +68,7 @@ extension CancelOrderViewController: UITableViewDelegate,UITableViewDataSource{
             cell.foodname.text = cell.foodname.text?.capitalized
             cell.foodDes.text = data.food?.description ?? ""
             cell.foodCategory.text = data.food?.time_category?.name ?? ""
-            cell.foodPrice.text = data.food?.price ?? ""
+            cell.foodPrice.text = "$ " + (data.total ?? "")
         }
         return cell
     }
@@ -79,8 +79,6 @@ extension CancelOrderViewController: UITableViewDelegate,UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
     }
 }
 /******************************************************************/

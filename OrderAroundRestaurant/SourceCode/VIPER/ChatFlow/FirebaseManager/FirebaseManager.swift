@@ -26,7 +26,7 @@ class FireBaseconnection{
        
     }
 
-    func addmesage(message : String ,  time : String,orderID : String , done : @escaping(String)->() ){
+    func addmesage(message : String ,  time : String,orderID : String, done : @escaping(String)->() ){
         if let orderId : String = orderID {
             if !orderId.isEmpty {
                 
@@ -34,7 +34,8 @@ class FireBaseconnection{
                     "text": message,
                     "timestamp" : time,
                     "type": "text",
-                    "sender" : "chef"
+                    "sender" : "chef",
+                    "name" : profiledata?.name ?? ""
                 ]
                 fireBaseref.child(orderId).childByAutoId().setValue(chatArray)
                 done("success")

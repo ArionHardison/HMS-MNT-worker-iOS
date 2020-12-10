@@ -73,7 +73,7 @@ extension ChatVC : UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegat
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "ChatLeftCell", for: indexPath) as! ChatLeftCell
             cell.msgLabl.text = self.firebaseChatList[indexPath.row].text
-            cell.timeLbl.text = self.firebaseChatList[indexPath.row].sender.capitalized
+            cell.timeLbl.text = self.firebaseChatList[indexPath.row].name.capitalized
             if self.firebaseChatList[indexPath.row].sender.trimmingCharacters(in: .whitespaces) == "user" {
                 cell.chatUserImg.image = UIImage(named: "usericon")
             }else if self.firebaseChatList[indexPath.row].sender.trimmingCharacters(in: .whitespaces) == "dietitian" {

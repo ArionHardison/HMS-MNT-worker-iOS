@@ -61,7 +61,7 @@ class UpcomingOrderViewController: BaseViewController {
                 cell.foodname.text = cell.foodname.text?.capitalized
                 cell.foodDes.text = data.food?.description ?? ""
                 cell.foodCategory.text = data.food?.time_category?.name ?? ""
-                cell.foodPrice.text = data.food?.price ?? ""
+                cell.foodPrice.text = "$ " + (data.total ?? "")
             }
             
             return cell

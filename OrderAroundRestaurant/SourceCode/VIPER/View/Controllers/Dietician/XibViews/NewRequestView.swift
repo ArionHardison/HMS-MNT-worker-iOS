@@ -17,6 +17,7 @@ class NewRequestView: UIView {
     @IBOutlet weak var locLbl : UILabel!
     @IBOutlet weak var itemLbl : UILabel!
     @IBOutlet weak var ingredientsLbl : UILabel!
+    @IBOutlet weak var orderID : UILabel!
     
     @IBOutlet weak var bgView : UIView!
     
@@ -39,9 +40,10 @@ class NewRequestView: UIView {
     func setupData(){
         self.nameLbl.text = (orderListData?.user?.name ?? "").capitalized
         self.locLbl.text = orderListData?.customer_address?.map_address ?? ""
+        self.orderID.text = "# \(orderListData?.id ?? 0)"
         self.itemLbl.text = (orderListData?.food?.name ?? "").capitalized
-        var category : String = ""
         
+        var category : String = ""
         
         for item in orderListData?.orderingredient ?? [] {
              let qty = item.foodingredient?.ingredient?.name ?? ""

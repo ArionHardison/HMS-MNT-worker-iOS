@@ -74,8 +74,8 @@ extension ProfileTableViewController {
                 self.view.makeToast("Enter valid mobile number", point: CGPoint(x: UIScreen.main.bounds.width/2 , y: UIScreen.main.bounds.height/2), title: nil, image: nil, completion: nil)
                 return
             }
-            guard let email = self.validateEmail() else { return }
             
+            guard let email = self.validateEmail() else { return }
             
             var uploadimgeData:Data!
             
@@ -84,12 +84,10 @@ extension ProfileTableViewController {
             }
            
             var parameters:[String:Any] = ["name": userName,
-                                           "email":email,
-                                           "mobile":phone]
-            
-            
+                                        "email":email,
+                                        "mobile":phone]
             let profileURl = Base.getprofile.rawValue
-            self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["image":uploadimgeData], imgName: "image", modelClass: OrderListModel.self, token: true)
+            self.presenter?.IMAGEPOST(api: profileURl, params: parameters, methodType: HttpType.POST, imgData: ["avatar":uploadimgeData], imgName: "image", modelClass: OrderListModel.self, token: true)
             
         }
     }

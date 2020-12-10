@@ -96,7 +96,12 @@ class OrderRequestDeatilVC: BaseViewController {
         self.userName.text = self.orderListData?.user?.name ?? ""
         self.userName.text = self.userName.text?.capitalized
         self.userLocation.text = self.orderListData?.customer_address?.map_address ?? ""
-        self.paymentType.text = self.orderListData?.payment_mode ?? ""
+        self.paymentType.text = "Card"//self.orderListData?.payment_mode ?? ""
+        if (self.orderListData?.status ?? "") == "COMPLETED"{
+            self.messageBtn.isHidden = true
+        }else{
+            self.messageBtn.isHidden = false
+        }
         self.callBtn.addTap {
             
             if let url = URL(string: "tel://\(self.orderListData?.user?.phone ?? "")"), UIApplication.shared.canOpenURL(url) {

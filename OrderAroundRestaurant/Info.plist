@@ -30,7 +30,7 @@
 		<true/>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>This app requires access to the camera.</string>
+	<string>This help to upload the picture to the user to get the confirmation for the requested food. Please allow access to proceed.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>$(PRODUCT_NAME) would like to use location to get the nearest User Request</string>
 	<key>NSLocationAlwaysUsageDescription</key>
