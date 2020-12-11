@@ -33,7 +33,9 @@ class ForgotPasswordViewController: BaseViewController {
         textfieldEmailID.layer.cornerRadius = 6
         labelEmailID.font = UIFont.regular(size: 15)
         buttonNext.titleLabel?.font = UIFont.bold(size: 17)
+        textfieldEmailID.delegate = self
     }
+    
     
 
     
@@ -92,6 +94,19 @@ extension ForgotPasswordViewController : PresenterOutputProtocol {
         showToast(msg:error.localizedDescription)
         
      }
+    
+}
+
+extension ForgotPasswordViewController : UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool{
+        if let nextField = textField.superview?.viewWithTag(textField.tag + 1) as? UITextField {
+            nextField.becomeFirstResponder()
+        }else{
+            textField.resignFirstResponder()
+        }
+        return true
+    }
+    
     
 }
 

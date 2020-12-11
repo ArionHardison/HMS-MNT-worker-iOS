@@ -1732,22 +1732,22 @@
                                         <rect key="frame" x="20" y="24" width="59" height="59.5"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="lBV-E3-GU6">
-                                        <rect key="frame" x="94" y="5" width="260.5" height="97.5"/>
+                                        <rect key="frame" x="94" y="5" width="261.5" height="97.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="so0-Br-iJx">
-                                                <rect key="frame" x="0.0" y="0.0" width="260.5" height="29.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="261.5" height="29.5"/>
                                                 <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="18"/>
                                                 <color key="textColor" name="TextBlackColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Label Label Label Label Label Label Label Label Label Label Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jUJ-yo-F2T">
-                                                <rect key="frame" x="0.0" y="31.5" width="260.5" height="39"/>
+                                                <rect key="frame" x="0.0" y="31.5" width="261.5" height="39"/>
                                                 <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="12"/>
                                                 <color key="textColor" name="TextGrayColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L6Z-Vd-J7U">
-                                                <rect key="frame" x="0.0" y="72.5" width="260.5" height="25"/>
+                                                <rect key="frame" x="0.0" y="72.5" width="261.5" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="duj-yi-ySs"/>
                                                 </constraints>
@@ -1767,15 +1767,15 @@
                                         </constraints>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="80V-B2-Vqd">
-                                        <rect key="frame" x="359.5" y="10" width="44.5" height="87.5"/>
+                                        <rect key="frame" x="360.5" y="10" width="43.5" height="87.5"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bdh-tx-9w7">
-                                                <rect key="frame" x="0.0" y="0.0" width="44.5" height="39"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="43.5" height="39"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="call-answer"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nL-OX-gNe">
-                                                <rect key="frame" x="0.0" y="49" width="44.5" height="38.5"/>
+                                                <rect key="frame" x="0.0" y="49" width="43.5" height="38.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" image="call-answer"/>
                                             </button>
@@ -2620,22 +2620,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ATe-Y0-f2h">
-                                <rect key="frame" x="0.0" y="44" width="414" height="206"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="204.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Revenue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QjG-Gl-61r">
-                                        <rect key="frame" x="10" y="10" width="394" height="20.5"/>
+                                        <rect key="frame" x="10" y="10" width="394" height="19"/>
                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n6b-Um-AzN">
-                                        <rect key="frame" x="10" y="40.5" width="394" height="20.5"/>
+                                        <rect key="frame" x="10" y="39" width="394" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.25098039220000001" green="0.73333333329999995" blue="0.2156862745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNE-hr-iUI">
-                                        <rect key="frame" x="0.0" y="71" width="414" height="115"/>
+                                        <rect key="frame" x="0.0" y="69.5" width="414" height="115"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="ckY-ea-P7T">
                                                 <rect key="frame" x="10" y="10" width="394" height="95"/>
@@ -2747,7 +2747,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Of Orders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCP-NQ-2IS">
-                                <rect key="frame" x="5" y="240" width="399" height="20"/>
+                                <rect key="frame" x="5" y="238.5" width="399" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Xxs-W0-fMV"/>
                                 </constraints>
@@ -2756,7 +2756,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="05J-CN-RLJ" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="260" width="414" height="492"/>
+                                <rect key="frame" x="0.0" y="258.5" width="414" height="493.5"/>
                                 <color key="backgroundColor" red="0.98431372549999996" green="0.98431372549999996" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
@@ -5267,7 +5267,7 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Everyday" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d6n-W3-52u">
-                                        <rect key="frame" x="20" y="45.5" width="315" height="20.5"/>
+                                        <rect key="frame" x="20" y="46" width="315" height="19"/>
                                         <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="16"/>
                                         <color key="textColor" red="0.14901960780000001" green="0.57647058819999997" blue="0.14901960780000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -9175,13 +9175,13 @@
                                 <rect key="frame" x="0.0" y="510.5" width="414" height="385.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="bottom" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Mt6-M9-1IR">
-                                        <rect key="frame" x="41.5" y="51.5" width="331" height="222.5"/>
+                                        <rect key="frame" x="41.5" y="57.5" width="331" height="210.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="CBh-V8-8Gq">
-                                                <rect key="frame" x="0.0" y="0.0" width="331" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="331" height="19"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4sa-ow-0B4">
-                                                        <rect key="frame" x="0.0" y="0.0" width="104" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="104" height="19"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="104" id="pZ3-HP-OEl"/>
                                                         </constraints>
@@ -9190,7 +9190,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vincent" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yTg-id-tXt">
-                                                        <rect key="frame" x="114" y="0.0" width="217" height="20.5"/>
+                                                        <rect key="frame" x="114" y="0.0" width="217" height="19"/>
                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
                                                         <color key="textColor" name="TextGrayColor"/>
                                                         <nil key="highlightedColor"/>
@@ -9198,10 +9198,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="kN1-7Z-GmC">
-                                                <rect key="frame" x="0.0" y="35.5" width="331" height="60.5"/>
+                                                <rect key="frame" x="0.0" y="34" width="331" height="56"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1n-ga-vdb">
-                                                        <rect key="frame" x="0.0" y="0.0" width="104" height="60.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="104" height="56"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="104" id="764-C9-AYV"/>
                                                         </constraints>
@@ -9210,7 +9210,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tarc Colony , Megberg, Winson Road , United States- 100987" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8O-h2-2c6">
-                                                        <rect key="frame" x="114" y="0.0" width="217" height="60.5"/>
+                                                        <rect key="frame" x="114" y="0.0" width="217" height="56"/>
                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
                                                         <color key="textColor" name="TextGrayColor"/>
                                                         <nil key="highlightedColor"/>
@@ -9218,10 +9218,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uNP-r3-VZH">
-                                                <rect key="frame" x="0.0" y="111" width="331" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="105" width="331" height="19"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Item :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7M7-5R-6sV">
-                                                        <rect key="frame" x="0.0" y="0.0" width="104" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="104" height="19"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="104" id="oWM-Wv-bed"/>
                                                         </constraints>
@@ -9230,7 +9230,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food , Rice" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kfp-nx-Nh5">
-                                                        <rect key="frame" x="114" y="0.0" width="217" height="20.5"/>
+                                                        <rect key="frame" x="114" y="0.0" width="217" height="19"/>
                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
                                                         <color key="textColor" name="TextGrayColor"/>
                                                         <nil key="highlightedColor"/>
@@ -9238,10 +9238,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="q2v-2h-YhX">
-                                                <rect key="frame" x="0.0" y="146.5" width="331" height="20.5"/>
+                                                <rect key="frame" x="0.0" y="139" width="331" height="19"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingredients :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uQh-rD-1qm">
-                                                        <rect key="frame" x="0.0" y="0.0" width="104" height="20.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="104" height="19"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="104" id="cSU-Cv-BK5"/>
                                                         </constraints>
@@ -9250,7 +9250,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rice , Veg" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bKK-Uq-lfu">
-                                                        <rect key="frame" x="114" y="0.0" width="217" height="20.5"/>
+                                                        <rect key="frame" x="114" y="0.0" width="217" height="19"/>
                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
                                                         <color key="textColor" name="TextGrayColor"/>
                                                         <nil key="highlightedColor"/>
@@ -9258,10 +9258,10 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="sDG-sh-wv1">
-                                                <rect key="frame" x="0.0" y="182" width="331" height="40.5"/>
+                                                <rect key="frame" x="0.0" y="173" width="331" height="37.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date/Time of order :" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CiZ-bn-kfa">
-                                                        <rect key="frame" x="0.0" y="0.0" width="104" height="40.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="104" height="37.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="104" id="p8X-Ci-tF6"/>
                                                         </constraints>
@@ -9270,7 +9270,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2nd Nov 2020, 5 pm" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNh-Am-V5V">
-                                                        <rect key="frame" x="114" y="0.0" width="217" height="40.5"/>
+                                                        <rect key="frame" x="114" y="0.0" width="217" height="37.5"/>
                                                         <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="16"/>
                                                         <color key="textColor" name="TextGrayColor"/>
                                                         <nil key="highlightedColor"/>
@@ -9517,13 +9517,13 @@
                                                         <rect key="frame" x="72" y="574" width="270" height="38"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Already have an account? " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qxP-m8-TYV">
-                                                                <rect key="frame" x="-1.5" y="3" width="166" height="18"/>
+                                                                <rect key="frame" x="2" y="3" width="166" height="16.5"/>
                                                                 <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="14"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN IN here" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hTE-XX-lmm">
-                                                                <rect key="frame" x="166.5" y="1" width="103.5" height="21.5"/>
+                                                                <rect key="frame" x="170" y="1" width="100" height="20"/>
                                                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -9868,19 +9868,19 @@
                                                     <rect key="frame" x="8" y="8" width="398" height="70"/>
                                                     <subviews>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BRa-fE-Fy7">
-                                                            <rect key="frame" x="8" y="37.5" width="0.0" height="0.0"/>
+                                                            <rect key="frame" x="8" y="36" width="0.0" height="0.0"/>
                                                             <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                             <color key="textColor" name="PRIMARYCOLOR"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="USER NAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dc-bY-KHu">
-                                                            <rect key="frame" x="8" y="8" width="101" height="21.5"/>
+                                                            <rect key="frame" x="8" y="8" width="99" height="20"/>
                                                             <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BvZ-g7-EsL">
-                                                            <rect key="frame" x="10" y="32.5" width="378" height="34.5"/>
+                                                            <rect key="frame" x="10" y="31" width="378" height="36"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
@@ -9918,19 +9918,19 @@
                                                     <rect key="frame" x="8" y="8" width="398" height="70"/>
                                                     <subviews>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thq-Cd-J2g">
-                                                            <rect key="frame" x="8" y="37.5" width="0.0" height="0.0"/>
+                                                            <rect key="frame" x="8" y="36" width="0.0" height="0.0"/>
                                                             <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                             <color key="textColor" name="PRIMARYCOLOR"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USER ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b6L-YJ-wUe">
-                                                            <rect key="frame" x="8" y="8" width="68" height="21.5"/>
+                                                            <rect key="frame" x="8" y="8" width="66.5" height="20"/>
                                                             <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zmL-uq-gpv">
-                                                            <rect key="frame" x="10" y="32.5" width="378" height="34.5"/>
+                                                            <rect key="frame" x="10" y="31" width="378" height="36"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
@@ -9968,19 +9968,19 @@
                                                     <rect key="frame" x="8" y="8" width="398" height="70"/>
                                                     <subviews>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EtQ-QI-WuM">
-                                                            <rect key="frame" x="8" y="37.5" width="0.0" height="0.0"/>
+                                                            <rect key="frame" x="8" y="36" width="0.0" height="0.0"/>
                                                             <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                             <color key="textColor" name="PRIMARYCOLOR"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOBILE NUMBER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydc-Me-FgN">
-                                                            <rect key="frame" x="8" y="8" width="143" height="21.5"/>
+                                                            <rect key="frame" x="8" y="8" width="141.5" height="20"/>
                                                             <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oeE-FZ-XMp">
-                                                            <rect key="frame" x="10" y="32.5" width="378" height="34.5"/>
+                                                            <rect key="frame" x="10" y="31" width="378" height="36"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
@@ -10018,19 +10018,19 @@
                                                     <rect key="frame" x="8" y="8" width="398" height="70"/>
                                                     <subviews>
                                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmg-7N-7JV">
-                                                            <rect key="frame" x="8" y="39" width="0.0" height="0.0"/>
+                                                            <rect key="frame" x="8" y="37" width="0.0" height="0.0"/>
                                                             <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
                                                             <color key="textColor" name="PRIMARYCOLOR"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s1N-1d-Pmm">
-                                                            <rect key="frame" x="8" y="8" width="118" height="23"/>
+                                                            <rect key="frame" x="8" y="8" width="115.5" height="21"/>
                                                             <fontDescription key="fontDescription" name="Nunito-Medium" family="Nunito" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TVE-gn-Let">
-                                                            <rect key="frame" x="10" y="34" width="378" height="33"/>
+                                                            <rect key="frame" x="10" y="32" width="378" height="35"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
@@ -10279,7 +10279,7 @@
                                                 <state key="normal" image="back-white"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WALLET" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Phl-Qj-zwz">
-                                                <rect key="frame" x="69" y="20.5" width="269" height="19"/>
+                                                <rect key="frame" x="69" y="21.5" width="269" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -10379,7 +10379,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WALLET" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bdn-wg-3UK">
-                                                <rect key="frame" x="69" y="20.5" width="269" height="19"/>
+                                                <rect key="frame" x="69" y="21.5" width="269" height="17.5"/>
                                                 <fontDescription key="fontDescription" name="Nunito-SemiBold" family="Nunito" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
