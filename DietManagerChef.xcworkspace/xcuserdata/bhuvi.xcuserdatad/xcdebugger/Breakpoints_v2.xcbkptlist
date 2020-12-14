@@ -100,5 +100,117 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "53F705B8-B0D8-406E-8AED-CE2A241A5E62"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OrderAroundRestaurant/SourceCode/VIPER/ChatFlow/ChatVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6EEEF822-E62F-4BCF-B31A-B527D9F22F7D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OrderAroundRestaurant/SourceCode/VIPER/ChatFlow/ChatVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "80"
+            endingLineNumber = "80"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "58AF7BC4-3E75-433B-B293-A968A78AC536"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/OrderRequestDeatilVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "33DCDC76-8B41-4CCD-ADDE-CEDD471F2B25"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/OrderRequestDeatilVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "134"
+            endingLineNumber = "134"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "589CC8C0-CDC0-4AB6-B500-D89152FC6237"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/OrderRequestDeatilVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            landmarkName = "showSuccess(dataArray:dataDict:modelClass:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "589CC8C0-CDC0-4AB6-B500-D89152FC6237 - 9d4ec0e9ee3d52ed"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "DietManager___Manager.OrderRequestDeatilVC.showSuccess(dataArray: Swift.Optional&lt;Swift.Array&lt;ObjectMapper.Mappable&gt;&gt;, dataDict: Swift.Optional&lt;ObjectMapper.Mappable&gt;, modelClass: Any) -&gt; ()"
+                  moduleName = "DietManager - Manager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bhuvi/Documents/bhuvi%20projects/diet%20manager/Basha%20code/dietmanager_ios_restaurant/OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/OrderRequestDeatilVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "241"
+                  endingLineNumber = "241"
+                  offsetFromSymbolStart = "449">
+               </Location>
+               <Location
+                  uuid = "589CC8C0-CDC0-4AB6-B500-D89152FC6237 - 926c165a6a4a84bf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in DietManager___Manager.OrderRequestDeatilVC.showSuccess(dataArray: Swift.Optional&lt;Swift.Array&lt;ObjectMapper.Mappable&gt;&gt;, dataDict: Swift.Optional&lt;ObjectMapper.Mappable&gt;, modelClass: Any) -&gt; ()"
+                  moduleName = "DietManager - Manager"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/bhuvi/Documents/bhuvi%20projects/diet%20manager/Basha%20code/dietmanager_ios_restaurant/OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/OrderRequestDeatilVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "242"
+                  endingLineNumber = "242"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

@@ -110,7 +110,7 @@ class SignUpViewController: UIViewController {
     
     
     func layouts() {
-  //   self.userImageView.makeRoundedCorner()
+  self.userImmageView.setRounded()
         self.userImmageView.setImage(with: "", placeHolder: #imageLiteral(resourceName: "userPlaceholder"))
 //self.userImageView.cornerRadius = 10
 //self.userImmageView.setImage(with: User.avatar, placeHolder: #imageLiteral(resourceName: "userPlaceholder"))
