@@ -142,14 +142,24 @@ extension ProfileTableViewController: PresenterOutputProtocol {
     
     private func setValues(data : ProfileModel){
         
+        print("wallte>>",data.wallet_balance)
+        
+        if data != nil {
+            
+            
+//            UserDefaults.standard.setValue(data.wallet_balance ?? "", forKey: "wallet_balance")
+//            
+            UserDataDefaults.main.wallet_balance = data.wallet_balance
+            
+        }
+        
         self.imageViewProfile.setImage(with: (data.avatar ?? ""), placeHolder: UIImage(named: "userPlaceholder"))
         
         self.labelName.text = String.removeNil(data.name ?? "")
         self.labelUserID.text = String.removeNil(data.unique_id ?? "")
         self.labelemailAddress.text = String.removeNil(data.email ?? "")
         self.labelMobileNumber.text = String.removeNil("\(data.mobile ?? "0")")
-        
-        UserDefaults.standard.setValue(data.wallet_balance ?? "", forKey: "walletbalance")
+  
         
         
         self.TxtName.text = String.removeNil(data.name ?? "")

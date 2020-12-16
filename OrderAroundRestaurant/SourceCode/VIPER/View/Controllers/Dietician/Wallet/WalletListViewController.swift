@@ -140,8 +140,10 @@ extension WalletListViewController: UITableViewDataSource, UITableViewDelegate {
             let cell = tableView.dequeueReusableCell(withIdentifier: "WalletHistory", for: indexPath) as! WalletHistory
             cell.selectionStyle = .none
             cell.backgroundColor = .clear
-            let walletAmt = UserDefaults.standard.value(forKey: "walletbalance") as? String ?? ""
-            cell.setWalletDetails(title: "WalletAmount", status: "", amount: "\(Double(walletAmt ?? "0") ?? 0.0 )")
+            let walletAmt = UserDataDefaults.main.wallet_balance
+            print("walletAmt>>",walletAmt)
+            
+            cell.setWalletDetails(title: "WalletAmount", status: "", amount: walletAmt ?? "")
             cell.statusLabel.isHidden = true
             return cell
 
@@ -150,6 +152,10 @@ extension WalletListViewController: UITableViewDataSource, UITableViewDelegate {
             cell.selectionStyle = .none
             cell.backgroundColor = .clear
             let wallet = walletHistoryDataSource[indexPath.row]
+            
+            print("wallet11>>",wallet)
+
+            
             let dateDetails = convertExpectDateFoemat(date: wallet.created_at ?? "")
             cell.setWalletDetails(title: dateDetails, status: wallet.status ?? "", amount: "\(Double(wallet.amount ?? "0") ?? 0.0)")
             return cell

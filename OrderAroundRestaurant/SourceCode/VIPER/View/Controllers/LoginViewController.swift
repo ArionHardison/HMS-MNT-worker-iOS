@@ -274,6 +274,8 @@ extension LoginViewController: PresenterOutputProtocol {
                 UserDefaults.standard.synchronize()
                 
                  UserDataDefaults.main.access_token = self.logindata?.access_token ?? ""
+                
+                
                 print(UserDataDefaults.main.access_token)
 //                let tabController = self.storyboard?.instantiateViewController(withIdentifier: "LiveTaskViewController") as! HomeViewController
 //                self.navigationController?.navigationBar.isHidden = true

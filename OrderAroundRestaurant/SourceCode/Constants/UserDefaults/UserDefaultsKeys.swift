@@ -21,6 +21,7 @@ struct Keys {
     let shopId = "shopId"
     let currency = "currency"
     let mobile = "mobile"
+    let wallet_balance = "wallet_balance"
 
 }
 

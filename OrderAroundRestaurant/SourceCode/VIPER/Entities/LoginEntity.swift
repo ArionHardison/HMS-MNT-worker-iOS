@@ -20,12 +20,17 @@ public class LoginModel: Mappable {
     private let KEY_error = "error"
     private let KEY_message = "message"
     
+    private let KEY_wallet_balance = "wallet_balance"
+    
     internal var token_type: String?
     internal var expires_in: String?
     internal var access_token: String?
     internal var refresh_token: String?
     internal var error: String?
     internal var message: String?
+    internal var wallet_balance: String?
+    
+    
     
     
     required public init?(map: Map) {
@@ -40,6 +45,7 @@ public class LoginModel: Mappable {
         refresh_token <- map[KEY_refresh_token]
         error <- map[KEY_error]
         message <- map[KEY_message]
+        wallet_balance <- map[KEY_wallet_balance]
     }
     
 }
