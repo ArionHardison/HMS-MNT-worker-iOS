@@ -255,6 +255,10 @@ extension HomeViewController: PresenterOutputProtocol {
             UserDefaults.standard.set(self.profileDataResponse?.id, forKey: Keys.list.shopId)
             UserDefaults.standard.set(self.profileDataResponse?.currency, forKey: Keys.list.currency)
             
+            print("dta>>",self.profileDataResponse?.wallet_balance)
+            
+            UserDataDefaults.main.wallet_balance = self.profileDataResponse?.wallet_balance ?? ""
+            
             profiledata = self.profileDataResponse
             
             setValues(profile: self.profileDataResponse!)

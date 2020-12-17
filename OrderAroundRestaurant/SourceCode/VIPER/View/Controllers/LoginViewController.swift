@@ -167,6 +167,8 @@ class LoginViewController: BaseViewController {
                                         "guard":"shops",
                                         "device_id": device_ID]
         
+        
+
         self.presenter?.GETPOST(api: Base.login.rawValue, params:parameters, methodType: HttpType.POST, modelClass: LoginModel.self, token: false)
     }
     
@@ -273,10 +275,15 @@ extension LoginViewController: PresenterOutputProtocol {
                 UserDefaults.standard.set(data, forKey:  Keys.list.userData)
                 UserDefaults.standard.synchronize()
                 
+                print("login >>",self.logindata?.wallet_balance)
                  UserDataDefaults.main.access_token = self.logindata?.access_token ?? ""
+                UserDataDefaults.main.wallet_balance = self.logindata?.wallet_balance ?? ""
                 
                 
                 print(UserDataDefaults.main.access_token)
+                
+                
+                
 //                let tabController = self.storyboard?.instantiateViewController(withIdentifier: "LiveTaskViewController") as! HomeViewController
 //                self.navigationController?.navigationBar.isHidden = true
 //                self.navigationController?.pushViewController(tabController, animated: true)
@@ -284,6 +291,8 @@ extension LoginViewController: PresenterOutputProtocol {
                 
                 appDelegate.window?.rootViewController = Router.createModule()
                 appDelegate.window?.makeKeyAndVisible()
+                
+                
             }
         }
         
