@@ -210,6 +210,7 @@
 		7E880CC8430C8AC3FCE3BC35 /* Pods_DietManagerChef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7806888FE8F9B6B550450F65 /* Pods_DietManagerChef.framework */; };
 		850F3DC3247BCB00003DF2C3 /* EmailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850F3DC1247BCB00003DF2C3 /* EmailCollectionViewCell.swift */; };
 		850F3DC4247BCB00003DF2C3 /* EmailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850F3DC2247BCB00003DF2C3 /* EmailCollectionViewCell.xib */; };
+		8528A37E258E694C0001A209 /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8528A37D258E694C0001A209 /* PaymentViewController.swift */; };
 		85EBF5C02440C51F0031DB32 /* OTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EBF5BF2440C51F0031DB32 /* OTPController.swift */; };
 		979D1682E9595F28D0F5DF50 /* Pods_DietManagerChefUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2251CA67FF8334380F754820 /* Pods_DietManagerChefUITests.framework */; };
 		B1AFC83EC1368E34F5D8F87D /* Pods_DietManagerChefTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19CABD98D6CF809DA9041749 /* Pods_DietManagerChefTests.framework */; };
@@ -453,6 +454,7 @@
 		7806888FE8F9B6B550450F65 /* Pods_DietManagerChef.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietManagerChef.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		850F3DC1247BCB00003DF2C3 /* EmailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCollectionViewCell.swift; sourceTree = "<group>"; };
 		850F3DC2247BCB00003DF2C3 /* EmailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailCollectionViewCell.xib; sourceTree = "<group>"; };
+		8528A37D258E694C0001A209 /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentViewController.swift; sourceTree = "<group>"; };
 		85EBF5BF2440C51F0031DB32 /* OTPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPController.swift; sourceTree = "<group>"; };
 		915B0DF90E6F700F351463E9 /* Pods-OrderAroundRestaurantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantUITests.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantUITests/Pods-OrderAroundRestaurantUITests.release.xcconfig"; sourceTree = "<group>"; };
 		95CFECCBD6DB50EF076E7CC9 /* Pods-DietManagerManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerManager.debug.xcconfig"; path = "Target Support Files/Pods-DietManagerManager/Pods-DietManagerManager.debug.xcconfig"; sourceTree = "<group>"; };
@@ -705,6 +707,7 @@
 		087D0C1022241BF400E58BDE /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				8528A37D258E694C0001A209 /* PaymentViewController.swift */,
 				1097DAEF255E623400A3D702 /* Dietician */,
 				7777A580253DAB9D00A24D60 /* MobileViewController.swift */,
 				77C48CC3253DCE2500A5AD82 /* SideBarTableViewController.swift */,
@@ -1541,6 +1544,7 @@
 				08AB877122367A2000740520 /* SelectAddonsTableViewCell.swift in Sources */,
 				08AD7523222676C4002A0419 /* CosmosDistrib.swift in Sources */,
 				08ACEA022238EA510050591D /* CategoryListEntity.swift in Sources */,
+				8528A37E258E694C0001A209 /* PaymentViewController.swift in Sources */,
 				08A14DE3222FCAAD00F35B1E /* RevenueViewController.swift in Sources */,
 				08AB876C2236441C00740520 /* AddOnsListEntity.swift in Sources */,
 				08A44AD92237CAA500228233 /* CusineListEntity.swift in Sources */,
@@ -1808,7 +1812,7 @@
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4;
+				CURRENT_PROJECT_VERSION = 1.5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Q4N6XWX7K3;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
@@ -1834,7 +1838,7 @@
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.4;
+				CURRENT_PROJECT_VERSION = 1.5;
 				DEVELOPMENT_TEAM = Q4N6XWX7K3;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

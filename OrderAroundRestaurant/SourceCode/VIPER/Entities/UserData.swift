@@ -18,6 +18,7 @@ class UserDataDefaults : NSObject,NSCoding {
     var refresh_token : String?
     var message : String?
     var wallet_balance : String?
+    
     var id : Int?
     
     init(token_type : String?, expires_in : String?, access_token : String?,refresh_token: String?,message: String?,wallet_balance: String?,id: Int?){

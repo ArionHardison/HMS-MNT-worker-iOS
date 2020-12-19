@@ -353,6 +353,7 @@ struct model {
     let OrderListModel = "OrderListModel"
     let NewOrderListModel = "NewOrderListModel"
     let WalletModel = "WalletModel"
+    let StripeTokenEntity = "StripeTokenEntity"
     
     
     

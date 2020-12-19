@@ -65,6 +65,7 @@ struct Storyboard {
     let ForgotPasswordViewController = "ForgotPasswordViewController"
     let VerificationViewController = "VerificationViewController"
     let TermsConditionViewController = "TermsConditionViewController"
+    let PaymentViewController = "PaymentViewController"
     
     
     

@@ -58,7 +58,7 @@ enum Base : String{
     case getImagesGallery = "/image-gallery"
     case reasonsList = "/api/shop/reasons"
     case resetPassword = "api/shop/reset/password"
-    case stripeToken = "api/shop/stripe/connect"
+    case stripeToken = "/api/chef/stripe/callback"
     case incomeRequest = "api/chef/incoming/order"
     case wallettransaction = "/api/chef/wallet/transaction"
     
