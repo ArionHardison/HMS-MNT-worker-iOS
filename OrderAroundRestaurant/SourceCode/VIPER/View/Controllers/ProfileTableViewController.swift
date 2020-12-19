@@ -150,6 +150,8 @@ extension ProfileTableViewController: PresenterOutputProtocol {
 //            UserDefaults.standard.setValue(data.wallet_balance ?? "", forKey: "wallet_balance")
 //            
             UserDataDefaults.main.wallet_balance = data.wallet_balance
+            UserDataDefaults.main.id = data.id
+    
             
         }
         
