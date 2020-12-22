@@ -53,7 +53,6 @@ struct ProfileModel : Mappable {
     var otp : Int?
     var wallet_balance : String?
     var training_module : [FoodSafetyModel]?
-    var stripe_connect_url : String?
     init?(map: Map) {
         
     }
@@ -102,7 +101,6 @@ struct ProfileModel : Mappable {
         otp  <- map["otp"]
         walvar_balance <- map["walvar_balance"]
         wallet_balance <- map["wallet_balance"]
-        stripe_connect_url <- map["stripe_connect_url"]
     }
 }
 
@@ -632,6 +630,22 @@ struct OrderListModel : Mappable {
         payment_mode <- map["payment_mode"]
         rating <- map["rating"]
         chef <- map["chef"]
+    }
+    
+}
+
+
+struct wallet : Mappable{
+    var page : Int?
+    init(){}
+    init?(map: Map) {
+        
+    }
+    
+    mutating func mapping(map: Map) {
+        
+        page <- map["page"]
+        
     }
     
 }

@@ -30,6 +30,29 @@ struct APPLocalize {
     
     
     static let localizestring = APPLocalize()
+    
+    
+    let wallet = "Wallet"
+    let EnterComment = "Enter Comment"
+    
+    let choosePayment = "Choose Payment"
+    let payment = "Payment"
+     let addAmount = "Add Amount"
+    let transaction = "Transaction"
+    let validAmount = "Enter the Valid Amount"
+    let TransactionHeaderView = "TransactionHeaderView"
+    let noTransaction = "No Transaction"
+     let imagePlaceHolder = "ImagePlaceHolder"
+     let ic_empty_card = "ic_empty_card"
+     let cardEmptyField = "Please add valid amount"
+    let PaymentSelectViewController = "PaymentSelectViewController"
+ let paymentView = "PaymentView"
+    let transactionID = "TransactionID"
+    let staticamount = "Amount"
+    let TransactionTableCell = "TransactionTableCell"
+    let PaymentTypeTableViewCell = "PaymentTypeTableViewCell"
+    
+    
     let enterCorrectOTP =  "localize.EnterCorrectOTP"
     
     
@@ -353,7 +376,10 @@ struct model {
     let OrderListModel = "OrderListModel"
     let NewOrderListModel = "NewOrderListModel"
     let WalletModel = "WalletModel"
-    let StripeTokenEntity = "StripeTokenEntity"
+    let walletTransactionEntity = "walletTransactionEntity"
+    let walletEntity = "walletEntity"
+    
+    
     
     
     
@@ -417,4 +443,25 @@ struct Constant {
     // var deleteAccountDescr = "Are you sure want to delete your account?"
     var appName = "DietManager - Manager"
     // var logout = "Are you sure want to logout?"
+}
+
+var deviceIdDefaults:String?{
+    get {
+        guard let deviceId = UserDefaults.standard.object(forKey: "deviceIdDefaults") as? String else { return nil }
+        return deviceId
+    }
+    set {
+        guard let value = newValue else { return }
+        UserDefaults.standard.set(value, forKey: "deviceIdDefaults")
+    }
+}
+var deviceTokenDefaults:String?{
+    get {
+        guard let deviceId = UserDefaults.standard.object(forKey: "deviceTokenDefaults") as? String else { return nil }
+        return deviceId
+    }
+    set {
+        guard let value = newValue else { return }
+        UserDefaults.standard.set(value, forKey: "deviceTokenDefaults")
+    }
 }

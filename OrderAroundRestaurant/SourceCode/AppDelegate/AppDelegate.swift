@@ -82,7 +82,10 @@ extension AppDelegate {
         // Auth.auth().setAPNSToken(deviceToken, type: AuthAPNSTokenType.sandbox)
         // Messaging.messaging().apnsToken = deviceToken
         deviceToken = deviceToken1.map { String(format: "%02.2hhx", $0) }.joined()
+        
         print("Apn Token ", deviceToken1.map { String(format: "%02.2hhx", $0) }.joined())
+        
+        
     }
     
     func application(_ application: UIApplication,

@@ -278,6 +278,8 @@ extension LoginViewController: PresenterOutputProtocol {
                 print("login >>",self.logindata?.wallet_balance)
                  UserDataDefaults.main.access_token = self.logindata?.access_token ?? ""
                 UserDataDefaults.main.wallet_balance = self.logindata?.wallet_balance ?? ""
+                UserDataDefaults.main.currency = self.logindata?.currency ?? ""
+                
                 
                 
                 print(UserDataDefaults.main.access_token)

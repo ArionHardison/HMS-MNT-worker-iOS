@@ -66,26 +66,6 @@ class BaseViewController: UIViewController,NVActivityIndicatorViewable {
         }
         
     }
-    
-    public func setNavigationTitle() {
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.font: UIFont.setCustomFont(name: .bold, size: .x20)]
-    }
-    
-    //Left navigation button
-    func setLeftBarButtonWith(color leftButtonImageColor: UIColor, leftButtonImage: String? = nil) {
-
-            let leftBarButton = UIBarButtonItem.init(image: #imageLiteral(resourceName: "back"), style: .plain, target: self, action: #selector(leftBarButtonAction))
-            self.navigationController?.navigationBar.tintColor = leftButtonImageColor
-            self.navigationItem.leftBarButtonItem = leftBarButton
- 
-        
-    }
-    
-    //Left navigation bar button action
-    @objc func leftBarButtonAction() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
 }
 extension UIViewController {
     
@@ -254,37 +234,5 @@ internal func forceLogout(with message : String? = nil) {
     if message != nil {
         UIApplication.shared.windows.last?.rootViewController?.view.makeToast(message, duration: 2, position: .center, title: nil, image: nil, style: ToastStyle(), completion: nil)
     }
-    
-    
-    
-}
-
-extension UIFont {
-    
-    class func setCustomFont(name: FontType, size: FontSize) -> UIFont {
-        return UIFont(name: name.rawValue, size: size.rawValue) ?? UIFont.systemFont(ofSize: 16)
-    }
-}
-enum FontType: String {
-    case bold = "AvenirLTStd-Heavy"
-    case medium = "AvenirLTStd-Medium"
-    case light = "AvenirLTStd-Light"
-}
-
-//Custom font size
-enum FontSize: CGFloat {
-    case x8 = 8.0
-    case x10 = 10.0
-    case x12 = 12.0
-    case x14 = 14.0
-    case x16 = 16.0
-    case x18 = 18.0
-    case x20 = 20.0
-    case x22 = 22.0
-    case x24 = 24.0
-    case x26 = 26.0
-    case x28 = 28.0
-    case x30 = 30.0
-    case x50 = 50.0
     
 }

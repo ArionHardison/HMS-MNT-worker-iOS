@@ -18,6 +18,13 @@ class Common {
         
     }
     
+    //MARK:- Show Custom Toast
+      class func showToast(string : String?) {
+          DispatchQueue.main.async {
+              UIApplication.shared.keyWindow?.makeToast(string, duration: 1.0, position: .center)
+          }
+      }
+    
     class func getBackButton()->UIBarButtonItem{
         let backItem = UIBarButtonItem()
         backItem.title = "Back"

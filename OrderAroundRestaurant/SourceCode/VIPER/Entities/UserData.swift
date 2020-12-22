@@ -18,10 +18,10 @@ class UserDataDefaults : NSObject,NSCoding {
     var refresh_token : String?
     var message : String?
     var wallet_balance : String?
-    
     var id : Int?
+    var currency : String?
     
-    init(token_type : String?, expires_in : String?, access_token : String?,refresh_token: String?,message: String?,wallet_balance: String?,id: Int?){
+    init(token_type : String?, expires_in : String?, access_token : String?,refresh_token: String?,message: String?,wallet_balance: String?,id: Int?,currency: String?){
         
         self.token_type = token_type
         self.expires_in = expires_in
@@ -30,11 +30,12 @@ class UserDataDefaults : NSObject,NSCoding {
         self.message = message
         self.wallet_balance = wallet_balance
         self.id = id
+        self.currency = currency
     }
     
     convenience
     override init(){
-        self.init(token_type : nil, expires_in : nil, access_token : nil,refresh_token: nil,message: nil,wallet_balance:nil,id: nil)
+        self.init(token_type : nil, expires_in : nil, access_token : nil,refresh_token: nil,message: nil,wallet_balance:nil,id: nil,currency : nil)
     }
     
     
@@ -48,9 +49,12 @@ class UserDataDefaults : NSObject,NSCoding {
         let wallet_balance =  aDecoder.decodeObject(forKey: Keys.list.wallet_balance) as? String
         
         let id = aDecoder.decodeObject(forKey: Keys.list.id) as? Int
+        let currency = aDecoder.decodeObject(forKey: Keys.list.currency) as? String
+        
+        
 
         
-        self.init(token_type : token_type, expires_in : expires_in, access_token : access_token,refresh_token: refresh_token,message: message,wallet_balance:wallet_balance,id : id)
+        self.init(token_type : token_type, expires_in : expires_in, access_token : access_token,refresh_token: refresh_token,message: message,wallet_balance:wallet_balance,id : id,currency: currency)
         
     }
     
@@ -66,6 +70,8 @@ class UserDataDefaults : NSObject,NSCoding {
         aCoder.encode(self.message,forKey: Keys.list.message)
         aCoder.encode(self.wallet_balance,forKey: Keys.list.wallet_balance)
         aCoder.encode(self.id,forKey: Keys.list.id)
+        aCoder.encode(self.currency,forKey: Keys.list.currency)
+        
         
     }
     

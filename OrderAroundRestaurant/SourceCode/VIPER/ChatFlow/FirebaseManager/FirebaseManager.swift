@@ -27,7 +27,7 @@ class FireBaseconnection{
     }
 
     func addmesage(message : String ,  time : String,orderID : String, done : @escaping(String)->() ){
-       let orderId : String = orderID
+        if let orderId : String = orderID {
             if !orderId.isEmpty {
                 
                 let chatArray = [
@@ -40,11 +40,11 @@ class FireBaseconnection{
                 fireBaseref.child(orderId).childByAutoId().setValue(chatArray)
                 done("success")
             }
-        
+        }
     }
     
     func chatList(order_id : String,allmessage : @escaping([FBchatmsg])->()){
-         let orderId : String = order_id
+        if let orderId : String = order_id {
             if !order_id.isEmpty {
                 fireBaseref.child(order_id).observe(.value) { (snapShot) in
                     self.firebaseChatList.removeAll()
@@ -55,6 +55,6 @@ class FireBaseconnection{
                     }
                 }
             }
-        
+        }
     }
 }

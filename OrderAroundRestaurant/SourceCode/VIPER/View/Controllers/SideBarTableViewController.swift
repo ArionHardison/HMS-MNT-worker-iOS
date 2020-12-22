@@ -18,7 +18,7 @@ class SideBarTableViewController: UITableViewController {
     
     // private let sideBarList = [Constants.string.payment,Constants.string.yourTrips,Constants.string.coupon,Constants.string.wallet,Constants.string.passbook,Constants.string.settings,Constants.string.help,Constants.string.share,Constants.string.inviteReferral,Constants.string.faqSupport,Constants.string.termsAndConditions,Constants.string.privacyPolicy,Constants.string.logout]
     
-    private let sideBarList = ["Home","Wallet","Bank Details", "Logout"]
+    private let sideBarList = ["Home","Wallet","payment", "Logout"]
     
     private let cellId = "cellId"
     
@@ -144,15 +144,16 @@ extension SideBarTableViewController {
             self.drawerController?.closeSide()
         case (0,1):
             self.push(to: Storyboard.Ids.WalletListViewController)
+            
         case (0,2):
-            self.push(to: Storyboard.Ids.PaymentViewController)
+            self.push(to: Storyboard.Ids.PaymentController)
             
         case (0,3):
             (self.drawerController?.getViewController(for: .none)?.children.first as? HistoryViewController)?.logOutAction()
             break
 //            self.push(to: Storyboard.Ids.RevenueViewController)
 
-        case (0,4):
+        case (0,3):
             break
 //            (self.drawerController?.getViewController(for: .none)?.children.first as? HistoryViewController)?.logOutAction()
             

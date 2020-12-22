@@ -58,9 +58,13 @@ enum Base : String{
     case getImagesGallery = "/image-gallery"
     case reasonsList = "/api/shop/reasons"
     case resetPassword = "api/shop/reset/password"
-    case stripeToken = "/api/chef/stripe/callback"
+    case stripeToken = "api/shop/stripe/connect"
     case incomeRequest = "api/chef/incoming/order"
     case wallettransaction = "/api/chef/wallet/transaction"
+    
+    case walletRequestApi = "/api/chef/wallet/request"
+    
+    case walletListApi = "//api/chef/wallet/request"
     
     init(fromRawValue: String){
         self = Base(rawValue: fromRawValue) ?? .addOnList
