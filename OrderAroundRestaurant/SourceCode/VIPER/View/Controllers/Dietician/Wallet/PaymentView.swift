@@ -52,6 +52,7 @@ extension PaymentView {
         
         self.addAmountButton.setTitle(APPLocalize.localizestring.addAmount, for: .normal)
         
+        commentView.delegate = self
        
         self.setCustomFont()
         self.setCustomColor()
@@ -136,11 +137,19 @@ extension PaymentView : UITextViewDelegate {
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
-        if commentView.text == "\n" {
-            //self.didSelectReason?(textView.text)
+        if text == "\n" {
+            textView.resignFirstResponder()
             return false
         }
         return true
     }
+    
+//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//
+//        if commentView.text == "\n" {
+//            //self.didSelectReason?(textView.text)
+//            return false
+//        }
+//        return true
+//    }
 }

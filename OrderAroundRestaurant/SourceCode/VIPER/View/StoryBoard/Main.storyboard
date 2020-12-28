@@ -10673,6 +10673,21 @@
             </objects>
             <point key="canvasLocation" x="5056.521739130435" y="-475.44642857142856"/>
         </scene>
+        <!--Payment View Controller-->
+        <scene sceneID="VJl-rn-y7u">
+            <objects>
+                <viewController storyboardIdentifier="PaymentViewController" id="tJN-JN-eTe" customClass="PaymentViewController" customModule="DietManager___Manager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JoP-zW-7KU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="l90-XK-Ypt"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NK0-eM-e9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2208.8000000000002" y="767.76611694152928"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="RAC-T7-Cu1">

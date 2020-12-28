@@ -180,14 +180,14 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "589CC8C0-CDC0-4AB6-B500-D89152FC6237 - 9d4ec0e9ee3d52ed"
+                  uuid = "589CC8C0-CDC0-4AB6-B500-D89152FC6237 - 2546ca4e141d77f8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "DietManager___Manager.OrderRequestDeatilVC.showSuccess(dataArray: Swift.Optional&lt;Swift.Array&lt;ObjectMapper.Mappable&gt;&gt;, dataDict: Swift.Optional&lt;ObjectMapper.Mappable&gt;, modelClass: Any) -&gt; ()"
                   moduleName = "DietManager - Manager"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bhuvi/Documents/bhuvi%20projects/diet%20manager/Basha%20code/dietmanager_ios_restaurant/OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/OrderRequestDeatilVC.swift"
+                  urlString = "file:///Users/bhuvi/Documents/bhuvi%20projects/diet%20manager/dietmanager_ios_restaurant/OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/OrderRequestDeatilVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "241"
@@ -195,14 +195,14 @@
                   offsetFromSymbolStart = "449">
                </Location>
                <Location
-                  uuid = "589CC8C0-CDC0-4AB6-B500-D89152FC6237 - 926c165a6a4a84bf"
+                  uuid = "589CC8C0-CDC0-4AB6-B500-D89152FC6237 - 2a641cfd906aa1a8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "closure #1 () -&gt; () in DietManager___Manager.OrderRequestDeatilVC.showSuccess(dataArray: Swift.Optional&lt;Swift.Array&lt;ObjectMapper.Mappable&gt;&gt;, dataDict: Swift.Optional&lt;ObjectMapper.Mappable&gt;, modelClass: Any) -&gt; ()"
                   moduleName = "DietManager - Manager"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/bhuvi/Documents/bhuvi%20projects/diet%20manager/Basha%20code/dietmanager_ios_restaurant/OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/OrderRequestDeatilVC.swift"
+                  urlString = "file:///Users/bhuvi/Documents/bhuvi%20projects/diet%20manager/dietmanager_ios_restaurant/OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/OrderRequestDeatilVC.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "242"
@@ -327,22 +327,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "994D8DDA-FCD5-4540-8BFF-C5CA7F5CAE71"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/OnGoingOrderViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
-            landmarkName = "showUserStatusView()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "A37A6F94-A409-4166-9F39-E012A1F75C64"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -423,17 +407,49 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "55101155-CB5C-43D9-8575-3E7DB6F13F74"
+            uuid = "58D01EAE-71A7-4C70-B3CD-EEED5AF7D234"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/Wallet/PaymentController.swift"
+            filePath = "OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/Wallet/PaymentView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "493"
-            endingLineNumber = "493"
-            landmarkName = "showSuccess(dataArray:dataDict:modelClass:)"
-            landmarkType = "7">
+            startingLineNumber = "150"
+            endingLineNumber = "150"
+            landmarkName = "PaymentView"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6F7F1020-A621-475F-B700-74A19F3E9AA7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/Wallet/PaymentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
+            landmarkName = "PaymentView"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E789303E-A550-478D-9798-95821238CB98"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/Wallet/PaymentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "153"
+            endingLineNumber = "153"
+            landmarkName = "PaymentView"
+            landmarkType = "21">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

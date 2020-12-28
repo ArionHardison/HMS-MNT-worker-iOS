@@ -216,6 +216,7 @@
 		B4086EDD2271F159008C5BC0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4086EDF2271F159008C5BC0 /* Localizable.strings */; };
 		B4B405DB225B87D700D86215 /* DeleteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B405DA225B87D600D86215 /* DeleteEntity.swift */; };
 		B4DBB6E9225CA46600CB31F8 /* OrderTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DBB6E8225CA46600CB31F8 /* OrderTrackingViewController.swift */; };
+		BB4935832599C62900E5E89E /* PaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4935822599C62900E5E89E /* PaymentViewController.swift */; };
 		BB6A2B562590C3BF006DA5BB /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A2B502590C3BE006DA5BB /* PaymentView.swift */; };
 		BB6A2B572590C3BF006DA5BB /* PaymentSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A2B512590C3BE006DA5BB /* PaymentSelectViewController.swift */; };
 		BB6A2B582590C3BF006DA5BB /* PaymentTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A2B522590C3BE006DA5BB /* PaymentTypeTableViewCell.swift */; };
@@ -481,6 +482,7 @@
 		B4BC6BCD2254BE83007427BD /* OrderAroundRestaurant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OrderAroundRestaurant.entitlements; sourceTree = "<group>"; };
 		B4DBB6E8225CA46600CB31F8 /* OrderTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackingViewController.swift; sourceTree = "<group>"; };
 		BAB4B17BE6A699D17BCF67EB /* Pods-DietManagerManagerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerManagerUITests.release.xcconfig"; path = "Target Support Files/Pods-DietManagerManagerUITests/Pods-DietManagerManagerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		BB4935822599C62900E5E89E /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentViewController.swift; path = OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/PaymentViewController.swift; sourceTree = SOURCE_ROOT; };
 		BB6A2B502590C3BE006DA5BB /* PaymentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		BB6A2B512590C3BE006DA5BB /* PaymentSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentSelectViewController.swift; sourceTree = "<group>"; };
 		BB6A2B522590C3BE006DA5BB /* PaymentTypeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentTypeTableViewCell.swift; sourceTree = "<group>"; };
@@ -1152,6 +1154,7 @@
 		10ADBC1D257003530041F29D /* Wallet */ = {
 			isa = PBXGroup;
 			children = (
+				BB4935822599C62900E5E89E /* PaymentViewController.swift */,
 				BB6A2B6B2590CF06006DA5BB /* TransactionHeaderView.swift */,
 				BB6A2B6C2590CF06006DA5BB /* TransactionHeaderView.xib */,
 				BB6A2B642590CE3C006DA5BB /* TransactionTableCell.swift */,
@@ -1626,6 +1629,7 @@
 				BB6A2B792590CF97006DA5BB /* EmptyTitleView.swift in Sources */,
 				7777A581253DAB9D00A24D60 /* MobileViewController.swift in Sources */,
 				08A20C2A223A52C90081256F /* AddAddonsEntity.swift in Sources */,
+				BB4935832599C62900E5E89E /* PaymentViewController.swift in Sources */,
 				1097DB1A255E6E5300A3D702 /* TaskDetailViewController.swift in Sources */,
 				08ACEA06223922BA0050591D /* RemoveProductEntity.swift in Sources */,
 				BB6A2B582590C3BF006DA5BB /* PaymentTypeTableViewCell.swift in Sources */,
@@ -1872,7 +1876,7 @@
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Q4N6XWX7K3;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
@@ -1898,7 +1902,7 @@
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = Q4N6XWX7K3;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

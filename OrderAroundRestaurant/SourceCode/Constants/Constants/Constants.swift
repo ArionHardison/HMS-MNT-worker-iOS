@@ -378,6 +378,7 @@ struct model {
     let WalletModel = "WalletModel"
     let walletTransactionEntity = "walletTransactionEntity"
     let walletEntity = "walletEntity"
+    let StripeTokenEntity = "StripeTokenEntity"
     
     
     
