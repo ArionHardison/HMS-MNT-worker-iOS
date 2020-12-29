@@ -339,7 +339,7 @@ extension PaymentController {
             
             print("User>>",UserDataDefaults.main.currency)
             
-            self.paymentView?.walletLabel.text = "\(String.removeNil(UserDataDefaults.main.currency)) \(String.removeNil(UserDataDefaults.main.wallet_balance))"
+            self.paymentView?.walletLabel.text = "\("$") \(String.removeNil(UserDataDefaults.main.wallet_balance))"
             
             paymentView.frame = CGRect(origin: CGPoint(x: isWalletSelect ? 0 : self.contentView.frame.width, y: 0), size: CGSize(width: self.contentView.frame.width, height: self.contentView.frame.height))
             self.paymentView = paymentView
@@ -495,7 +495,7 @@ extension PaymentController: PresenterOutputProtocol {
             var walletBalance = data?.wallet_balance
                  walletBalance = "(\(walletBalance ?? ""))"
               //   self.paymentView?.walletLabel.attributeString(string: wallet+(walletBalance ?? ""), range: NSRange(location: wallet.count, length: walletBalance?.count ?? 0), color: .red)
-            self.paymentView?.walletAmtLabel.text = "\(String.removeNil(UserDataDefaults.main.currency))\(String.removeNil(data?.wallet_balance))"
+            self.paymentView?.walletAmtLabel.text = "\("$"))\(String.removeNil(data?.wallet_balance))"
                  self.paymentView?.cashTextField.text = ""
          }else if  String(describing: modelClass) == model.type.walletTransactionEntity {
             let data = dataDict  as? walletTransactionEntity
