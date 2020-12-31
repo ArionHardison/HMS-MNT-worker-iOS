@@ -143,7 +143,7 @@ extension WalletListViewController: UITableViewDataSource, UITableViewDelegate {
             let walletAmt = UserDataDefaults.main.wallet_balance
             print("walletAmt>>",walletAmt)
             
-            cell.setWalletDetails(title: "WalletAmount", status: "", amount: walletAmt ?? "")
+            cell.setWalletDetails(title: "WalletAmount", status: "", amount: walletAmt ?? "0")
             cell.statusLabel.isHidden = true
             return cell
 

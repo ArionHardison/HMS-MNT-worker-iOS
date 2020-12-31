@@ -495,7 +495,7 @@ extension PaymentController: PresenterOutputProtocol {
             var walletBalance = data?.wallet_balance
                  walletBalance = "(\(walletBalance ?? ""))"
               //   self.paymentView?.walletLabel.attributeString(string: wallet+(walletBalance ?? ""), range: NSRange(location: wallet.count, length: walletBalance?.count ?? 0), color: .red)
-            self.paymentView?.walletAmtLabel.text = "\("$"))\(String.removeNil(data?.wallet_balance))"
+         //   self.paymentView?.walletAmtLabel.text = "\("$"))\(String.removeNil(data?.wallet_balance))"
                  self.paymentView?.cashTextField.text = ""
          }else if  String(describing: modelClass) == model.type.walletTransactionEntity {
             let data = dataDict  as? walletTransactionEntity
