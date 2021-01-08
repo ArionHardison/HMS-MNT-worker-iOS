@@ -64,7 +64,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="bottom" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="dEe-cp-AVH">
-                                    <rect key="frame" x="20" y="90.5" width="314" height="199"/>
+                                    <rect key="frame" x="20" y="90" width="314" height="199"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="z02-4v-OXH">
                                             <rect key="frame" x="0.0" y="0.0" width="314" height="22.5"/>
@@ -162,13 +162,21 @@
                                         <constraint firstItem="z02-4v-OXH" firstAttribute="top" secondItem="dEe-cp-AVH" secondAttribute="top" id="nht-5S-4s9"/>
                                     </constraints>
                                 </stackView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Py0-sn-jBd">
+                                    <rect key="frame" x="177" y="74.5" width="0.0" height="0.0"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="dEe-cp-AVH" secondAttribute="trailing" constant="20" id="2oo-xL-E3I"/>
+                                <constraint firstItem="Py0-sn-jBd" firstAttribute="centerX" secondItem="5SY-up-lm9" secondAttribute="centerX" id="2ro-93-6PN"/>
                                 <constraint firstItem="dEe-cp-AVH" firstAttribute="leading" secondItem="hWO-Ui-PdE" secondAttribute="leading" constant="20" id="6M2-9o-cqS"/>
-                                <constraint firstItem="dEe-cp-AVH" firstAttribute="top" secondItem="5SY-up-lm9" secondAttribute="bottom" constant="30" id="8nZ-0S-i0r"/>
+                                <constraint firstItem="Py0-sn-jBd" firstAttribute="top" secondItem="5SY-up-lm9" secondAttribute="bottom" constant="14" id="BJJ-Om-sR9"/>
                                 <constraint firstAttribute="trailing" secondItem="5SY-up-lm9" secondAttribute="trailing" constant="20" id="Jyz-fH-neU"/>
+                                <constraint firstItem="dEe-cp-AVH" firstAttribute="top" secondItem="Py0-sn-jBd" secondAttribute="bottom" constant="15.5" id="N9k-c3-aaG"/>
                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dEe-cp-AVH" secondAttribute="bottom" constant="10" id="Pfz-uE-0EW"/>
                                 <constraint firstItem="5SY-up-lm9" firstAttribute="top" secondItem="hWO-Ui-PdE" secondAttribute="top" constant="30" id="cNd-8C-yhv"/>
                                 <constraint firstItem="5SY-up-lm9" firstAttribute="leading" secondItem="hWO-Ui-PdE" secondAttribute="leading" constant="20" id="mZC-F2-VYb"/>
@@ -219,8 +227,9 @@
                 <outlet property="nameLbl" destination="q7M-zU-Dc2" id="lBs-XZ-dkW"/>
                 <outlet property="orderID" destination="p4g-wf-gO0" id="cCn-eS-N3D"/>
                 <outlet property="rejectBtn" destination="tu3-Na-hFe" id="EGR-3X-Hmd"/>
+                <outlet property="timeLeftLabel" destination="Py0-sn-jBd" id="g9B-4A-i8w"/>
             </connections>
-            <point key="canvasLocation" x="-25" y="27"/>
+            <point key="canvasLocation" x="-26.086956521739133" y="26.785714285714285"/>
         </view>
         <view contentMode="scaleToFill" restorationIdentifier="PurchaseView" id="Uvm-iV-v0b" customClass="PurchaseView" customModule="DietManager___Manager" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>

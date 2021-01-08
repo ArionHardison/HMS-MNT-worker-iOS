@@ -118,6 +118,8 @@ extension ProfileTableViewController: PresenterOutputProtocol {
         
         print("dataDic>>",dataDict)
         self.setValues(data: dataDict as! ProfileModel)
+        
+        
 
        
       }else if String(describing: modelClass) ==  model.type.UpdateModel{

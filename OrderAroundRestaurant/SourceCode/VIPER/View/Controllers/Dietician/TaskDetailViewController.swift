@@ -65,6 +65,8 @@ class TaskDetailViewController: BaseViewController {
                 self?.showPurchaseView()
             })
         }
+        
+        
         self.requestView.onClickReject = {
             self.requestView?.dismissView(onCompletion: {
                 self.requestView = nil

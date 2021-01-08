@@ -735,6 +735,8 @@ extension EditRegisterViewController: PresenterOutputProtocol {
         if String(describing: modelClass) == model.type.ProfileModel {
             let data = dataDict  as? ProfileModel
             
+            UserDataDefaults.main.wallet_balance = data?.wallet_balance
+            
             nameTextField.text = data?.name
             emailAddressTextField.text = data?.email
             

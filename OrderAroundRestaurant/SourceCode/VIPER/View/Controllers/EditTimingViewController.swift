@@ -923,6 +923,8 @@ extension EditTimingViewController: PresenterOutputProtocol {
         if String(describing: modelClass) == model.type.ProfileModel {
             let data = dataDict  as? ProfileModel
             
+            UserDataDefaults.main.wallet_balance = data?.wallet_balance
+            
             timeArr = data?.timings ?? []
             setTiming()
             

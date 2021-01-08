@@ -10689,11 +10689,6 @@
             <point key="canvasLocation" x="2208.8000000000002" y="767.76611694152928"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="RAC-T7-Cu1">
-            <size key="intrinsicContentSize" width="120" height="20"/>
-        </designable>
-    </designables>
     <resources>
         <image name="Add" width="60" height="60"/>
         <image name="Location" width="20" height="20"/>

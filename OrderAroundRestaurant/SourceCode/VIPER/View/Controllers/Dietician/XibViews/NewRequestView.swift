@@ -21,9 +21,13 @@ class NewRequestView: UIView {
     
     @IBOutlet weak var bgView : UIView!
     
+    @IBOutlet weak var timeLeftLabel: UILabel!
     
+    internal var avPlayerHelper = AVPlayerHelper()
     var orderListData: OrderListModel?
     
+    var timeSecond = 118
+    internal var timer : Timer?
     var onClickAccept:(()->Void)?
     var onClickReject:(()->Void)?
     
@@ -42,6 +46,9 @@ class NewRequestView: UIView {
         self.locLbl.text = orderListData?.customer_address?.map_address ?? ""
         self.orderID.text = "# \(orderListData?.id ?? 0)"
         self.itemLbl.text = (orderListData?.food?.name ?? "").capitalized
+        
+      //  self.timeLeftLabel.text = "118 sec Left"
+        self.startTimer()
         
         var category : String = ""
         
@@ -64,6 +71,46 @@ class NewRequestView: UIView {
         if category.count > 0{
         self.ingredientsLbl.text = category
         }
+    }
+    
+    
+    func startTimer(){ //MARK:- Here set the timer value for accept request counter
+        
+        avPlayerHelper.play()
+        
+        print("Called",#function)
+        self.timer?.invalidate()
+        self.timer = nil
+        
+        
+        self.timeSecond = 118
+        self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { ( timer ) in
+            
+            self.timeSecond -= 1
+            print("Timer Value ",self.timeSecond)
+            if self.timeSecond == 0 {
+                DispatchQueue.main.async {
+                    self.timer?.invalidate()
+                    self.avPlayerHelper.stop()
+                    self.onClickReject?()
+//                    self.rideAcceptViewNib?.dismissView(onCompletion: {
+////                        self.rideAcceptViewNib = nil
+////                        self.Simmer.showAnimateView(self.Simmer, isShow: true, direction: .Top)
+////                        self.backSimmerBtnView.showAnimateView(self.backSimmerBtnView, isShow: true, direction: .Top)
+//                    })
+                    
+                }
+                print("Invalidated")
+                
+            }
+            
+            
+            self.timeLeftLabel.text = "\(self.timeSecond) \("Secs") \("Left")"
+           // self.rideAcceptViewNib?.labelTime.text = "\(self.timeSecond)"
+        })
+        
+        
+        
     }
     
     override func layoutSubviews() {

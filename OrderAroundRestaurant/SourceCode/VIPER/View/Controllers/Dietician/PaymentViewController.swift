@@ -144,6 +144,9 @@ extension PaymentViewController : PresenterOutputProtocol {
             let data = dataDict  as? ProfileModel
             self.loadWebUrl(urlString: data?.stripe_connect_url ?? "")
             
+            UserDataDefaults.main.wallet_balance = data?.wallet_balance
+            
+            
         }else if String(describing: modelClass) == model.type.StripeTokenEntity {
             if let responseData = dataDict  as? StripeTokenEntity{
                 if responseData.status ?? false{

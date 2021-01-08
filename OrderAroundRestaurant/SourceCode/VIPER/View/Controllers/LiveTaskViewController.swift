@@ -156,6 +156,7 @@ extension LiveTaskViewController: PresenterOutputProtocol {
                     self.profileDataResponse = dataDict  as? ProfileModel
                     UserDefaults.standard.set(self.profileDataResponse?.id, forKey: Keys.list.shopId)
                     UserDefaults.standard.set(self.profileDataResponse?.currency, forKey: Keys.list.currency)
+            UserDataDefaults.main.wallet_balance = profileDataResponse?.wallet_balance
                     profiledata = self.profileDataResponse
                     HideActivityIndicator()
                    

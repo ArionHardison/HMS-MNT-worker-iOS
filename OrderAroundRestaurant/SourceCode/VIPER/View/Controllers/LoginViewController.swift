@@ -275,7 +275,9 @@ extension LoginViewController: PresenterOutputProtocol {
                 UserDefaults.standard.set(data, forKey:  Keys.list.userData)
                 UserDefaults.standard.synchronize()
                 
-                print("login >>",self.logindata?.wallet_balance)
+                
+                
+                print("wallet_balance >>",self.logindata?.wallet_balance)
                  UserDataDefaults.main.access_token = self.logindata?.access_token ?? ""
                 UserDataDefaults.main.wallet_balance = self.logindata?.wallet_balance ?? ""
                 UserDataDefaults.main.currency = self.logindata?.currency ?? ""

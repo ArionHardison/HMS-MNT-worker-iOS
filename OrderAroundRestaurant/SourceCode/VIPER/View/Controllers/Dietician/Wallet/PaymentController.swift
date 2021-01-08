@@ -491,6 +491,8 @@ extension PaymentController: PresenterOutputProtocol {
             
             let data = dataDict  as? ProfileModel
             
+            UserDataDefaults.main.wallet_balance = data?.wallet_balance
+            
            
             var walletBalance = data?.wallet_balance
                  walletBalance = "(\(walletBalance ?? ""))"
@@ -526,6 +528,9 @@ extension PaymentController: PresenterOutputProtocol {
          }else if String(describing: modelClass) == model.type.walletEntity{
             
             let data = dataDict  as? walletTransactionEntity
+            
+            paymentView?.cashTextField.text?.removeAll()
+            paymentView?.commentView.text?.removeAll()
             
             self.showToast(string: data?.message ?? "Successfully Requested")
             
