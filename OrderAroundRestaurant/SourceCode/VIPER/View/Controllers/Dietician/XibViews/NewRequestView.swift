@@ -26,7 +26,7 @@ class NewRequestView: UIView {
     internal var avPlayerHelper = AVPlayerHelper()
     var orderListData: OrderListModel?
     
-    var timeSecond = 118
+    var timeSecond = 60
     internal var timer : Timer?
     var onClickAccept:(()->Void)?
     var onClickReject:(()->Void)?
@@ -83,7 +83,7 @@ class NewRequestView: UIView {
         self.timer = nil
         
         
-        self.timeSecond = 118
+        self.timeSecond = 60
         self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { ( timer ) in
             
             self.timeSecond -= 1
@@ -92,7 +92,7 @@ class NewRequestView: UIView {
                 DispatchQueue.main.async {
                     self.timer?.invalidate()
                     self.avPlayerHelper.stop()
-                    self.onClickReject?()
+                 //   self.onClickReject?()
 //                    self.rideAcceptViewNib?.dismissView(onCompletion: {
 ////                        self.rideAcceptViewNib = nil
 ////                        self.Simmer.showAnimateView(self.Simmer, isShow: true, direction: .Top)
@@ -105,7 +105,7 @@ class NewRequestView: UIView {
             }
             
             
-            self.timeLeftLabel.text = "\(self.timeSecond) \("Secs") \("Left")"
+        //    self.timeLeftLabel.text = "\(self.timeSecond) \("Secs") \("Left")"
            // self.rideAcceptViewNib?.labelTime.text = "\(self.timeSecond)"
         })
         
