@@ -32,7 +32,7 @@ class OrderItemsCell: UITableViewCell {
     func setupData(data : OrderListModel){
         self.foodName.text = (data.food?.name ?? "").capitalized
         self.foodPrice.text = "$ " + (data.food?.price ?? "")
-        self.orderItem.text = "\("#")\(data.food?.id ?? 0)"
+        self.orderItem.text = "\("#")\(data.id ?? 0)"
         self.orderlistdata = data
         
       

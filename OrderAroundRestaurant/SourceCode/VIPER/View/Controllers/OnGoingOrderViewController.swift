@@ -163,6 +163,7 @@ extension OnGoingOrderViewController: PresenterOutputProtocol {
     }
     
     func showUserStatusView(){
+        
         if self.userSttausView == nil, let requestView = Bundle.main.loadNibNamed("NewRequestView", owner: self, options: [:])?[6] as? UserStatusView {
             requestView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height))
             self.userSttausView = requestView
@@ -172,6 +173,7 @@ extension OnGoingOrderViewController: PresenterOutputProtocol {
     }
     
     func showNewRequestView(data : OrderListModel){
+        
         if self.requestView == nil, let requestView = Bundle.main.loadNibNamed("NewRequestView", owner: self, options: [:])?.first as? NewRequestView {
             requestView.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height))
             self.requestView = requestView

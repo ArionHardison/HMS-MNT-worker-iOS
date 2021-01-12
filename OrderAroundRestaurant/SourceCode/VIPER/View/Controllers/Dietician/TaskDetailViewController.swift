@@ -179,6 +179,7 @@ extension TaskDetailViewController : GMSMapViewDelegate, CLLocationManagerDelega
 //MARK: VIPER Extension:
 extension TaskDetailViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        
         if String(describing: modelClass) == model.type.OrderListModel {
             self.HideActivityIndicator()
             DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {

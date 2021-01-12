@@ -47,7 +47,7 @@ class NewRequestView: UIView {
         self.orderID.text = "# \(orderListData?.id ?? 0)"
         self.itemLbl.text = (orderListData?.food?.name ?? "").capitalized
         
-      //  self.timeLeftLabel.text = "118 sec Left"
+      //  self.timeLeftLabel.text = " sec Left"
         self.startTimer()
         
         var category : String = ""
@@ -92,7 +92,7 @@ class NewRequestView: UIView {
                 DispatchQueue.main.async {
                     self.timer?.invalidate()
                     self.avPlayerHelper.stop()
-                 //   self.onClickReject?()
+                    self.onClickReject?()
 //                    self.rideAcceptViewNib?.dismissView(onCompletion: {
 ////                        self.rideAcceptViewNib = nil
 ////                        self.Simmer.showAnimateView(self.Simmer, isShow: true, direction: .Top)
@@ -105,7 +105,7 @@ class NewRequestView: UIView {
             }
             
             
-        //    self.timeLeftLabel.text = "\(self.timeSecond) \("Secs") \("Left")"
+           self.timeLeftLabel.text = "\(self.timeSecond) \("Secs") \("Left")"
            // self.rideAcceptViewNib?.labelTime.text = "\(self.timeSecond)"
         })
         

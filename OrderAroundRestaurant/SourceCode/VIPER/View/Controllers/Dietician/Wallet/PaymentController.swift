@@ -339,10 +339,11 @@ extension PaymentController {
             
             print("User>>",UserDataDefaults.main.currency)
             
-            self.paymentView?.walletLabel.text = "\("$") \(String.removeNil(UserDataDefaults.main.wallet_balance))"
             
             paymentView.frame = CGRect(origin: CGPoint(x: isWalletSelect ? 0 : self.contentView.frame.width, y: 0), size: CGSize(width: self.contentView.frame.width, height: self.contentView.frame.height))
             self.paymentView = paymentView
+            
+            self.paymentView?.walletLabel.text = "\("$") \(String.removeNil(UserDataDefaults.main.wallet_balance))"
             self.paymentView?.addAmountButton.addTarget(self, action: #selector(addAmountButtonTapped), for: .touchUpInside)
             self.contentView.addSubview(paymentView)
         }
@@ -492,6 +493,8 @@ extension PaymentController: PresenterOutputProtocol {
             let data = dataDict  as? ProfileModel
             
             UserDataDefaults.main.wallet_balance = data?.wallet_balance
+            
+        
             
            
             var walletBalance = data?.wallet_balance

@@ -8,6 +8,7 @@
 
 import UIKit
 import IQKeyboardManagerSwift
+import ObjectMapper
 
 class ChatVC: UIViewController {
     
@@ -43,6 +44,20 @@ class ChatVC: UIViewController {
                 }
                 self.msgTxt.text = ""
             }
+            
+            
+            
+            let urlvalues = ("/api/chef/diet-order")+"/"+"\(String.removeNil(self.orderID))"+"/"+("chat")
+                            print("url>>",urlvalues)
+            
+            
+//            let url = "\(Base.chatapi.rawValue)?\("page=")\(pageNo)"
+//            print("url>>",url)
+            self.presenter?.GETPOST(api: urlvalues, params: [:], methodType: .POST, modelClass: LogoutModel.self, token: true)
+        
+            
+            
+            
         }
     }
     
@@ -155,4 +170,28 @@ enum DateTimeFormate : String{
     case N_hour = "hh:mm a"
     case date_time = "yyyy-MM-dd HH:mm:ss"
     case DM = "dd MMM"
+}
+
+
+/******************************************************************/
+//MARK: VIPER Extension:
+extension ChatVC: PresenterOutputProtocol {
+    func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {
+        if String(describing: modelClass) == model.type.LogoutModel {
+            
+       
+
+            }
+        }
+    
+    
+    func showError(error: CustomError) {
+        print(error)
+        let alert = showAlert(message: error.localizedDescription)
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: {
+               
+            })
+        }
+    }
 }

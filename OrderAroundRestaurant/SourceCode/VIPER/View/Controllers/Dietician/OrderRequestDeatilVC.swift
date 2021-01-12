@@ -176,6 +176,7 @@ extension OrderRequestDeatilVC : UITableViewDelegate, UITableViewDataSource{
 
 extension OrderRequestDeatilVC{
     func showPurchaseView(data : OrderListModel){
+        
         if self.purchaseView == nil, let purchaseview = Bundle.main.loadNibNamed("NewRequestView", owner: self, options: [:])?[1] as? PurchaseView {
             purchaseview.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: self.view.frame.width, height: self.view.frame.height))
             self.purchaseView = purchaseview

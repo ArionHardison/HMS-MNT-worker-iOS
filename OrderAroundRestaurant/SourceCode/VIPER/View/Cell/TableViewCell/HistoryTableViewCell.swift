@@ -66,7 +66,8 @@ class HistoryTableViewCell: UITableViewCell {
         if(orderObj.invoice?.payment_mode == "stripe"){
             paymentModeLbl.attributedText = self.setAttributedString(baseString: "Payment Mode : Card", setString: "Card", font: UIFont.regular(size: 18), color: .darkGray)
         }else{
-            paymentModeLbl.attributedText = self.setAttributedString(baseString: "Payment Mode : \(orderObj.invoice?.payment_mode ?? "")", setString: "\(orderObj.invoice?.payment_mode ?? "")", font: UIFont.regular(size: 18), color: .darkGray)
+            paymentModeLbl.attributedText = self.setAttributedString(baseString: "Payment Mode : Card", setString: "Card", font: UIFont.regular(size: 18), color: .darkGray)
+         //   paymentModeLbl.attributedText = self.setAttributedString(baseString: "Payment Mode : \(orderObj.invoice?.payment_mode ?? "")", setString: "\(orderObj.invoice?.payment_mode ?? "")", font: UIFont.regular(size: 18), color: .darkGray)
         }
         deliveryTimeLbl.text = "Delivery Time : \(orderObj.delivery_date?.convertedDateTime() ?? "")"
         priceDetailLbl.text = "$\(orderObj.invoice?.net ?? 0)"

@@ -48,6 +48,7 @@ enum Base : String{
     case historyList = "/api/shop/history"
     case getprofile = "/api/chef/profile"
     
+    
     case updateProfile = "//api/chef/profile"
     //"/api/shop/profile"
     case getRevenue = "/api/shop/revenue"
@@ -65,6 +66,7 @@ enum Base : String{
     case walletRequestApi = "/api/chef/wallet/request"
     
     case walletListApi = "//api/chef/wallet/request"
+    case chatapi = "/api/dietitian/diet-order/"
     
     init(fromRawValue: String){
         self = Base(rawValue: fromRawValue) ?? .addOnList
