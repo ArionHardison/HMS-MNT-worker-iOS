@@ -8,7 +8,9 @@
 
 import UIKit
 import ObjectMapper
+#if !targetEnvironment(simulator)
 import GooglePlaces
+#endif
 import UnsplashPhotoPicker
 
 enum SelectionType: Int {
@@ -787,6 +789,7 @@ extension RegisterViewController: UITextFieldDelegate {
     }
 }
 
+#if !targetEnvironment(simulator)
 extension RegisterViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
@@ -822,6 +825,18 @@ extension RegisterViewController: GMSAutocompleteViewControllerDelegate {
     }
     
 }
+
+#else
+
+// Simulator placeholder for GooglePlaces functionality
+extension RegisterViewController {
+    func openGooglePlacesAutocomplete() {
+        print("GooglePlaces autocomplete disabled for simulator builds")
+    }
+}
+
+#endif
+
 extension RegisterViewController: CountryCodeViewControllerDelegate,SelectCusineViewControllerDelegate {
     func featchCusineLabel(cusineArr: NSMutableArray) {
         print(cusineArr)

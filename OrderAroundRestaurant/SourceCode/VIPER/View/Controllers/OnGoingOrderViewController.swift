@@ -8,7 +8,9 @@
 
 import UIKit
 import ObjectMapper
+#if !targetEnvironment(simulator)
 import GoogleMaps
+#endif
 
 extension Notification.Name {
     static let didReceiveData = Notification.Name("didReceiveData")

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Charts
 
-class CustomLabelsXAxisValueFormatter : NSObject, IAxisValueFormatter {
+class CustomLabelsXAxisValueFormatter : NSObject, AxisValueFormatter {
     
     var labels: [String] = []
     

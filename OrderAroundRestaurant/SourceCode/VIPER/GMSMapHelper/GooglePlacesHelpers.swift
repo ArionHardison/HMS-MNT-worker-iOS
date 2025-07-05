@@ -1,11 +1,17 @@
-////
-////  GooglePlacesHelper.swift
-////  User
-////
-////  Created by CSS on 10/05/18.
-////  Copyright © 2018 Appoets. All rights reserved.
-////
 //
+//  GooglePlacesHelper.swift
+//  User
+//
+//  Created by CSS on 10/05/18.
+//  Copyright © 2018 Appoets. All rights reserved.
+//
+
+import Foundation
+
+// GooglePlaces helper functionality has been disabled for simulator compatibility
+// This file is maintained for future reference and can be re-enabled when 
+// upgrading to iOS 13+ minimum deployment target for XCFramework support
+
 //import Foundation
 //import GooglePlaces
 //

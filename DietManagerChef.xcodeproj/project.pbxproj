@@ -200,6 +200,7 @@
 		24FC05B422734385003243D9 /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B322734385003243D9 /* Global.swift */; };
 		24FC05B6227343E3003243D9 /* LocaliseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B5227343E3003243D9 /* LocaliseManager.swift */; };
 		24FC05B822734548003243D9 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24FC05B722734548003243D9 /* String.swift */; };
+		418880AE24C49A10B6D9C80E /* Pods_DietManagerChef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3FB279BABB0AD08CAFFC42A /* Pods_DietManagerChef.framework */; };
 		7777A581253DAB9D00A24D60 /* MobileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7777A580253DAB9D00A24D60 /* MobileViewController.swift */; };
 		7777A586253DAFC400A24D60 /* CountryCodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7777A584253DAFC400A24D60 /* CountryCodeCell.swift */; };
 		7777A587253DAFC400A24D60 /* CountryCodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7777A585253DAFC400A24D60 /* CountryCodeCell.xib */; };
@@ -207,12 +208,9 @@
 		77C48CC2253DCC5100A5AD82 /* LiveTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C48CC1253DCC5100A5AD82 /* LiveTaskViewController.swift */; };
 		77C48CC4253DCE2500A5AD82 /* SideBarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C48CC3253DCE2500A5AD82 /* SideBarTableViewController.swift */; };
 		77E1FCC1253F067500EDB0DB /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77E1FCC0253F067500EDB0DB /* ProfileTableViewController.swift */; };
-		7E880CC8430C8AC3FCE3BC35 /* Pods_DietManagerChef.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7806888FE8F9B6B550450F65 /* Pods_DietManagerChef.framework */; };
 		850F3DC3247BCB00003DF2C3 /* EmailCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 850F3DC1247BCB00003DF2C3 /* EmailCollectionViewCell.swift */; };
 		850F3DC4247BCB00003DF2C3 /* EmailCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 850F3DC2247BCB00003DF2C3 /* EmailCollectionViewCell.xib */; };
 		85EBF5C02440C51F0031DB32 /* OTPController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85EBF5BF2440C51F0031DB32 /* OTPController.swift */; };
-		979D1682E9595F28D0F5DF50 /* Pods_DietManagerChefUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2251CA67FF8334380F754820 /* Pods_DietManagerChefUITests.framework */; };
-		B1AFC83EC1368E34F5D8F87D /* Pods_DietManagerChefTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19CABD98D6CF809DA9041749 /* Pods_DietManagerChefTests.framework */; };
 		B4086EDD2271F159008C5BC0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B4086EDF2271F159008C5BC0 /* Localizable.strings */; };
 		B4B405DB225B87D700D86215 /* DeleteEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B405DA225B87D600D86215 /* DeleteEntity.swift */; };
 		B4DBB6E9225CA46600CB31F8 /* OrderTrackingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4DBB6E8225CA46600CB31F8 /* OrderTrackingViewController.swift */; };
@@ -235,6 +233,8 @@
 		BB6A2B7F2590CFA9006DA5BB /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A2B7E2590CFA9006DA5BB /* ToastView.swift */; };
 		BB6A2B842590CFB4006DA5BB /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6A2B832590CFB4006DA5BB /* ImageExtension.swift */; };
 		BB9A65D12549B6A100C91426 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9A65D02549B6A000C91426 /* Common.swift */; };
+		C6F1CFF6C5A8B3FA04068148 /* Pods_DietManagerChefUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B5A5A425D82A44A15B94209 /* Pods_DietManagerChefUITests.framework */; };
+		E3CF4871F0D337D28858FC66 /* Pods_DietManagerChefTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CCBB3D50DC3FA5583BAC6B1 /* Pods_DietManagerChefTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -261,7 +261,7 @@
 		008027742514ABBC0016D193 /* TermsConditionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TermsConditionViewController.swift; sourceTree = "<group>"; };
 		0083EC68251B40FF00A3E0E9 /* StripeTokenEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StripeTokenEntity.swift; sourceTree = "<group>"; };
 		00D4C19324F9109A0025A861 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		045038559AD5D2C8F8D0DC62 /* Pods-DietManagerChefTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerChefTests.debug.xcconfig"; path = "Target Support Files/Pods-DietManagerChefTests/Pods-DietManagerChefTests.debug.xcconfig"; sourceTree = "<group>"; };
+		07FD8F495C0BE30E470514E0 /* Pods-DietManagerChef.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerChef.debug.xcconfig"; path = "Target Support Files/Pods-DietManagerChef/Pods-DietManagerChef.debug.xcconfig"; sourceTree = "<group>"; };
 		0817913D2237EBE5002165E1 /* StatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusViewController.swift; sourceTree = "<group>"; };
 		0852342E2226668500446B47 /* DishesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesViewController.swift; sourceTree = "<group>"; };
 		08759A10224009BD0030C19D /* RegisterEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterEntity.swift; sourceTree = "<group>"; };
@@ -452,15 +452,13 @@
 		1274D56A241B97B300000CFE /* ReasonsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReasonsCell.xib; path = OrderAroundRestaurant/SourceCode/VIPER/View/Cell/ReasonsCell.xib; sourceTree = SOURCE_ROOT; };
 		18D82AE425754781005E9479 /* Color.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Color.xcassets; sourceTree = "<group>"; };
 		18D82B8325755CFA005E9479 /* CAPSPageMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CAPSPageMenu.swift; sourceTree = "<group>"; };
-		19CABD98D6CF809DA9041749 /* Pods_DietManagerChefTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietManagerChefTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2251CA67FF8334380F754820 /* Pods_DietManagerChefUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietManagerChefUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		24FC05B322734385003243D9 /* Global.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		24FC05B5227343E3003243D9 /* LocaliseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaliseManager.swift; sourceTree = "<group>"; };
 		24FC05B722734548003243D9 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		5680E7E6FF8FACBA38E2D603 /* Pods-DietManagerChefTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerChefTests.release.xcconfig"; path = "Target Support Files/Pods-DietManagerChefTests/Pods-DietManagerChefTests.release.xcconfig"; sourceTree = "<group>"; };
-		6D0B33191C1793789EF186C8 /* Pods-DietManagerManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerManager.release.xcconfig"; path = "Target Support Files/Pods-DietManagerManager/Pods-DietManagerManager.release.xcconfig"; sourceTree = "<group>"; };
-		70322CCF6944B178C3C1EC5F /* Pods-DietManagerChefUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerChefUITests.debug.xcconfig"; path = "Target Support Files/Pods-DietManagerChefUITests/Pods-DietManagerChefUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		720967599EA4387BC1D693F4 /* Pods-OrderAroundRestaurant.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurant.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurant/Pods-OrderAroundRestaurant.release.xcconfig"; sourceTree = "<group>"; };
+		3CCBB3D50DC3FA5583BAC6B1 /* Pods_DietManagerChefTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietManagerChefTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F88FE2F3E07AC9CC6A7475 /* Pods-DietManagerChefTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerChefTests.debug.xcconfig"; path = "Target Support Files/Pods-DietManagerChefTests/Pods-DietManagerChefTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6D4950C00612552D9207975D /* Pods-DietManagerChefTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerChefTests.release.xcconfig"; path = "Target Support Files/Pods-DietManagerChefTests/Pods-DietManagerChefTests.release.xcconfig"; sourceTree = "<group>"; };
+		70A553795ED1CF6588B6DB84 /* Pods-DietManagerChefUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerChefUITests.debug.xcconfig"; path = "Target Support Files/Pods-DietManagerChefUITests/Pods-DietManagerChefUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		7777A580253DAB9D00A24D60 /* MobileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MobileViewController.swift; sourceTree = "<group>"; };
 		7777A584253DAFC400A24D60 /* CountryCodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryCodeCell.swift; sourceTree = "<group>"; };
 		7777A585253DAFC400A24D60 /* CountryCodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountryCodeCell.xib; sourceTree = "<group>"; };
@@ -468,21 +466,17 @@
 		77C48CC1253DCC5100A5AD82 /* LiveTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveTaskViewController.swift; sourceTree = "<group>"; };
 		77C48CC3253DCE2500A5AD82 /* SideBarTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewController.swift; sourceTree = "<group>"; };
 		77E1FCC0253F067500EDB0DB /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
-		7806888FE8F9B6B550450F65 /* Pods_DietManagerChef.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietManagerChef.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E185551D16701902D30118A /* Pods-DietManagerChef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerChef.release.xcconfig"; path = "Target Support Files/Pods-DietManagerChef/Pods-DietManagerChef.release.xcconfig"; sourceTree = "<group>"; };
 		850F3DC1247BCB00003DF2C3 /* EmailCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailCollectionViewCell.swift; sourceTree = "<group>"; };
 		850F3DC2247BCB00003DF2C3 /* EmailCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmailCollectionViewCell.xib; sourceTree = "<group>"; };
 		85EBF5BF2440C51F0031DB32 /* OTPController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OTPController.swift; sourceTree = "<group>"; };
-		915B0DF90E6F700F351463E9 /* Pods-OrderAroundRestaurantUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantUITests.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantUITests/Pods-OrderAroundRestaurantUITests.release.xcconfig"; sourceTree = "<group>"; };
-		95CFECCBD6DB50EF076E7CC9 /* Pods-DietManagerManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerManager.debug.xcconfig"; path = "Target Support Files/Pods-DietManagerManager/Pods-DietManagerManager.debug.xcconfig"; sourceTree = "<group>"; };
-		96562278739C1FFA52E020AA /* Pods-OrderAroundRestaurantUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantUITests.debug.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantUITests/Pods-OrderAroundRestaurantUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		9B293C9120FC095E3550BD09 /* Pods-DietManagerManagerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerManagerTests.debug.xcconfig"; path = "Target Support Files/Pods-DietManagerManagerTests/Pods-DietManagerManagerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AC34BDC20F0E5FF1F91311A2 /* Pods-DietManagerManagerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerManagerUITests.debug.xcconfig"; path = "Target Support Files/Pods-DietManagerManagerUITests/Pods-DietManagerManagerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9B5A5A425D82A44A15B94209 /* Pods_DietManagerChefUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietManagerChefUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B3FB279BABB0AD08CAFFC42A /* Pods_DietManagerChef.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DietManagerChef.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4086EDE2271F159008C5BC0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B4086EE02271F16A008C5BC0 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B4B405DA225B87D600D86215 /* DeleteEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteEntity.swift; sourceTree = "<group>"; };
 		B4BC6BCD2254BE83007427BD /* OrderAroundRestaurant.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OrderAroundRestaurant.entitlements; sourceTree = "<group>"; };
 		B4DBB6E8225CA46600CB31F8 /* OrderTrackingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTrackingViewController.swift; sourceTree = "<group>"; };
-		BAB4B17BE6A699D17BCF67EB /* Pods-DietManagerManagerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerManagerUITests.release.xcconfig"; path = "Target Support Files/Pods-DietManagerManagerUITests/Pods-DietManagerManagerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		BB384ADA25A849CA004BBBA4 /* AVPlayerHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AVPlayerHelper.swift; path = OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/AVPlayerHelper.swift; sourceTree = SOURCE_ROOT; };
 		BB4935822599C62900E5E89E /* PaymentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PaymentViewController.swift; path = OrderAroundRestaurant/SourceCode/VIPER/View/Controllers/Dietician/PaymentViewController.swift; sourceTree = SOURCE_ROOT; };
 		BB6A2B502590C3BE006DA5BB /* PaymentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
@@ -502,13 +496,7 @@
 		BB6A2B7E2590CFA9006DA5BB /* ToastView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ToastView.swift; path = OrderAroundRestaurant/SourceCode/Constants/Constants/ToastView.swift; sourceTree = SOURCE_ROOT; };
 		BB6A2B832590CFB4006DA5BB /* ImageExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageExtension.swift; path = OrderAroundRestaurant/SourceCode/Constants/Constants/ImageExtension.swift; sourceTree = SOURCE_ROOT; };
 		BB9A65D02549B6A000C91426 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
-		C5A079EBE806DF346E387BC6 /* Pods-OrderAroundRestaurantTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantTests.release.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantTests/Pods-OrderAroundRestaurantTests.release.xcconfig"; sourceTree = "<group>"; };
-		CC2C017217BF53DC674AEEA1 /* Pods-OrderAroundRestaurantTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurantTests.debug.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurantTests/Pods-OrderAroundRestaurantTests.debug.xcconfig"; sourceTree = "<group>"; };
-		D2FECAFDECBB04350AF5064F /* Pods-DietManagerChef.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerChef.debug.xcconfig"; path = "Target Support Files/Pods-DietManagerChef/Pods-DietManagerChef.debug.xcconfig"; sourceTree = "<group>"; };
-		D57F8BFB4377CBE978AFCAF5 /* Pods-OrderAroundRestaurant.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OrderAroundRestaurant.debug.xcconfig"; path = "Target Support Files/Pods-OrderAroundRestaurant/Pods-OrderAroundRestaurant.debug.xcconfig"; sourceTree = "<group>"; };
-		DC60AAB0D07BCA264A1721C2 /* Pods-DietManagerManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerManagerTests.release.xcconfig"; path = "Target Support Files/Pods-DietManagerManagerTests/Pods-DietManagerManagerTests.release.xcconfig"; sourceTree = "<group>"; };
-		F313FF01CBF134C2BC71A6E7 /* Pods-DietManagerChef.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerChef.release.xcconfig"; path = "Target Support Files/Pods-DietManagerChef/Pods-DietManagerChef.release.xcconfig"; sourceTree = "<group>"; };
-		FB75377FB7D9098475E981FC /* Pods-DietManagerChefUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerChefUITests.release.xcconfig"; path = "Target Support Files/Pods-DietManagerChefUITests/Pods-DietManagerChefUITests.release.xcconfig"; sourceTree = "<group>"; };
+		C34BF4D3686D79268B8748E0 /* Pods-DietManagerChefUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DietManagerChefUITests.release.xcconfig"; path = "Target Support Files/Pods-DietManagerChefUITests/Pods-DietManagerChefUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -517,7 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				125B965A23D71EAF00923CE3 /* WebKit.framework in Frameworks */,
-				7E880CC8430C8AC3FCE3BC35 /* Pods_DietManagerChef.framework in Frameworks */,
+				418880AE24C49A10B6D9C80E /* Pods_DietManagerChef.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,7 +513,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1AFC83EC1368E34F5D8F87D /* Pods_DietManagerChefTests.framework in Frameworks */,
+				E3CF4871F0D337D28858FC66 /* Pods_DietManagerChefTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,7 +521,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				979D1682E9595F28D0F5DF50 /* Pods_DietManagerChefUITests.framework in Frameworks */,
+				C6F1CFF6C5A8B3FA04068148 /* Pods_DietManagerChefUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1182,9 +1170,9 @@
 			isa = PBXGroup;
 			children = (
 				125B965923D71EAF00923CE3 /* WebKit.framework */,
-				7806888FE8F9B6B550450F65 /* Pods_DietManagerChef.framework */,
-				19CABD98D6CF809DA9041749 /* Pods_DietManagerChefTests.framework */,
-				2251CA67FF8334380F754820 /* Pods_DietManagerChefUITests.framework */,
+				B3FB279BABB0AD08CAFFC42A /* Pods_DietManagerChef.framework */,
+				3CCBB3D50DC3FA5583BAC6B1 /* Pods_DietManagerChefTests.framework */,
+				9B5A5A425D82A44A15B94209 /* Pods_DietManagerChefUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1202,24 +1190,12 @@
 		DB24E01876FE22BC4ACF205C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D57F8BFB4377CBE978AFCAF5 /* Pods-OrderAroundRestaurant.debug.xcconfig */,
-				720967599EA4387BC1D693F4 /* Pods-OrderAroundRestaurant.release.xcconfig */,
-				CC2C017217BF53DC674AEEA1 /* Pods-OrderAroundRestaurantTests.debug.xcconfig */,
-				C5A079EBE806DF346E387BC6 /* Pods-OrderAroundRestaurantTests.release.xcconfig */,
-				96562278739C1FFA52E020AA /* Pods-OrderAroundRestaurantUITests.debug.xcconfig */,
-				915B0DF90E6F700F351463E9 /* Pods-OrderAroundRestaurantUITests.release.xcconfig */,
-				95CFECCBD6DB50EF076E7CC9 /* Pods-DietManagerManager.debug.xcconfig */,
-				6D0B33191C1793789EF186C8 /* Pods-DietManagerManager.release.xcconfig */,
-				9B293C9120FC095E3550BD09 /* Pods-DietManagerManagerTests.debug.xcconfig */,
-				DC60AAB0D07BCA264A1721C2 /* Pods-DietManagerManagerTests.release.xcconfig */,
-				AC34BDC20F0E5FF1F91311A2 /* Pods-DietManagerManagerUITests.debug.xcconfig */,
-				BAB4B17BE6A699D17BCF67EB /* Pods-DietManagerManagerUITests.release.xcconfig */,
-				D2FECAFDECBB04350AF5064F /* Pods-DietManagerChef.debug.xcconfig */,
-				F313FF01CBF134C2BC71A6E7 /* Pods-DietManagerChef.release.xcconfig */,
-				045038559AD5D2C8F8D0DC62 /* Pods-DietManagerChefTests.debug.xcconfig */,
-				5680E7E6FF8FACBA38E2D603 /* Pods-DietManagerChefTests.release.xcconfig */,
-				70322CCF6944B178C3C1EC5F /* Pods-DietManagerChefUITests.debug.xcconfig */,
-				FB75377FB7D9098475E981FC /* Pods-DietManagerChefUITests.release.xcconfig */,
+				07FD8F495C0BE30E470514E0 /* Pods-DietManagerChef.debug.xcconfig */,
+				7E185551D16701902D30118A /* Pods-DietManagerChef.release.xcconfig */,
+				52F88FE2F3E07AC9CC6A7475 /* Pods-DietManagerChefTests.debug.xcconfig */,
+				6D4950C00612552D9207975D /* Pods-DietManagerChefTests.release.xcconfig */,
+				70A553795ED1CF6588B6DB84 /* Pods-DietManagerChefUITests.debug.xcconfig */,
+				C34BF4D3686D79268B8748E0 /* Pods-DietManagerChefUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1231,13 +1207,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 087D0BEB222403FF00E58BDE /* Build configuration list for PBXNativeTarget "DietManagerChef" */;
 			buildPhases = (
-				5F78723D96DCD9FD4A4DABE8 /* [CP] Check Pods Manifest.lock */,
+				27A1411F5AA776D56F63D531 /* [CP] Check Pods Manifest.lock */,
 				087D0BBF222403FC00E58BDE /* Sources */,
 				087D0BC0222403FC00E58BDE /* Frameworks */,
 				087D0BC1222403FC00E58BDE /* Resources */,
-				B46AE329D6A65EC53ACBB283 /* [CP] Embed Pods Frameworks */,
-				0CB6EBDCD82D3B60D184AE9C /* [CP] Copy Pods Resources */,
 				24F903242274725B00EC0FA2 /* ShellScript */,
+				860ADA50B91CB4935BE4BF0E /* [CP] Embed Pods Frameworks */,
+				53E76A5C23FA04B71A969A46 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1252,7 +1228,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 087D0BEE222403FF00E58BDE /* Build configuration list for PBXNativeTarget "DietManagerChefTests" */;
 			buildPhases = (
-				1382DF723F07D24C845BA0CE /* [CP] Check Pods Manifest.lock */,
+				50DB30838D12F24E624953B8 /* [CP] Check Pods Manifest.lock */,
 				087D0BD3222403FF00E58BDE /* Sources */,
 				087D0BD4222403FF00E58BDE /* Frameworks */,
 				087D0BD5222403FF00E58BDE /* Resources */,
@@ -1271,7 +1247,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 087D0BF1222403FF00E58BDE /* Build configuration list for PBXNativeTarget "DietManagerChefUITests" */;
 			buildPhases = (
-				003DF1C9F2D33671BCBB7099 /* [CP] Check Pods Manifest.lock */,
+				BEC6FF6CFD736D92DEB29933 /* [CP] Check Pods Manifest.lock */,
 				087D0BDE222403FF00E58BDE /* Sources */,
 				087D0BDF222403FF00E58BDE /* Frameworks */,
 				087D0BE0222403FF00E58BDE /* Resources */,
@@ -1410,67 +1386,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		003DF1C9F2D33671BCBB7099 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DietManagerChefUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		0CB6EBDCD82D3B60D184AE9C /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DietManagerChef/Pods-DietManagerChef-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-DietManagerChef/Pods-DietManagerChef-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DietManagerChef/Pods-DietManagerChef-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1382DF723F07D24C845BA0CE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-DietManagerChefTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
 		24F903242274725B00EC0FA2 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1489,7 +1404,7 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n\n";
 		};
-		5F78723D96DCD9FD4A4DABE8 /* [CP] Check Pods Manifest.lock */ = {
+		27A1411F5AA776D56F63D531 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1511,7 +1426,46 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B46AE329D6A65EC53ACBB283 /* [CP] Embed Pods Frameworks */ = {
+		50DB30838D12F24E624953B8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DietManagerChefTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		53E76A5C23FA04B71A969A46 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DietManagerChef/Pods-DietManagerChef-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-DietManagerChef/Pods-DietManagerChef-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DietManagerChef/Pods-DietManagerChef-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		860ADA50B91CB4935BE4BF0E /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1526,6 +1480,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-DietManagerChef/Pods-DietManagerChef-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BEC6FF6CFD736D92DEB29933 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DietManagerChefUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1874,7 +1850,7 @@
 		};
 		087D0BEC222403FF00E58BDE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D2FECAFDECBB04350AF5064F /* Pods-DietManagerChef.debug.xcconfig */;
+			baseConfigurationReference = 07FD8F495C0BE30E470514E0 /* Pods-DietManagerChef.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
@@ -1884,7 +1860,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Q4N6XWX7K3;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1900,7 +1876,7 @@
 		};
 		087D0BED222403FF00E58BDE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F313FF01CBF134C2BC71A6E7 /* Pods-DietManagerChef.release.xcconfig */;
+			baseConfigurationReference = 7E185551D16701902D30118A /* Pods-DietManagerChef.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = OrderAroundRestaurant/OrderAroundRestaurant.entitlements;
@@ -1909,7 +1885,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = Q4N6XWX7K3;
 				INFOPLIST_FILE = OrderAroundRestaurant/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1926,7 +1902,7 @@
 		};
 		087D0BEF222403FF00E58BDE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 045038559AD5D2C8F8D0DC62 /* Pods-DietManagerChefTests.debug.xcconfig */;
+			baseConfigurationReference = 52F88FE2F3E07AC9CC6A7475 /* Pods-DietManagerChefTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1947,7 +1923,7 @@
 		};
 		087D0BF0222403FF00E58BDE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5680E7E6FF8FACBA38E2D603 /* Pods-DietManagerChefTests.release.xcconfig */;
+			baseConfigurationReference = 6D4950C00612552D9207975D /* Pods-DietManagerChefTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1968,7 +1944,7 @@
 		};
 		087D0BF2222403FF00E58BDE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70322CCF6944B178C3C1EC5F /* Pods-DietManagerChefUITests.debug.xcconfig */;
+			baseConfigurationReference = 70A553795ED1CF6588B6DB84 /* Pods-DietManagerChefUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1988,7 +1964,7 @@
 		};
 		087D0BF3222403FF00E58BDE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB75377FB7D9098475E981FC /* Pods-DietManagerChefUITests.release.xcconfig */;
+			baseConfigurationReference = C34BF4D3686D79268B8748E0 /* Pods-DietManagerChefUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

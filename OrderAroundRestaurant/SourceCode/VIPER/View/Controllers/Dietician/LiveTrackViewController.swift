@@ -7,13 +7,20 @@
 //
 
 import UIKit
+import CoreLocation
+#if !targetEnvironment(simulator)
 import GoogleMaps
+#endif
 import ObjectMapper
 
 class LiveTrackViewController: BaseViewController {
 
     
+    #if !targetEnvironment(simulator)
     @IBOutlet weak var mapView: GMSMapView!
+    #else
+    @IBOutlet weak var mapView: UIView!
+    #endif
     @IBOutlet weak var backBtn: UIButton!
     
     @IBOutlet weak var shadowViewOne: UIView!
@@ -38,8 +45,13 @@ class LiveTrackViewController: BaseViewController {
     @IBOutlet weak var changeOrderStatusBtn: UIButton!
     
     
+    #if !targetEnvironment(simulator)
     var pickupMarker : GMSMarker = GMSMarker()
     var dropMarker : GMSMarker = GMSMarker()
+    #else
+    var pickupMarker : Any = NSObject()
+    var dropMarker : Any = NSObject()
+    #endif
     var waitingforapproval : WaitingforApproval!
     var userapproved : UserApprovedView!
     var uploadPrepareimg : UploadPreparedImage!
@@ -283,14 +295,21 @@ class LiveTrackViewController: BaseViewController {
     }
 }
 
+#if !targetEnvironment(simulator)
 extension LiveTrackViewController : GMSMapViewDelegate, CLLocationManagerDelegate{
     
     func setupMapDelegate(){
+        #if !targetEnvironment(simulator)
         self.mapView.delegate = self
         self.mapView.isMyLocationEnabled = true
+        #else
+        print("GoogleMaps delegate setup disabled for simulator builds")
+        #endif
         
+        #if !targetEnvironment(simulator)
         self.mapView.settings.myLocationButton = false
         self.mapView.settings.compassButton = false
+        #endif
         
         if CLLocationManager.locationServicesEnabled()
         {
@@ -326,7 +345,11 @@ extension LiveTrackViewController : GMSMapViewDelegate, CLLocationManagerDelegat
     // MARK: update Location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.currentLocation = locations.last ?? CLLocation()
+        #if !targetEnvironment(simulator)
         self.mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
+        #else
+        print("GoogleMaps camera positioning disabled for simulator builds")
+        #endif
     }
     
     
@@ -355,16 +378,61 @@ extension LiveTrackViewController : GMSMapViewDelegate, CLLocationManagerDelegat
         self.pickupMarker.snippet = self.orderListData?.chef?.address ?? ""
         self.drawPolyline()
         if (self.orderListData?.chef?.latitude ?? 0.0) == 0.0{
+            #if !targetEnvironment(simulator)
             self.mapView.camera = GMSCameraPosition(target: CLLocationCoordinate2D(latitude: self.orderListData?.customer_address?.latitude ?? 0.0, longitude: self.orderListData?.customer_address?.longitude ?? 0.0), zoom: 16, bearing: 0, viewingAngle: 0)
+            #else
+            print("GoogleMaps camera positioning disabled for simulator builds")
+            #endif
         }
         
     }
     
     func drawPolyline(){
-        
+        #if !targetEnvironment(simulator)
         self.mapView.drawPolygon(from:CLLocationCoordinate2D(latitude: self.orderListData?.customer_address?.latitude ?? 0.0, longitude: self.orderListData?.customer_address?.longitude ?? 0.0), to: CLLocationCoordinate2D(latitude: Double(self.orderListData?.chef?.latitude ?? 0.0) ?? 0.0, longitude: Double(self.orderListData?.chef?.longitude ?? 0.0) ?? 0.0))
+        #else
+        print("GoogleMaps polygon drawing disabled for simulator builds")
+        #endif
     }
 }
+
+#else
+
+extension LiveTrackViewController : CLLocationManagerDelegate{
+    
+    func setupMapDelegate(){
+        print("GoogleMaps delegate setup disabled for simulator builds")
+        
+        if CLLocationManager.locationServicesEnabled()
+        {
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+            locationManager.startUpdatingHeading()
+        }
+        else
+        {
+//            showToast(msg: "Please enable the location service in settings")
+        }
+        self.locationManager.startUpdatingLocation()
+    }
+    
+    // MARK: update Location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.currentLocation = locations.last ?? CLLocation()
+        print("GoogleMaps camera positioning disabled for simulator builds")
+    }
+    
+    func setupPickupDropMArker(){
+        print("GoogleMaps marker setup disabled for simulator builds")
+    }
+    
+    func drawPolyline(){
+        print("GoogleMaps polygon drawing disabled for simulator builds")
+    }
+}
+
+#endif
+
 //MARK: VIPER Extension:
 extension LiveTrackViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {

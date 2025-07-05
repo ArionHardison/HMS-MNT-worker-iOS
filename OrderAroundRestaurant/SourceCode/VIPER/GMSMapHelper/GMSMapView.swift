@@ -6,6 +6,11 @@
 //  Copyright © 2018 Appoets. All rights reserved.
 //
 
+import CoreLocation
+import Foundation
+import UIKit
+
+#if !targetEnvironment(simulator)
 import GoogleMaps
 
 private struct MapPath : Decodable{
@@ -23,8 +28,6 @@ private struct OverView : Decodable {
     
     var points : String?
 }
-
-
 
 extension GMSMapView {
     
@@ -67,8 +70,6 @@ extension GMSMapView {
             
             
         }
-        
-        
     }
     
     //MARK:- Draw polygon
@@ -91,8 +92,23 @@ extension GMSMapView {
             self.animate(with: GMSCameraUpdate.fit(bounds, withPadding: 25.0))
             //self.animate(with: .fit(bounds))
             
+        }
     }
-    
-    }
-    
 }
+
+#else
+
+// GoogleMaps functionality disabled for simulator builds
+class GMSMapView: UIView {}
+
+extension GMSMapView {
+    func drawPolygon(from source: CLLocationCoordinate2D, to destination: CLLocationCoordinate2D){
+        print("GoogleMaps polygon drawing disabled for simulator builds")
+    }
+    
+    private func drawPath(with points : String){
+        print("GoogleMaps path drawing disabled for simulator builds")
+    }
+}
+
+#endif

@@ -7,7 +7,10 @@
 //
 
 import UIKit
+import CoreLocation
+#if !targetEnvironment(simulator)
 import GoogleMaps
+#endif
 import ObjectMapper
 
 class TaskDetailViewController: BaseViewController {
@@ -17,7 +20,11 @@ class TaskDetailViewController: BaseViewController {
     var purchasedListView : PurchasedListView!
     
     @IBOutlet weak var bgView : UIView!
+    #if !targetEnvironment(simulator)
     @IBOutlet weak var mapView : GMSMapView!
+    #else
+    @IBOutlet weak var mapView : UIView!
+    #endif
     @IBOutlet weak var backBtn: UIButton!
     
     
@@ -130,13 +137,19 @@ class TaskDetailViewController: BaseViewController {
         
     }
 }
+
+#if !targetEnvironment(simulator)
 extension TaskDetailViewController : GMSMapViewDelegate, CLLocationManagerDelegate{
     
     func setupMapDelegate(){
+        #if !targetEnvironment(simulator)
         self.mapView.delegate = self
         self.mapView.isMyLocationEnabled = true
         self.mapView.settings.myLocationButton = false
         self.mapView.settings.compassButton = false
+        #else
+        print("GoogleMaps delegate setup disabled for simulator builds")
+        #endif
         
         if CLLocationManager.locationServicesEnabled()
         {
@@ -173,9 +186,42 @@ extension TaskDetailViewController : GMSMapViewDelegate, CLLocationManagerDelega
     // MARK: update Location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.currentLocation = locations.last ?? CLLocation()
+        #if !targetEnvironment(simulator)
         self.mapView.camera = GMSCameraPosition(target: currentLocation.coordinate, zoom: 16, bearing: 0, viewingAngle: 0)
+        #else
+        print("GoogleMaps camera positioning disabled for simulator builds")
+        #endif
     }
 }
+
+#else
+
+extension TaskDetailViewController : CLLocationManagerDelegate{
+    
+    func setupMapDelegate(){
+        print("GoogleMaps delegate setup disabled for simulator builds")
+        
+        if CLLocationManager.locationServicesEnabled()
+        {
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+            locationManager.startUpdatingHeading()
+        }
+        else
+        {
+//            showToast(msg: "Please enable the location service in settings")
+        }
+        self.locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.currentLocation = locations.last ?? CLLocation()
+        print("GoogleMaps camera positioning disabled for simulator builds")
+    }
+}
+
+#endif
+
 //MARK: VIPER Extension:
 extension TaskDetailViewController: PresenterOutputProtocol {
     func showSuccess(dataArray: [Mappable]?, dataDict: Mappable?, modelClass: Any) {

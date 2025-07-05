@@ -8,10 +8,12 @@
 
 import UIKit
 import ObjectMapper
+#if !targetEnvironment(simulator)
 import GooglePlaces
+import GoogleMaps
+#endif
 import UserNotifications
 import Firebase
-import GoogleMaps
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -26,10 +28,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Constant.string.deviceType = UIDevice.current.screenType.rawValue
         print("screenType:",Constant.string.deviceType)
         FirebaseApp.configure()
-        Fabric.sharedSDK().debug = true
+        // Fabric is now integrated into Firebase - no separate initialization needed
         window?.rootViewController = Router.createModule()
         window?.makeKeyAndVisible()
+#if !targetEnvironment(simulator)
         GMSPlacesClient.provideAPIKey(place_key)
+#endif
         registerPush(forApp: application)
         return true
     }
@@ -57,9 +61,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func setGoogleMapKey(){
-        
+#if !targetEnvironment(simulator)
         GMSServices.provideAPIKey(googleMapKey)
-        
+#endif
     }
 }
 // MARK:- Register Push

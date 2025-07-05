@@ -154,7 +154,7 @@ extension RevenueViewController {
         xaxis.labelCount = xaxisValue.count
         barChartView.delegate = self
         barChartView.noDataTextColor = UIColor.lightGray
-        barChartView.chartDescription?.textColor = UIColor.lightGray
+        barChartView.chartDescription.textColor = UIColor.lightGray
         
         setChart()
     }
@@ -173,8 +173,8 @@ extension RevenueViewController {
             dataEntries1.append(dataEntry1)
         }
         
-        let chartDataSet = BarChartDataSet(values: dataEntries, label: APPLocalize.localizestring.orderCompleted.localize())
-        let chartDataSet1 = BarChartDataSet(values: dataEntries1, label: APPLocalize.localizestring.orderCancelled.localize())
+        let chartDataSet = BarChartDataSet(entries: dataEntries, label: APPLocalize.localizestring.orderCompleted.localize())
+        let chartDataSet1 = BarChartDataSet(entries: dataEntries1, label: APPLocalize.localizestring.orderCancelled.localize())
         
         let dataSets: [BarChartDataSet] = [chartDataSet,chartDataSet1]
         chartDataSet.colors = [UIColor.secondary]

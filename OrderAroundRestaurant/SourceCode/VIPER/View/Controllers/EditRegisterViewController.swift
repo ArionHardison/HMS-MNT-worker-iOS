@@ -8,7 +8,9 @@
 
 import UIKit
 import ObjectMapper
+#if !targetEnvironment(simulator)
 import GooglePlaces
+#endif
 import UnsplashPhotoPicker
 
 class EditRegisterViewController: BaseViewController {
@@ -1207,6 +1209,8 @@ extension EditRegisterViewController : UnsplashPhotoPickerDelegate {
     }
     
 }
+
+#if !targetEnvironment(simulator)
 extension EditRegisterViewController: GMSAutocompleteViewControllerDelegate {
     
     // Handle the user's selection.
@@ -1240,6 +1244,13 @@ extension EditRegisterViewController: GMSAutocompleteViewControllerDelegate {
     }
     
 }
+#else
+
+extension EditRegisterViewController {
+    // GoogleMaps autocomplete functionality disabled for simulator builds
+}
+
+#endif
 extension EditRegisterViewController: StatusViewControllerDelegate {
     func setValueShowStatusLabel(statusValue: String) {
         

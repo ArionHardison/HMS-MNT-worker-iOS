@@ -8,7 +8,10 @@
 
 import UIKit
 import ObjectMapper
+import CoreLocation
+#if !targetEnvironment(simulator)
 import GoogleMaps
+#endif
 
 class HistoryViewController: BaseViewController,CAPSPageMenuDelegate {
     
@@ -321,6 +324,8 @@ extension HistoryViewController: PresenterOutputProtocol {
     }
     
 }
+
+#if !targetEnvironment(simulator)
 extension HistoryViewController : GMSMapViewDelegate, CLLocationManagerDelegate{
     
     func setupMapDelegate(){
@@ -361,3 +366,48 @@ extension HistoryViewController : GMSMapViewDelegate, CLLocationManagerDelegate{
        
     }
 }
+
+#else
+
+extension HistoryViewController : CLLocationManagerDelegate{
+    
+    func setupMapDelegate(){
+        print("GoogleMaps delegate setup disabled for simulator builds")
+        
+        if CLLocationManager.locationServicesEnabled()
+        {
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+            locationManager.startUpdatingHeading()
+        }
+        else
+        {
+//            showToast(msg: "Please enable the location service in settings")
+        }
+        self.locationManager.startUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch status {
+        case .restricted:
+            print("Location access was restricted.")
+        case .denied:
+            print("User denied access to location.")
+        case .notDetermined:
+            print("Location status not determined.")
+        case .authorizedAlways: fallthrough
+        case .authorizedWhenInUse:
+            print("Location status is OK.")
+        @unknown default:
+            break
+        }
+    }
+    
+    // MARK: update Location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        self.currentLocation = locations.last ?? CLLocation()
+        print("GoogleMaps functionality disabled for simulator builds")
+    }
+}
+
+#endif
